@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Тарифы и игровые пакеты компьютерного клуба Top Game в Астане">
+    <meta name="author" content="Ulan">
+    <title>Top Game — Цены и тарифы</title>
+</head>
+
+<body>
+    <!-- Authors: Ulan -->
+
+    <header class="header-container">
+        <!-- span используется, потому что название является строчной частью ссылки с логотипом, а не отдельным заголовком -->
+        <a href="index.html" class="header-brand">
+            <img src="images/logo.png" alt="Логотип Top Game" class="header-logo">
+            <span>TOP GAME</span>
+        </a>
+
+        <nav class="header-nav" aria-label="Основная навигация">
+            <ul class="nav-ul">
+                <li class="nav-li">
+                    <a href="index.html">Главная</a>
+                </li>
+
+                <li class="nav-li">
+                    <a href="prices.html" aria-current="page">Цены</a>
+                </li>
+
+                <li class="nav-li">
+                    <a href="computers.html">Компьютеры</a>
+                </li>
+
+                <li class="nav-li">
+                    <a href="booking.html">Бронирование</a>
+                </li>
+
+                <li class="nav-li">
+                    <a href="about.html">О клубе</a>
+                </li>
+
+                <li class="nav-li">
+                    <a href="colophon.html">Colophon</a>
+                </li>
+            </ul>
+        </nav>
+
+        <a href="booking.html" class="header-booking">Забронировать</a>
+    </header>
+
+    <main>
+        <section class="hero">
+            <header class="hero-content">
+                <p class="hero-label">Тарифы</p>
+
+                <h1>БОЛЬШЕ ИГРЫ.<br>МЕНЬШЕ ПАУЗ.</h1>
+
+                <p>
+                    Выбирай подходящую игровую зону и продолжительность сеанса.
+                    Компьютерный клуб Top Game работает круглосуточно, поэтому
+                    забронировать место можно на дневное или ночное время.
+                </p>
+
+                <a href="#tariffs">Посмотреть тарифы</a>
+                <a href="#booking-steps">Как забронировать</a>
+            </header>
+
+            <figure class="hero-media">
+                <img src="images/prices-hero.jpg" alt="Игровая гарнитура в компьютерном клубе Top Game">
+                <figcaption>Игровая периферия в клубе Top Game</figcaption>
+            </figure>
+        </section>
+
+        <section id="tariffs" class="club-prices">
+            <h2>Доступные тарифы</h2>
+
+            <p>
+                Тарифы отличаются продолжительностью игры и выбранной зоной.
+                Каждый вариант предоставляет доступ к установленным играм,
+                современной периферии и компьютерам с высокой производительностью.
+                Перед посещением рекомендуется уточнить актуальную стоимость
+                и наличие свободных мест у администратора.
+            </p>
+
+            <!-- div используется только для будущего расположения карточек в сетке и не заменяет смысловой раздел -->
+            <div class="prices-list">
+                <article class="price-card">
+                    <h3>1 час</h3>
+                    <p><strong>От 1 200 ₸</strong></p>
+                    <p>Базовый тариф для короткого игрового сеанса.</p>
+
+                    <hr>
+
+                    <ul>
+                        <li>Доступ к установленным играм</li>
+                        <li>Высокий <abbr title="Frames Per Second">FPS</abbr></li>
+                        <li>Современная игровая периферия</li>
+                    </ul>
+
+                    <a href="booking.html">Выбрать тариф <span aria-hidden="true">→</span></a>
+                </article>
+
+                <article class="price-card">
+                    <h3>3 часа</h3>
+                    <p><strong>От 3 600 ₸</strong></p>
+                    <p>Продолжительный сеанс для нескольких матчей.</p>
+
+                    <hr>
+
+                    <ul>
+                        <li>Три часа игрового времени</li>
+                        <li>Доступ к установленным играм</li>
+                        <li>Высокий <abbr title="Frames Per Second">FPS</abbr></li>
+                    </ul>
+
+                    <a href="booking.html">Выбрать тариф <span aria-hidden="true">→</span></a>
+                </article>
+
+                <article class="price-card">
+                    <h3>Ночь</h3>
+                    <p><strong>От 4 700 ₸</strong></p>
+                    <p>Ночной пакет для продолжительной игры.</p>
+
+                    <hr>
+
+                    <ul>
+                        <li>Игра в ночное время</li>
+                        <li>Доступ к установленным играм</li>
+                        <li>Использование игровой периферии</li>
+                    </ul>
+
+                    <a href="booking.html">Выбрать тариф <span aria-hidden="true">→</span></a>
+                </article>
+
+                <article class="price-card">
+                    <h3>Private</h3>
+                    <p><strong>От 2 500 ₸</strong></p>
+                    <p>Отдельная зона для комфортной игры.</p>
+
+                    <hr>
+
+                    <ul>
+                        <li>Приватное игровое пространство</li>
+                        <li>Мощное компьютерное оборудование</li>
+                        <li>Монитор с высокой частотой обновления</li>
+                    </ul>
+
+                    <a href="booking.html">Выбрать тариф <span aria-hidden="true">→</span></a>
+                </article>
+            </div>
+        </section>
+
+        <section id="tariff-comparison" class="tariff-table">
+            <h2>Сравнение тарифов</h2>
+
+            <table>
+                <caption>Сравнение тарифов компьютерного клуба Top Game</caption>
+
+                <thead>
+                    <tr>
+                        <th scope="col">Тариф</th>
+                        <th scope="col">Стоимость</th>
+                        <th scope="col">Формат</th>
+                        <th scope="col">Подходит для</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <th scope="row">1 час</th>
+                        <td>От 1 200 ₸</td>
+                        <td>Короткий сеанс</td>
+                        <td>Одного или нескольких матчей</td>
+                    </tr>
+
+                    <tr>
+                        <th scope="row">3 часа</th>
+                        <td>От 3 600 ₸</td>
+                        <td>Продолжительный сеанс</td>
+                        <td>Длительной игры с друзьями</td>
+                    </tr>
+
+                    <tr>
+                        <th scope="row">Ночь</th>
+                        <td>От 4 700 ₸</td>
+                        <td>Ночной пакет</td>
+                        <td>Продолжительной игры в ночное время</td>
+                    </tr>
+
+                    <tr>
+                        <th scope="row">Private</th>
+                        <td>От 2 500 ₸</td>
+                        <td>Отдельная игровая зона</td>
+                        <td>Комфортной игры в приватном пространстве</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <p>
+                <small>
+                    Перед бронированием уточните актуальную стоимость и доступность
+                    выбранного тарифа у администратора.
+                </small>
+            </p>
+        </section>
+
+        <section id="booking-steps" class="booking-steps">
+            <h2>Как это работает</h2>
+
+            <ol type="1">
+                <li>
+                    <h3>Выбери зону</h3>
+                    <p>Выбери Main, Duo’s или Private.</p>
+                </li>
+
+                <li>
+                    <h3>Укажи время</h3>
+                    <p>Укажи дату, время начала и длительность игры.</p>
+                </li>
+
+                <li>
+                    <h3>Подтверди заявку</h3>
+                    <p>Администратор проверит заявку и свяжется с тобой.</p>
+                </li>
+            </ol>
+        </section>
+
+        <aside class="prices-action">
+            <h2>Готов к игре?</h2>
+
+            <p>
+                Актуальную стоимость пакетов и наличие свободных компьютеров
+                рекомендуется уточнить у администратора.
+            </p>
+
+            <a href="booking.html">Забронировать</a>
+        </aside>
+    </main>
+
+    <footer class="container-footer">
+        <section class="footer-info">
+            <h2>Top Game</h2>
+            <p>Киберспортивный клуб в центре Астаны.</p>
+        </section>
+
+        <section class="footer-contacts">
+            <h2>Контакты</h2>
+
+            <address>
+                <p>Астана, ул. Динмухамеда Кунаева, 23</p>
+
+                <p>
+                    Телефон:
+                    <a href="tel:+77064005040">+7 706 400 50 40</a>
+                </p>
+            </address>
+
+            <p>
+                <a href="https://2gis.kz/astana/firm/70000001080411948" target="_blank" rel="noopener noreferrer">
+                    Посмотреть клуб в 2GIS
+                </a>
+            </p>
+        </section>
+
+        <p>&copy; 2026 Top Game</p>
+    </footer>
+</body>
+</html>
+
