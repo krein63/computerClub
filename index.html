@@ -6,9 +6,10 @@
     <meta name="description" content="Главная страница компьютерного клуба Top Game в Астане">
     <meta name="author" content="Ulan">
     <title>Top Game — Главная</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 
-<body>
+<body class="site-page page-home">
     <!-- Authors: Ulan -->
 
     <header class="container-header">
@@ -19,30 +20,15 @@
         </a>
 
         <nav class="header-nav" aria-label="Основная навигация">
-            <ul class="nav-ul">
-                <li class="nav-li">
-                    <a href="index.html" aria-current="page">Главная</a>
-                </li>
-
-                <li class="nav-li">
-                    <a href="prices.html">Цены</a>
-                </li>
-
-                <li class="nav-li">
-                    <a href="computers.html">Компьютеры</a>
-                </li>
-
-                <li class="nav-li">
-                    <a href="booking.html">Бронирование</a>
-                </li>
-
-                <li class="nav-li">
-                    <a href="about.html">О клубе</a>
-                </li>
-
-                <li class="nav-li">
-                    <a href="colophon.html">Colophon</a>
-                </li>
+            <ul>
+                <li><a href="index.html" aria-current="page">Главная</a></li>
+                <li><a href="prices.html">Цены</a></li>
+                <li><a href="computers.html">Компьютеры</a></li>
+                <li><a href="booking.html">Бронирование</a></li>
+                <li><a href="games.html">Игры</a></li>
+                <li><a href="rules.html">Правила</a></li>
+                <li><a href="about.html">О клубе</a></li>
+                <li><a href="colophon.html">Colophon</a></li>
             </ul>
         </nav>
 
@@ -100,6 +86,39 @@
                 </li>
             </ul>
         </aside>
+
+        <section id="visitor-guide" class="gaming-zones">
+            <header class="zones-header">
+                <h2>Подготовься к игре</h2>
+                <p>
+                    Посмотри доступные игры до посещения клуба и прочитай
+                    основные правила использования компьютеров и личных аккаунтов.
+                </p>
+            </header>
+
+            <!-- div используется только для размещения двух самостоятельных статей рядом. -->
+            <div class="zones-list">
+                <article class="zone-card">
+                    <img src="images/peripherals.jpg" alt="Игровая клавиатура, мышь и гарнитура Top Game">
+                    <h3>Игры</h3>
+                    <p>
+                        Узнай о популярных командных играх и отправь запрос,
+                        если нужной игры нет в списке.
+                    </p>
+                    <a href="games.html">Перейти к играм &rarr;</a>
+                </article>
+
+                <article class="zone-card">
+                    <img src="images/private-zone.jpg" alt="Аккуратно организованное место в зоне Private">
+                    <h3>Правила клуба</h3>
+                    <p>
+                        Прочитай правила поведения, защиты аккаунта и
+                        безопасного использования оборудования.
+                    </p>
+                    <a href="rules.html">Прочитать правила &rarr;</a>
+                </article>
+            </div>
+        </section>
 
         <section id="gaming-zones" class="gaming-zones">
             <header class="zones-header">

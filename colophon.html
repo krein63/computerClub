@@ -9,35 +9,38 @@
     <meta name="author" content="Ali">
 
     <title>Colophon — создание сайта TOP GAME</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 
-<body>
+<body class="site-page page-colophon">
 
 <!-- Автор страницы: Ali -->
 
-<header>
-    <a href="index.html" aria-label="Перейти на главную страницу TOP GAME">
+<header class="container-header">
+    <a href="index.html" class="header-brand" aria-label="Перейти на главную страницу TOP GAME">
         <img
-                src="images/logo-white.svg"
+                class="header-logo"
+                src="images/logo.png"
                 alt="Логотип компьютерного клуба TOP GAME"
         >
+        <span>TOP GAME</span>
     </a>
 
     <!-- Список используется внутри nav, потому что меню является перечнем страниц сайта. -->
-    <nav aria-label="Основная навигация">
+    <nav class="header-nav" aria-label="Основная навигация">
         <ul>
             <li><a href="index.html">Главная</a></li>
             <li><a href="prices.html">Цены</a></li>
             <li><a href="computers.html">Компьютеры</a></li>
             <li><a href="booking.html">Бронирование</a></li>
+            <li><a href="games.html">Игры</a></li>
+            <li><a href="rules.html">Правила</a></li>
             <li><a href="about.html">О клубе</a></li>
-            <li>
-                <a href="colophon.html" aria-current="page">Colophon</a>
-            </li>
+            <li><a href="colophon.html" aria-current="page">Colophon</a></li>
         </ul>
     </nav>
 
-    <a href="booking.html">Забронировать</a>
+    <a href="booking.html" class="header-booking">Забронировать</a>
 </header>
 
 <main>
@@ -225,14 +228,14 @@
         </dl>
 
         <p>
-            В текущей версии не используются CSS, JavaScript,
-            фреймворки&nbsp;&amp;&nbsp;шаблоны. Внешнее оформление будет
-            добавлено на следующем этапе разработки.
+            Для внешнего оформления используется общий файл
+            <code>styles.css</code>. JavaScript, фреймворки и шаблоны
+            в текущей версии не используются.
         </p>
     </section>
 </main>
 
-<footer>
+<footer class="container-footer legacy-footer">
     <a href="index.html" aria-label="Перейти на главную страницу TOP GAME">
         <img
                 src="images/logo-white.svg"
@@ -250,8 +253,10 @@
             <li><a href="prices.html">Цены</a></li>
             <li><a href="computers.html">Компьютеры</a></li>
             <li><a href="booking.html">Бронирование</a></li>
+            <li><a href="games.html">Игры</a></li>
+            <li><a href="rules.html">Правила</a></li>
             <li><a href="about.html">О клубе</a></li>
-            <li><a href="colophon.html">Colophon</a></li>
+            <li><a href="colophon.html" aria-current="page">Colophon</a></li>
         </ul>
     </nav>
 
