@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Популярные игры и запрос новой игры в компьютерном клубе TOP GAME">
+    <meta name="author" content="Amir Kabdilmalik">
+    <title>Игры — TOP GAME</title>
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/amir.css">
+</head>
+<body class="site-page page-games">
+<!-- Автор страницы: Amir  -->
+<header class="container-header">
+    <a href="index.html" class="header-brand" aria-label="Перейти на главную страницу TOP GAME">
+        <img src="images/logo.png" alt="Логотип компьютерного клуба TOP GAME" class="header-logo">
+        <span>TOP GAME</span>
+    </a>
+    <nav class="header-nav" aria-label="Основная навигация">
+        <ul>
+            <li><a href="index.html">Главная</a></li>
+            <li><a href="prices.html">Цены</a></li>
+            <li><a href="computers.html">Компьютеры</a></li>
+            <li><a href="booking.html">Бронирование</a></li>
+            <li><a href="games.html" aria-current="page">Игры</a></li>
+            <li><a href="rules.html">Правила</a></li>
+            <li><a href="about.html">О клубе</a></li>
+        </ul>
+    </nav>
+    <a href="booking.html" class="header-booking">Забронировать</a>
+</header>
+
+<main>
+    <section id="game-list" class="gaming-zones">
+        <header class="zones-header page-hero">
+            <p><small>Игровая библиотека</small></p>
+            <h1>Выбери игру для следующего матча</h1>
+            <p>
+                На компьютерах TOP GAME доступны командные и одиночные игры.
+                Для сетевого матча важны стабильный <abbr title="Frames Per Second">FPS</abbr>
+                и низкий <abbr title="время отклика между компьютером и сервером">ping</abbr>.
+                Перед визитом уточните у администратора наличие нужной игры и обновления.
+            </p>
+        </header>
+
+        <!-- div нужен только для будущего расположения карточек в сетке; отдельного семантического тега для сетки нет. -->
+        <div class="game-cards">
+            <article>
+                <h2>Counter-Strike 2</h2>
+                <figure>
+                    <img src="images/cs2logo.png" alt="Игровые компьютеры, подходящие для командного матча">
+                    <figcaption>Зал для командной игры пять на пять.</figcaption>
+                </figure>
+                <p>
+                    <strong>Жанр:</strong> командный шутер. Для матча нужны две команды
+                    по пять игроков; формат можно записать как 5&nbsp;&times;&nbsp;5.
+                </p>
+            </article>
+            <article>
+                <h2>Dota 2</h2>
+                <figure>
+                    <img src="images/dotaa 2.jpg" alt="Клавиатура, мышь и гарнитура игрового места">
+                    <figcaption>Периферия для продолжительных командных матчей.</figcaption>
+                </figure>
+                <p>
+                    <strong>Жанр:</strong> <i>MOBA</i>. Игра подходит для команды и
+                    требует согласованных действий в серии BO<sub>3</sub>.
+                    <!-- span выделяет короткий статус внутри предложения; отдельный смысловой раздел здесь не нужен. -->
+                    <span>Статус: уточнить наличие.</span>
+                </p>
+            </article>
+        </div>
+
+        <aside class="info-panel">
+            <h2>Перед запуском</h2>
+            <p>
+                Войдите только в <em>собственную</em> учётную запись и не сохраняйте пароль.
+                После игры выполните выход. Правила безопасности находятся на
+                <a href="rules.html#account-safety">странице правил</a>.
+            </p>
+        </aside>
+    </section>
+
+    <hr>
+
+    <section id="game-request" class="content-section form-section">
+        <h2>Предложить игру</h2>
+        <p>Не нашли игру? Отправьте запрос администратору.</p>
+
+        <!-- Метод POST выбран для данных посетителя; серверной обработки пока нет, поэтому форма реально ничего не отправляет. -->
+        <form method="post" action="#">
+            <fieldset>
+                <legend>Контакты и запрос</legend>
+                <p><label for="visitor-name">Имя:</label><br>
+                    <input type="text" id="visitor-name" name="visitor-name" placeholder="Ваше имя" required></p>
+                <p><label for="visitor-email">Почта:</label><br>
+                    <input type="email" id="visitor-email" name="visitor-email" placeholder="name@example.com" required></p>
+                <p><label for="visitor-phone">Телефон:</label><br>
+                    <input type="tel" id="visitor-phone" name="visitor-phone" placeholder="+7 700 000 00 00" required></p>
+                <p><label for="visit-date">Дата визита:</label><br>
+                    <input type="date" id="visit-date" name="visit-date" required></p>
+                <p><label for="players">Игроков:</label><br>
+                    <input type="number" id="players" name="players" min="1" max="45" value="1" required></p>
+                <p><label for="game-title">Название игры:</label><br>
+                    <input type="text" id="game-title" name="game-title" placeholder="Например, Valorant" required></p>
+                <p><label for="genre">Жанр:</label><br>
+                    <select id="genre" name="genre" required>
+                        <option value="">Выберите жанр</option>
+                        <option value="shooter">Шутер</option>
+                        <option value="strategy">Стратегия</option>
+                        <option value="sports">Спорт</option>
+                    </select></p>
+                <p>Нужна командная установка?</p>
+                <p><input type="radio" id="team-yes" name="team-install" value="yes" required>
+                    <label for="team-yes">Да</label>
+                    <input type="radio" id="team-no" name="team-install" value="no">
+                    <label for="team-no">Нет</label></p>
+                <p><input type="checkbox" id="agreement" name="agreement" required>
+                    <label for="agreement">Я подтверждаю правильность данных</label></p>
+                <p><label for="request-comment">Комментарий:</label><br>
+                    <textarea id="request-comment" name="request-comment" rows="4" cols="40" placeholder="Версия игры или пожелания"></textarea></p>
+                <p><button type="submit">Отправить запрос</button> <button type="reset">Очистить форму</button></p>
+            </fieldset>
+        </form>
+        <nav class="section-links" aria-label="Дополнительная навигация">
+            <a href="#game-list">Вернуться к списку игр</a>
+            <a href="index.html">Вернуться на главную страницу</a>
+        </nav>
+    </section>
+</main>
+
+<footer class="container-footer">
+    <section class="footer-info">
+        <h2>Top Game</h2>
+        <p>Киберспортивный клуб в центре Астаны.</p>
+    </section>
+    <section class="footer-contacts">
+        <h2>Контакты</h2>
+        <address>
+            TOP GAME, г. Астана, ул. Динмухамеда Кунаева, 23<br>
+            <a href="tel:+77064005040">+7 706 400 50 40</a> ·
+            <a href="mailto:topgame@example.com">topgame@example.com</a>
+        </address>
+    </section>
+    <p><small>&copy; 2026 TOP GAME&nbsp;&mdash;&nbsp;24/7.</small></p>
+</footer>
+</body>
+</html>

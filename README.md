@@ -6,7 +6,8 @@ This is an educational multi-page website for **Top Game**, a computer club loca
 
 * Ulan — `prices.html` and `computers.html`
 * Ali — `booking.html` and `about.html`
-* Shared pages — `index.html` and `colophon.html`
+* Amir — `games.html` and `rules.html`
+* Shared page — `index.html`
 
 ## Website Pages
 
@@ -15,27 +16,35 @@ This is an educational multi-page website for **Top Game**, a computer club loca
 * `computers.html` — computer specifications and gaming peripherals
 * `booking.html` — gaming-place booking form
 * `about.html` — information about the club and its contacts
-* `colophon.html` — explanation of how the website was created
+* `games.html` — available games and the game-request form
+* `rules.html` — club rules and account-safety guidance
 
 ## Project Structure
 
 ```text
 computerClub/
+├── css/
+│   ├── base.css
+│   ├── ulan.css
+│   ├── ali.css
+│   └── amir.css
 ├── images/
 ├── index.html
 ├── prices.html
 ├── computers.html
 ├── booking.html
 ├── about.html
-├── colophon.html
+├── games.html
+├── rules.html
 ├── README.md
-├── AI-log.txt
-└── tag-checklist.txt
+└── AI-log.txt
 ```
 
 ## Technologies
 
-The project uses only **HTML5**. CSS, JavaScript, frameworks, templates, and website builders were not used because they are prohibited in the current assignment.
+The project uses **HTML5** and external **CSS3** stylesheets. It does not use JavaScript, frameworks, templates, or website builders.
+
+Shared colours, typography, navigation, and layout rules are in `css/base.css`. Each student's two pages then load that student's stylesheet after the shared file so the cascade order is explicit.
 
 ## How to Run the Website
 

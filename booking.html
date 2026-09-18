@@ -9,39 +9,38 @@
     <meta name="author" content="Ali">
 
     <title>Бронирование — TOP GAME</title>
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/ali.css">
 </head>
 
-<body>
+<body class="site-page page-booking">
 
 <!-- Автор страницы: Ali -->
 
-<header>
-    <a href="index.html" aria-label="Перейти на главную страницу TOP GAME">
+<header class="container-header">
+    <a href="index.html" class="header-brand" aria-label="Перейти на главную страницу TOP GAME">
         <img
-                src="images/logo-white.svg"
+                class="header-logo"
+                src="images/logo.png"
                 alt="Логотип компьютерного клуба TOP GAME"
         >
+        <span>TOP GAME</span>
     </a>
 
     <!-- Список используется внутри nav, потому что меню является перечнем страниц сайта. -->
-    <nav aria-label="Основная навигация">
+    <nav class="header-nav" aria-label="Основная навигация">
         <ul>
             <li><a href="index.html">Главная</a></li>
             <li><a href="prices.html">Цены</a></li>
             <li><a href="computers.html">Компьютеры</a></li>
-            <li>
-                <a href="booking.html" aria-current="page">
-                    Бронирование
-                </a>
-            </li>
+            <li><a href="booking.html" aria-current="page">Бронирование</a></li>
+            <li><a href="games.html">Игры</a></li>
+            <li><a href="rules.html">Правила</a></li>
             <li><a href="about.html">О клубе</a></li>
-            <li><a href="colophon.html">Colophon</a></li>
         </ul>
     </nav>
 
-    <p>
-        <a href="#booking-form">Забронировать</a>
-    </p>
+    <a href="#booking-form" class="header-booking">Забронировать</a>
 </header>
 
 <main>
@@ -296,7 +295,7 @@
     </aside>
 </main>
 
-<footer>
+<footer class="container-footer legacy-footer">
     <a href="index.html" aria-label="Перейти на главную страницу TOP GAME">
         <img
                 src="images/logo-white.svg"
@@ -310,9 +309,12 @@
 
     <nav aria-label="Навигация в нижней части страницы">
         <ul>
+            <li><a href="index.html">Главная</a></li>
             <li><a href="prices.html">Цены</a></li>
             <li><a href="computers.html">Компьютеры</a></li>
-            <li><a href="booking.html">Бронирование</a></li>
+            <li><a href="booking.html" aria-current="page">Бронирование</a></li>
+            <li><a href="games.html">Игры</a></li>
+            <li><a href="rules.html">Правила</a></li>
             <li><a href="about.html">О клубе</a></li>
         </ul>
     </nav>

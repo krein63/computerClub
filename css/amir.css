@@ -1,0 +1,327 @@
+/*
+ * Amir's stylesheet: games.html and rules.html.
+ * Loaded after base.css so page-specific rules demonstrate the cascade.
+ */
+
+.page-hero + a,
+.section-links a {
+    border: 0;
+    background: linear-gradient(135deg, var(--accent), #ff5b55);
+    color: #fff !important;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    text-decoration: none;
+}
+
+.section-links a:hover,
+.section-links a:focus-visible {
+    background: var(--accent-dark);
+}
+
+.content-section {
+    width: min(var(--content-width), calc(100% - 48px));
+    margin: 0 auto;
+}
+
+.page-hero {
+    min-height: 440px;
+    margin-inline: calc(50% - 50vw);
+    padding: 72px max(24px, calc((100vw - var(--content-width)) / 2));
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    isolation: isolate;
+    background-position: center;
+    background-size: cover;
+}
+
+.page-games .page-hero {
+    background-image:
+        linear-gradient(90deg, #070707 4%, rgba(7, 7, 7, 0.91) 38%, rgba(7, 7, 7, 0.24) 100%),
+        url("../images/hero.jpg");
+}
+
+.page-rules .page-hero {
+    background-image:
+        linear-gradient(90deg, #070707 4%, rgba(7, 7, 7, 0.91) 38%, rgba(7, 7, 7, 0.22) 100%),
+        url("../images/peripherals.jpg");
+}
+
+.page-hero::after {
+    content: "";
+    position: absolute;
+    inset: auto 0 0;
+    height: 100px;
+    z-index: -1;
+    background: linear-gradient(transparent, var(--background));
+}
+
+.page-hero p {
+    width: min(590px, 100%);
+    margin: 0;
+    color: #b5b5b5;
+    font-size: 18px;
+}
+
+.page-hero p:first-child {
+    margin-bottom: 24px;
+    color: var(--accent);
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+}
+
+.page-hero h1 {
+    width: min(720px, 100%);
+    margin: 0 0 18px;
+    font-size: clamp(42px, 6vw, 74px);
+    line-height: 0.98;
+    letter-spacing: -0.025em;
+    text-transform: uppercase;
+}
+
+.game-cards,
+.rules-list,
+.rules-figure,
+.info-panel,
+#rule-table,
+#account-safety,
+#game-request {
+    margin-top: 58px;
+}
+
+.game-cards {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
+}
+
+.game-cards article {
+    border: 1px solid var(--border);
+    background: linear-gradient(145deg, #171717, #0d0d0d);
+    overflow: hidden;
+    position: relative;
+    transition: transform 180ms ease, border-color 180ms ease;
+}
+
+.game-cards article:hover {
+    border-color: #5a3434;
+    transform: translateY(-4px);
+}
+
+.game-cards h2 {
+    margin: 0;
+    padding: 24px 26px 0;
+    font-size: 25px;
+    text-transform: uppercase;
+}
+
+.game-cards figure {
+    margin: 18px 0 0;
+}
+
+.game-cards img {
+    width: 100%;
+    height: 270px;
+    display: block;
+    object-fit: cover;
+    filter: saturate(0.8) contrast(1.08);
+}
+
+.game-cards figcaption,
+.rules-figure figcaption {
+    padding: 11px 26px;
+    color: var(--muted);
+    font-size: 13px;
+}
+
+.game-cards article > p {
+    margin: 0;
+    padding: 10px 26px 26px;
+    color: #c1c1c1;
+}
+
+.game-cards article span {
+    display: block;
+    margin-top: 8px;
+    color: var(--accent);
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.info-panel,
+.contact-panel {
+    padding: 30px 34px;
+    border: 1px solid var(--border);
+    border-left: 6px solid var(--accent);
+    background: linear-gradient(110deg, #171717, #0d0d0d);
+}
+
+.info-panel h2,
+.contact-panel h2 {
+    margin: 0 0 8px;
+    font-size: 27px;
+    text-transform: uppercase;
+}
+
+.info-panel p,
+.contact-panel p {
+    margin: 0;
+    color: var(--muted);
+}
+
+body.page-games hr,
+body.page-rules hr {
+    width: min(var(--content-width), calc(100% - 48px));
+    margin: 60px auto 0;
+    border: 0;
+    border-top: 1px solid #202020;
+}
+
+.content-section {
+    padding-bottom: 72px;
+}
+
+.content-section > h2,
+.rules-list > h2 {
+    margin: 0 0 12px;
+    font-size: clamp(30px, 4vw, 46px);
+    line-height: 1.05;
+    text-transform: uppercase;
+}
+
+.content-section > p {
+    color: var(--muted);
+}
+
+.section-links {
+    margin-top: 28px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.section-links a {
+    padding: 13px 18px;
+    border-radius: 2px;
+    font-size: 12px;
+}
+
+.rules-list ol {
+    margin: 26px 0 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+    list-style: none;
+    counter-reset: rule;
+}
+
+.rules-list ol > li {
+    min-height: 128px;
+    padding: 27px 28px 25px 96px;
+    border: 1px solid var(--border);
+    background: linear-gradient(145deg, #161616, #0d0d0d);
+    color: #d1d1d1;
+    counter-increment: rule;
+    position: relative;
+}
+
+.rules-list ol > li::before {
+    content: counter(rule, decimal-leading-zero);
+    position: absolute;
+    left: 28px;
+    top: 28px;
+    color: var(--accent);
+    font-size: 38px;
+    line-height: 1;
+}
+
+.rules-list ul {
+    margin: 10px 0 0;
+    padding-left: 18px;
+    color: var(--muted);
+}
+
+.rules-figure {
+    margin-inline: 0;
+    border: 1px solid var(--border);
+    background: var(--surface);
+}
+
+.rules-figure img {
+    width: 100%;
+    max-height: 360px;
+    display: block;
+    object-fit: cover;
+}
+
+.account-section dl {
+    margin: 28px 0;
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    border: 1px solid var(--border);
+}
+
+.account-section dt,
+.account-section dd {
+    margin: 0;
+    padding: 18px 20px;
+    border-bottom: 1px solid var(--border);
+}
+
+.account-section dt {
+    color: var(--accent);
+}
+
+.account-section dd {
+    color: var(--muted);
+}
+
+.contact-panel {
+    margin-top: 36px;
+}
+
+@media (max-width: 720px) {
+    .page-hero {
+            min-height: 390px;
+            padding-block: 58px;
+        
+    }
+
+    .page-hero h1 {
+            font-size: clamp(38px, 12vw, 58px);
+        
+    }
+
+    .page-hero p {
+            font-size: 16px;
+        
+    }
+
+    .game-cards,
+    .rules-list ol {
+            grid-template-columns: 1fr;
+        
+    }
+
+    .account-section dl {
+            grid-template-columns: 1fr;
+        
+    }
+
+    .account-section dt {
+            border-bottom: 0;
+            padding-bottom: 4px;
+        
+    }
+
+    .account-section dd {
+            padding-top: 4px;
+        
+    }
+}
