@@ -36,6 +36,8 @@ computerClub/
 ├── about.html
 ├── games.html
 ├── rules.html
+├── CSS_CHECKLIST.txt
+├── Top_Game_Tag_Checklist.pdf
 ├── README.md
 └── AI-log.txt
 ```
@@ -68,7 +70,7 @@ Address: Dinmukhamed Kunayev Street 23, Astana, Kazakhstan.
 
 ## Validation
 
-Every HTML page must pass the W3C Markup Validation Service with zero errors. Required HTML elements, filenames, line numbers, and page authors are recorded in `tag-checklist.txt`.
+Every HTML page must pass the W3C Markup Validation Service with zero errors. HTML items are recorded in `Top_Game_Tag_Checklist.pdf`. CSS selectors, techniques, authors, files and final line numbers are recorded in `CSS_CHECKLIST.txt`.
 
 ## AI Usage
 

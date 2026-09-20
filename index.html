@@ -7,9 +7,16 @@
     <meta name="author" content="Ulan">
     <title>Top Game — Главная</title>
     <link rel="stylesheet" href="css/base.css">
+    <!-- The only internal style block: it loads after base.css and overrides
+         the equal-specificity external .hero-label colour. -->
+    <style>
+        .hero-label {
+            color: #666666;
+        }
+    </style>
 </head>
 
-<body class="site-page page-home">
+<body id="page-top" class="site-page page-home">
     <!-- Authors: Ulan and Ali and Amir-->
 
     <header class="container-header">
@@ -37,7 +44,8 @@
     <main>
         <section class="hero">
             <header class="hero-content">
-                <p class="hero-label">Астана • 24/7</p>
+                <!-- The only inline style: it overrides both external and internal colour rules. -->
+                <p class="hero-label" style="color: #e04444;">Астана • 24/7</p>
 
                 <h1>ИГРАЙ.<br>ПОБЕЖДАЙ.<br>ПОВТОРЯЙ.</h1>
 
@@ -200,10 +208,15 @@
         </section>
     </main>
 
+    <a href="#page-top" class="back-to-top">↑ Наверх</a>
+
     <footer class="container-footer">
         <section class="footer-info">
             <h2>Top Game</h2>
-            <p>Киберспортивный клуб в центре Астаны.</p>
+            <p>
+                <img class="float-logo" src="images/logo-mark-white.svg" alt="Знак TOP GAME">
+                Киберспортивный клуб в центре Астаны.
+            </p>
         </section>
 
         <section class="footer-contacts">

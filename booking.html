@@ -73,7 +73,7 @@
 
     <hr>
 
-    <section id="booking-form">
+    <section id="booking-details">
         <h2>Данные бронирования</h2>
 
         <figure class="booking-image">
@@ -87,7 +87,8 @@
         </figure>
         <!-- POST выбран, потому что форма содержит данные посетителя,
              которые в будущем будут передаваться системе бронирования. -->
-        <form method="post" action="#">
+        <!-- The id is on the form itself so links scroll directly to the fields. -->
+        <form id="booking-form" method="post" action="#">
             <!-- Серверной обработки пока нет, поэтому форма не отправляет
                  реальное бронирование. Это будет добавлено позднее. -->
 
