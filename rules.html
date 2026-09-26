@@ -1,152 +1,190 @@
 <!DOCTYPE html>
-<html lang="ru" class="box-sized">
-<head class="box-sized">
-    <meta charset="UTF-8" class="box-sized">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" class="box-sized">
-    <meta name="description" content="Правила посещения и безопасной игры в компьютерном клубе TOP GAME" class="box-sized">
-    <meta name="author" content="Amir Kabdilmalik" class="box-sized">
-    <title class="box-sized">Правила клуба — TOP GAME</title>
-    <link rel="stylesheet" href="css/base.css" class="box-sized">
-    <link rel="stylesheet" href="css/amir.css" class="box-sized">
-</head>
-<body class="site-page page-rules box-sized">
-<!-- Автор страницы: Amir  -->
-<header class="container-header box-sized">
-    <a href="index.html" class="header-brand box-sized link" aria-label="Перейти на главную страницу TOP GAME">
-        <img src="images/logo.png" alt="Логотип компьютерного клуба TOP GAME" class="header-logo box-sized image">
-        <span class="box-sized">TOP GAME</span>
-    </a>
-    <!-- Список находится внутри nav, потому что меню является перечнем всех страниц сайта. -->
-    <nav class="header-nav box-sized" aria-label="Основная навигация">
-        <ul class="box-sized header-nav-list">
-            <li class="box-sized"><a href="index.html" class="box-sized header-nav-link link">Главная</a></li>
-            <li class="box-sized"><a href="prices.html" class="box-sized header-nav-link link">Цены</a></li>
-            <li class="box-sized"><a href="computers.html" class="box-sized header-nav-link link">Компьютеры</a></li>
-            <li class="box-sized"><a href="booking.html" class="box-sized header-nav-link link">Бронирование</a></li>
-            <li class="box-sized"><a href="games.html" class="box-sized header-nav-link link">Игры</a></li>
-            <li class="box-sized"><a href="rules.html" aria-current="page" class="box-sized header-nav-link header-nav-link-current link">Правила</a></li>
-            <li class="box-sized"><a href="about.html" class="box-sized header-nav-link link">О клубе</a></li>
-        </ul>
-    </nav>
-    <a href="booking.html" class="header-booking box-sized link">Забронировать</a>
-</header>
-
-<main class="box-sized main-content">
-    <section id="main-rules" class="gaming-zones main-rules-layout box-sized section-card">
-        <header class="zones-header page-hero box-sized">
-            <p class="page-hero-lead box-sized paragraph"><small class="box-sized">Памятка посетителя</small></p>
-            <h1 class="box-sized heading heading-primary">Правила комфортной и безопасной игры</h1>
-            <p class="box-sized paragraph">
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Правила посещения и безопасной игры в компьютерном клубе TOP GAME">
+        <meta name="author" content="Amir Kabdilmalik">
+        <title>Правила клуба — TOP GAME</title>
+        <!-- Bootstrap 5.3.8 via CDN. Custom brand corrections are loaded after Bootstrap. -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+        <link rel="stylesheet" href="css/base.css">
+    </head>
+    <body>
+        <!-- Автор страницы: Amir  -->
+        <!-- Bootstrap Navbar: official collapse markup adapted to the seven existing links. https://getbootstrap.com/docs/5.3/components/navbar/ -->
+        <header class="navbar navbar-expand-xl bg-dark border-bottom border-danger border-3 py-3" data-bs-theme="dark">
+            <div class="container-fluid px-3 px-lg-4">
+                <!-- container-fluid keeps the navigation full width, giving seven links room on desktop. -->
+                <a href="index.html" aria-label="Перейти на главную страницу TOP GAME" class="navbar-brand d-flex align-items-center gap-2 fw-bold">
+                    <img src="images/logo.png" alt="Логотип компьютерного клуба TOP GAME" class="img-fluid object-fit-contain" width="44" height="44">
+                    <span>TOP GAME</span>
+                </a>
+                <!-- Список находится внутри nav, потому что меню является перечнем всех страниц сайта. -->
+                <button type="button" data-bs-toggle="collapse" data-bs-target="#main-navigation" aria-controls="main-navigation" aria-expanded="false" aria-label="Открыть или закрыть меню" class="navbar-toggler">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="main-navigation">
+                    <nav aria-label="Основная навигация" class="flex-grow-1">
+                        <ul class="navbar-nav mx-xl-auto gap-xl-1">
+                            <li class="nav-item">
+                                <a href="index.html" class="nav-link px-2">Главная</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="prices.html" class="nav-link px-2">Цены</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="computers.html" class="nav-link px-2">Компьютеры</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="booking.html" class="nav-link px-2">Бронирование</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="games.html" class="nav-link px-2">Игры</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="rules.html" aria-current="page" class="nav-link px-2 active fw-bold">Правила</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="about.html" class="nav-link px-2">О клубе</a>
+                            </li>
+                        </ul>
+                    </nav>
+                    <a href="booking.html" class="btn btn-danger btn-sm mt-3 mt-xl-0 ms-xl-3 d-none d-md-inline-block">Забронировать</a>
+                </div>
+            </div>
+        </header>
+        <!-- container limits long text to a readable width and stays centered at each Bootstrap breakpoint. -->
+        <main class="container py-4 py-lg-5">
+            <section id="main-rules" class="bg-white border rounded-4 p-3 p-md-4 p-lg-5 mb-4 shadow-sm">
+                <header class="mb-4">
+                    <p class="text-danger fw-semibold mb-3">
+                        <small class="small">Памятка посетителя</small>
+                    </p>
+                    <h1 class="fw-bold display-5 mb-3 text-center text-md-start">Правила комфортной и безопасной игры</h1>
+                    <p class="mb-3 lead">
                 Правила помогают сохранить оборудование и уважительную атмосферу.
                 Посетитель отвечает за своё игровое место во время сеанса.
                 Если устройство повреждено до начала игры, сразу сообщите администратору.
             </p>
-        </header>
-
-        <article class="rules-list box-sized">
-            <h2 class="box-sized heading heading-secondary">Основные правила</h2>
-            <ol type="1" class="rules-items box-sized">
-                <li class="rules-item box-sized rule-card">Оплатите выбранный тариф до начала сеанса.</li>
-                <li class="rules-item box-sized rule-card">Используйте технику аккуратно:
-                    <ul class="box-sized">
-                        <li class="rules-item box-sized rule-card">не переносите оборудование;</li>
-                        <li class="rules-item box-sized rule-card">не устанавливайте программы самостоятельно;</li>
-                        <li class="rules-item box-sized rule-card">не ставьте напитки рядом с клавиатурой.</li>
-                    </ul>
-                </li>
-                <li class="rules-item box-sized rule-card">Не мешайте другим посетителям громкими разговорами.</li>
-                <li class="rules-item box-sized rule-card">После сеанса выйдите из личных аккаунтов.</li>
-            </ol>
-        </article>
-
-        <figure class="rules-figure box-sized">
-            <img src="images/clean.png" alt="Аккуратно организованное компьютерное место в приватной зоне" class="rules-photo box-sized image">
-            <figcaption class="box-sized">Сохраняйте игровое место таким же чистым после сеанса.</figcaption>
-        </figure>
-    </section>
-
-    <hr class="box-sized">
-
-    <section id="rule-table" class="content-section box-sized section-card">
-        <h2 class="box-sized heading heading-secondary">Что делать в разных ситуациях</h2>
-        <!-- Таблица выбрана вместо div, потому что ситуации сравниваются с соответствующими действиями. -->
-        <table class="box-sized data-table">
-            <caption class="box-sized table-caption">Действия посетителя во время игрового сеанса</caption>
-            <thead class="box-sized table-head">
-                <tr class="box-sized">
-                    <th scope="col" class="box-sized table-cell">Ситуация</th>
-                    <th scope="col" class="box-sized table-cell">Правильное действие</th>
-                </tr>
-            </thead>
-            <tbody class="box-sized">
-                <tr class="box-sized">
-                    <th scope="row" class="box-sized table-cell">Не работает устройство</th>
-                    <td class="box-sized table-cell">Позвать администратора и не разбирать технику.</td>
-                </tr>
-                <tr class="box-sized table-row-even">
-                    <th scope="row" class="box-sized table-cell">Нужно продлить время</th>
-                    <td class="box-sized table-cell">Уточнить доступность места до окончания сеанса.</td>
-                </tr>
-                <tr class="box-sized">
-                    <th scope="row" class="box-sized table-cell">Найдена чужая вещь</th>
-                    <td class="box-sized table-cell">Передать её администратору.</td>
-                </tr>
-            </tbody>
-        </table>
-    </section>
-
-    <section id="account-safety" class="content-section account-section box-sized section-card">
-        <h2 class="box-sized heading heading-secondary">Безопасность аккаунта</h2>
-        <dl class="account-definitions box-sized">
-            <dt class="account-entry account-term box-sized"><b class="box-sized">Личный пароль</b></dt>
-            <dd class="account-entry box-sized">Не сообщайте его другим посетителям.</dd>
-            <dt class="account-entry account-term box-sized"><b class="box-sized">Общий компьютер</b></dt>
-            <dd class="account-entry box-sized">Не включайте сохранение пароля и завершайте сеанс.</dd>
-        </dl>
-        <p class="box-sized paragraph">
-            <mark class="box-sized highlight">Проверьте выход из аккаунта</mark> перед уходом.
-            Администратор может сказать: <q class="box-sized">Сначала сообщите о проблеме, затем меняйте место</q>.
-            Главное правило&nbsp;&mdash;&nbsp;&laquo;уважайте других посетителей&raquo;.
+                </header>
+                <article>
+                    <h2 class="fw-bold h2 mb-3">Основные правила</h2>
+                    <ol type="1" class="ps-3">
+                        <li class="mb-3">Оплатите выбранный тариф до начала сеанса.</li>
+                        <li class="mb-3">Используйте технику аккуратно:
+                    <ul>
+                                <li class="mb-3">не переносите оборудование;</li>
+                                <li class="mb-3">не устанавливайте программы самостоятельно;</li>
+                                <li class="mb-3">не ставьте напитки рядом с клавиатурой.</li>
+                            </ul>
+                        </li>
+                        <li class="mb-3">Не мешайте другим посетителям громкими разговорами.</li>
+                        <li class="mb-3">После сеанса выйдите из личных аккаунтов.</li>
+                    </ol>
+                </article>
+                <figure class="mb-4">
+                    <img src="images/clean.png" alt="Аккуратно организованное компьютерное место в приватной зоне" class="img-fluid w-100 rounded-3">
+                    <figcaption class="small text-body-secondary mt-2">Сохраняйте игровое место таким же чистым после сеанса.</figcaption>
+                </figure>
+            </section>
+            <hr>
+            <section id="rule-table" class="bg-white border rounded-4 p-3 p-md-4 p-lg-5 mb-4 shadow-sm">
+                <h2 class="fw-bold h2 mb-3">Что делать в разных ситуациях</h2>
+                <!-- Таблица выбрана вместо div, потому что ситуации сравниваются с соответствующими действиями. -->
+                <!-- Bootstrap Table: striped and bordered styles added to the existing comparison; cells wrap at phone widths. -->
+                <table class="table table-striped table-bordered align-middle mb-0 small">
+                    <caption class="caption-top text-body-secondary small">Действия посетителя во время игрового сеанса</caption>
+                    <thead class="table-dark">
+                        <tr>
+                            <th scope="col" class="text-break">Ситуация</th>
+                            <th scope="col" class="text-break">Правильное действие</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row" class="text-break">Не работает устройство</th>
+                            <td class="text-break">Позвать администратора и не разбирать технику.</td>
+                        </tr>
+                        <tr>
+                            <th scope="row" class="text-break">Нужно продлить время</th>
+                            <td class="text-break">Уточнить доступность места до окончания сеанса.</td>
+                        </tr>
+                        <tr>
+                            <th scope="row" class="text-break">Найдена чужая вещь</th>
+                            <td class="text-break">Передать её администратору.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+            <section id="account-safety" class="bg-white border rounded-4 p-3 p-md-4 p-lg-5 mb-4 shadow-sm">
+                <h2 class="fw-bold h2 mb-3">Безопасность аккаунта</h2>
+                <dl class="border rounded-3 overflow-hidden">
+                    <dt class="p-3 mb-0 bg-body-tertiary fw-semibold">
+                        <b>Личный пароль</b>
+                    </dt>
+                    <dd class="p-3 mb-0">Не сообщайте его другим посетителям.</dd>
+                    <dt class="p-3 mb-0 bg-body-tertiary fw-semibold">
+                        <b>Общий компьютер</b>
+                    </dt>
+                    <dd class="p-3 mb-0">Не включайте сохранение пароля и завершайте сеанс.</dd>
+                </dl>
+                <p class="mb-3">
+                    <mark class="bg-danger-subtle text-danger-emphasis">Проверьте выход из аккаунта</mark> перед уходом.
+            Администратор может сказать: <q>Сначала сообщите о проблеме, затем меняйте место</q>.
+            Главное правило — «уважайте других посетителей».
         </p>
-
-        <!-- Настоящая цитата администратора филиала TOP GAME. -->
-        <blockquote class="box-sized quote text-panel">
-            <p class="box-sized paragraph">
+                <!-- Настоящая цитата администратора филиала TOP GAME. -->
+                <blockquote class="border-start border-danger border-4 bg-body-tertiary border rounded-3 p-3 my-4">
+                    <p class="mb-3">
                 «Будьте максимально бдительны, когда выходите из аккаунта.
                 Было немало случаев, когда по невнимательности люди теряли свои аккаунты».
             </p>
-        </blockquote>
-        <p class="box-sized paragraph"><cite class="box-sized">Диас Ахметов, администратор филиала TOP GAME</cite></p>
-
-        <aside class="contact-panel account-help-panel box-sized">
-            <h2 class="account-help-panel-item box-sized heading heading-secondary">Нужна помощь?</h2>
-            <p class="account-help-panel-item box-sized paragraph">
+                </blockquote>
+                <p class="mb-3">
+                    <cite>Диас Ахметов, администратор филиала TOP GAME</cite>
+                </p>
+                <aside class="bg-body-tertiary border border-start border-danger border-4 rounded-3 p-3 p-md-4 mt-4">
+                    <h2 class="fw-bold h2 mb-3">Нужна помощь?</h2>
+                    <p class="mb-3">
                 Обратитесь к администратору или позвоните по номеру клуба.
                 Официальную информацию о месте можно проверить в
-                <a href="https://2gis.kz/astana/firm/70000001080411948" target="_blank" rel="noopener noreferrer" class="box-sized link">2GIS</a>.
+                <a href="https://2gis.kz/astana/firm/70000001080411948" target="_blank" rel="noopener noreferrer">2GIS</a>.
             </p>
-        </aside>
-        <nav class="section-links box-sized" aria-label="Дополнительная навигация">
-            <a href="#main-rules" class="section-link box-sized link">Вернуться к началу правил</a>
-            <a href="index.html" class="section-link box-sized link">Вернуться на главную страницу</a>
-        </nav>
-    </section>
-</main>
-
-<footer class="container-footer box-sized">
-    <section class="footer-info box-sized footer-column">
-        <h2 class="box-sized footer-heading heading heading-secondary">Top Game</h2>
-        <p class="box-sized footer-copy paragraph">Киберспортивный клуб в центре Астаны.</p>
-    </section>
-    <section class="footer-contacts box-sized footer-column">
-        <h2 class="box-sized footer-heading heading heading-secondary">Контакты</h2>
-        <address class="box-sized footer-copy">
-            TOP GAME, г. Астана, ул. Динмухамеда Кунаева, 23<br class="box-sized">
-            <a href="tel:+77064005040" class="box-sized footer-link link">+7 706 400 50 40</a> ·
-            <a href="mailto:topgame@example.com" class="box-sized footer-link link">topgame@example.com</a>
-        </address>
-    </section>
-    <p class="box-sized footer-column footer-copy paragraph"><small class="box-sized">&copy; 2026 TOP GAME&nbsp;&mdash;&nbsp;правила действуют для всех посетителей.</small></p>
-</footer>
-</body>
+                </aside>
+                <nav aria-label="Дополнительная навигация" class="d-flex flex-column flex-md-row gap-2 mt-4">
+                    <a href="#main-rules" class="btn btn-outline-danger">Вернуться к началу правил</a>
+                    <a href="index.html" class="btn btn-outline-danger">Вернуться на главную страницу</a>
+                </nav>
+            </section>
+        </main>
+        <footer class="bg-dark text-white py-5 mt-4">
+            <div class="container">
+                <div class="row g-4 align-items-start">
+                    <div class="col-12 col-md-6 col-lg-4">
+                        <section>
+                            <h2 class="h5 mb-3 fw-bold">Top Game</h2>
+                            <p class="mb-2 mb-3">Киберспортивный клуб в центре Астаны.</p>
+                        </section>
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-4">
+                        <section>
+                            <h2 class="h5 mb-3 fw-bold">Контакты</h2>
+                            <address class="mb-2 fst-normal">
+            TOP GAME, г. Астана, ул. Динмухамеда Кунаева, 23<br>
+                                <a href="tel:+77064005040" class="link-light">+7 706 400 50 40</a> ·
+            <a href="about.html#contacts" class="link-light">Адрес и контакты</a>
+                            </address>
+                        </section>
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-4">
+                        <p class="mb-2 mb-3">
+                            <small class="small">© 2026 TOP GAME — правила действуют для всех посетителей.</small>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+    </body>
 </html>

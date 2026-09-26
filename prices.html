@@ -1,255 +1,277 @@
 <!DOCTYPE html>
-<html lang="ru" class="box-sized">
-<head class="box-sized">
-    <meta charset="UTF-8" class="box-sized">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" class="box-sized">
-    <meta name="description" content="Тарифы и игровые пакеты компьютерного клуба Top Game в Астане" class="box-sized">
-    <meta name="author" content="Ulan" class="box-sized">
-    <title class="box-sized">Top Game — Цены и тарифы</title>
-    <link rel="stylesheet" href="css/base.css" class="box-sized">
-    <link rel="stylesheet" href="css/ulan.css" class="box-sized">
-</head>
-
-<body class="site-page page-prices box-sized">
-    <!-- Authors: Ulan -->
-
-    <header class="container-header box-sized">
-        <!-- span используется, потому что название является строчной частью ссылки с логотипом, а не отдельным заголовком -->
-        <a href="index.html" class="header-brand box-sized link">
-            <img src="images/logo.png" alt="Логотип Top Game" class="header-logo box-sized image">
-            <span class="box-sized">TOP GAME</span>
-        </a>
-
-        <nav class="header-nav box-sized" aria-label="Основная навигация">
-            <ul class="box-sized header-nav-list">
-                <li class="box-sized"><a href="index.html" class="box-sized header-nav-link link">Главная</a></li>
-                <li class="box-sized"><a href="prices.html" aria-current="page" class="box-sized header-nav-link header-nav-link-current link">Цены</a></li>
-                <li class="box-sized"><a href="computers.html" class="box-sized header-nav-link link">Компьютеры</a></li>
-                <li class="box-sized"><a href="booking.html" class="box-sized header-nav-link link">Бронирование</a></li>
-                <li class="box-sized"><a href="games.html" class="box-sized header-nav-link link">Игры</a></li>
-                <li class="box-sized"><a href="rules.html" class="box-sized header-nav-link link">Правила</a></li>
-                <li class="box-sized"><a href="about.html" class="box-sized header-nav-link link">О клубе</a></li>
-            </ul>
-        </nav>
-
-        <a href="booking.html" class="header-booking box-sized link">Забронировать</a>
-    </header>
-
-    <main class="box-sized main-content">
-        <section class="hero box-sized section-card">
-            <header class="hero-content box-sized">
-                <p class="hero-label box-sized paragraph">Тарифы</p>
-
-                <h1 class="box-sized heading heading-primary">БОЛЬШЕ ИГРЫ.<br class="box-sized">МЕНЬШЕ ПАУЗ.</h1>
-
-                <p class="box-sized paragraph">
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Тарифы и игровые пакеты компьютерного клуба Top Game в Астане">
+        <meta name="author" content="Ulan">
+        <title>Top Game — Цены и тарифы</title>
+        <!-- Bootstrap 5.3.8 via CDN. Custom brand corrections are loaded after Bootstrap. -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+        <link rel="stylesheet" href="css/base.css">
+    </head>
+    <body>
+        <!-- Authors: Ulan -->
+        <!-- Bootstrap Navbar: official collapse markup adapted to the seven existing links. https://getbootstrap.com/docs/5.3/components/navbar/ -->
+        <header class="navbar navbar-expand-xl bg-dark border-bottom border-danger border-3 py-3" data-bs-theme="dark">
+            <div class="container-fluid px-3 px-lg-4">
+                <!-- container-fluid keeps the navigation full width, giving seven links room on desktop. -->
+                <!-- span используется, потому что название является строчной частью ссылки с логотипом, а не отдельным заголовком -->
+                <a href="index.html" class="navbar-brand d-flex align-items-center gap-2 fw-bold">
+                    <img src="images/logo.png" alt="Логотип Top Game" class="img-fluid object-fit-contain" width="44" height="44">
+                    <span>TOP GAME</span>
+                </a>
+                <button type="button" data-bs-toggle="collapse" data-bs-target="#main-navigation" aria-controls="main-navigation" aria-expanded="false" aria-label="Открыть или закрыть меню" class="navbar-toggler">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="main-navigation">
+                    <nav aria-label="Основная навигация" class="flex-grow-1">
+                        <ul class="navbar-nav mx-xl-auto gap-xl-1">
+                            <li class="nav-item">
+                                <a href="index.html" class="nav-link px-2">Главная</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="prices.html" aria-current="page" class="nav-link px-2 active fw-bold">Цены</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="computers.html" class="nav-link px-2">Компьютеры</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="booking.html" class="nav-link px-2">Бронирование</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="games.html" class="nav-link px-2">Игры</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="rules.html" class="nav-link px-2">Правила</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="about.html" class="nav-link px-2">О клубе</a>
+                            </li>
+                        </ul>
+                    </nav>
+                    <a href="booking.html" class="btn btn-danger btn-sm mt-3 mt-xl-0 ms-xl-3 d-none d-md-inline-block">Забронировать</a>
+                </div>
+            </div>
+        </header>
+        <!-- container limits long text to a readable width and stays centered at each Bootstrap breakpoint. -->
+        <main class="container py-4 py-lg-5">
+            <section class="bg-white border rounded-4 p-3 p-md-4 p-lg-5 mb-4 shadow-sm">
+                <div class="row g-4 align-items-center">
+                    <header class="col-12 col-lg-6">
+                        <p class="text-danger fw-semibold text-uppercase small mb-3">Тарифы</p>
+                        <h1 class="fw-bold display-5 mb-3 text-center text-md-start">БОЛЬШЕ ИГРЫ.<br>МЕНЬШЕ ПАУЗ.</h1>
+                        <p class="mb-3 lead">
                     Выбирай подходящую игровую зону и продолжительность сеанса.
                     Компьютерный клуб Top Game работает круглосуточно, поэтому
                     забронировать место можно на дневное или ночное время.
                 </p>
-
-                <a href="#tariffs" class="box-sized link">Посмотреть тарифы</a>
-                <a href="#booking-steps" class="box-sized link">Как забронировать</a>
-            </header>
-
-            <figure class="hero-media box-sized">
-                <img src="images/prices-hero.jpg" alt="Игровая гарнитура в компьютерном клубе Top Game" class="box-sized hero-image image">
-                <figcaption class="box-sized hero-caption">Игровая периферия в клубе Top Game</figcaption>
-            </figure>
-        </section>
-
-        <section id="tariffs" class="club-prices tariffs-layout box-sized section-card">
-            <h2 class="box-sized heading heading-secondary">Доступные тарифы</h2>
-
-            <p class="box-sized paragraph">
+                        <a href="#tariffs">Посмотреть тарифы</a>
+                        <a href="#booking-steps">Как забронировать</a>
+                    </header>
+                    <figure class="mb-0 col-12 col-lg-6">
+                        <img src="images/prices-hero.jpg" alt="Игровая гарнитура в компьютерном клубе Top Game" class="img-fluid w-100 rounded-3">
+                        <figcaption class="small text-body-secondary mt-2 d-none d-md-block">Игровая периферия в клубе Top Game</figcaption>
+                    </figure>
+                </div>
+            </section>
+            <section id="tariffs" class="bg-white border rounded-4 p-3 p-md-4 p-lg-5 mb-4 shadow-sm">
+                <h2 class="fw-bold h2 mb-3">Доступные тарифы</h2>
+                <p class="mb-3">
                 Тарифы отличаются продолжительностью игры и выбранной зоной.
                 Каждый вариант предоставляет доступ к установленным играм,
                 современной периферии и компьютерам с высокой производительностью.
                 Перед посещением рекомендуется уточнить актуальную стоимость
                 и наличие свободных мест у администратора.
             </p>
-
-            <!-- div группирует самостоятельные карточки тарифов -->
-            <div class="prices-list box-sized">
-                <article class="price-card prices-list-card box-sized">
-                    <h3 class="price-card-title box-sized heading heading-tertiary">1 час</h3>
-                    <p class="box-sized paragraph"><strong class="price-amount box-sized">От 1 200 ₸</strong></p>
-                    <p class="box-sized paragraph">Базовый тариф для короткого игрового сеанса.</p>
-
-                    <hr class="box-sized">
-
-                    <ul class="box-sized">
-                        <li class="box-sized">Доступ к установленным играм</li>
-                        <li class="box-sized">Высокий <abbr title="Frames Per Second" class="box-sized">FPS</abbr></li>
-                        <li class="box-sized">Современная игровая периферия</li>
-                    </ul>
-
-                    <a href="booking.html" class="box-sized link">Выбрать тариф <span aria-hidden="true" class="box-sized">→</span></a>
-                </article>
-
-                <article class="price-card prices-list-card box-sized">
-                    <h3 class="price-card-title box-sized heading heading-tertiary">3 часа</h3>
-                    <p class="box-sized paragraph"><strong class="price-amount box-sized">От 3 600 ₸</strong></p>
-                    <p class="box-sized paragraph">Продолжительный сеанс для нескольких матчей.</p>
-
-                    <hr class="box-sized">
-
-                    <ul class="box-sized">
-                        <li class="box-sized">Три часа игрового времени</li>
-                        <li class="box-sized">Доступ к установленным играм</li>
-                        <li class="box-sized">Высокий <abbr title="Frames Per Second" class="box-sized">FPS</abbr></li>
-                    </ul>
-
-                    <a href="booking.html" class="box-sized link">Выбрать тариф <span aria-hidden="true" class="box-sized">→</span></a>
-                </article>
-
-                <article class="price-card prices-list-card box-sized">
-                    <h3 class="price-card-title box-sized heading heading-tertiary">Ночь</h3>
-                    <p class="box-sized paragraph"><strong class="price-amount box-sized">От 4 700 ₸</strong></p>
-                    <p class="box-sized paragraph">Ночной пакет для продолжительной игры.</p>
-
-                    <hr class="box-sized">
-
-                    <ul class="box-sized">
-                        <li class="box-sized">Игра в ночное время</li>
-                        <li class="box-sized">Доступ к установленным играм</li>
-                        <li class="box-sized">Использование игровой периферии</li>
-                    </ul>
-
-                    <a href="booking.html" class="box-sized link">Выбрать тариф <span aria-hidden="true" class="box-sized">→</span></a>
-                </article>
-
-                <article class="price-card prices-list-card box-sized">
-                    <h3 class="price-card-title box-sized heading heading-tertiary">Private</h3>
-                    <p class="box-sized paragraph"><strong class="price-amount box-sized">От 2 500 ₸</strong></p>
-                    <p class="box-sized paragraph">Отдельная зона для комфортной игры.</p>
-
-                    <hr class="box-sized">
-
-                    <ul class="box-sized">
-                        <li class="box-sized">Приватное игровое пространство</li>
-                        <li class="box-sized">Мощное компьютерное оборудование</li>
-                        <li class="box-sized">Монитор с высокой частотой обновления</li>
-                    </ul>
-
-                    <a href="booking.html" class="box-sized link">Выбрать тариф <span aria-hidden="true" class="box-sized">→</span></a>
-                </article>
-            </div>
-        </section>
-
-        <section id="tariff-comparison" class="tariff-table box-sized section-card">
-            <h2 class="box-sized heading heading-secondary">Сравнение тарифов</h2>
-
-            <table class="box-sized data-table">
-                <caption class="box-sized table-caption">Сравнение тарифов компьютерного клуба Top Game</caption>
-
-                <thead class="box-sized table-head">
-                    <tr class="box-sized">
-                        <th scope="col" class="box-sized table-cell">Тариф</th>
-                        <th scope="col" class="box-sized table-cell">Стоимость</th>
-                        <th scope="col" class="box-sized table-cell">Формат</th>
-                        <th scope="col" class="box-sized table-cell">Подходит для</th>
-                    </tr>
-                </thead>
-
-                <tbody class="box-sized">
-                    <tr class="box-sized">
-                        <th scope="row" class="box-sized table-cell">1 час</th>
-                        <td class="box-sized table-cell">От 1 200 ₸</td>
-                        <td class="box-sized table-cell">Короткий сеанс</td>
-                        <td class="box-sized table-cell">Одного или нескольких матчей</td>
-                    </tr>
-
-                    <tr class="box-sized table-row-even">
-                        <th scope="row" class="box-sized table-cell">3 часа</th>
-                        <td class="box-sized table-cell">От 3 600 ₸</td>
-                        <td class="box-sized table-cell">Продолжительный сеанс</td>
-                        <td class="box-sized table-cell">Длительной игры с друзьями</td>
-                    </tr>
-
-                    <tr class="box-sized">
-                        <th scope="row" class="box-sized table-cell">Ночь</th>
-                        <td class="box-sized table-cell">От 4 700 ₸</td>
-                        <td class="box-sized table-cell">Ночной пакет</td>
-                        <td class="box-sized table-cell">Продолжительной игры в ночное время</td>
-                    </tr>
-
-                    <tr class="box-sized table-row-even">
-                        <th scope="row" class="box-sized table-cell">Private</th>
-                        <td class="box-sized table-cell">От 2 500 ₸</td>
-                        <td class="box-sized table-cell">Отдельная игровая зона</td>
-                        <td class="box-sized table-cell">Комфортной игры в приватном пространстве</td>
-                    </tr>
-                </tbody>
-            </table>
-
-            <p class="box-sized paragraph">
-                <small class="box-sized">
+                <!-- div группирует самостоятельные карточки тарифов -->
+                <!-- Bootstrap Cards / grid: official card and card-body markup adapted to existing club content; semantic articles and figures retained. https://getbootstrap.com/docs/5.3/components/card/ -->
+                <div class="row g-4">
+                    <div class="col-12 col-md-6 col-lg-4">
+                        <article class="card h-100 shadow-sm">
+                            <div class="card-body p-3 p-lg-4">
+                                <h3 class="fw-bold h4 mb-3 card-title">1 час</h3>
+                                <p class="mb-3 card-text">
+                                    <strong class="text-danger fs-4 fw-bold">От 1 200 ₸</strong>
+                                </p>
+                                <p class="mb-3 card-text">Базовый тариф для короткого игрового сеанса.</p>
+                                <hr>
+                                <ul>
+                                    <li>Доступ к установленным играм</li>
+                                    <li>Высокий <abbr title="Frames Per Second">FPS</abbr>
+                                    </li>
+                                    <li>Современная игровая периферия</li>
+                                </ul>
+                                <a href="booking.html">Выбрать тариф <span aria-hidden="true">→</span>
+                                </a>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-4">
+                        <article class="card h-100 shadow-sm">
+                            <div class="card-body p-3 p-lg-4">
+                                <h3 class="fw-bold h4 mb-3 card-title">3 часа</h3>
+                                <p class="mb-3 card-text">
+                                    <strong class="text-danger fs-4 fw-bold">От 3 600 ₸</strong>
+                                </p>
+                                <p class="mb-3 card-text">Продолжительный сеанс для нескольких матчей.</p>
+                                <hr>
+                                <ul>
+                                    <li>Три часа игрового времени</li>
+                                    <li>Доступ к установленным играм</li>
+                                    <li>Высокий <abbr title="Frames Per Second">FPS</abbr>
+                                    </li>
+                                </ul>
+                                <a href="booking.html">Выбрать тариф <span aria-hidden="true">→</span>
+                                </a>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-4">
+                        <article class="card h-100 shadow-sm">
+                            <div class="card-body p-3 p-lg-4">
+                                <h3 class="fw-bold h4 mb-3 card-title">Ночь</h3>
+                                <p class="mb-3 card-text">
+                                    <strong class="text-danger fs-4 fw-bold">От 4 700 ₸</strong>
+                                </p>
+                                <p class="mb-3 card-text">Ночной пакет для продолжительной игры.</p>
+                                <hr>
+                                <ul>
+                                    <li>Игра в ночное время</li>
+                                    <li>Доступ к установленным играм</li>
+                                    <li>Использование игровой периферии</li>
+                                </ul>
+                                <a href="booking.html">Выбрать тариф <span aria-hidden="true">→</span>
+                                </a>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-4">
+                        <article class="card h-100 shadow-sm">
+                            <div class="card-body p-3 p-lg-4">
+                                <h3 class="fw-bold h4 mb-3 card-title">Private</h3>
+                                <p class="mb-3 card-text">
+                                    <strong class="text-danger fs-4 fw-bold">От 2 500 ₸</strong>
+                                </p>
+                                <p class="mb-3 card-text">Отдельная зона для комфортной игры.</p>
+                                <hr>
+                                <ul>
+                                    <li>Приватное игровое пространство</li>
+                                    <li>Мощное компьютерное оборудование</li>
+                                    <li>Монитор с высокой частотой обновления</li>
+                                </ul>
+                                <a href="booking.html">Выбрать тариф <span aria-hidden="true">→</span>
+                                </a>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </section>
+            <section id="tariff-comparison" class="bg-white border rounded-4 p-3 p-md-4 p-lg-5 mb-4 shadow-sm">
+                <h2 class="fw-bold h2 mb-3">Сравнение тарифов</h2>
+                <!-- Bootstrap Table: striped and bordered styles added to the existing comparison; cells wrap at phone widths. -->
+                <table class="table table-striped table-bordered align-middle mb-0 small">
+                    <caption class="caption-top text-body-secondary small">Сравнение тарифов компьютерного клуба Top Game</caption>
+                    <thead class="table-dark">
+                        <tr>
+                            <th scope="col" class="text-break">Тариф</th>
+                            <th scope="col" class="text-break">Стоимость</th>
+                            <th scope="col" class="text-break">Формат</th>
+                            <th scope="col" class="text-break">Подходит для</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row" class="text-break">1 час</th>
+                            <td class="text-break">От 1 200 ₸</td>
+                            <td class="text-break">Короткий сеанс</td>
+                            <td class="text-break">Одного или нескольких матчей</td>
+                        </tr>
+                        <tr>
+                            <th scope="row" class="text-break">3 часа</th>
+                            <td class="text-break">От 3 600 ₸</td>
+                            <td class="text-break">Продолжительный сеанс</td>
+                            <td class="text-break">Длительной игры с друзьями</td>
+                        </tr>
+                        <tr>
+                            <th scope="row" class="text-break">Ночь</th>
+                            <td class="text-break">От 4 700 ₸</td>
+                            <td class="text-break">Ночной пакет</td>
+                            <td class="text-break">Продолжительной игры в ночное время</td>
+                        </tr>
+                        <tr>
+                            <th scope="row" class="text-break">Private</th>
+                            <td class="text-break">От 2 500 ₸</td>
+                            <td class="text-break">Отдельная игровая зона</td>
+                            <td class="text-break">Комфортной игры в приватном пространстве</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p class="mb-3">
+                    <small class="small">
                     Перед бронированием уточните актуальную стоимость и доступность
                     выбранного тарифа у администратора.
                 </small>
-            </p>
-        </section>
-
-        <section id="booking-steps" class="booking-steps box-sized section-card">
-            <h2 class="box-sized heading heading-secondary">Как это работает</h2>
-
-            <ol type="1" class="booking-steps-list box-sized">
-                <li class="booking-step box-sized">
-                    <h3 class="booking-step-title box-sized heading heading-tertiary">Выбери зону</h3>
-                    <p class="booking-step-description box-sized paragraph">Выбери Main, Duo’s или Private.</p>
-                </li>
-
-                <li class="booking-step box-sized">
-                    <h3 class="booking-step-title box-sized heading heading-tertiary">Укажи время</h3>
-                    <p class="booking-step-description box-sized paragraph">Укажи дату, время начала и длительность игры.</p>
-                </li>
-
-                <li class="booking-step box-sized">
-                    <h3 class="booking-step-title box-sized heading heading-tertiary">Подтверди заявку</h3>
-                    <p class="booking-step-description box-sized paragraph">Администратор проверит заявку и свяжется с тобой.</p>
-                </li>
-            </ol>
-        </section>
-
-        <aside class="prices-action box-sized">
-            <h2 class="box-sized heading heading-secondary">Готов к игре?</h2>
-
-            <p class="box-sized paragraph">
+                </p>
+            </section>
+            <section id="booking-steps" class="bg-white border rounded-4 p-3 p-md-4 p-lg-5 mb-4 shadow-sm">
+                <h2 class="fw-bold h2 mb-3">Как это работает</h2>
+                <ol type="1" class="row g-4 ps-4 mb-0">
+                    <li class="col-12 col-md-6 col-lg-4">
+                        <h3 class="d-inline fs-5 fw-bold h4 mb-3">Выбери зону</h3>
+                        <p class="mt-2 mb-0 mb-3">Выбери Main, Duo’s или Private.</p>
+                    </li>
+                    <li class="col-12 col-md-6 col-lg-4">
+                        <h3 class="d-inline fs-5 fw-bold h4 mb-3">Укажи время</h3>
+                        <p class="mt-2 mb-0 mb-3">Укажи дату, время начала и длительность игры.</p>
+                    </li>
+                    <li class="col-12 col-md-6 col-lg-4">
+                        <h3 class="d-inline fs-5 fw-bold h4 mb-3">Подтверди заявку</h3>
+                        <p class="mt-2 mb-0 mb-3">Администратор проверит заявку и свяжется с тобой.</p>
+                    </li>
+                </ol>
+            </section>
+            <aside class="bg-body-tertiary border border-start border-danger border-4 rounded-3 p-3 p-md-4 mt-4">
+                <h2 class="fw-bold h2 mb-3">Готов к игре?</h2>
+                <p class="mb-3">
                 Актуальную стоимость пакетов и наличие свободных компьютеров
                 рекомендуется уточнить у администратора.
             </p>
-
-            <a href="booking.html" class="page-action-link box-sized link">Забронировать</a>
-        </aside>
-    </main>
-
-    <footer class="container-footer box-sized">
-        <section class="footer-info box-sized footer-column">
-            <h2 class="box-sized footer-heading heading heading-secondary">Top Game</h2>
-            <p class="box-sized footer-copy paragraph">Киберспортивный клуб в центре Астаны.</p>
-        </section>
-
-        <section class="footer-contacts box-sized footer-column">
-            <h2 class="box-sized footer-heading heading heading-secondary">Контакты</h2>
-
-            <address class="box-sized footer-copy">
-                <p class="box-sized footer-copy paragraph">Астана, ул. Динмухамеда Кунаева, 23</p>
-
-                <p class="box-sized footer-copy paragraph">
+                <a href="booking.html" class="btn btn-danger">Забронировать</a>
+            </aside>
+        </main>
+        <footer class="bg-dark text-white py-5 mt-4">
+            <div class="container">
+                <div class="row g-4 align-items-start">
+                    <div class="col-12 col-md-6 col-lg-4">
+                        <section>
+                            <h2 class="h5 mb-3 fw-bold">Top Game</h2>
+                            <p class="mb-2 mb-3">Киберспортивный клуб в центре Астаны.</p>
+                        </section>
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-4">
+                        <section>
+                            <h2 class="h5 mb-3 fw-bold">Контакты</h2>
+                            <address class="mb-2 fst-normal">
+                                <p class="mb-2 mb-3">Астана, ул. Динмухамеда Кунаева, 23</p>
+                                <p class="mb-2 mb-3">
                     Телефон:
-                    <a href="tel:+77064005040" class="box-sized footer-link link">+7 706 400 50 40</a>
-                </p>
-            </address>
-
-            <p class="box-sized footer-copy paragraph">
-                <a href="https://2gis.kz/astana/firm/70000001080411948" target="_blank" rel="noopener noreferrer" class="box-sized footer-link link">
+                    <a href="tel:+77064005040" class="link-light">+7 706 400 50 40</a>
+                                </p>
+                            </address>
+                            <p class="mb-2 mb-3">
+                                <a href="https://2gis.kz/astana/firm/70000001080411948" target="_blank" rel="noopener noreferrer" class="link-light">
                     Посмотреть клуб в 2GIS
                 </a>
-            </p>
-        </section>
-
-        <p class="box-sized footer-column footer-copy paragraph">&copy; 2026 Top Game</p>
-    </footer>
-</body>
+                            </p>
+                        </section>
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-4">
+                        <p class="mb-2 mb-3">© 2026 Top Game</p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+    </body>
 </html>

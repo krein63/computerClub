@@ -1,77 +1,51 @@
-# Top Game Computer Club Website
+# Top Game — Assignment 3
 
-This is an educational multi-page website for **Top Game**, a computer club located in Astana, Kazakhstan. The project was created for the Introduction to Web Technologies course. It demonstrates the structure of HTML documents, semantic elements, tables, forms, lists, links, and images.
+Учебный сайт компьютерного клуба Top Game: семь существующих страниц переведены на Bootstrap 5.3.8. Тема и содержимое сохранены; сетка, навигация, адаптивность, кнопки и отступы используют Bootstrap.
 
-## Team Members
+## Запуск
 
-* Ulan — `prices.html` and `computers.html`
-* Ali — `booking.html` and `about.html`
-* Amir — `games.html` and `rules.html`
-* Shared page — `index.html`
+Откройте `index.html` в браузере. На macOS из папки проекта:
 
-## Website Pages
-
-* `index.html` — homepage and overview of the gaming zones
-* `prices.html` — available packages and price comparison table
-* `computers.html` — computer specifications and gaming peripherals
-* `booking.html` — gaming-place booking form
-* `about.html` — information about the club and its contacts
-* `games.html` — available games and the game-request form
-* `rules.html` — club rules and account-safety guidance
-
-## Project Structure
-
-```text
-computerClub/
-├── css/
-│   ├── base.css
-│   ├── ulan.css
-│   ├── ali.css
-│   └── amir.css
-├── images/
-├── index.html
-├── prices.html
-├── computers.html
-├── booking.html
-├── about.html
-├── games.html
-├── rules.html
-├── CSS_CHECKLIST.txt
-├── Top_Game_Tag_Checklist.pdf
-├── README.md
-└── AI-log.txt
-```
-
-## Technologies
-
-The project uses **HTML5** and external **CSS3** stylesheets. It does not use JavaScript, frameworks, templates, or website builders.
-
-Shared colours, typography, navigation, and layout rules are in `css/base.css`. Each student's two pages then load that student's stylesheet after the shared file so the cascade order is explicit.
-
-## How to Run the Website
-
-No installation is required. Clone the repository and open `index.html` in a web browser:
-
-```bash
-git clone git@github.com:krein63/computerClub.git
-cd computerClub
+```sh
 open index.html
 ```
 
-On Windows, open the project folder and double-click `index.html`.
+Сервер, установка зависимостей и хостинг не нужны. Для CSS и JavaScript bundle Bootstrap 5.3.8 с CDN jsDelivr нужен интернет. Собственного JavaScript нет. Серверной обработки форм нет: кнопки `type="submit"` в `booking.html` и `games.html` имеют `disabled`; поля и сброс формы доступны.
 
-## Information and Materials
+## Страницы и файлы
 
-The website contains information about the club’s address, telephone number, opening hours, prices, gaming zones, and computer specifications. All information must be verified with the Top Game administration before submission.
+| Страница | Содержимое | Исходное распределение команды |
+| --- | --- | --- |
+| `index.html` | Главная, преимущества и игровые зоны | Общая |
+| `prices.html` | Тарифы и сравнение цен | Ulan |
+| `computers.html` | Компьютеры и периферия | Ulan |
+| `booking.html` | Форма бронирования | Ali |
+| `about.html` | О клубе и контакты | Ali |
+| `games.html` | Игры и форма запроса | Amir |
+| `rules.html` | Правила клуба и безопасность аккаунтов | Amir |
 
-The photographs used on the website are stored in the `images` directory.
+`css/base.css` — небольшие поправки палитры, шрифта и затемнения фотографии; подключён после Bootstrap. `images/` — исходные изображения. `CSS_REMOVALS.txt` — замены старых правил классами Bootstrap. `AI-log.txt` — история использования AI. `Top_Game_Tag_Checklist.pdf` — материал предыдущего задания.
 
-Address: Dinmukhamed Kunayev Street 23, Astana, Kazakhstan.
+## Адаптивность
 
-## Validation
+- Карточки зон на главной, тарифов и компьютеров: `col-12 col-md-6 col-lg-4` — одна колонка при 375 px, две от `md` (768 px), три от `lg` (992 px).
+- Преимущества на главной: `col-12 col-sm-6 col-lg-3` — одна колонка, две от 576 px, четыре от 992 px. Текст и фото первого блока стоят рядом от 992 px благодаря `col-lg-6`.
+- `navbar-expand-xl` сворачивает меню при ширине меньше 1200 px; кнопку меню обслуживает Bootstrap bundle. Поэтому при 768 px меню тоже свёрнуто.
+- `text-center text-md-start` выравнивает главный заголовок по центру на телефоне и по левому краю от 768 px. `d-none d-md-block` показывает подпись фотографии от 768 px.
+- `container` ограничивает ширину основного текста; `container-fluid` использует ширину шапки для семи ссылок. `row` внутри колонки формы в `booking.html` показывает вложенную сетку; интервалы задают `g-3` и `g-4`.
 
-Every HTML page must pass the W3C Markup Validation Service with zero errors. HTML items are recorded in `Top_Game_Tag_Checklist.pdf`. CSS selectors, techniques, authors, files and final line numbers are recorded in `CSS_CHECKLIST.txt`.
+Для сдачи предусмотрены четыре снимка: `screenshots/index-375.png`, `screenshots/index-768.png`, `screenshots/index-1440.png` и `screenshots/navbar-375-collapsed.png`.
 
-## AI Usage
+## Проверка и сдача
 
-All questions asked to artificial intelligence tools and the purposes of those questions are documented in `AI-log.txt`.
+26 сентября 2026 года все семь HTML прошли локальный Nu HTML Checker 26.9.16 (валидатор W3C): 0 ошибок и 0 предупреждений. Повторная проверка из папки проекта, если официальный `vnu.jar` уже скачан:
+
+```sh
+java -jar /path/to/vnu.jar --format json *.html
+```
+
+В Chrome проверены все семь страниц при 375, 768 и 1440 px: 21 проверка без горизонтального переполнения. Изображения, локальные ссылки и якоря доступны; меню открывается и закрывается на телефоне и планшете, сброс обеих форм работает. Четыре снимка сохранены в `screenshots/`. Независимый агент проверил сохранение семантических элементов, структуру Bootstrap и ограничения CSS; найденные ошибки исправлены.
+
+Продолжайте тот же Git-репозиторий. Каждый участник должен сам сделать реальные коммиты из своего аккаунта: минимум четыре за минимум три разных дня; при работе в одиночку — шесть. Существующая история сохранена, новые коммиты автоматически не создавались. На защите нужно объяснить классы и выполнить правку по заданию преподавателя.
+
+Автоматическую миграцию выполнил AI, а агенты помогают с проверкой. Это не соответствует запрету AI policy задания на перестройку страниц искусственным интеллектом. Подробности и точный запрос записаны в `AI-log.txt`; эту версию нельзя представлять как полностью самостоятельную работу участников.
