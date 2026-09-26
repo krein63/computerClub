@@ -1,18 +1,1 @@
-Assignment 3 — удалённые CSS-правила и замены
 
-Старые css/ulan.css, css/ali.css и css/amir.css удалены. css/base.css сокращён до палитры, шрифта и затемнения фоновой фотографии; сетка и адаптивность переданы Bootstrap.
-
-- .main-content (width/max-width/margin) -> .container, .py-4, .py-lg-5.
-- .container-header, .header-nav-list, .header-nav-link -> .navbar, .navbar-expand-xl, .navbar-nav, .nav-link, .collapse; .container-fluid для ширины шапки.
-- .hero, .hero-content, .hero-media, .peripherals -> .row, .g-4, .align-items-center, .col-12, .col-lg-6.
-- .features-list, .feature-card -> .row, .g-3, .col-12, .col-sm-6, .col-lg-3.
-- .zones-list, .zone-card, .prices-list, .prices-list-card, .computers-list, .computers-list-card -> .row, .g-4, .col-12, .col-md-6, .col-lg-4, .card, .h-100.
-- .game-cards, .game-card, .club-gallery, .club-gallery-card -> .row, .g-4, .col-12, .col-md-6.
-- .section-card, .intro-panel (отступы/рамки/фон) -> .p-3, .p-md-4, .p-lg-5, .mb-4, .bg-white, .border, .rounded-4, .shadow-sm; .page-hero -> .mb-4.
-- .heading-primary, .heading-secondary, .heading-tertiary, .page-hero-lead -> .display-5, .h2, .h4, .fw-bold, .lead, .mb-3; .text-center, .text-md-start для адаптивного выравнивания.
-- .header-booking, .main-booking, .main-prices, .button, .button-reset, .section-link, .page-action-link -> .btn, .btn-danger, .btn-outline-dark, .btn-outline-secondary, .btn-lg, .btn-sm; disabled — HTML-атрибут.
-- .hero-actions, .section-links, .page-navigation -> .d-flex, .flex-wrap, .gap-2, .mt-4; дополнительные ссылки: .flex-column, .flex-md-row.
-- .form-fieldset, .field-row и собственные правила .form-control -> .border, .rounded-3, .p-3, .mb-4, .row, .g-3; поля: Bootstrap .form-control, .form-select, .form-check-input, .form-check-label.
-- .data-table, .table-cell, .table-head, .table-row-even -> .table, .table-bordered, .table-striped, .align-middle, .table-dark.
-- .container-footer, .footer-column и float/clear у логотипа -> .container, .row, .g-4, .col-12, .col-md-6, .col-lg-4; логотип остаётся в обычном потоке.
-- .image, .hero-image, .card-image, .hero-background (размеры/позиционирование) -> .img-fluid, .w-100, .h-100, .object-fit-cover, .position-absolute, .top-0, .start-0; затемнение фотографии оставлено как .brand-backdrop.
