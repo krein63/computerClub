@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="ru" class="box-sized">
+<head class="box-sized">
+    <meta charset="UTF-8" class="box-sized">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" class="box-sized">
+
+    <meta name="description"
+          content="Бронирование игрового места в компьютерном клубе TOP GAME в Астане" class="box-sized">
+    <meta name="author" content="Ali" class="box-sized">
+
+    <title class="box-sized">Бронирование — TOP GAME</title>
+    <link rel="stylesheet" href="css/base.css" class="box-sized">
+    <link rel="stylesheet" href="css/ali.css" class="box-sized">
+</head>
+
+<body class="site-page page-booking box-sized">
+
+<!-- Автор страницы: Ali -->
+
+<header class="container-header box-sized">
+    <a href="index.html" class="header-brand box-sized link" aria-label="Перейти на главную страницу TOP GAME">
+        <img
+                class="header-logo box-sized image"
+                src="images/logo.png"
+                alt="Логотип компьютерного клуба TOP GAME"
+        >
+        <span class="box-sized">TOP GAME</span>
+    </a>
+
+    <!-- Список используется внутри nav, потому что меню является перечнем страниц сайта. -->
+    <nav class="header-nav box-sized" aria-label="Основная навигация">
+        <ul class="box-sized header-nav-list">
+            <li class="box-sized"><a href="index.html" class="box-sized header-nav-link link">Главная</a></li>
+            <li class="box-sized"><a href="prices.html" class="box-sized header-nav-link link">Цены</a></li>
+            <li class="box-sized"><a href="computers.html" class="box-sized header-nav-link link">Компьютеры</a></li>
+            <li class="box-sized"><a href="booking.html" aria-current="page" class="box-sized header-nav-link header-nav-link-current link">Бронирование</a></li>
+            <li class="box-sized"><a href="games.html" class="box-sized header-nav-link link">Игры</a></li>
+            <li class="box-sized"><a href="rules.html" class="box-sized header-nav-link link">Правила</a></li>
+            <li class="box-sized"><a href="about.html" class="box-sized header-nav-link link">О клубе</a></li>
+        </ul>
+    </nav>
+
+    <a href="#booking-form" class="header-booking box-sized link">Забронировать</a>
+</header>
+
+<main class="box-sized main-content">
+    <section id="booking-introduction" class="intro-panel box-sized">
+        <p class="box-sized paragraph"><small class="box-sized">Бронирование</small></p>
+
+        <h1 class="box-sized heading heading-primary">Твоё место уже ждёт</h1>
+
+        <p class="box-sized paragraph">
+            Заполните форму, чтобы оставить заявку на бронирование игрового
+            места в компьютерном клубе TOP GAME. Укажите контактные данные,
+            дату посещения, подходящее время и желаемую игровую зону.
+            Администратор клуба свяжется с вами по указанному телефону или
+            адресу электронной почты и сообщит, доступны ли выбранные места.
+        </p>
+
+        <p class="box-sized paragraph">
+            Отправка формы пока <strong class="box-sized">не подтверждает бронирование</strong>.
+            Заявка считается принятой только после ответа администратора.
+            Если вам необходимо забронировать несколько соседних компьютеров,
+            укажите количество игроков и оставьте пояснение в поле
+            дополнительной информации.
+        </p>
+
+        <p class="box-sized paragraph">
+            <a class="introduction-link box-sized link" href="#booking-form">Перейти к форме</a> 
+            <a class="introduction-link box-sized link" href="#direct-contact">Связаться напрямую</a>
+        </p>
+    </section>
+
+    <hr class="box-sized">
+
+    <section id="booking-details" class="booking-details box-sized section-card">
+        <h2 class="box-sized heading heading-secondary">Данные бронирования</h2>
+
+        <figure class="booking-image box-sized">
+            <img
+                    class="booking-image-photo box-sized image"
+                    src="images/peripherals.jpg"
+                    alt="Игровое место с компьютером и периферией в клубе TOP GAME"
+            >
+            <figcaption class="box-sized">
+                Игровое место с компьютерным оборудованием в клубе TOP GAME.
+            </figcaption>
+        </figure>
+        <!-- POST выбран, потому что форма содержит данные посетителя,
+             которые в будущем будут передаваться системе бронирования. -->
+        <!-- The id is on the form itself so links scroll directly to the fields. -->
+        <form id="booking-form" method="post" action="#" class="box-sized site-form">
+            <!-- Серверной обработки пока нет, поэтому форма не отправляет
+                 реальное бронирование. Это будет добавлено позднее. -->
+
+            <fieldset class="box-sized form-fieldset">
+                <legend class="box-sized form-label">Контактные данные</legend>
+
+                <p class="box-sized field-row paragraph">
+                    <label for="customer-name" class="box-sized form-label">Имя:</label><br class="box-sized">
+                    <input
+                            type="text"
+                            id="customer-name"
+                            name="customer-name"
+                            placeholder="Как к вам обращаться"
+                            required
+                     class="box-sized form-control form-focusable">
+                </p>
+
+                <p class="box-sized field-row paragraph">
+                    <label for="customer-email" class="box-sized form-label">Электронная почта:</label><br class="box-sized">
+                    <input
+                            type="email"
+                            id="customer-email"
+                            name="customer-email"
+                            placeholder="name@example.com"
+                            required
+                     class="box-sized form-control form-focusable">
+                </p>
+
+                <p class="box-sized field-row paragraph">
+                    <label for="customer-phone" class="box-sized form-label">Телефон:</label><br class="box-sized">
+                    <input
+                            type="tel"
+                            id="customer-phone"
+                            name="customer-phone"
+                            placeholder="+7 700 000 00 00"
+                            required
+                     class="box-sized form-control form-focusable">
+                </p>
+            </fieldset>
+
+            <fieldset class="box-sized form-fieldset">
+                <legend class="box-sized form-label">Дата и время посещения</legend>
+
+                <p class="box-sized field-row paragraph">
+                    <label for="booking-date" class="box-sized form-label">Дата:</label><br class="box-sized">
+                    <input
+                            type="date"
+                            id="booking-date"
+                            name="booking-date"
+                            required
+                     class="box-sized form-control form-focusable">
+                </p>
+
+                <p class="box-sized field-row paragraph">
+                    <label for="booking-time" class="box-sized form-label">Время:</label><br class="box-sized">
+                    <input
+                            type="time"
+                            id="booking-time"
+                            name="booking-time"
+                            required
+                     class="box-sized form-control form-focusable">
+                </p>
+
+                <p class="box-sized field-row paragraph">
+                    <label for="player-count" class="box-sized form-label">Количество игроков:</label><br class="box-sized">
+                    <input
+                            type="number"
+                            id="player-count"
+                            name="player-count"
+                            min="1"
+                            max="45"
+                            value="1"
+                            required
+                     class="box-sized form-control form-focusable">
+                </p>
+
+                <p class="box-sized field-row paragraph">
+                    <label for="duration" class="box-sized form-label">Продолжительность:</label><br class="box-sized">
+                    <select id="duration" name="duration" required class="box-sized form-control form-focusable">
+                        <option value="" class="box-sized">Выберите продолжительность</option>
+                        <option value="1" class="box-sized">1 час</option>
+                        <option value="2" class="box-sized">2 часа</option>
+                        <option value="3" class="box-sized">3 часа</option>
+                        <option value="5" class="box-sized">5 часов</option>
+                    </select>
+                </p>
+            </fieldset>
+
+            <fieldset class="box-sized form-fieldset">
+                <legend class="box-sized form-label">Игровая зона</legend>
+
+                <p class="box-sized field-row paragraph">Выберите подходящую зону:</p>
+
+                <p class="box-sized field-row paragraph">
+                    <input
+                            type="radio"
+                            id="zone-main"
+                            name="gaming-zone"
+                            value="main"
+                            required
+                     class="box-sized form-focusable">
+                    <label for="zone-main" class="box-sized form-label">MAIN</label>
+                </p>
+
+                <p class="box-sized field-row paragraph">
+                    <input
+                            type="radio"
+                            id="zone-duo"
+                            name="gaming-zone"
+                            value="duo"
+                     class="box-sized form-focusable">
+                    <label for="zone-duo" class="box-sized form-label">DUO</label>
+                </p>
+
+                <p class="box-sized field-row paragraph">
+                    <input
+                            type="radio"
+                            id="zone-private"
+                            name="gaming-zone"
+                            value="private"
+                     class="box-sized form-focusable">
+                    <label for="zone-private" class="box-sized form-label">PRIVATE</label>
+                </p>
+            </fieldset>
+
+            <fieldset class="box-sized form-fieldset">
+                <legend class="box-sized form-label">Дополнительная информация</legend>
+
+                <p class="box-sized field-row paragraph">
+                    <input
+                            type="checkbox"
+                            id="headphones"
+                            name="headphones"
+                            value="required"
+                     class="box-sized form-focusable">
+                    <label for="headphones" class="box-sized form-label">
+                        Мне необходимы игровые наушники
+                    </label>
+                </p>
+
+                <p class="box-sized field-row paragraph">
+                    <label for="booking-comment" class="box-sized form-label">
+                        Комментарий к бронированию:
+                    </label><br class="box-sized">
+
+                    <textarea
+                            id="booking-comment"
+                            name="booking-comment"
+                            rows="5"
+                            cols="40"
+                            placeholder="Напишите дополнительные пожелания"
+                     class="box-sized form-control form-focusable form-textarea"></textarea>
+                </p>
+
+                <p class="box-sized field-row paragraph">
+                    <input
+                            type="checkbox"
+                            id="agreement"
+                            name="agreement"
+                            required
+                     class="box-sized form-focusable">
+                    <label for="agreement" class="box-sized form-label">
+                        Я подтверждаю правильность указанных данных
+                    </label>
+                </p>
+            </fieldset>
+
+            <p class="box-sized paragraph">
+                <button type="submit" class="box-sized button">Отправить заявку</button>
+                <button type="reset" class="box-sized button button-reset">Очистить форму</button>
+            </p>
+        </form>
+
+        <p class="box-sized paragraph">
+            <small class="box-sized">
+                После отправки заявки администратор свяжется с вами для
+                подтверждения свободного времени.
+            </small>
+        </p>
+    </section>
+
+    <hr class="box-sized">
+
+    <aside id="direct-contact" class="box-sized section-card">
+        <h2 class="box-sized heading heading-secondary">Связаться напрямую</h2>
+
+        <address class="contact-list box-sized">
+            <p class="booking-contact-item box-sized paragraph">
+                Телефон:
+                <a href="tel:+77064005040" class="box-sized link">
+                    <strong class="box-sized">+7 706 400 50 40</strong>
+                </a>
+            </p>
+
+            <p class="booking-contact-item box-sized paragraph">
+                Адрес:<br class="box-sized">
+                г. Астана, ул. Динмухамеда Кунаева, 23
+            </p>
+        </address>
+
+        <p class="box-sized paragraph">
+            Режим работы:
+            <mark class="box-sized highlight">круглосуточно, 24/7</mark>.
+        </p>
+    </aside>
+</main>
+
+<footer class="container-footer legacy-footer box-sized">
+    <a href="index.html" aria-label="Перейти на главную страницу TOP GAME" class="box-sized footer-column footer-link link">
+        <img
+                class="footer-logo box-sized image"
+                src="images/logo-white.svg"
+                alt="Логотип компьютерного клуба TOP GAME"
+        >
+    </a>
+
+    <p class="box-sized footer-column footer-copy paragraph">
+        <small class="box-sized">Киберспортивный клуб в центре Астаны</small>
+    </p>
+
+    <nav aria-label="Навигация в нижней части страницы" class="box-sized footer-column">
+        <ul class="footer-nav-list box-sized">
+            <li class="box-sized"><a href="index.html" class="box-sized footer-link link">Главная</a></li>
+            <li class="box-sized"><a href="prices.html" class="box-sized footer-link link">Цены</a></li>
+            <li class="box-sized"><a href="computers.html" class="box-sized footer-link link">Компьютеры</a></li>
+            <li class="box-sized"><a href="booking.html" aria-current="page" class="box-sized footer-link link">Бронирование</a></li>
+            <li class="box-sized"><a href="games.html" class="box-sized footer-link link">Игры</a></li>
+            <li class="box-sized"><a href="rules.html" class="box-sized footer-link link">Правила</a></li>
+            <li class="box-sized"><a href="about.html" class="box-sized footer-link link">О клубе</a></li>
+        </ul>
+    </nav>
+
+    <address class="box-sized footer-column footer-copy">
+        <p class="box-sized footer-copy paragraph">
+            Телефон:
+            <a href="tel:+77064005040" class="box-sized footer-link link">+7 706 400 50 40</a><br class="box-sized">
+            г. Астана, ул. Динмухамеда Кунаева, 23
+        </p>
+    </address>
+
+    <p class="box-sized footer-column footer-copy paragraph">
+        <small class="box-sized">
+            &copy; 2026 TOP GAME.
+            Круглосуточно&nbsp;&mdash;&nbsp;24/7.
+        </small>
+    </p>
+</footer>
+
+</body>
+</html>

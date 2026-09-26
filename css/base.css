@@ -1,0 +1,479 @@
+/*
+    TOP GAME palette — five colours only:
+    #eef2f7 — calm page background.
+    white — named colour for content blocks.
+    #20242a / rgb(32, 36, 42) — dark text, header and footer.
+    #e04444 — main accent for buttons and active links.
+    #666666 — secondary text.
+*/
+
+/* Every element includes padding and border in its width. */
+.box-sized {
+    box-sizing: border-box;
+}
+
+/* Shared page typography. */
+.site-page {
+    margin: 0;
+    background-color: #eef2f7;
+    color: #20242a;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.5;
+    letter-spacing: 0.01em;
+}
+
+.heading {
+    font-family: Georgia, "Times New Roman", serif;
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: 0.02em;
+}
+
+.heading-primary {
+    margin: 0 0 15px;
+    font-size: 40px;
+}
+
+.heading-secondary {
+    margin: 0 0 14px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #20242a;
+    font-size: 28px;
+}
+
+.heading-tertiary {
+    margin: 16px 0 8px;
+    font-size: 21px;
+}
+
+.paragraph {
+    margin: 10px 0;
+}
+
+.link {
+    color: #e04444;
+}
+
+.image {
+    max-width: 100%;
+}
+
+.container-header {
+    min-height: 86px;
+    padding: 15px 2%;
+    border-bottom: 4px solid #e04444;
+    background-color: #20242a;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+/* Static is intentional: the logo remains in the normal header flow. */
+.header-brand {
+    position: static;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+}
+
+.header-logo {
+    width: 45px;
+    height: 45px;
+    object-fit: contain;
+}
+
+.header-nav {
+    flex: 1 1 auto;
+}
+
+/* Flex centring: one complete horizontal navigation row on desktop. */
+.header-nav-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+
+.header-nav-link {
+    display: block;
+    padding: 8px 7px;
+    color: white;
+    text-decoration: none;
+    white-space: nowrap;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.header-nav-link:hover,
+.header-nav-link:focus {
+    background-color: #e04444;
+    outline: 2px solid white;
+    
+}
+
+.header-nav-link-current {
+    background-color: #e04444;
+}
+
+.header-booking,
+.main-booking,
+.main-prices,
+.zones-action-link,
+.button {
+    display: inline-block;
+    padding: 10px 14px;
+    border: 1px solid #20242a;
+    background-color: #e04444;
+    color: white;
+    text-decoration: none;
+    white-space: nowrap;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 1.3;
+    letter-spacing: 0.02em;
+    cursor: pointer;
+}
+
+.header-booking:hover,
+.header-booking:focus,
+.main-booking:hover,
+.main-booking:focus,
+.main-prices:hover,
+.main-prices:focus,
+.zones-action-link:hover,
+.zones-action-link:focus,
+.button:hover,
+.button:focus {
+    background-color: #20242a;
+    outline: 2px solid #e04444;
+}
+
+/* Margin-auto centring: the main content stays centred at a readable width. */
+.main-content {
+    width: 92%;
+    max-width: 1100px;
+    margin: 25px auto;
+    padding-top: 1px;
+}
+
+/*
+   The first section's top margin once collapsed through main.
+   The one-pixel padding above prevents that parent-child margin collapse.
+*/
+.section-card {
+    margin: 0 0 25px;
+    padding: 28px;
+    border: 1px solid #20242a;
+    background-color: white;
+}
+
+.hero {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 25px;
+}
+
+.hero-content,
+.hero-media {
+    flex: 1 1 420px;
+}
+
+/* Relative creates the containing block for the absolute caption. */
+.hero-media {
+    position: relative;
+    margin: 0;
+}
+
+.hero-image {
+    width: 100%;
+    display: block;
+}
+
+/* Absolute positioning places the small caption inside its own image. */
+.hero-caption {
+    position: absolute;
+    right: 8px;
+    bottom: 8px;
+    padding: 5px 8px;
+    background-color: white;
+    color: #20242a;
+    font-size: 12px;
+}
+
+.hero-label {
+    color: #e04444;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+}
+
+.hero-actions {
+    margin-top: 18px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.club-features {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.features-heading,
+.features-list {
+    width: 100%;
+}
+
+/* Three equal cards per row, with wrapping at narrower widths. */
+.features-list,
+.zones-list {
+    width: 100%;
+    margin: 20px 0 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 18px;
+    list-style: none;
+}
+
+.feature-card,
+.zone-card {
+    flex: 0 0 calc((100% - 36px) / 3);
+    min-width: 0;
+}
+
+.feature-card,
+.zone-card,
+.price-card,
+.computer-card,
+.game-card,
+.rule-card {
+    padding: 18px;
+    border: 1px solid #20242a;
+    background-color: white;
+}
+
+.feature-card-first {
+    border-top: 4px solid #e04444;
+}
+
+.feature-label,
+.feature-text {
+    display: block;
+}
+
+.feature-label {
+    color: #e04444;
+    font-size: 22px;
+}
+
+.card-image {
+    width: 100%;
+    height: 190px;
+    object-fit: cover;
+}
+
+.card-figure {
+    margin: 0;
+}
+
+.zones-list-after-header {
+    padding-top: 16px;
+    border-top: 2px solid #e04444;
+}
+
+/*
+   The extra red line under the home-page heading was removed.
+   The normal border-bottom on h2 already separates the heading
+   from the cards and keeps the simple design consistent.
+
+
+
+
+*/
+
+.zones-action,
+.prices-action,
+.computers-action,
+.info-panel,
+.contact-panel {
+    margin-top: 24px;
+    padding: 20px;
+    border: 1px solid #20242a;
+    border-left: 5px solid #e04444;
+    background-color: #eef2f7;
+}
+
+.site-form {
+    margin-top: 20px;
+}
+
+.form-fieldset {
+    margin: 0 0 16px;
+    padding: 18px;
+    border: 1px solid #20242a;
+}
+
+.form-label {
+    font-weight: 700;
+}
+
+.field-row {
+    margin: 12px 0;
+}
+
+/* Radio buttons and checkboxes keep their natural size. */
+.form-control {
+    width: 100%;
+    margin-top: 5px;
+    padding: 9px;
+    border: 1px solid #20242a;
+    background-color: white;
+    color: #20242a;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15px;
+}
+
+.form-focusable:focus {
+    outline: 3px solid #e04444;
+}
+
+.form-textarea {
+    min-height: 100px;
+}
+
+.button {
+    margin-right: 8px;
+}
+
+.button-reset {
+    background-color: #666666;
+}
+
+.data-table {
+    width: 100%;
+    margin-top: 18px;
+    border-collapse: collapse;
+    background-color: white;
+}
+
+.table-caption {
+    margin-bottom: 8px;
+    color: #666666;
+    text-align: left;
+}
+
+.table-cell {
+    padding: 11px;
+    border: 1px solid #20242a;
+    text-align: left;
+}
+
+.table-head {
+    background-color: #e04444;
+    color: white;
+}
+
+.table-row-even {
+    background-color: #eef2f7;
+}
+
+.text-panel {
+    margin: 20px 0;
+    padding: 15px;
+    border: 1px solid #20242a;
+    background-color: #eef2f7;
+}
+
+.quote {
+    border-left: 5px solid #e04444;
+}
+
+.code-block {
+    overflow-x: auto;
+}
+
+.highlight {
+    background-color: #eef2f7;
+    color: #20242a;
+}
+
+/* The small club logo is floated inside the footer description paragraph. */
+.float-logo {
+    width: 36px;
+    margin: 0 9px 4px 0;
+    float: left;
+}
+
+/* Without clear, the floated logo could extend outside .footer-info. */
+.footer-info::after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+/* Fixed positioning is isolated to this small useful link, not the site header. */
+.back-to-top {
+    position: fixed;
+    right: 14px;
+    bottom: 14px;
+    z-index: 5;
+    padding: 7px 10px;
+    border: 1px solid #20242a;
+    background-color: white;
+    color: #20242a;
+    text-decoration: none;
+    font-size: 12px;
+}
+
+.back-to-top:hover,
+.back-to-top:focus {
+    background-color: #e04444;
+    color: white;
+}
+
+.container-footer {
+    padding: 25px 5%;
+    background-color: rgb(32, 36, 42);
+    color: white;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 28px;
+}
+
+.footer-column {
+    flex: 1 1 240px;
+}
+
+.footer-heading {
+    border: 0;
+    font-size: 18px;
+}
+
+.footer-copy {
+    margin: 5px 0;
+    font-style: normal;
+}
+
+.footer-link {
+    color: white;
+}

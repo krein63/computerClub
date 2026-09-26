@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="380" height="140" viewBox="0 0 190 70" role="img" aria-labelledby="title">
+  <title id="title">Top Game</title>
+  <path d="M0 60L28 10L56 60ZM14 48L28 24L42 48Z" fill="#090909" fill-rule="evenodd"/>
+  <g fill="#090909" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="800" letter-spacing="1.5">
+    <text x="70" y="31">TOP</text>
+    <text x="70" y="59">GAME</text>
+  </g>
+</svg>

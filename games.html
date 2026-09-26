@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ru" class="box-sized">
+<head class="box-sized">
+    <meta charset="UTF-8" class="box-sized">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" class="box-sized">
+    <meta name="description" content="Популярные игры и запрос новой игры в компьютерном клубе TOP GAME" class="box-sized">
+    <meta name="author" content="Amir Kabdilmalik" class="box-sized">
+    <title class="box-sized">Игры — TOP GAME</title>
+    <link rel="stylesheet" href="css/base.css" class="box-sized">
+    <link rel="stylesheet" href="css/amir.css" class="box-sized">
+</head>
+<body class="site-page page-games box-sized">
+<!-- Автор страницы: Amir  -->
+<header class="container-header box-sized">
+    <a href="index.html" class="header-brand box-sized link" aria-label="Перейти на главную страницу TOP GAME">
+        <img src="images/logo.png" alt="Логотип компьютерного клуба TOP GAME" class="header-logo box-sized image">
+        <span class="box-sized">TOP GAME</span>
+    </a>
+    <nav class="header-nav box-sized" aria-label="Основная навигация">
+        <ul class="box-sized header-nav-list">
+            <li class="box-sized"><a href="index.html" class="box-sized header-nav-link link">Главная</a></li>
+            <li class="box-sized"><a href="prices.html" class="box-sized header-nav-link link">Цены</a></li>
+            <li class="box-sized"><a href="computers.html" class="box-sized header-nav-link link">Компьютеры</a></li>
+            <li class="box-sized"><a href="booking.html" class="box-sized header-nav-link link">Бронирование</a></li>
+            <li class="box-sized"><a href="games.html" aria-current="page" class="box-sized header-nav-link header-nav-link-current link">Игры</a></li>
+            <li class="box-sized"><a href="rules.html" class="box-sized header-nav-link link">Правила</a></li>
+            <li class="box-sized"><a href="about.html" class="box-sized header-nav-link link">О клубе</a></li>
+        </ul>
+    </nav>
+    <a href="booking.html" class="header-booking box-sized link">Забронировать</a>
+</header>
+
+<main class="box-sized main-content">
+    <section id="game-list" class="gaming-zones game-list-layout box-sized section-card">
+        <header class="zones-header page-hero box-sized">
+            <p class="page-hero-lead game-hero-text box-sized paragraph"><small class="box-sized">Игровая библиотека</small></p>
+            <h1 class="box-sized heading heading-primary">Выбери игру для следующего матча</h1>
+            <p class="game-hero-text box-sized paragraph">
+                На компьютерах TOP GAME доступны командные и одиночные игры.
+                Для сетевого матча важны стабильный <abbr title="Frames Per Second" class="box-sized">FPS</abbr>
+                и низкий <abbr title="время отклика между компьютером и сервером" class="box-sized">ping</abbr>.
+                Перед визитом уточните у администратора наличие нужной игры и обновления.
+            </p>
+        </header>
+
+        <!-- div группирует самостоятельные карточки игр. -->
+        <div class="game-cards box-sized">
+            <article class="game-card box-sized">
+                <h2 class="game-card-title box-sized heading heading-secondary">Counter-Strike 2</h2>
+                <figure class="box-sized card-figure">
+                    <img src="images/cs2logo.png" alt="Игровые компьютеры, подходящие для командного матча" class="box-sized card-image image">
+                    <figcaption class="box-sized">Зал для командной игры пять на пять.</figcaption>
+                </figure>
+                <p class="box-sized paragraph">
+                    <strong class="box-sized">Жанр:</strong> командный шутер. Для матча нужны две команды
+                    по пять игроков; формат можно записать как 5&nbsp;&times;&nbsp;5.
+                </p>
+            </article>
+            <article class="game-card box-sized">
+                <h2 class="game-card-title box-sized heading heading-secondary">Dota 2</h2>
+                <figure class="box-sized card-figure">
+                    <img src="images/dotaa 2.jpg" alt="Клавиатура, мышь и гарнитура игрового места" class="box-sized card-image image">
+                    <figcaption class="box-sized">Периферия для продолжительных командных матчей.</figcaption>
+                </figure>
+                <p class="box-sized paragraph">
+                    <strong class="box-sized">Жанр:</strong> <i class="box-sized">MOBA</i>. Игра подходит для команды и
+                    требует согласованных действий в серии BO<sub class="box-sized">3</sub>.
+                    <!-- span выделяет короткий статус внутри предложения; отдельный смысловой раздел здесь не нужен. -->
+                    <span class="game-status box-sized">Статус: уточнить наличие.</span>
+                </p>
+            </article>
+        </div>
+
+        <aside class="info-panel game-info-panel box-sized">
+            <h2 class="game-info-panel-item box-sized heading heading-secondary">Перед запуском</h2>
+            <p class="game-info-panel-item box-sized paragraph">
+                Войдите только в <em class="box-sized">собственную</em> учётную запись и не сохраняйте пароль.
+                После игры выполните выход. Правила безопасности находятся на
+                <a href="rules.html#account-safety" class="box-sized link">странице правил</a>.
+            </p>
+        </aside>
+    </section>
+
+    <hr class="box-sized">
+
+    <section id="game-request" class="content-section form-section box-sized section-card">
+        <h2 class="box-sized heading heading-secondary">Предложить игру</h2>
+        <p class="box-sized paragraph">Не нашли игру? Отправьте запрос администратору.</p>
+
+        <!-- Метод POST выбран для данных посетителя; серверной обработки пока нет, поэтому форма реально ничего не отправляет. -->
+        <form method="post" action="#" class="box-sized site-form">
+            <fieldset class="box-sized form-fieldset">
+                <legend class="box-sized form-label">Контакты и запрос</legend>
+                <p class="box-sized field-row paragraph"><label for="visitor-name" class="box-sized form-label">Имя:</label><br class="box-sized">
+                    <input type="text" id="visitor-name" name="visitor-name" placeholder="Ваше имя" required class="box-sized form-control form-focusable"></p>
+                <p class="box-sized field-row paragraph"><label for="visitor-email" class="box-sized form-label">Почта:</label><br class="box-sized">
+                    <input type="email" id="visitor-email" name="visitor-email" placeholder="name@example.com" required class="box-sized form-control form-focusable"></p>
+                <p class="box-sized field-row paragraph"><label for="visitor-phone" class="box-sized form-label">Телефон:</label><br class="box-sized">
+                    <input type="tel" id="visitor-phone" name="visitor-phone" placeholder="+7 700 000 00 00" required class="box-sized form-control form-focusable"></p>
+                <p class="box-sized field-row paragraph"><label for="visit-date" class="box-sized form-label">Дата визита:</label><br class="box-sized">
+                    <input type="date" id="visit-date" name="visit-date" required class="box-sized form-control form-focusable"></p>
+                <p class="box-sized field-row paragraph"><label for="players" class="box-sized form-label">Игроков:</label><br class="box-sized">
+                    <input type="number" id="players" name="players" min="1" max="45" value="1" required class="box-sized form-control form-focusable"></p>
+                <p class="box-sized field-row paragraph"><label for="game-title" class="box-sized form-label">Название игры:</label><br class="box-sized">
+                    <input type="text" id="game-title" name="game-title" placeholder="Например, Valorant" required class="box-sized form-control form-focusable"></p>
+                <p class="box-sized field-row paragraph"><label for="genre" class="box-sized form-label">Жанр:</label><br class="box-sized">
+                    <select id="genre" name="genre" required class="box-sized form-control form-focusable">
+                        <option value="" class="box-sized">Выберите жанр</option>
+                        <option value="shooter" class="box-sized">Шутер</option>
+                        <option value="strategy" class="box-sized">Стратегия</option>
+                        <option value="sports" class="box-sized">Спорт</option>
+                    </select></p>
+                <p class="box-sized field-row paragraph">Нужна командная установка?</p>
+                <p class="box-sized field-row paragraph"><input type="radio" id="team-yes" name="team-install" value="yes" required class="box-sized form-focusable">
+                    <label for="team-yes" class="box-sized form-label">Да</label>
+                    <input type="radio" id="team-no" name="team-install" value="no" class="box-sized form-focusable">
+                    <label for="team-no" class="box-sized form-label">Нет</label></p>
+                <p class="box-sized field-row paragraph"><input type="checkbox" id="agreement" name="agreement" required class="box-sized form-focusable">
+                    <label for="agreement" class="box-sized form-label">Я подтверждаю правильность данных</label></p>
+                <p class="box-sized field-row paragraph"><label for="request-comment" class="box-sized form-label">Комментарий:</label><br class="box-sized">
+                    <textarea id="request-comment" name="request-comment" rows="4" cols="40" placeholder="Версия игры или пожелания" class="box-sized form-control form-focusable form-textarea"></textarea></p>
+                <p class="box-sized field-row paragraph"><button type="submit" class="box-sized button">Отправить запрос</button> <button type="reset" class="box-sized button button-reset">Очистить форму</button></p>
+            </fieldset>
+        </form>
+        <nav class="section-links box-sized" aria-label="Дополнительная навигация">
+            <a href="#game-list" class="section-link box-sized link">Вернуться к списку игр</a>
+            <a href="index.html" class="section-link box-sized link">Вернуться на главную страницу</a>
+        </nav>
+    </section>
+</main>
+
+<footer class="container-footer box-sized">
+    <section class="footer-info box-sized footer-column">
+        <h2 class="box-sized footer-heading heading heading-secondary">Top Game</h2>
+        <p class="box-sized footer-copy paragraph">Киберспортивный клуб в центре Астаны.</p>
+    </section>
+    <section class="footer-contacts box-sized footer-column">
+        <h2 class="box-sized footer-heading heading heading-secondary">Контакты</h2>
+        <address class="box-sized footer-copy">
+            TOP GAME, г. Астана, ул. Динмухамеда Кунаева, 23<br class="box-sized">
+            <a href="tel:+77064005040" class="box-sized footer-link link">+7 706 400 50 40</a> ·
+            <a href="mailto:topgame@example.com" class="box-sized footer-link link">topgame@example.com</a>
+        </address>
+    </section>
+    <p class="box-sized footer-column footer-copy paragraph"><small class="box-sized">&copy; 2026 TOP GAME&nbsp;&mdash;&nbsp;24/7.</small></p>
+</footer>
+</body>
+</html>

@@ -1,0 +1,142 @@
+/* Amir: games.html and rules.html */
+
+.page-hero {
+    margin-bottom: 22px;
+    padding: 24px;
+    border: 1px solid #20242a;
+    background-color: #eef2f7;
+}
+
+.page-hero-lead {
+    color: #e04444;
+    font-weight: 700;
+}
+
+/* Keep the page blocks full width and in their original order. */
+.game-list-layout {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.game-cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 18px;
+}
+
+.game-card {
+    flex: 0 0 calc((100% - 18px) / 2);
+    min-width: 0;
+}
+
+.game-card-title {
+    font-size: 23px;
+}
+
+.game-status {
+    color: #e04444;
+    font-weight: 700;
+}
+
+/* The panel wraps and both items share space. */
+.game-info-panel {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 14px;
+}
+
+.game-info-panel-item {
+    flex: 1 1 300px;
+}
+
+.rules-list {
+    padding: 22px;
+    border: 1px solid #20242a;
+    background-color: white;
+}
+
+/* Keep the rules blocks full width and in their original order. */
+.main-rules-layout {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.rules-items {
+    padding-left: 24px;
+}
+
+.rules-item {
+    margin-bottom: 10px;
+}
+
+.rules-figure {
+    margin: 24px 0;
+    padding: 10px;
+    border: 1px solid #20242a;
+    background-color: white;
+}
+
+.rules-photo {
+    width: 100%;
+    display: block;
+}
+
+.account-definitions {
+    border: 1px solid #20242a;
+}
+
+.account-entry {
+    margin: 0;
+    padding: 10px;
+    border-bottom: 1px solid #20242a;
+}
+
+.account-term {
+    background-color: #eef2f7;
+    font-weight: 700;
+}
+
+/* The account help panel wraps its heading and text. */
+.account-help-panel {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 14px;
+}
+
+/* Panel items grow, shrink and wrap. */
+.account-help-panel-item {
+    flex: 1 1 280px;
+}
+
+.section-links {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.section-link {
+    flex: 1 1 220px;
+    padding: 9px 14px;
+    background-color: #e04444;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+}
+
+.section-link:hover,
+.section-link:focus {
+    background-color: #20242a;
+    outline: 2px solid #e04444;
+}
+
+/* Both game-page introduction paragraphs visibly use the dark text colour. */
+.game-hero-text {
+    color: #20242a;
+}
