@@ -1,13 +1,76 @@
-/* Bootstrap owns layout, spacing, typography scales, buttons and breakpoints.
-   Only the original club palette/font and a photo correction remain. */
+/* Bootstrap owns layout, spacing, typography scales and breakpoints.
+   These rules add the club's visual identity without rebuilding its grid. */
 :root {
     --bs-body-bg: #eef2f7;
     --bs-body-color: #20242a;
     --bs-body-font-family: Arial, Helvetica, sans-serif;
+    --bs-danger-rgb: 224, 68, 68;
     --bs-link-color: #b02a37;
     --bs-link-color-rgb: 176, 42, 55;
     --bs-link-hover-color: #842029;
     --bs-link-hover-color-rgb: 132, 32, 41;
+}
+
+/* Keep the club's original serif display font for headings. */
+h1,
+h2,
+h3,
+.card-title {
+    font-family: Georgia, "Times New Roman", serif;
+}
+
+/* Use the club red for primary actions and provide a clear hover shade. */
+.btn-danger {
+    --bs-btn-bg: #e04444;
+    --bs-btn-border-color: #e04444;
+    --bs-btn-hover-bg: #c93838;
+    --bs-btn-hover-border-color: #c93838;
+    --bs-btn-active-bg: #b02a37;
+    --bs-btn-active-border-color: #b02a37;
+}
+
+/* Match outlined actions to the same palette. */
+.btn-outline-danger {
+    --bs-btn-color: #b02a37;
+    --bs-btn-border-color: #b02a37;
+    --bs-btn-hover-bg: #b02a37;
+    --bs-btn-hover-border-color: #b02a37;
+}
+
+/* A subtle club-red highlight makes navigation states easy to spot. */
+.navbar .nav-link {
+    border-radius: var(--bs-border-radius);
+    transition: color 150ms ease, background-color 150ms ease;
+}
+
+.navbar .nav-link:hover,
+.navbar .nav-link:focus-visible,
+.navbar .nav-link.active {
+    color: #fff;
+    background-color: rgba(var(--bs-danger-rgb), 0.8);
+}
+
+/* Bootstrap cards use a light gray surface by default; keep content white. */
+.card {
+    --bs-card-bg: #fff;
+    --bs-card-border-color: rgba(32, 36, 42, 0.14);
+}
+
+/* Carry the brand color into focused form controls and selected checkboxes. */
+.form-control:focus,
+.form-select:focus {
+    border-color: #e04444;
+    box-shadow: 0 0 0 0.25rem rgba(224, 68, 68, 0.2);
+}
+
+.form-check-input:checked {
+    background-color: #e04444;
+    border-color: #e04444;
+}
+
+::selection {
+    color: #fff;
+    background-color: #b02a37;
 }
 
 /* The existing about-page photo needs darkening for readable white text.
