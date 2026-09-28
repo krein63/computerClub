@@ -78,3 +78,10 @@ h3,
 .brand-backdrop {
     filter: brightness(35%);
 }
+
+/* A checkbox keeps the mobile navigation usable without JavaScript. */
+@media (max-width: 1199.98px) {
+    .navbar-toggler-check:not(:checked) ~ .navbar-collapse { display: none; }
+    .navbar-toggler-check:checked ~ .navbar-collapse { display: block; flex-basis: 100%; }
+    .navbar-toggler-check:focus-visible + .navbar-toggler { outline: 3px solid #fff; outline-offset: 3px; }
+}
