@@ -1,0 +1,10 @@
+{
+  "date": "2026-10-02",
+  "browser": "154.0.8037.93",
+  "checks": [
+    "address-and-hours",
+    "compare-and-plan-static",
+    "game-plan-and-rules-static"
+  ],
+  "notes": "Static forms intentionally do not generate results. State previews inject text only in the QA browser; no script added to site."
+}

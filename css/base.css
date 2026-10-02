@@ -85,3 +85,19 @@ h3,
     .navbar-toggler-check:checked ~ .navbar-collapse { display: block; flex-basis: 100%; }
     .navbar-toggler-check:focus-visible + .navbar-toggler { outline: 3px solid #fff; outline-offset: 3px; }
 }
+
+/* Frozen interface states. Future JavaScript only toggles these classes. */
+.is-hidden { display: none !important; }
+.is-active { color: #842029; background-color: #fbe9eb; font-weight: 700; }
+.is-selected { border-color: #b02a37 !important; box-shadow: 0 0 0 2px #b02a37; }
+.is-error { color: #842029; border-color: #b02a37 !important; background-color: #fbe9eb; }
+.is-success { color: #0f5132; border-color: #198754 !important; background-color: #e8f5ed; }
+.form-control.is-error, .form-select.is-error { border-width: 2px; }
+.field-error { color: #842029; font-size: .875rem; margin-top: .35rem; }
+.state-message { border: 1px solid; border-radius: .5rem; padding: 1rem; }
+[id] { scroll-margin-top: 1rem; }
+:focus-visible { outline: 3px solid #b02a37; outline-offset: 3px; }
+footer :focus-visible { outline-color: #fff; }
+@media (prefers-reduced-motion: reduce) {
+    .navbar .nav-link { transition: none; }
+}

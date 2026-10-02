@@ -4,60 +4,46 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="Информация о компьютерном клубе TOP GAME в Астане">
-        <meta name="author" content="Ali">
-        <title>О клубе — TOP GAME</title>
-        <!-- Bootstrap 5.3.8 via CDN. Custom brand corrections are loaded after Bootstrap. -->
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+        <meta name="author" content="Команда Top Game">
+        <title>О клубе — Top Game</title>
+        <!-- Bootstrap 5.3.8 is stored locally; base.css contains brand and state corrections. -->
+        <link rel="stylesheet" href="css/vendor/bootstrap.min.css">
+        <link rel="icon" href="images/logo-mark-white.svg" type="image/svg+xml">
         <link rel="stylesheet" href="css/base.css">
     </head>
-    <body>
-        <!-- Автор страницы: Ali -->
+    <body id="page-top">
+
         <!-- Bootstrap navbar layout; the mobile menu uses an HTML checkbox and CSS so the site needs no JavaScript. -->
-        <header class="navbar navbar-expand-xl bg-dark border-bottom border-danger border-3 py-3" data-bs-theme="dark">
+        <a href="#main-content" class="visually-hidden-focusable d-block bg-white text-dark p-2">Перейти к содержимому</a>
+        <header id="site-header" class="navbar navbar-expand-xl bg-dark border-bottom border-danger border-3 py-3" data-bs-theme="dark">
             <div class="container-fluid px-3 px-lg-4">
-                <!-- container-fluid keeps the navigation full width, giving seven links room on desktop. -->
-                <a href="index.html" aria-label="Перейти на главную страницу TOP GAME" class="navbar-brand d-flex align-items-center gap-2 fw-bold">
-                    <img src="images/logo.png" alt="Логотип компьютерного клуба TOP GAME" class="img-fluid object-fit-contain" width="44" height="44">
+                <a id="brand-home" href="index.html" class="navbar-brand d-flex align-items-center gap-2 fw-bold" aria-label="Top Game — главная">
+                    <img src="images/logo.png" alt="" width="44" height="44" class="object-fit-contain">
                     <span>TOP GAME</span>
                 </a>
-                <!-- Список используется внутри nav, потому что меню является перечнем страниц сайта. -->
                 <input type="checkbox" id="main-navigation-toggle" class="navbar-toggler-check visually-hidden d-xl-none" aria-controls="main-navigation">
                 <label for="main-navigation-toggle" class="navbar-toggler d-xl-none">
                     <span class="visually-hidden">Открыть или закрыть меню</span>
-                    <span class="navbar-toggler-icon"></span>
+                    <span class="navbar-toggler-icon" aria-hidden="true"></span>
                 </label>
-                <div class="navbar-collapse" id="main-navigation">
+                <div id="main-navigation" class="navbar-collapse">
                     <nav aria-label="Основная навигация" class="flex-grow-1">
                         <ul class="navbar-nav mx-xl-auto gap-xl-1">
-                            <li class="nav-item">
-                                <a href="index.html" class="nav-link px-2">Главная</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="prices.html" class="nav-link px-2">Цены</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="computers.html" class="nav-link px-2">Компьютеры</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="booking.html" class="nav-link px-2">Бронирование</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="games.html" class="nav-link px-2">Игры</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="rules.html" class="nav-link px-2">Правила</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="about.html" aria-current="page" class="nav-link px-2 active fw-bold">О клубе</a>
-                            </li>
+                            <li class="nav-item"><a id="nav-index" href="index.html" class="nav-link px-2">Главная</a></li>
+                            <li class="nav-item"><a id="nav-prices" href="prices.html" class="nav-link px-2">Цены</a></li>
+                            <li class="nav-item"><a id="nav-computers" href="computers.html" class="nav-link px-2">Компьютеры</a></li>
+                            <li class="nav-item"><a id="nav-booking" href="booking.html" class="nav-link px-2">Бронирование</a></li>
+                            <li class="nav-item"><a id="nav-games" href="games.html" class="nav-link px-2">Игры</a></li>
+                            <li class="nav-item"><a id="nav-rules" href="rules.html" class="nav-link px-2">Правила</a></li>
+                            <li class="nav-item"><a id="nav-about" href="about.html" class="nav-link px-2 active fw-bold" aria-current="page">О клубе</a></li>
                         </ul>
                     </nav>
-                    <a href="booking.html" class="btn btn-danger btn-sm mt-3 mt-xl-0 ms-xl-3 d-none d-md-inline-block">Забронировать</a>
+                    <a id="header-plan" href="booking.html#booking-form" class="btn btn-danger btn-sm mt-3 mt-xl-0 ms-xl-3">Подготовить визит</a>
                 </div>
             </div>
         </header>
         <!-- container limits long text to a readable width and stays centered at each Bootstrap breakpoint. -->
-        <main class="container py-4 py-lg-5">
+        <main id="main-content" tabindex="-1" class="container py-4 py-lg-5">
             <section id="introduction" class="bg-white border rounded-4 p-3 p-md-4 p-lg-5 mb-4 shadow-sm position-relative overflow-hidden text-white">
                 <img src="images/club-exterior.jpg" alt="Внешний вид компьютерного клуба TOP GAME в Астане" class="position-absolute top-0 start-0 w-100 h-100 object-fit-cover brand-backdrop">
                 <p class="mb-3 position-relative z-1">
@@ -72,15 +58,14 @@
             рассчитанные на разные форматы отдыха.
         </p>
                 <p class="mb-3 position-relative z-1">
-                    <a href="#contacts" class="btn btn-danger">Как добраться</a>
+                    <a id="about-find-club" href="#contacts" class="btn btn-danger">Как добраться</a>
                 </p>
             </section>
             <hr>
             <section id="club-space" class="bg-white border rounded-4 p-3 p-md-4 p-lg-5 mb-4 shadow-sm">
                 <h2 class="fw-bold h2 mb-3">Пространство для твоей команды</h2>
                 <p class="mb-3">
-            Общий зал, <abbr title="игра вдвоём">DUO</abbr> и
-            <abbr title="приватная игровая зона">PRIVATE</abbr>-зоны
+            Зоны Main, Duo’s и Private
             объединены одной идеей: создать удобное пространство для игры,
             общения и командных матчей. В клубе установлено
             <mark class="bg-danger-subtle text-danger-emphasis">45 игровых компьютеров</mark>, расположенных на двух этажах.
@@ -110,9 +95,9 @@
                         <li>
                     Игровые зоны:
                     <ul>
-                                <li>общий зал;</li>
-                                <li>DUO-зона;</li>
-                                <li>PRIVATE-зона.</li>
+                                <li>Main — общий зал;</li>
+                                <li>Duo’s — места для двух игроков;</li>
+                                <li>Private — отдельная зона.</li>
                             </ul>
                         </li>
                         <li>
@@ -129,7 +114,7 @@
                         <dt class="mt-3 fw-semibold">
                             <b>Режим работы</b>
                         </dt>
-                        <dd class="mb-3">Круглосуточно, 24/7.</dd>
+                        <dd id="club-hours" class="mb-3">Круглосуточно, 24/7.</dd>
                         <dt class="mt-3 fw-semibold">
                             <b>Количество этажей</b>
                         </dt>
@@ -145,10 +130,9 @@
                 <aside>
                     <h2 class="fw-bold h2 mb-3">Перед посещением</h2>
                     <p class="mb-3">
-                Если вы планируете прийти большой командой,
-                <em>заранее забронируйте</em> необходимое количество мест.
-                Для этого перейдите на страницу
-                <a href="booking.html">бронирования</a>.
+                Один посетитель может подготовить <a id="about-plan-visit" href="booking.html#booking-form">личный план визита</a>:
+                выбрать зону, дату, время и число игроков. План не резервирует места
+                и не требует регистрации или подтверждения сотрудником клуба.
             </p>
                 </aside>
             </section>
@@ -163,77 +147,41 @@
             </p>
                     <p class="mb-3 col-12 col-md-6">
                 Телефон:
-                <a href="tel:+77064005040">+7 706 400 50 40</a>
+                <a id="about-call-club" href="tel:+77064005040">+7 706 400 50 40</a>
                     </p>
                 </address>
                 <p class="mb-3">
             Клуб работает <i>круглосуточно</i>:
             <span>24 часа в сутки, 7 дней в неделю</span>.
         </p>
-                <!-- span используется для короткой части предложения,
-             которой не требуется отдельный смысловой раздел. -->
                 <p class="mb-3">
-                    <a href="#introduction">Вернуться к началу страницы</a>
+                    <a id="about-open-map" href="https://2gis.kz/astana/firm/70000001080411948" target="_blank" rel="noopener noreferrer" class="btn btn-danger">Открыть адрес в 2GIS <span class="visually-hidden">(в новой вкладке)</span></a>
+                </p>
+                <p class="mb-3">
+                    <a id="about-back-to-top" href="#introduction">Вернуться к началу страницы</a>
                 </p>
             </section>
         </main>
-        <footer class="bg-dark text-white py-5 mt-4">
+        <footer id="site-footer" class="bg-dark text-white py-5 mt-4">
             <div class="container">
-                <div class="row g-4 align-items-start">
-                    <div class="col-12 col-md-6 col-lg-4">
-                        <a href="index.html" aria-label="Перейти на главную страницу TOP GAME" class="link-light">
-                            <img src="images/logo-white.svg" alt="Логотип компьютерного клуба TOP GAME" class="img-fluid" width="100">
-                        </a>
-                    </div>
-                    <div class="col-12 col-md-6 col-lg-4">
-                        <p class="mb-2 mb-3">
-                            <small class="small">Киберспортивный клуб в центре Астаны</small>
-                        </p>
-                    </div>
-                    <div class="col-12 col-md-6 col-lg-4">
-                        <nav aria-label="Навигация в нижней части страницы">
-                            <ul class="list-unstyled mb-0">
-                                <li>
-                                    <a href="index.html" class="link-light">Главная</a>
-                                </li>
-                                <li>
-                                    <a href="prices.html" class="link-light">Цены</a>
-                                </li>
-                                <li>
-                                    <a href="computers.html" class="link-light">Компьютеры</a>
-                                </li>
-                                <li>
-                                    <a href="booking.html" class="link-light">Бронирование</a>
-                                </li>
-                                <li>
-                                    <a href="games.html" class="link-light">Игры</a>
-                                </li>
-                                <li>
-                                    <a href="rules.html" class="link-light">Правила</a>
-                                </li>
-                                <li>
-                                    <a href="about.html" aria-current="page" class="link-light">О клубе</a>
-                                </li>
-                            </ul>
-                        </nav>
-                    </div>
-                    <div class="col-12 col-md-6 col-lg-4">
-                        <address class="mb-2 fst-normal">
-                            <p class="mb-2 mb-3">
-            Телефон:
-            <a href="tel:+77064005040" class="link-light">+7 706 400 50 40</a>
-                                <br>
-            г. Астана, ул. Динмухамеда Кунаева, 23
-        </p>
+                <div class="row g-4">
+                    <section class="col-12 col-md-6 col-lg-4" aria-labelledby="footer-brand">
+                        <h2 id="footer-brand" class="h5 fw-bold mb-3">Top Game</h2>
+                        <p>Компьютерный клуб в Астане.<br>Три игровые зоны. Работаем 24/7.</p>
+                        <a id="footer-plan" href="booking.html#booking-form" class="btn btn-outline-light">Подготовить визит</a>
+                    </section>
+                    <section class="col-12 col-md-6 col-lg-5" aria-labelledby="footer-contacts">
+                        <h2 id="footer-contacts" class="h5 fw-bold mb-3">Адрес и контакты</h2>
+                        <address class="fst-normal mb-2">Астана, ул. Динмухамеда Кунаева, 23<br>
+                            <a id="footer-phone" href="tel:+77064005040" class="link-light">+7 706 400 50 40</a>
                         </address>
-                    </div>
-                    <div class="col-12 col-md-6 col-lg-4">
-                        <p class="mb-2 mb-3">
-                            <small class="small">
-            © 2026 TOP GAME.
-            Круглосуточно — 24/7.
-        </small>
-                        </p>
+                        <p class="mb-2">Ежедневно, круглосуточно</p>
+                        <a id="footer-map" href="https://2gis.kz/astana/firm/70000001080411948" class="link-light" target="_blank" rel="noopener noreferrer">Открыть карту в 2GIS</a>
+                    </section>
+                    <div class="col-12 col-lg-3">
+                        <a id="footer-details" href="about.html#contacts" class="link-light d-block mb-2">Как добраться</a>
+                        <a id="footer-rules" href="rules.html" class="link-light d-block mb-3">Правила клуба</a>
+                        <small>© 2026 Top Game</small>
                     </div>
                 </div>
             </div>

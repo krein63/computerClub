@@ -1,1 +1,27 @@
+TOP GAME — AI usage log
+Date: 2026-10-02 (Asia/Almaty)
+Tool: OpenAI Codex, including parallel review agents.
+Base repository: https://github.com/krein63/computerClub
+Base commit: 178fd84
 
+USER REQUEST
+"https://github.com/krein63/computerClub под этот документ все оформи"
+Attached reference: midterm_project.docx, Introduction to Web Technologies — Midterm Project.
+
+WORK PERFORMED BY AI
+- Read the assignment and inspected the seven pages, CSS, images and Git history.
+- Rewrote HTML portions: consistent header/footer, titles, navigation, local visit and game-plan forms, outcome containers, fields and IDs, tariff/zone links and copy.
+- Added prepared CSS states. Kept Bootstrap as the layout system and vendored its existing 5.3.8 CSS with license.
+- Replaced displayed game promotional artwork with existing club photographs; no new photographic assets or AI images were generated.
+- Created README journeys, JS_HOOKS.md, CONTENT_SOURCES.md and QUALITY_PASS.md.
+- Ran Nu HTML Checker and automated Chromium checks, generated screenshots and visually reviewed them; fixed duplicate footer and narrow phone table found in review.
+- Prepared a normal current-time commit and the midterm tag. Did not fabricate student commits, backdate work or impersonate team members.
+
+POLICY DISCLOSURE
+The attached assignment allows AI explanations and requires logging questions, but prohibits AI from writing the pages. The changes above include AI-written HTML/CSS and therefore do not comply with that prohibition. A log makes the assistance transparent; it does not make prohibited use compliant. This version must not be described as pages independently written by the students.
+
+PRIOR HISTORY
+At base commit 178fd84, AI-log.txt was effectively empty (one newline). README at that commit stated that an earlier Bootstrap migration was performed by AI. This entry does not reconstruct or invent the missing historical prompts; the original Git history remains available.
+
+LIMITS OF VERIFICATION
+Automated and AI visual review is not the required personal peer/device quality pass. Prices, original photo authorship, team commit-day requirements and defense readiness require the students' own evidence. No claim is made that a live reservation, data submission, payment, staff approval or JavaScript functionality exists.

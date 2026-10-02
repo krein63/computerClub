@@ -4,60 +4,46 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="Главная страница компьютерного клуба Top Game в Астане">
-        <meta name="author" content="Ulan">
-        <title>Top Game — Главная</title>
-        <!-- Bootstrap 5.3.8 via CDN. Custom brand corrections are loaded after Bootstrap. -->
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+        <meta name="author" content="Команда Top Game">
+        <title>Главная — Top Game</title>
+        <!-- Bootstrap 5.3.8 is stored locally; base.css contains brand and state corrections. -->
+        <link rel="stylesheet" href="css/vendor/bootstrap.min.css">
+        <link rel="icon" href="images/logo-mark-white.svg" type="image/svg+xml">
         <link rel="stylesheet" href="css/base.css">
     </head>
     <body id="page-top">
-        <!-- Authors: Ulan and Ali and Amir-->
+
         <!-- Bootstrap navbar layout; the mobile menu uses an HTML checkbox and CSS so the site needs no JavaScript. -->
-        <header class="navbar navbar-expand-xl bg-dark border-bottom border-danger border-3 py-3" data-bs-theme="dark">
+        <a href="#main-content" class="visually-hidden-focusable d-block bg-white text-dark p-2">Перейти к содержимому</a>
+        <header id="site-header" class="navbar navbar-expand-xl bg-dark border-bottom border-danger border-3 py-3" data-bs-theme="dark">
             <div class="container-fluid px-3 px-lg-4">
-                <!-- container-fluid keeps the navigation full width, giving seven links room on desktop. -->
-                <!-- span используется, потому что название клуба является строчной частью ссылки с логотипом, а не заголовком страницы -->
-                <a href="index.html" class="navbar-brand d-flex align-items-center gap-2 fw-bold">
-                    <img src="images/logo.png" alt="Логотип Top Game" class="img-fluid object-fit-contain" width="44" height="44">
+                <a id="brand-home" href="index.html" class="navbar-brand d-flex align-items-center gap-2 fw-bold" aria-label="Top Game — главная">
+                    <img src="images/logo.png" alt="" width="44" height="44" class="object-fit-contain">
                     <span>TOP GAME</span>
                 </a>
                 <input type="checkbox" id="main-navigation-toggle" class="navbar-toggler-check visually-hidden d-xl-none" aria-controls="main-navigation">
                 <label for="main-navigation-toggle" class="navbar-toggler d-xl-none">
                     <span class="visually-hidden">Открыть или закрыть меню</span>
-                    <span class="navbar-toggler-icon"></span>
+                    <span class="navbar-toggler-icon" aria-hidden="true"></span>
                 </label>
-                <div class="navbar-collapse" id="main-navigation">
+                <div id="main-navigation" class="navbar-collapse">
                     <nav aria-label="Основная навигация" class="flex-grow-1">
                         <ul class="navbar-nav mx-xl-auto gap-xl-1">
-                            <li class="nav-item">
-                                <a href="index.html" aria-current="page" class="nav-link px-2 active fw-bold">Главная</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="prices.html" class="nav-link px-2">Цены</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="computers.html" class="nav-link px-2">Компьютеры</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="booking.html" class="nav-link px-2">Бронирование</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="games.html" class="nav-link px-2">Игры</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="rules.html" class="nav-link px-2">Правила</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="about.html" class="nav-link px-2">О клубе</a>
-                            </li>
+                            <li class="nav-item"><a id="nav-index" href="index.html" class="nav-link px-2 active fw-bold" aria-current="page">Главная</a></li>
+                            <li class="nav-item"><a id="nav-prices" href="prices.html" class="nav-link px-2">Цены</a></li>
+                            <li class="nav-item"><a id="nav-computers" href="computers.html" class="nav-link px-2">Компьютеры</a></li>
+                            <li class="nav-item"><a id="nav-booking" href="booking.html" class="nav-link px-2">Бронирование</a></li>
+                            <li class="nav-item"><a id="nav-games" href="games.html" class="nav-link px-2">Игры</a></li>
+                            <li class="nav-item"><a id="nav-rules" href="rules.html" class="nav-link px-2">Правила</a></li>
+                            <li class="nav-item"><a id="nav-about" href="about.html" class="nav-link px-2">О клубе</a></li>
                         </ul>
                     </nav>
-                    <a href="booking.html" class="btn btn-danger btn-sm mt-3 mt-xl-0 ms-xl-3 d-none d-md-inline-block">Забронировать</a>
+                    <a id="header-plan" href="booking.html#booking-form" class="btn btn-danger btn-sm mt-3 mt-xl-0 ms-xl-3">Подготовить визит</a>
                 </div>
             </div>
         </header>
         <!-- container limits long text to a readable width and stays centered at each Bootstrap breakpoint. -->
-        <main class="container py-4 py-lg-5">
+        <main id="main-content" tabindex="-1" class="container py-4 py-lg-5">
             <section class="bg-white border rounded-4 p-3 p-md-4 p-lg-5 mb-4 shadow-sm">
                 <div class="row g-4 align-items-center">
                     <header class="col-12 col-lg-6">
@@ -70,13 +56,13 @@
                     из нескольких игровых зон.
                 </p>
                         <nav aria-label="Основные действия" class="d-flex flex-wrap gap-2 mt-4">
-                            <a href="booking.html" class="btn btn-danger btn-lg">Забронировать</a>
-                            <a href="prices.html" class="btn btn-outline-dark btn-lg">Смотреть тарифы →</a>
+                                <a id="home-plan-visit" href="booking.html#booking-form" class="btn btn-danger btn-lg">Составить план визита</a>
+                            <a id="home-view-prices" href="prices.html#tariffs" class="btn btn-outline-dark btn-lg">Смотреть тарифы →</a>
                         </nav>
                     </header>
                     <figure class="mb-0 col-12 col-lg-6">
                         <img src="images/hero.jpg" alt="Основной игровой зал компьютерного клуба Top Game" class="img-fluid w-100 rounded-3">
-                        <figcaption class="small text-body-secondary mt-2 d-none d-md-block">Основной игровой зал Top Game в Астане</figcaption>
+                        <figcaption class="small text-body-secondary mt-2">Основной игровой зал Top Game в Астане</figcaption>
                     </figure>
                 </div>
             </section>
@@ -85,7 +71,7 @@
                 <ul class="row g-3 list-unstyled mb-0">
                     <li class="col-12 col-sm-6 col-lg-3">
                         <div class="border rounded-3 p-3 h-100 bg-body-tertiary border-danger border-top border-3">
-                            <strong class="d-block text-danger fs-4 fw-bold">От 1 200 ₸</strong>
+                            <strong id="home-hourly-price" class="d-block text-danger fs-4 fw-bold">От 1 200 ₸</strong>
                             <span class="d-block text-body-secondary small">за час игры</span>
                         </div>
                     </li>
@@ -93,7 +79,7 @@
                         <div class="border rounded-3 p-3 h-100 bg-body-tertiary">
                             <strong class="d-block text-danger fs-4 fw-bold">45 <abbr title="персональных компьютеров">ПК</abbr>
                             </strong>
-                            <span class="d-block text-body-secondary small">в основном зале</span>
+                            <span class="d-block text-body-secondary small">во всём клубе</span>
                         </div>
                     </li>
                     <li class="col-12 col-sm-6 col-lg-3">
@@ -123,28 +109,34 @@
                 <!-- Bootstrap Cards / grid: official card and card-body markup adapted to existing club content; semantic articles and figures retained. https://getbootstrap.com/docs/5.3/components/card/ -->
                 <div class="mt-1 row g-4">
                     <div class="col-12 col-md-6">
-                        <article class="card h-100 shadow-sm">
+                        <article id="home-games-card" class="card h-100 shadow-sm">
                             <div class="card-body p-3 p-lg-4">
-                                <img src="images/peripherals.jpg" alt="Игровая клавиатура, мышь и гарнитура Top Game" class="w-100 object-fit-cover rounded-3 mb-3" height="190">
+                                <figure class="mb-3">
+                                    <img src="images/peripherals.jpg" alt="Игровая клавиатура, мышь и гарнитура Top Game" class="w-100 object-fit-cover rounded-3 mb-3" height="190">
+                                    <figcaption class="small text-body-secondary">Игровая периферия клуба</figcaption>
+                                </figure>
                                 <h3 class="fw-bold h4 mb-3 card-title">Игры</h3>
                                 <p class="mb-3 card-text">
-                        Узнай о популярных командных играх и отправь запрос,
-                        если нужной игры нет в списке.
+                        Посмотри каталог популярных командных игр и
+                        выбери игру для своего визита.
                     </p>
-                                <a href="games.html">Перейти к играм →</a>
+                                <a id="home-view-games" href="games.html">Перейти к играм →</a>
                             </div>
                         </article>
                     </div>
                     <div class="col-12 col-md-6">
-                        <article class="card h-100 shadow-sm">
+                        <article id="home-rules-card" class="card h-100 shadow-sm">
                             <div class="card-body p-3 p-lg-4">
-                                <img src="images/private-zone.jpg" alt="Аккуратно организованное место в зоне Private" class="w-100 object-fit-cover rounded-3 mb-3" height="190">
+                                <figure class="mb-3">
+                                    <img src="images/private-zone.jpg" alt="Аккуратно организованное место в зоне Private" class="w-100 object-fit-cover rounded-3 mb-3" height="190">
+                                    <figcaption class="small text-body-secondary">Игровое место в зоне Private</figcaption>
+                                </figure>
                                 <h3 class="fw-bold h4 mb-3 card-title">Правила клуба</h3>
                                 <p class="mb-3 card-text">
                         Прочитай правила поведения, защиты аккаунта и
                         безопасного использования оборудования.
                     </p>
-                                <a href="rules.html">Прочитать правила →</a>
+                                <a id="home-view-rules" href="rules.html#main-rules">Прочитать правила →</a>
                             </div>
                         </article>
                     </div>
@@ -167,9 +159,12 @@
                 <!-- Bootstrap Cards / grid: official card and card-body markup adapted to existing club content; semantic articles and figures retained. https://getbootstrap.com/docs/5.3/components/card/ -->
                 <div class="mt-1 row g-4">
                     <div class="col-12 col-md-6 col-lg-4">
-                        <article class="card h-100 shadow-sm">
+                        <article id="home-main-card" class="card h-100 shadow-sm">
                             <div class="card-body p-3 p-lg-4">
-                                <img src="images/main-zone.jpg" alt="Компьютерное место в основной зоне Main" class="w-100 object-fit-cover rounded-3 mb-3" height="190">
+                                <figure class="mb-3">
+                                    <img src="images/main-zone.jpg" alt="Компьютерное место в основной зоне Main" class="w-100 object-fit-cover rounded-3 mb-3" height="190">
+                                    <figcaption class="small text-body-secondary">Игровое место в зоне Main</figcaption>
+                                </figure>
                                 <h3 class="fw-bold h4 mb-3 card-title">Main</h3>
                                 <p class="mb-3 card-text">
                         Основная зона подходит для быстрых матчей, одиночной
@@ -182,13 +177,17 @@
                                     <li>Видеокарта RTX 4070</li>
                                     <li>Монитор ASUS 310 Hz</li>
                                 </ul>
+                                <a id="home-plan-main" href="booking.html#zone-main">План визита: Main →</a>
                             </div>
                         </article>
                     </div>
                     <div class="col-12 col-md-6 col-lg-4">
-                        <article class="card h-100 shadow-sm">
+                        <article id="home-duo-card" class="card h-100 shadow-sm">
                             <div class="card-body p-3 p-lg-4">
-                                <img src="images/duos-zone.jpg" alt="Два компьютерных места в игровой зоне Duo’s" class="w-100 object-fit-cover rounded-3 mb-3" height="190">
+                                <figure class="mb-3">
+                                    <img src="images/duos-zone.jpg" alt="Два компьютерных места в игровой зоне Duo’s" class="w-100 object-fit-cover rounded-3 mb-3" height="190">
+                                    <figcaption class="small text-body-secondary">Два соседних места в зоне Duo’s</figcaption>
+                                </figure>
                                 <h3 class="fw-bold h4 mb-3 card-title">Duo’s</h3>
                                 <p class="mb-3 card-text">
                         Зона Duo’s создана для двух игроков, которые хотят
@@ -201,13 +200,17 @@
                                     <li>Видеокарта RTX 4070</li>
                                     <li>Монитор ASUS 380 Hz</li>
                                 </ul>
+                                <a id="home-plan-duo" href="booking.html#zone-duo">План визита: Duo’s →</a>
                             </div>
                         </article>
                     </div>
                     <div class="col-12 col-md-6 col-lg-4">
-                        <article class="card h-100 shadow-sm">
+                        <article id="home-private-card" class="card h-100 shadow-sm">
                             <div class="card-body p-3 p-lg-4">
-                                <img src="images/private-zone.jpg" alt="Компьютерное место в приватной зоне Private" class="w-100 object-fit-cover rounded-3 mb-3" height="190">
+                                <figure class="mb-3">
+                                    <img src="images/private-zone.jpg" alt="Компьютерное место в приватной зоне Private" class="w-100 object-fit-cover rounded-3 mb-3" height="190">
+                                    <figcaption class="small text-body-secondary">Игровое место в зоне Private</figcaption>
+                                </figure>
                                 <h3 class="fw-bold h4 mb-3 card-title">Private</h3>
                                 <p class="mb-3 card-text">
                         Private подойдёт посетителям, которым важно отдельное
@@ -221,50 +224,38 @@
                                     <li>Видеокарта RTX 4070 Super</li>
                                     <li>Монитор ASUS 380 Hz</li>
                                 </ul>
+                                <a id="home-plan-private" href="booking.html#zone-private">План визита: Private →</a>
                             </div>
                         </article>
                     </div>
                 </div>
-                <footer class="bg-body-tertiary border border-start border-danger border-4 rounded-3 p-3 p-md-4 mt-4">
-                    <p class="mb-3">Твоя игра начинается здесь.</p>
-                    <a href="booking.html" class="btn btn-danger">Выбрать место</a>
-                </footer>
+                        <aside class="mt-4 border-top pt-4">
+                    <h2 class="h4 fw-bold">Твоя игра начинается здесь</h2>
+                    <a id="zones-plan-visit" href="booking.html#booking-form" class="btn btn-danger">Составить план визита</a>
+                </aside>
             </section>
         </main>
-        <a href="#page-top" class="btn btn-outline-dark btn-sm d-block mx-auto mb-4 w-50">↑ Наверх</a>
-        <footer class="bg-dark text-white py-5 mt-4">
+        <a id="home-back-to-top" href="#page-top" class="btn btn-outline-dark btn-sm d-block mx-auto mb-4 w-50">↑ Наверх</a>
+        <footer id="site-footer" class="bg-dark text-white py-5 mt-4">
             <div class="container">
-                <div class="row g-4 align-items-start">
-                    <div class="col-12 col-md-6 col-lg-4">
-                        <section>
-                            <h2 class="h5 mb-3 fw-bold">Top Game</h2>
-                            <p class="mb-2 mb-3">
-                                <img src="images/logo-mark-white.svg" alt="Знак TOP GAME" class="img-fluid me-2" width="36">
-                Киберспортивный клуб в центре Астаны.
-            </p>
-                        </section>
-                    </div>
-                    <div class="col-12 col-md-6 col-lg-4">
-                        <section>
-                            <h2 class="h5 mb-3 fw-bold">Контакты</h2>
-                            <address class="mb-2 fst-normal">
-                                <p class="mb-2 mb-3">Астана, ул. Динмухамеда Кунаева, 23</p>
-                                <p class="mb-2 mb-3">
-                    Телефон:
-                    <a href="tel:+77064005040" class="link-light">+7 706 400 50 40</a>
-                                </p>
-                            </address>
-                            <p class="mb-2 mb-3">
-                                <a href="https://2gis.kz/astana/firm/70000001080411948" target="_blank" rel="noopener noreferrer" class="link-light">
-                    Посмотреть клуб в 2GIS
-                </a>
-                            </p>
-                        </section>
-                    </div>
-                    <div class="col-12 col-md-6 col-lg-4">
-                        <p class="mb-2 mb-3">
-                            <small class="small">© 2026 Top Game</small>
-                        </p>
+                <div class="row g-4">
+                    <section class="col-12 col-md-6 col-lg-4" aria-labelledby="footer-brand">
+                        <h2 id="footer-brand" class="h5 fw-bold mb-3">Top Game</h2>
+                        <p>Компьютерный клуб в Астане.<br>Три игровые зоны. Работаем 24/7.</p>
+                        <a id="footer-plan" href="booking.html#booking-form" class="btn btn-outline-light">Подготовить визит</a>
+                    </section>
+                    <section class="col-12 col-md-6 col-lg-5" aria-labelledby="footer-contacts">
+                        <h2 id="footer-contacts" class="h5 fw-bold mb-3">Адрес и контакты</h2>
+                        <address class="fst-normal mb-2">Астана, ул. Динмухамеда Кунаева, 23<br>
+                            <a id="footer-phone" href="tel:+77064005040" class="link-light">+7 706 400 50 40</a>
+                        </address>
+                        <p class="mb-2">Ежедневно, круглосуточно</p>
+                        <a id="footer-map" href="https://2gis.kz/astana/firm/70000001080411948" class="link-light" target="_blank" rel="noopener noreferrer">Открыть карту в 2GIS</a>
+                    </section>
+                    <div class="col-12 col-lg-3">
+                        <a id="footer-details" href="about.html#contacts" class="link-light d-block mb-2">Как добраться</a>
+                        <a id="footer-rules" href="rules.html" class="link-light d-block mb-3">Правила клуба</a>
+                        <small>© 2026 Top Game</small>
                     </div>
                 </div>
             </div>

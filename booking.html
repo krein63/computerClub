@@ -3,273 +3,252 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="Бронирование игрового места в компьютерном клубе TOP GAME в Астане">
-        <meta name="author" content="Ali">
-        <title>Бронирование — TOP GAME</title>
-        <!-- Bootstrap 5.3.8 via CDN. Custom brand corrections are loaded after Bootstrap. -->
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+        <meta name="description" content="Личный план визита в Top Game: зона, тариф, дата и время игры">
+        <meta name="author" content="Команда Top Game">
+        <title>Бронирование — Top Game</title>
+        <!-- Bootstrap 5.3.8 is stored locally; base.css contains brand and state corrections. -->
+        <link rel="stylesheet" href="css/vendor/bootstrap.min.css">
+        <link rel="icon" href="images/logo-mark-white.svg" type="image/svg+xml">
         <link rel="stylesheet" href="css/base.css">
     </head>
-    <body>
-        <!-- Автор страницы: Ali -->
+    <body id="page-top">
+
         <!-- Bootstrap navbar layout; the mobile menu uses an HTML checkbox and CSS so the site needs no JavaScript. -->
-        <header class="navbar navbar-expand-xl bg-dark border-bottom border-danger border-3 py-3" data-bs-theme="dark">
+        <a href="#main-content" class="visually-hidden-focusable d-block bg-white text-dark p-2">Перейти к содержимому</a>
+        <header id="site-header" class="navbar navbar-expand-xl bg-dark border-bottom border-danger border-3 py-3" data-bs-theme="dark">
             <div class="container-fluid px-3 px-lg-4">
-                <!-- container-fluid keeps the navigation full width, giving seven links room on desktop. -->
-                <a href="index.html" aria-label="Перейти на главную страницу TOP GAME" class="navbar-brand d-flex align-items-center gap-2 fw-bold">
-                    <img src="images/logo.png" alt="Логотип компьютерного клуба TOP GAME" class="img-fluid object-fit-contain" width="44" height="44">
+                <a id="brand-home" href="index.html" class="navbar-brand d-flex align-items-center gap-2 fw-bold" aria-label="Top Game — главная">
+                    <img src="images/logo.png" alt="" width="44" height="44" class="object-fit-contain">
                     <span>TOP GAME</span>
                 </a>
-                <!-- Список используется внутри nav, потому что меню является перечнем страниц сайта. -->
                 <input type="checkbox" id="main-navigation-toggle" class="navbar-toggler-check visually-hidden d-xl-none" aria-controls="main-navigation">
                 <label for="main-navigation-toggle" class="navbar-toggler d-xl-none">
                     <span class="visually-hidden">Открыть или закрыть меню</span>
-                    <span class="navbar-toggler-icon"></span>
+                    <span class="navbar-toggler-icon" aria-hidden="true"></span>
                 </label>
-                <div class="navbar-collapse" id="main-navigation">
+                <div id="main-navigation" class="navbar-collapse">
                     <nav aria-label="Основная навигация" class="flex-grow-1">
                         <ul class="navbar-nav mx-xl-auto gap-xl-1">
-                            <li class="nav-item">
-                                <a href="index.html" class="nav-link px-2">Главная</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="prices.html" class="nav-link px-2">Цены</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="computers.html" class="nav-link px-2">Компьютеры</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="booking.html" aria-current="page" class="nav-link px-2 active fw-bold">Бронирование</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="games.html" class="nav-link px-2">Игры</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="rules.html" class="nav-link px-2">Правила</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="about.html" class="nav-link px-2">О клубе</a>
-                            </li>
+                            <li class="nav-item"><a id="nav-index" href="index.html" class="nav-link px-2">Главная</a></li>
+                            <li class="nav-item"><a id="nav-prices" href="prices.html" class="nav-link px-2">Цены</a></li>
+                            <li class="nav-item"><a id="nav-computers" href="computers.html" class="nav-link px-2">Компьютеры</a></li>
+                            <li class="nav-item"><a id="nav-booking" href="booking.html" class="nav-link px-2 active fw-bold" aria-current="page">Бронирование</a></li>
+                            <li class="nav-item"><a id="nav-games" href="games.html" class="nav-link px-2">Игры</a></li>
+                            <li class="nav-item"><a id="nav-rules" href="rules.html" class="nav-link px-2">Правила</a></li>
+                            <li class="nav-item"><a id="nav-about" href="about.html" class="nav-link px-2">О клубе</a></li>
                         </ul>
                     </nav>
-                    <a href="#booking-form" class="btn btn-danger btn-sm mt-3 mt-xl-0 ms-xl-3 d-none d-md-inline-block">Забронировать</a>
+                    <a id="header-plan" href="booking.html#booking-form" class="btn btn-danger btn-sm mt-3 mt-xl-0 ms-xl-3">Подготовить визит</a>
                 </div>
             </div>
         </header>
         <!-- container limits long text to a readable width and stays centered at each Bootstrap breakpoint. -->
-        <main class="container py-4 py-lg-5">
-            <section id="booking-introduction" class="bg-white border rounded-4 p-3 p-md-4 p-lg-5 mb-4 shadow-sm">
-                <p class="mb-3">
-                    <small class="small">Бронирование</small>
-                </p>
-                <h1 class="fw-bold display-5 mb-3 text-center text-md-start">Твоё место уже ждёт</h1>
-                <p class="mb-3 lead">Учебная форма показывает, какие данные нужны для бронирования: контакты, дата, время и игровая зона. Здесь можно заполнить поля и проверить их работу. Чтобы оставить настоящую заявку, свяжитесь с администратором по телефону клуба.</p>
-                <p class="mb-3">Заполнение формы <strong>не отправляет заявку и не подтверждает бронирование</strong>. Для нескольких соседних компьютеров сообщите администратору количество игроков и пожелания. Места считаются забронированными только после его подтверждения.</p>
-                <p class="mb-3">
-                    <a href="#booking-form" class="btn btn-danger">Перейти к форме</a>
-                    <a href="#direct-contact" class="btn btn-danger">Связаться напрямую</a>
-                </p>
+        <main id="main-content" tabindex="-1" class="container py-4 py-lg-5">
+            <section id="booking-introduction" aria-labelledby="booking-title" class="bg-white border rounded-4 overflow-hidden mb-4 shadow-sm">
+                <div class="row g-0 align-items-center">
+                    <div class="col-12 col-lg-8 p-4 p-lg-5">
+                        <p class="small text-danger fw-bold text-uppercase mb-2">Бронирование · план визита</p>
+                        <h1 id="booking-title" class="fw-bold display-5 mb-3">Соберите свой игровой вечер</h1>
+                        <p class="lead mb-3">Выберите зону, дату и продолжительность игры. Все параметры будущего визита будут собраны в одной карточке.</p>
+                        <a id="booking-start-plan" href="#booking-form" class="btn btn-danger">Заполнить план</a>
+                    </div>
+                    <div class="col-12 col-lg-4">
+                        <img src="images/peripherals.jpg" alt="Игровая клавиатура и периферия в TOP GAME" class="img-fluid w-100">
+                    </div>
+                </div>
             </section>
-            <hr>
-            <section id="booking-details" class="bg-white border rounded-4 p-3 p-md-4 p-lg-5 mb-4 shadow-sm">
-                <h2 class="fw-bold h2 mb-3">Данные бронирования</h2>
-                <figure class="mb-4">
-                    <img src="images/peripherals.jpg" alt="Игровое место с компьютером и периферией в клубе TOP GAME" class="img-fluid w-100 rounded-3">
-                    <figcaption class="small text-body-secondary mt-2">
-                Игровое место с компьютерным оборудованием в клубе TOP GAME.
-            </figcaption>
-                </figure>
-                <!-- POST выбран, потому что форма содержит данные посетителя,
-             которые в будущем будут передаваться системе бронирования. -->
-                <!-- The id is on the form itself so links scroll directly to the fields. -->
-                <div class="row">
-                    <div class="col-12">
-                        <form id="booking-form" method="post" action="#" class="mt-4">
-                            <p id="form-status" class="small text-body-secondary">Учебная форма: отправка недоступна без сервера. Для заявки позвоните <a href="tel:+77064005040">+7 706 400 50 40</a>.</p>
-                            <!-- Серверной обработки пока нет, поэтому форма не отправляет
-                 реальное бронирование. Это будет добавлено позднее. -->
+
+            <!-- Bootstrap's responsive grid places the summary beside the form on large screens and below it on mobile. -->
+            <div class="row g-4 align-items-start">
+                <div class="col-12 col-lg-8">
+                    <section id="booking-details" aria-labelledby="booking-form-title" class="bg-white border rounded-4 p-3 p-md-4 shadow-sm">
+                        <h2 id="booking-form-title" class="fw-bold h2 mb-2">Параметры визита</h2>
+                        <p id="booking-form-help" class="text-body-secondary mb-4">Поля со звёздочкой обязательны. Контактные данные для локального плана не нужны.</p>
+                        <!-- Static midterm scaffold: there is no submit control or server action. Future JavaScript will validate and render a local summary. -->
+                        <form id="booking-form" aria-describedby="booking-form-help booking-form-status">
                             <fieldset class="border rounded-3 p-3 p-md-4 mb-4">
-                                <legend class="form-label fw-semibold">Контактные данные</legend>
+                                <legend class="float-none w-auto px-2 h5 fw-bold">1. Параметры сеанса</legend>
                                 <div class="row g-3">
-                                    <p class="mb-3 col-12 col-md-6">
-                                        <label for="customer-name" class="form-label fw-semibold">Имя:</label>
-                                        <br>
-                                        <input type="text" id="customer-name" name="customer-name" placeholder="Как к вам обращаться" required class="form-control">
-                                    </p>
-                                    <p class="mb-3 col-12 col-md-6">
-                                        <label for="customer-email" class="form-label fw-semibold">Электронная почта:</label>
-                                        <br>
-                                        <input type="email" id="customer-email" name="customer-email" placeholder="name@example.com" required class="form-control">
-                                    </p>
-                                    <p class="mb-3 col-12 col-md-6">
-                                        <label for="customer-phone" class="form-label fw-semibold">Телефон:</label>
-                                        <br>
-                                        <input type="tel" id="customer-phone" name="customer-phone" placeholder="+7 700 000 00 00" required class="form-control">
-                                    </p>
-                                </div>
-                            </fieldset>
-                            <fieldset class="border rounded-3 p-3 p-md-4 mb-4">
-                                <legend class="form-label fw-semibold">Дата и время посещения</legend>
-                                <div class="row g-3">
-                                    <p class="mb-3 col-12 col-md-6">
-                                        <label for="booking-date" class="form-label fw-semibold">Дата:</label>
-                                        <br>
-                                        <input type="date" id="booking-date" name="booking-date" required class="form-control">
-                                    </p>
-                                    <p class="mb-3 col-12 col-md-6">
-                                        <label for="booking-time" class="form-label fw-semibold">Время:</label>
-                                        <br>
-                                        <input type="time" id="booking-time" name="booking-time" required class="form-control">
-                                    </p>
-                                    <p class="mb-3 col-12 col-md-6">
-                                        <label for="player-count" class="form-label fw-semibold">Количество игроков:</label>
-                                        <br>
-                                        <input type="number" id="player-count" name="player-count" min="1" max="45" value="1" required class="form-control">
-                                    </p>
-                                    <p class="mb-3 col-12 col-md-6">
-                                        <label for="duration" class="form-label fw-semibold">Продолжительность:</label>
-                                        <br>
-                                        <select id="duration" name="duration" required class="form-select">
-                                            <option value="">Выберите продолжительность</option>
+                                    <div class="col-12">
+                                        <label for="customer-name" class="form-label fw-semibold">Имя или игровой ник *</label>
+                                        <input type="text" id="customer-name" name="customer-name" minlength="2" maxlength="40" autocomplete="nickname" placeholder="Как подписать ваш план" required class="form-control" aria-describedby="customer-name-help customer-name-error">
+                                        <p id="customer-name-help" class="form-text mb-0">От 2 до 40 символов.</p>
+                                        <p id="customer-name-error" class="field-error text-danger small mt-1 mb-0 is-hidden"></p>
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        <label for="booking-date" class="form-label fw-semibold">Дата визита *</label>
+                                        <input type="date" id="booking-date" name="booking-date" required class="form-control" aria-describedby="booking-date-help booking-date-error">
+                                        <p id="booking-date-help" class="form-text mb-0">Выберите день посещения клуба.</p>
+                                        <p id="booking-date-error" class="field-error text-danger small mt-1 mb-0 is-hidden"></p>
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        <label for="booking-time" class="form-label fw-semibold">Время начала *</label>
+                                        <input type="time" id="booking-time" name="booking-time" required class="form-control" aria-describedby="booking-time-help booking-time-error">
+                                        <p id="booking-time-help" class="form-text mb-0">Местное время Астаны. Клуб открыт 24/7.</p>
+                                        <p id="booking-time-error" class="field-error text-danger small mt-1 mb-0 is-hidden"></p>
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        <label for="player-count" class="form-label fw-semibold">Количество игроков *</label>
+                                        <input type="number" id="player-count" name="player-count" min="1" max="45" step="1" value="1" required class="form-control" aria-describedby="player-count-help player-count-error">
+                                        <p id="player-count-help" class="form-text mb-0">От 1 до 45. План не проверяет наличие мест.</p>
+                                        <p id="player-count-error" class="field-error text-danger small mt-1 mb-0 is-hidden"></p>
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        <label for="booking-tariff" class="form-label fw-semibold">Тариф для плана *</label>
+                                        <select id="booking-tariff" name="booking-tariff" required class="form-select" aria-describedby="booking-tariff-help booking-tariff-error">
+                                            <option value="">Выберите тариф</option>
+                                            <option value="hourly">Почасовой — от 1 200 ₸ за час</option>
+                                            <option value="three-hours">3 часа — от 3 600 ₸</option>
+                                            <option value="night">Ночной пакет — от 4 700 ₸</option>
+                                            <option value="private">Private — от 2 500 ₸</option>
+                                        </select>
+                                        <p id="booking-tariff-help" class="form-text mb-0">Выбор для личного плана. <a href="prices.html#tariff-conditions">Условия и границы указанных цен</a>.</p>
+                                        <p id="booking-tariff-error" class="field-error is-hidden"></p>
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        <label for="booking-duration" class="form-label fw-semibold">Продолжительность *</label>
+                                        <select id="booking-duration" name="booking-duration" required class="form-select" aria-describedby="booking-duration-help booking-duration-error">
+                                            <option value="">Выберите время игры</option>
                                             <option value="1">1 час</option>
                                             <option value="2">2 часа</option>
                                             <option value="3">3 часа</option>
                                             <option value="5">5 часов</option>
                                         </select>
-                                    </p>
+                                        <p id="booking-duration-help" class="form-text mb-0">Выберите удобную длительность визита.</p>
+                                        <p id="booking-duration-error" class="field-error text-danger small mt-1 mb-0 is-hidden"></p>
+                                    </div>
                                 </div>
                             </fieldset>
-                            <fieldset class="border rounded-3 p-3 p-md-4 mb-4">
-                                <legend class="form-label fw-semibold">Игровая зона</legend>
+
+                            <fieldset class="border rounded-3 p-3 p-md-4 mb-4" aria-describedby="gaming-zone-help gaming-zone-error">
+                                <legend class="float-none w-auto px-2 h5 fw-bold">2. Игровая зона *</legend>
+                                <p id="gaming-zone-help" class="text-body-secondary small mb-3">Выберите один вариант. <a href="computers.html">Посмотреть оборудование и зоны</a>.</p>
                                 <div class="row g-3">
-                                    <p class="mb-3 col-12">Выберите подходящую зону:</p>
-                                    <p class="mb-3 col-12">
-                                        <input type="radio" id="zone-main" name="gaming-zone" value="main" required class="form-check-input me-1">
-                                        <label for="zone-main" class="form-label fw-semibold form-check-label">MAIN</label>
-                                    </p>
-                                    <p class="mb-3 col-12">
-                                        <input type="radio" id="zone-duo" name="gaming-zone" value="duo" class="form-check-input me-1">
-                                        <label for="zone-duo" class="form-label fw-semibold form-check-label">DUO</label>
-                                    </p>
-                                    <p class="mb-3 col-12">
-                                        <input type="radio" id="zone-private" name="gaming-zone" value="private" class="form-check-input me-1">
-                                        <label for="zone-private" class="form-label fw-semibold form-check-label">PRIVATE</label>
-                                    </p>
+                                    <div class="col-12 col-md-4">
+                                        <div class="border rounded-3 p-3 h-100">
+                                            <div class="form-check">
+                                                <input type="radio" id="zone-main" name="gaming-zone" value="main" required class="form-check-input" aria-describedby="zone-main-help gaming-zone-error">
+                                                <label for="zone-main" class="form-check-label fw-bold">Main</label>
+                                            </div>
+                                            <p id="zone-main-help" class="small text-body-secondary mt-2 mb-0">Основной игровой зал.</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md-4">
+                                        <div class="border rounded-3 p-3 h-100">
+                                            <div class="form-check">
+                                                <input type="radio" id="zone-duo" name="gaming-zone" value="duo" required class="form-check-input" aria-describedby="zone-duo-help gaming-zone-error">
+                                                <label for="zone-duo" class="form-check-label fw-bold">Duo’s</label>
+                                            </div>
+                                            <p id="zone-duo-help" class="small text-body-secondary mt-2 mb-0">Пространство для игры вдвоём.</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md-4">
+                                        <div class="border rounded-3 p-3 h-100">
+                                            <div class="form-check">
+                                                <input type="radio" id="zone-private" name="gaming-zone" value="private" required class="form-check-input" aria-describedby="zone-private-help gaming-zone-error">
+                                                <label for="zone-private" class="form-check-label fw-bold">Private</label>
+                                            </div>
+                                            <p id="zone-private-help" class="small text-body-secondary mt-2 mb-0">Отдельная игровая зона.</p>
+                                        </div>
+                                    </div>
                                 </div>
+                                <p id="gaming-zone-error" class="field-error text-danger small mt-2 mb-0 is-hidden"></p>
                             </fieldset>
+
                             <fieldset class="border rounded-3 p-3 p-md-4 mb-4">
-                                <legend class="form-label fw-semibold">Дополнительная информация</legend>
-                                <div class="row g-3">
-                                    <p class="mb-3 col-12">
-                                        <input type="checkbox" id="headphones" name="headphones" value="required" class="form-check-input me-1">
-                                        <label for="headphones" class="form-label fw-semibold form-check-label">
-                        Мне необходимы игровые наушники
-                    </label>
-                                    </p>
-                                    <p class="mb-3 col-12">
-                                        <label for="booking-comment" class="form-label fw-semibold">
-                        Комментарий к бронированию:
-                    </label>
-                                        <br>
-                                        <textarea id="booking-comment" name="booking-comment" rows="5" cols="40" placeholder="Напишите дополнительные пожелания" class="form-control"></textarea>
-                                    </p>
-                                    <p class="mb-3 col-12">
-                                        <input type="checkbox" id="agreement" name="agreement" required class="form-check-input me-1">
-                                        <label for="agreement" class="form-label fw-semibold form-check-label">
-                        Я подтверждаю правильность указанных данных
-                    </label>
-                                    </p>
+                                <legend class="float-none w-auto px-2 h5 fw-bold">3. Пожелания</legend>
+                                <label for="booking-comment" class="form-label fw-semibold">Заметка для себя</label>
+                                <textarea id="booking-comment" name="booking-comment" rows="3" maxlength="300" placeholder="Например: сыграть с друзьями в CS2" class="form-control" aria-describedby="booking-comment-help booking-comment-error"></textarea>
+                                <p id="booking-comment-help" class="form-text">Необязательное поле, до 300 символов.</p>
+                                <p id="booking-comment-error" class="field-error text-danger small mt-1 mb-3 is-hidden"></p>
+                                <div class="form-check mt-3">
+                                    <input type="checkbox" id="booking-agreement" name="booking-agreement" required class="form-check-input" aria-describedby="booking-agreement-error">
+                                    <label for="booking-agreement" class="form-check-label">Я ознакомился с <a href="rules.html">правилами клуба</a> *</label>
                                 </div>
+                                <p id="booking-agreement-error" class="field-error text-danger small mt-1 mb-0 is-hidden"></p>
                             </fieldset>
-                            <p class="mb-3 d-flex flex-wrap gap-2">
-                                <button type="submit" class="btn btn-danger" disabled aria-describedby="form-status">Отправить заявку</button>
-                                <button type="reset" class="btn btn-outline-secondary">Очистить форму</button>
-                            </p>
+
+                            <div class="bg-light border rounded-3 p-3 mb-3">
+                                <p id="booking-form-status" class="small mb-0">В этой версии данные остаются в полях: кнопка не формирует карточку и не отправляет данные. План визита предназначен для вас; место в клубе не резервируется.</p>
+                            </div>
+                            <div class="d-flex flex-wrap gap-2">
+                                <button id="booking-create-button" type="button" class="btn btn-danger" aria-controls="booking-result booking-summary" aria-describedby="booking-form-status">Сформировать план визита</button>
+                                <button id="booking-reset-button" type="reset" class="btn btn-outline-secondary">Очистить поля</button>
+                            </div>
+                            <!-- Future validation and confirmation messages start empty; state classes are defined in the shared stylesheet. -->
+                            <div id="booking-error" class="alert alert-danger mt-3 mb-0 is-hidden" role="alert"></div>
+                            <div id="booking-success" class="alert alert-success mt-3 mb-0 is-hidden" role="status"></div>
                         </form>
-                    </div>
+                    </section>
                 </div>
-                <p class="mb-3">
-                    <small class="small">В этой учебной версии заявка не отправляется. Уточните свободное время по телефону клуба.</small>
-                </p>
-            </section>
-            <hr>
-            <aside id="direct-contact" class="bg-white border rounded-4 p-3 p-md-4 p-lg-5 mb-4 shadow-sm">
-                <h2 class="fw-bold h2 mb-3">Связаться напрямую</h2>
-                <address class="fst-normal row g-3">
-                    <p class="mb-3 col-12 col-md-6">
-                Телефон:
-                <a href="tel:+77064005040">
-                            <strong>+7 706 400 50 40</strong>
-                        </a>
-                    </p>
-                    <p class="mb-3 col-12 col-md-6">
-                Адрес:<br>
-                г. Астана, ул. Динмухамеда Кунаева, 23
-            </p>
-                </address>
-                <p class="mb-3">
-            Режим работы:
-            <mark class="bg-danger-subtle text-danger-emphasis">круглосуточно, 24/7</mark>.
-        </p>
-            </aside>
+
+                <div class="col-12 col-lg-4">
+                    <section id="booking-summary" aria-labelledby="booking-summary-title" class="card border-danger border-top border-3 rounded-4 shadow-sm mb-4">
+                        <div class="card-body p-3 p-md-4">
+                            <p class="small text-danger fw-bold text-uppercase mb-2">Ваш результат</p>
+                            <h2 id="booking-summary-title" class="h3 fw-bold mb-3">Карточка визита</h2>
+                            <p id="booking-summary-empty" class="small text-body-secondary">Здесь появятся выбранные параметры после формирования плана. Пока карточка пуста.</p>
+                            <dl class="row g-2 small mb-3">
+                                <dt class="col-5">Игрок</dt>
+                                <dd class="col-7 text-break"><output id="booking-name-output" for="customer-name">—</output></dd>
+                                <dt class="col-5">Зона</dt>
+                                <dd class="col-7"><output id="booking-zone-output" for="zone-main zone-duo zone-private">—</output></dd>
+                                <dt class="col-5">Дата</dt>
+                                <dd class="col-7"><output id="booking-date-output" for="booking-date">—</output></dd>
+                                <dt class="col-5">Начало</dt>
+                                <dd class="col-7"><output id="booking-time-output" for="booking-time">—</output></dd>
+                                <dt class="col-5">Длительность</dt>
+                                <dd class="col-7"><output id="booking-duration-output" for="booking-duration">—</output></dd>
+                                <dt class="col-5">Тариф</dt>
+                                <dd class="col-7"><output id="booking-tariff-output" for="booking-tariff">—</output></dd>
+                                <dt class="col-5">Заметка</dt>
+                                <dd class="col-7 text-break"><output id="booking-comment-output" for="booking-comment">—</output></dd>
+                                <dt class="col-5">Игроков</dt>
+                                <dd class="col-7"><output id="booking-players-output" for="player-count">—</output></dd>
+                            </dl>
+                            <div class="border-top pt-3 d-flex align-items-center justify-content-between gap-2">
+                                <span class="fw-bold">Ориентир по цене</span>
+                                <output id="booking-total-output" for="booking-duration player-count zone-main zone-duo zone-private" class="fs-4 fw-bold text-danger" aria-describedby="booking-total-help">—</output>
+                            </div>
+                            <p id="booking-total-help" class="small text-body-secondary mt-2 mb-0">Цены ниже указаны «от» и не являются точной суммой к оплате. План не рассчитывает стоимость по неподтверждённым ставкам.</p>
+                            <div id="booking-result" class="mt-3" aria-live="polite" aria-atomic="true"></div>
+                        </div>
+                    </section>
+
+                    <aside aria-labelledby="booking-prices-title" class="bg-white border rounded-4 p-3 p-md-4 shadow-sm">
+                        <h2 id="booking-prices-title" class="h4 fw-bold mb-3">Цены-ориентиры</h2>
+                        <ul class="list-group list-group-flush small mb-3">
+                            <li class="list-group-item px-0 d-flex justify-content-between gap-2"><span>1 час</span><strong class="text-nowrap">от 1 200 ₸</strong></li>
+                            <li class="list-group-item px-0 d-flex justify-content-between gap-2"><span>3 часа</span><strong class="text-nowrap">от 3 600 ₸</strong></li>
+                            <li class="list-group-item px-0 d-flex justify-content-between gap-2"><span>Ночной пакет</span><strong class="text-nowrap">от 4 700 ₸</strong></li>
+                            <li class="list-group-item px-0 d-flex justify-content-between gap-2"><span>PRIVATE</span><strong class="text-nowrap">от 2 500 ₸</strong></li>
+                        </ul>
+                        <p class="small text-body-secondary">Для PRIVATE период оплаты не указан; цена не используется как почасовая ставка. Ночной пакет не равен выбранному количеству часов.</p>
+                        <a id="booking-view-prices" href="prices.html" class="btn btn-outline-danger w-100">Посмотреть тарифы</a>
+                    </aside>
+                </div>
+            </div>
         </main>
-        <footer class="bg-dark text-white py-5 mt-4">
+        <footer id="site-footer" class="bg-dark text-white py-5 mt-4">
             <div class="container">
-                <div class="row g-4 align-items-start">
-                    <div class="col-12 col-md-6 col-lg-4">
-                        <a href="index.html" aria-label="Перейти на главную страницу TOP GAME" class="link-light">
-                            <img src="images/logo-white.svg" alt="Логотип компьютерного клуба TOP GAME" class="img-fluid" width="100">
-                        </a>
-                    </div>
-                    <div class="col-12 col-md-6 col-lg-4">
-                        <p class="mb-2 mb-3">
-                            <small class="small">Киберспортивный клуб в центре Астаны</small>
-                        </p>
-                    </div>
-                    <div class="col-12 col-md-6 col-lg-4">
-                        <nav aria-label="Навигация в нижней части страницы">
-                            <ul class="list-unstyled mb-0">
-                                <li>
-                                    <a href="index.html" class="link-light">Главная</a>
-                                </li>
-                                <li>
-                                    <a href="prices.html" class="link-light">Цены</a>
-                                </li>
-                                <li>
-                                    <a href="computers.html" class="link-light">Компьютеры</a>
-                                </li>
-                                <li>
-                                    <a href="booking.html" aria-current="page" class="link-light">Бронирование</a>
-                                </li>
-                                <li>
-                                    <a href="games.html" class="link-light">Игры</a>
-                                </li>
-                                <li>
-                                    <a href="rules.html" class="link-light">Правила</a>
-                                </li>
-                                <li>
-                                    <a href="about.html" class="link-light">О клубе</a>
-                                </li>
-                            </ul>
-                        </nav>
-                    </div>
-                    <div class="col-12 col-md-6 col-lg-4">
-                        <address class="mb-2 fst-normal">
-                            <p class="mb-2 mb-3">
-            Телефон:
-            <a href="tel:+77064005040" class="link-light">+7 706 400 50 40</a>
-                                <br>
-            г. Астана, ул. Динмухамеда Кунаева, 23
-        </p>
+                <div class="row g-4">
+                    <section class="col-12 col-md-6 col-lg-4" aria-labelledby="footer-brand">
+                        <h2 id="footer-brand" class="h5 fw-bold mb-3">Top Game</h2>
+                        <p>Компьютерный клуб в Астане.<br>Три игровые зоны. Работаем 24/7.</p>
+                        <a id="footer-plan" href="booking.html#booking-form" class="btn btn-outline-light">Подготовить визит</a>
+                    </section>
+                    <section class="col-12 col-md-6 col-lg-5" aria-labelledby="footer-contacts">
+                        <h2 id="footer-contacts" class="h5 fw-bold mb-3">Адрес и контакты</h2>
+                        <address class="fst-normal mb-2">Астана, ул. Динмухамеда Кунаева, 23<br>
+                            <a id="footer-phone" href="tel:+77064005040" class="link-light">+7 706 400 50 40</a>
                         </address>
-                    </div>
-                    <div class="col-12 col-md-6 col-lg-4">
-                        <p class="mb-2 mb-3">
-                            <small class="small">
-            © 2026 TOP GAME.
-            Круглосуточно — 24/7.
-        </small>
-                        </p>
+                        <p class="mb-2">Ежедневно, круглосуточно</p>
+                        <a id="footer-map" href="https://2gis.kz/astana/firm/70000001080411948" class="link-light" target="_blank" rel="noopener noreferrer">Открыть карту в 2GIS</a>
+                    </section>
+                    <div class="col-12 col-lg-3">
+                        <a id="footer-details" href="about.html#contacts" class="link-light d-block mb-2">Как добраться</a>
+                        <a id="footer-rules" href="rules.html" class="link-light d-block mb-3">Правила клуба</a>
+                        <small>© 2026 Top Game</small>
                     </div>
                 </div>
             </div>

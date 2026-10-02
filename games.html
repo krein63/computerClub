@@ -3,225 +3,183 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="Популярные игры и запрос новой игры в компьютерном клубе TOP GAME">
-        <meta name="author" content="Amir Kabdilmalik">
-        <title>Игры — TOP GAME</title>
-        <!-- Bootstrap 5.3.8 via CDN. Custom brand corrections are loaded after Bootstrap. -->
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+        <meta name="description" content="Игры Top Game и личный план игровой сессии">
+        <meta name="author" content="Команда Top Game">
+        <title>Игры — Top Game</title>
+        <!-- Bootstrap 5.3.8 is stored locally; base.css contains brand and state corrections. -->
+        <link rel="stylesheet" href="css/vendor/bootstrap.min.css">
+        <link rel="icon" href="images/logo-mark-white.svg" type="image/svg+xml">
         <link rel="stylesheet" href="css/base.css">
     </head>
-    <body>
-        <!-- Автор страницы: Amir  -->
+    <body id="page-top">
+
         <!-- Bootstrap navbar layout; the mobile menu uses an HTML checkbox and CSS so the site needs no JavaScript. -->
-        <header class="navbar navbar-expand-xl bg-dark border-bottom border-danger border-3 py-3" data-bs-theme="dark">
+        <a href="#main-content" class="visually-hidden-focusable d-block bg-white text-dark p-2">Перейти к содержимому</a>
+        <header id="site-header" class="navbar navbar-expand-xl bg-dark border-bottom border-danger border-3 py-3" data-bs-theme="dark">
             <div class="container-fluid px-3 px-lg-4">
-                <!-- container-fluid keeps the navigation full width, giving seven links room on desktop. -->
-                <a href="index.html" aria-label="Перейти на главную страницу TOP GAME" class="navbar-brand d-flex align-items-center gap-2 fw-bold">
-                    <img src="images/logo.png" alt="Логотип компьютерного клуба TOP GAME" class="img-fluid object-fit-contain" width="44" height="44">
+                <a id="brand-home" href="index.html" class="navbar-brand d-flex align-items-center gap-2 fw-bold" aria-label="Top Game — главная">
+                    <img src="images/logo.png" alt="" width="44" height="44" class="object-fit-contain">
                     <span>TOP GAME</span>
                 </a>
                 <input type="checkbox" id="main-navigation-toggle" class="navbar-toggler-check visually-hidden d-xl-none" aria-controls="main-navigation">
                 <label for="main-navigation-toggle" class="navbar-toggler d-xl-none">
                     <span class="visually-hidden">Открыть или закрыть меню</span>
-                    <span class="navbar-toggler-icon"></span>
+                    <span class="navbar-toggler-icon" aria-hidden="true"></span>
                 </label>
-                <div class="navbar-collapse" id="main-navigation">
+                <div id="main-navigation" class="navbar-collapse">
                     <nav aria-label="Основная навигация" class="flex-grow-1">
                         <ul class="navbar-nav mx-xl-auto gap-xl-1">
-                            <li class="nav-item">
-                                <a href="index.html" class="nav-link px-2">Главная</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="prices.html" class="nav-link px-2">Цены</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="computers.html" class="nav-link px-2">Компьютеры</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="booking.html" class="nav-link px-2">Бронирование</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="games.html" aria-current="page" class="nav-link px-2 active fw-bold">Игры</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="rules.html" class="nav-link px-2">Правила</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="about.html" class="nav-link px-2">О клубе</a>
-                            </li>
+                            <li class="nav-item"><a id="nav-index" href="index.html" class="nav-link px-2">Главная</a></li>
+                            <li class="nav-item"><a id="nav-prices" href="prices.html" class="nav-link px-2">Цены</a></li>
+                            <li class="nav-item"><a id="nav-computers" href="computers.html" class="nav-link px-2">Компьютеры</a></li>
+                            <li class="nav-item"><a id="nav-booking" href="booking.html" class="nav-link px-2">Бронирование</a></li>
+                            <li class="nav-item"><a id="nav-games" href="games.html" class="nav-link px-2 active fw-bold" aria-current="page">Игры</a></li>
+                            <li class="nav-item"><a id="nav-rules" href="rules.html" class="nav-link px-2">Правила</a></li>
+                            <li class="nav-item"><a id="nav-about" href="about.html" class="nav-link px-2">О клубе</a></li>
                         </ul>
                     </nav>
-                    <a href="booking.html" class="btn btn-danger btn-sm mt-3 mt-xl-0 ms-xl-3 d-none d-md-inline-block">Забронировать</a>
+                    <a id="header-plan" href="booking.html#booking-form" class="btn btn-danger btn-sm mt-3 mt-xl-0 ms-xl-3">Подготовить визит</a>
                 </div>
             </div>
         </header>
         <!-- container limits long text to a readable width and stays centered at each Bootstrap breakpoint. -->
-        <main class="container py-4 py-lg-5">
-            <section id="game-list" class="bg-white border rounded-4 p-3 p-md-4 p-lg-5 mb-4 shadow-sm">
+        <main id="main-content" tabindex="-1" class="container py-4 py-lg-5">
+            <section id="game-list" class="bg-white border rounded-4 p-3 p-md-4 p-lg-5 mb-4 shadow-sm" aria-labelledby="games-title">
                 <header class="mb-4">
-                    <p class="text-danger fw-semibold mb-3">
-                        <small class="small">Игровая библиотека</small>
-                    </p>
-                    <h1 class="fw-bold display-5 mb-3 text-center text-md-start">Выбери игру для следующего матча</h1>
-                    <p class="mb-3 lead">
-                На компьютерах TOP GAME доступны командные и одиночные игры.
-                Для сетевого матча важны стабильный <abbr title="Frames Per Second">FPS</abbr>
-                и низкий <abbr title="время отклика между компьютером и сервером">ping</abbr>.
-                Перед визитом уточните у администратора наличие нужной игры и обновления.
-            </p>
+                    <p class="text-danger fw-semibold mb-3"><small>Игровая библиотека</small></p>
+                    <h1 id="games-title" class="fw-bold display-5 mb-3">Выбери игру для своего визита</h1>
+                    <p class="lead mb-3">Посмотри карточки игр и подготовь личный план сессии: во что хочешь сыграть и чему уделить время.</p>
+                    <p class="text-body-secondary mb-4">Карточки знакомят с играми. Они не подтверждают наличие установленной версии на конкретном компьютере.</p>
+                    <a id="open-game-plan" href="#game-plan" class="btn btn-danger">Перейти к личному плану</a>
                 </header>
-                <!-- div группирует самостоятельные карточки игр. -->
-                <!-- Bootstrap Cards / grid: official card and card-body markup adapted to existing club content; semantic articles and figures retained. https://getbootstrap.com/docs/5.3/components/card/ -->
-                <div class="row g-4">
+                <!-- Bootstrap Cards and responsive grid preserve the existing two-game library. -->
+                <div id="game-cards" class="row g-4">
                     <div class="col-12 col-md-6">
-                        <article class="card h-100 shadow-sm">
-                            <div class="card-body p-3 p-lg-4">
-                                <h2 class="h4 fw-bold h2 mb-3">Counter-Strike 2</h2>
+                        <article id="counter-strike-card" class="card h-100 shadow-sm" aria-labelledby="counter-strike-title">
+                            <div class="card-body p-3 p-lg-4 d-flex flex-column">
                                 <figure class="mb-3">
-                                    <img src="images/cs2logo.png" alt="Игровые компьютеры, подходящие для командного матча" class="w-100 object-fit-cover rounded-3 mb-3" height="190">
-                                    <figcaption class="small text-body-secondary mt-2">Зал для командной игры пять на пять.</figcaption>
+                                    <img src="images/gaming-hall-blue.jpg" alt="Ряд игровых компьютеров Top Game с синей подсветкой" class="w-100 object-fit-cover rounded-3" height="220" width="1024">
+                                    <figcaption class="small text-body-secondary mt-2">Игровые места Top Game</figcaption>
                                 </figure>
-                                <p class="mb-3 card-text">
-                                    <strong>Жанр:</strong> командный шутер. Для матча нужны две команды
-                    по пять игроков; формат можно записать как 5 × 5.
-                </p>
+                                <h2 id="counter-strike-title" class="h4 fw-bold mb-3">Counter-Strike 2</h2>
+                                <p class="card-text mb-3"><strong>Жанр:</strong> командный шутер. В формате 5 × 5 важны точность, связь с командой и знание карты.</p>
+                                <p class="card-text mb-4"><strong>Идея для личной сессии:</strong> разминка, тренировка прицеливания или один командный матч. Запиши цель в своём плане.</p>
+                                <a id="plan-counter-strike" href="#game-plan" class="btn btn-outline-danger align-self-start mt-auto">Запланировать CS2</a>
                             </div>
                         </article>
                     </div>
                     <div class="col-12 col-md-6">
-                        <article class="card h-100 shadow-sm">
-                            <div class="card-body p-3 p-lg-4">
-                                <h2 class="h4 fw-bold h2 mb-3">Dota 2</h2>
+                        <article id="dota-card" class="card h-100 shadow-sm" aria-labelledby="dota-title">
+                            <div class="card-body p-3 p-lg-4 d-flex flex-column">
                                 <figure class="mb-3">
-                                    <img src="images/dotaa%202.jpg" alt="Клавиатура, мышь и гарнитура игрового места" class="w-100 object-fit-cover rounded-3 mb-3" height="190">
-                                    <figcaption class="small text-body-secondary mt-2">Периферия для продолжительных командных матчей.</figcaption>
+                                    <img src="images/peripherals.jpg" alt="Игровое место Top Game с клавиатурой, мышью и гарнитурой" class="w-100 object-fit-cover rounded-3" height="220" width="736">
+                                    <figcaption class="small text-body-secondary mt-2">Периферия игрового места Top Game</figcaption>
                                 </figure>
-                                <p class="mb-3 card-text">
-                                    <strong>Жанр:</strong>
-                                    <i>MOBA</i>. Игра подходит для команды и
-                    требует согласованных действий в серии BO<sub>3</sub>.
-                    <!-- span выделяет короткий статус внутри предложения; отдельный смысловой раздел здесь не нужен. -->
-                                    <span class="text-danger fw-semibold">Статус: уточнить наличие.</span>
-                                </p>
+                                <h2 id="dota-title" class="h4 fw-bold mb-3">Dota 2</h2>
+                                <p class="card-text mb-3"><strong>Жанр:</strong> <abbr title="Multiplayer Online Battle Arena — многопользовательская боевая арена">MOBA</abbr>. В командной игре важны выбранная роль, развитие героя и согласованные действия.</p>
+                                <p class="card-text mb-4"><strong>Идея для личной сессии:</strong> изучить героя, потренировать роль или сыграть матч. План относится только к твоей сессии.</p>
+                                <a id="plan-dota" href="#game-plan" class="btn btn-outline-danger align-self-start mt-auto">Запланировать Dota 2</a>
                             </div>
                         </article>
                     </div>
                 </div>
-                <aside class="bg-body-tertiary border border-start border-danger border-4 rounded-3 p-3 p-md-4 mt-4">
-                    <h2 class="fw-bold h2 mb-3">Перед запуском</h2>
-                    <p class="mb-3">
-                Войдите только в <em>собственную</em> учётную запись и не сохраняйте пароль.
-                После игры выполните выход. Правила безопасности находятся на
-                <a href="rules.html#account-safety">странице правил</a>.
-            </p>
-                </aside>
             </section>
-            <hr>
-            <section id="game-request" class="bg-white border rounded-4 p-3 p-md-4 p-lg-5 mb-4 shadow-sm">
-                <h2 class="fw-bold h2 mb-3">Предложить игру</h2>
-                <p class="mb-3">Не нашли игру? Уточните возможность установки по телефону клуба. Ниже — учебный пример формы запроса; отправка пока недоступна.</p>
-                <!-- Метод POST выбран для данных посетителя; серверной обработки пока нет, поэтому форма реально ничего не отправляет. -->
-                <div class="row">
-                    <div class="col-12">
-                        <form method="post" action="#" class="mt-4">
-                            <p id="form-status" class="small text-body-secondary">Учебная форма: отправка недоступна без сервера. Для заявки позвоните <a href="tel:+77064005040">+7 706 400 50 40</a>.</p>
-                            <fieldset class="border rounded-3 p-3 p-md-4 mb-4">
-                                <legend class="form-label fw-semibold">Контакты и запрос</legend>
-                                <div class="row g-3">
-                                    <p class="mb-3 col-12 col-md-6">
-                                        <label for="visitor-name" class="form-label fw-semibold">Имя:</label>
-                                        <br>
-                                        <input type="text" id="visitor-name" name="visitor-name" placeholder="Ваше имя" required class="form-control">
-                                    </p>
-                                    <p class="mb-3 col-12 col-md-6">
-                                        <label for="visitor-email" class="form-label fw-semibold">Почта:</label>
-                                        <br>
-                                        <input type="email" id="visitor-email" name="visitor-email" placeholder="name@example.com" required class="form-control">
-                                    </p>
-                                    <p class="mb-3 col-12 col-md-6">
-                                        <label for="visitor-phone" class="form-label fw-semibold">Телефон:</label>
-                                        <br>
-                                        <input type="tel" id="visitor-phone" name="visitor-phone" placeholder="+7 700 000 00 00" required class="form-control">
-                                    </p>
-                                    <p class="mb-3 col-12 col-md-6">
-                                        <label for="visit-date" class="form-label fw-semibold">Дата визита:</label>
-                                        <br>
-                                        <input type="date" id="visit-date" name="visit-date" required class="form-control">
-                                    </p>
-                                    <p class="mb-3 col-12 col-md-6">
-                                        <label for="players" class="form-label fw-semibold">Игроков:</label>
-                                        <br>
-                                        <input type="number" id="players" name="players" min="1" max="45" value="1" required class="form-control">
-                                    </p>
-                                    <p class="mb-3 col-12 col-md-6">
-                                        <label for="game-title" class="form-label fw-semibold">Название игры:</label>
-                                        <br>
-                                        <input type="text" id="game-title" name="game-title" placeholder="Например, Valorant" required class="form-control">
-                                    </p>
-                                    <p class="mb-3 col-12 col-md-6">
-                                        <label for="genre" class="form-label fw-semibold">Жанр:</label>
-                                        <br>
-                                        <select id="genre" name="genre" required class="form-select">
-                                            <option value="">Выберите жанр</option>
-                                            <option value="shooter">Шутер</option>
-                                            <option value="strategy">Стратегия</option>
-                                            <option value="sports">Спорт</option>
-                                        </select>
-                                    </p>
-                                    <p class="mb-3 col-12">Нужна командная установка?</p>
-                                    <p class="mb-3 col-12">
-                                        <input type="radio" id="team-yes" name="team-install" value="yes" required class="form-check-input me-1">
-                                        <label for="team-yes" class="form-label fw-semibold form-check-label">Да</label>
-                                        <input type="radio" id="team-no" name="team-install" value="no" class="form-check-input me-1">
-                                        <label for="team-no" class="form-label fw-semibold form-check-label">Нет</label>
-                                    </p>
-                                    <p class="mb-3 col-12">
-                                        <input type="checkbox" id="agreement" name="agreement" required class="form-check-input me-1">
-                                        <label for="agreement" class="form-label fw-semibold form-check-label">Я подтверждаю правильность данных</label>
-                                    </p>
-                                    <p class="mb-3 col-12">
-                                        <label for="request-comment" class="form-label fw-semibold">Комментарий:</label>
-                                        <br>
-                                        <textarea id="request-comment" name="request-comment" rows="4" cols="40" placeholder="Версия игры или пожелания" class="form-control"></textarea>
-                                    </p>
-                                    <p class="mb-3 col-12 d-flex flex-wrap gap-2">
-                                        <button type="submit" class="btn btn-danger" disabled aria-describedby="form-status">Отправить запрос</button>
-                                        <button type="reset" class="btn btn-outline-secondary">Очистить форму</button>
-                                    </p>
+            <section id="game-plan" class="bg-white border rounded-4 p-3 p-md-4 p-lg-5 mb-4 shadow-sm" aria-labelledby="game-plan-title">
+                <header class="mb-4">
+                    <p class="text-danger fw-semibold mb-2"><small>Мой визит · выбор игры</small></p>
+                    <h2 id="game-plan-title" class="h2 fw-bold mb-3">Личный план игры</h2>
+                    <p class="mb-0">Выбери игру из подсказок или впиши свою. Этот план предназначен для одного посетителя и не является запросом на установку.</p>
+                </header>
+                <div class="row g-4 align-items-start">
+                    <div class="col-12 col-lg-7">
+                        <!-- JavaScript will validate this form and update only this visitor's local plan. -->
+                        <form id="game-plan-form" aria-describedby="game-plan-help" autocomplete="off">
+                            <!-- Disabled default submit prevents implicit Enter submission before JavaScript is connected. -->
+                            <button id="game-plan-submit-guard" type="submit" hidden disabled>Отправка отключена</button>
+                            <fieldset class="border rounded-3 p-3 p-md-4">
+                                <legend class="float-none w-auto px-2 h5 fw-semibold">Что хочу сыграть</legend>
+                                <div class="mb-3">
+                                    <label for="game-plan-name" class="form-label fw-semibold">Название игры <span class="text-danger">*</span></label>
+                                    <input type="text" id="game-plan-name" name="game-name" list="game-name-options" placeholder="Например, Counter-Strike 2" minlength="2" maxlength="80" required autocomplete="off" aria-describedby="game-name-help" class="form-control">
+                                    <datalist id="game-name-options">
+                                        <option value="Counter-Strike 2"></option>
+                                        <option value="Dota 2"></option>
+                                    </datalist>
+                                    <p id="game-name-help" class="form-text mb-0">От 2 до 80 символов. Свой вариант — только пожелание для личного плана.</p>
                                 </div>
+                                <div class="mb-3">
+                                    <label for="game-plan-goal" class="form-label fw-semibold">Цель сессии <span class="text-danger">*</span></label>
+                                    <select id="game-plan-goal" name="game-goal" required class="form-select">
+                                        <option value="" selected>Выбери цель</option>
+                                        <option value="practice">Потренироваться</option>
+                                        <option value="match">Сыграть матч</option>
+                                        <option value="explore">Изучить игру</option>
+                                        <option value="relax">Отдохнуть за игрой</option>
+                                    </select>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="game-plan-notes" class="form-label fw-semibold">Заметка для себя</label>
+                                    <textarea id="game-plan-notes" name="game-notes" rows="4" maxlength="300" autocomplete="off" placeholder="Карта, герой или навык, который хочу потренировать" aria-describedby="game-notes-help" class="form-control"></textarea>
+                                    <p id="game-notes-help" class="form-text mb-0">Необязательно, до 300 символов. Не указывай пароли и данные учётной записи.</p>
+                                </div>
+                                <p class="small mb-3"><span class="text-danger">*</span> Обязательные поля.</p>
+                                <p id="game-plan-help" class="small text-body-secondary mb-3">В этой версии кнопка «Добавить в план» пока не сохраняет данные. Форма никуда их не отправляет. Кнопка «Очистить» очищает введённые поля.</p>
+                                <div class="d-flex flex-wrap gap-2">
+                                    <button id="save-game-plan" type="button" class="btn btn-danger" aria-describedby="game-plan-help">Добавить в план</button>
+                                    <button id="reset-game-plan" type="reset" class="btn btn-outline-secondary">Очистить</button>
+                                </div>
+                                <div id="game-plan-error" class="state-message is-hidden is-error mt-3" role="alert"></div>
+                                <div id="game-plan-success" class="state-message is-hidden is-success mt-3" role="status" aria-live="polite"></div>
                             </fieldset>
                         </form>
                     </div>
+                    <div class="col-12 col-lg-5">
+                        <section id="game-plan-result" class="bg-body-tertiary border rounded-3 p-3 p-md-4" aria-labelledby="game-plan-result-title" aria-live="polite">
+                            <h3 id="game-plan-result-title" class="h5 fw-bold mb-3">Мой план</h3>
+                            <p id="game-plan-empty" class="text-body-secondary mb-0">План пока пуст. Эта область предназначена для выбранной игры, цели сессии и заметки.</p>
+                            <dl id="game-plan-details" class="is-hidden mb-0">
+                                <dt>Игра</dt>
+                                <dd id="game-plan-result-name"></dd>
+                                <dt>Цель сессии</dt>
+                                <dd id="game-plan-result-goal"></dd>
+                                <dt>Заметка</dt>
+                                <dd id="game-plan-result-notes" class="mb-0"></dd>
+                            </dl>
+                        </section>
+                    </div>
                 </div>
-                <nav aria-label="Дополнительная навигация" class="d-flex flex-column flex-md-row gap-2 mt-4">
-                    <a href="#game-list" class="btn btn-outline-danger">Вернуться к списку игр</a>
-                    <a href="index.html" class="btn btn-outline-danger">Вернуться на главную страницу</a>
-                </nav>
             </section>
+            <aside id="before-playing" class="bg-white border border-start border-danger border-4 rounded-4 p-3 p-md-4 mb-4" aria-labelledby="before-playing-title">
+                <h2 id="before-playing-title" class="h4 fw-bold mb-3">Перед игрой</h2>
+                <p class="mb-3">Используй собственную учётную запись, не сохраняй пароль на общем компьютере и выйди из аккаунта после сессии.</p>
+                <p class="mb-4">Следующий шаг — прочитать правила безопасности и подготовить личный план бронирования.</p>
+                <nav aria-label="Следующие шаги визита" class="d-flex flex-column flex-sm-row flex-wrap gap-2">
+                    <a id="games-to-rules" href="rules.html#account-safety" class="btn btn-danger">Прочитать правила</a>
+                    <a id="games-to-booking" href="booking.html" class="btn btn-outline-danger">Перейти к бронированию</a>
+                    <a id="games-back-to-library" href="#game-list" class="btn btn-outline-secondary">К библиотеке</a>
+                </nav>
+            </aside>
         </main>
-        <footer class="bg-dark text-white py-5 mt-4">
+        <footer id="site-footer" class="bg-dark text-white py-5 mt-4">
             <div class="container">
-                <div class="row g-4 align-items-start">
-                    <div class="col-12 col-md-6 col-lg-4">
-                        <section>
-                            <h2 class="h5 mb-3 fw-bold">Top Game</h2>
-                            <p class="mb-2 mb-3">Киберспортивный клуб в центре Астаны.</p>
-                        </section>
-                    </div>
-                    <div class="col-12 col-md-6 col-lg-4">
-                        <section>
-                            <h2 class="h5 mb-3 fw-bold">Контакты</h2>
-                            <address class="mb-2 fst-normal">
-            TOP GAME, г. Астана, ул. Динмухамеда Кунаева, 23<br>
-                                <a href="tel:+77064005040" class="link-light">+7 706 400 50 40</a> ·
-            <a href="about.html#contacts" class="link-light">Адрес и контакты</a>
-                            </address>
-                        </section>
-                    </div>
-                    <div class="col-12 col-md-6 col-lg-4">
-                        <p class="mb-2 mb-3">
-                            <small class="small">© 2026 TOP GAME — 24/7.</small>
-                        </p>
+                <div class="row g-4">
+                    <section class="col-12 col-md-6 col-lg-4" aria-labelledby="footer-brand">
+                        <h2 id="footer-brand" class="h5 fw-bold mb-3">Top Game</h2>
+                        <p>Компьютерный клуб в Астане.<br>Три игровые зоны. Работаем 24/7.</p>
+                        <a id="footer-plan" href="booking.html#booking-form" class="btn btn-outline-light">Подготовить визит</a>
+                    </section>
+                    <section class="col-12 col-md-6 col-lg-5" aria-labelledby="footer-contacts">
+                        <h2 id="footer-contacts" class="h5 fw-bold mb-3">Адрес и контакты</h2>
+                        <address class="fst-normal mb-2">Астана, ул. Динмухамеда Кунаева, 23<br>
+                            <a id="footer-phone" href="tel:+77064005040" class="link-light">+7 706 400 50 40</a>
+                        </address>
+                        <p class="mb-2">Ежедневно, круглосуточно</p>
+                        <a id="footer-map" href="https://2gis.kz/astana/firm/70000001080411948" class="link-light" target="_blank" rel="noopener noreferrer">Открыть карту в 2GIS</a>
+                    </section>
+                    <div class="col-12 col-lg-3">
+                        <a id="footer-details" href="about.html#contacts" class="link-light d-block mb-2">Как добраться</a>
+                        <a id="footer-rules" href="rules.html" class="link-light d-block mb-3">Правила клуба</a>
+                        <small>© 2026 Top Game</small>
                     </div>
                 </div>
             </div>
