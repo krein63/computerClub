@@ -85,3 +85,10 @@ h3,
     .navbar-toggler-check:checked ~ .navbar-collapse { display: block; flex-basis: 100%; }
     .navbar-toggler-check:focus-visible + .navbar-toggler { outline: 3px solid #fff; outline-offset: 3px; }
 }
+
+/* Ready for class changes in the next assignment; no JavaScript is loaded. */
+.hidden { display: none !important; }
+.active { outline: 2px solid #b02a37; outline-offset: 2px; }
+.selected { border-color: #b02a37 !important; box-shadow: 0 0 0 2px rgba(176, 42, 55, 0.15); }
+.error { color: #842029; background-color: #f8d7da; border-color: #b02a37 !important; }
+.success { color: #0f5132; background-color: #d1e7dd; border-color: #146c43 !important; }

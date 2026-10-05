@@ -6,105 +6,80 @@
         <meta name="description" content="Бронирование игрового места в компьютерном клубе TOP GAME в Астане">
         <meta name="author" content="Ali">
         <title>Бронирование — TOP GAME</title>
-        <!-- Bootstrap 5.3.8 via CDN. Custom brand corrections are loaded after Bootstrap. -->
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+        <!-- Bootstrap supplies the layout; only CSS is used. -->
+        <link rel="stylesheet" href="css/bootstrap.min.css">
         <link rel="stylesheet" href="css/base.css">
     </head>
-    <body>
-        <!-- Автор страницы: Ali -->
+    <body id="page-top">
+        <a id="skip-content" href="#booking-content" class="visually-hidden-focusable d-inline-block p-3">Перейти к содержимому</a><!-- Автор страницы: Ali -->
         <!-- Bootstrap navbar layout; the mobile menu uses an HTML checkbox and CSS so the site needs no JavaScript. -->
-        <header class="navbar navbar-expand-xl bg-dark border-bottom border-danger border-3 py-3" data-bs-theme="dark">
-            <div class="container-fluid px-3 px-lg-4">
-                <!-- container-fluid keeps the navigation full width, giving seven links room on desktop. -->
-                <a href="index.html" aria-label="Перейти на главную страницу TOP GAME" class="navbar-brand d-flex align-items-center gap-2 fw-bold">
-                    <img src="images/logo.png" alt="Логотип компьютерного клуба TOP GAME" class="img-fluid object-fit-contain" width="44" height="44">
-                    <span>TOP GAME</span>
-                </a>
-                <!-- Список используется внутри nav, потому что меню является перечнем страниц сайта. -->
-                <input type="checkbox" id="main-navigation-toggle" class="navbar-toggler-check visually-hidden d-xl-none" aria-controls="main-navigation">
-                <label for="main-navigation-toggle" class="navbar-toggler d-xl-none">
-                    <span class="visually-hidden">Открыть или закрыть меню</span>
-                    <span class="navbar-toggler-icon"></span>
-                </label>
-                <div class="navbar-collapse" id="main-navigation">
-                    <nav aria-label="Основная навигация" class="flex-grow-1">
-                        <ul class="navbar-nav mx-xl-auto gap-xl-1">
-                            <li class="nav-item">
-                                <a href="index.html" class="nav-link px-2">Главная</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="prices.html" class="nav-link px-2">Цены</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="computers.html" class="nav-link px-2">Компьютеры</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="booking.html" aria-current="page" class="nav-link px-2 active fw-bold">Бронирование</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="games.html" class="nav-link px-2">Игры</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="rules.html" class="nav-link px-2">Правила</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="about.html" class="nav-link px-2">О клубе</a>
-                            </li>
-                        </ul>
-                    </nav>
-                    <a href="#booking-form" class="btn btn-danger btn-sm mt-3 mt-xl-0 ms-xl-3 d-none d-md-inline-block">Забронировать</a>
-                </div>
-            </div>
-        </header>
+        <header id="site-header" class="navbar navbar-expand-xl bg-dark border-bottom border-danger border-3 py-3" data-bs-theme="dark">
+    <div class="container-fluid px-3 px-lg-4">
+        <a id="brand-link" href="index.html" aria-label="Главная страница TOP GAME" class="navbar-brand d-flex align-items-center gap-2 fw-bold"><img src="images/logo.png" alt="Логотип TOP GAME" width="44" height="44" class="img-fluid object-fit-contain"><span>TOP GAME</span></a>
+        <input type="checkbox" id="main-navigation-toggle" class="navbar-toggler-check visually-hidden d-xl-none" aria-controls="main-navigation">
+        <label for="main-navigation-toggle" class="navbar-toggler d-xl-none"><span class="visually-hidden">Открыть или закрыть меню</span><span class="navbar-toggler-icon" aria-hidden="true"></span></label>
+        <div id="main-navigation" class="navbar-collapse">
+<nav aria-label="Основная навигация" class="flex-grow-1"><ul class="navbar-nav mx-xl-auto gap-xl-1">
+<li class="nav-item"><a id="nav-index" href="index.html" class="nav-link px-2">Главная</a></li>
+<li class="nav-item"><a id="nav-prices" href="prices.html" class="nav-link px-2">Цены</a></li>
+<li class="nav-item"><a id="nav-computers" href="computers.html" class="nav-link px-2">Компьютеры</a></li>
+<li class="nav-item"><a id="nav-booking" href="booking.html" class="nav-link px-2 active fw-bold" aria-current="page">Бронирование</a></li>
+<li class="nav-item"><a id="nav-games" href="games.html" class="nav-link px-2">Игры</a></li>
+<li class="nav-item"><a id="nav-rules" href="rules.html" class="nav-link px-2">Правила</a></li>
+<li class="nav-item"><a id="nav-about" href="about.html" class="nav-link px-2">О клубе</a></li>
+</ul></nav>
+        <a id="header-booking-link" href="booking.html#booking-form" class="btn btn-danger btn-sm mt-3 mt-xl-0 ms-xl-3">Забронировать</a>
+</div>
+    </div>
+</header>
         <!-- container limits long text to a readable width and stays centered at each Bootstrap breakpoint. -->
-        <main class="container py-4 py-lg-5">
+        <main class="container py-4 py-lg-5" id="booking-content">
             <section id="booking-introduction" class="bg-white border rounded-4 p-3 p-md-4 p-lg-5 mb-4 shadow-sm">
                 <p class="mb-3">
                     <small class="small">Бронирование</small>
                 </p>
-                <h1 class="fw-bold display-5 mb-3 text-center text-md-start">Твоё место уже ждёт</h1>
-                <p class="mb-3 lead">Учебная форма показывает, какие данные нужны для бронирования: контакты, дата, время и игровая зона. Здесь можно заполнить поля и проверить их работу. Чтобы оставить настоящую заявку, свяжитесь с администратором по телефону клуба.</p>
-                <p class="mb-3">Заполнение формы <strong>не отправляет заявку и не подтверждает бронирование</strong>. Для нескольких соседних компьютеров сообщите администратору количество игроков и пожелания. Места считаются забронированными только после его подтверждения.</p>
+                <h1 class="fw-bold display-5 mb-3 text-center text-md-start" id="booking-h1-1">Подготовь бронирование игрового места</h1>
+                <p class="mb-3 lead">Выберите дату, время, тариф и игровую зону, укажите количество игроков и контакты. Ниже формы находится итог бронирования и область результата.</p>
+                <p class="mb-3">В этой версии можно заполнить и очистить поля. <strong>Данные не отправляются, стоимость не рассчитывается и место не бронируется.</strong> Кнопка и состояния результата подготовлены для следующего этапа проекта.</p>
                 <p class="mb-3">
-                    <a href="#booking-form" class="btn btn-danger">Перейти к форме</a>
-                    <a href="#direct-contact" class="btn btn-danger">Связаться напрямую</a>
+                    <a href="#booking-form" class="btn btn-danger" id="booking-a-1">Перейти к форме</a>
+                    <a href="#direct-contact" class="btn btn-danger" id="booking-a-2">Связаться напрямую</a>
                 </p>
             </section>
             <hr>
             <section id="booking-details" class="bg-white border rounded-4 p-3 p-md-4 p-lg-5 mb-4 shadow-sm">
                 <h2 class="fw-bold h2 mb-3">Данные бронирования</h2>
-                <figure class="mb-4">
-                    <img src="images/peripherals.jpg" alt="Игровое место с компьютером и периферией в клубе TOP GAME" class="img-fluid w-100 rounded-3">
+                <figure class="mb-4" id="booking-figure-1">
+                    <img src="images/peripherals.jpg" alt="Игровое место с компьютером и периферией в клубе TOP GAME" class="w-100 object-fit-cover rounded-3" height="280">
                     <figcaption class="small text-body-secondary mt-2">
                 Игровое место с компьютерным оборудованием в клубе TOP GAME.
             </figcaption>
                 </figure>
-                <!-- POST выбран, потому что форма содержит данные посетителя,
-             которые в будущем будут передаваться системе бронирования. -->
-                <!-- The id is on the form itself so links scroll directly to the fields. -->
+                <!-- No submission endpoint or JavaScript is used in the midterm stage. -->
                 <div class="row">
                     <div class="col-12">
-                        <form id="booking-form" method="post" action="#" class="mt-4">
-                            <p id="form-status" class="small text-body-secondary">Учебная форма: отправка недоступна без сервера. Для заявки позвоните <a href="tel:+77064005040">+7 706 400 50 40</a>.</p>
-                            <!-- Серверной обработки пока нет, поэтому форма не отправляет
-                 реальное бронирование. Это будет добавлено позднее. -->
+                        <form id="booking-form" class="mt-4" aria-describedby="booking-status">
+                            <!-- A disabled default submit control prevents implicit submission with Enter. -->
+                            <button id="booking-submit-guard" type="submit" class="hidden" disabled aria-hidden="true" tabindex="-1">Отправка отключена</button>
+                            <p id="booking-status" class="alert alert-light border">Заполните обязательные поля и проверьте выбранный тариф по <a href="prices.html" id="booking-a-3">прайсу</a>. «Показать итог бронирования» в этой статической версии не выполняет действие. Результат будет отображаться в области под формой.</p>
+                            <div id="booking-errors" class="error hidden mb-3" role="alert"></div>
                             <fieldset class="border rounded-3 p-3 p-md-4 mb-4">
                                 <legend class="form-label fw-semibold">Контактные данные</legend>
                                 <div class="row g-3">
                                     <p class="mb-3 col-12 col-md-6">
                                         <label for="customer-name" class="form-label fw-semibold">Имя:</label>
                                         <br>
-                                        <input type="text" id="customer-name" name="customer-name" placeholder="Как к вам обращаться" required class="form-control">
+                                        <input type="text" id="customer-name" name="customer-name" autocomplete="name" maxlength="80" required class="form-control">
                                     </p>
                                     <p class="mb-3 col-12 col-md-6">
                                         <label for="customer-email" class="form-label fw-semibold">Электронная почта:</label>
                                         <br>
-                                        <input type="email" id="customer-email" name="customer-email" placeholder="name@example.com" required class="form-control">
+                                        <input type="email" id="customer-email" name="customer-email" autocomplete="email" maxlength="254" required class="form-control">
                                     </p>
                                     <p class="mb-3 col-12 col-md-6">
                                         <label for="customer-phone" class="form-label fw-semibold">Телефон:</label>
                                         <br>
-                                        <input type="tel" id="customer-phone" name="customer-phone" placeholder="+7 700 000 00 00" required class="form-control">
+                                        <input type="tel" id="customer-phone" name="customer-phone" autocomplete="tel" maxlength="30" required class="form-control">
                                     </p>
                                 </div>
                             </fieldset>
@@ -126,20 +101,21 @@
                                         <br>
                                         <input type="number" id="player-count" name="player-count" min="1" max="45" value="1" required class="form-control">
                                     </p>
-                                    <p class="mb-3 col-12 col-md-6">
-                                        <label for="duration" class="form-label fw-semibold">Продолжительность:</label>
+                                    <p class="mb-3 col-12 col-md-6" id="tariff-selection">
+                                        <label for="booking-tariff" class="form-label fw-semibold">Тариф:</label>
                                         <br>
-                                        <select id="duration" name="duration" required class="form-select">
-                                            <option value="">Выберите продолжительность</option>
-                                            <option value="1">1 час</option>
-                                            <option value="2">2 часа</option>
-                                            <option value="3">3 часа</option>
-                                            <option value="5">5 часов</option>
+                                        <select id="booking-tariff" name="booking-tariff" required class="form-select" aria-describedby="booking-tariff-note">
+                                            <option value="">Выберите тариф</option>
+                                            <option value="hour">1 час — от 1 200 ₸</option>
+                                            <option value="three-hours">3 часа — от 3 600 ₸</option>
+                                            <option value="night">Ночь — от 4 700 ₸</option>
+                                            <option value="private">PRIVATE — от 2 500 ₸</option>
                                         </select>
                                     </p>
+                                    <p id="booking-tariff-note" class="small text-body-secondary mb-0 col-12">В форме приведены тарифы из прайса. Цены «от» не являются окончательной стоимостью бронирования; для зоны PRIVATE выберите тариф PRIVATE.</p>
                                 </div>
                             </fieldset>
-                            <fieldset class="border rounded-3 p-3 p-md-4 mb-4">
+                            <fieldset class="border rounded-3 p-3 p-md-4 mb-4" id="gaming-zone-selection">
                                 <legend class="form-label fw-semibold">Игровая зона</legend>
                                 <div class="row g-3">
                                     <p class="mb-3 col-12">Выберите подходящую зону:</p>
@@ -171,26 +147,46 @@
                         Комментарий к бронированию:
                     </label>
                                         <br>
-                                        <textarea id="booking-comment" name="booking-comment" rows="5" cols="40" placeholder="Напишите дополнительные пожелания" class="form-control"></textarea>
+                                        <textarea id="booking-comment" name="booking-comment" rows="5" cols="40" maxlength="1000" class="form-control"></textarea>
                                     </p>
                                     <p class="mb-3 col-12">
-                                        <input type="checkbox" id="agreement" name="agreement" required class="form-check-input me-1">
-                                        <label for="agreement" class="form-label fw-semibold form-check-label">
+                                        <input type="checkbox" id="booking-agreement" name="booking-agreement" required class="form-check-input me-1">
+                                        <label for="booking-agreement" class="form-label fw-semibold form-check-label">
                         Я подтверждаю правильность указанных данных
                     </label>
                                     </p>
                                 </div>
                             </fieldset>
                             <p class="mb-3 d-flex flex-wrap gap-2">
-                                <button type="submit" class="btn btn-danger" disabled aria-describedby="form-status">Отправить заявку</button>
-                                <button type="reset" class="btn btn-outline-secondary">Очистить форму</button>
+                                <button id="booking-submit" type="button" class="btn btn-danger" aria-describedby="booking-status">Показать итог бронирования</button>
+                                <button id="booking-reset" type="reset" class="btn btn-outline-secondary">Очистить форму</button>
                             </p>
                         </form>
                     </div>
                 </div>
-                <p class="mb-3">
-                    <small class="small">В этой учебной версии заявка не отправляется. Уточните свободное время по телефону клуба.</small>
-                </p>
+                <section id="booking-result" class="bg-body-tertiary border rounded-3 p-3 p-md-4 mt-4" aria-labelledby="booking-result-title">
+                    <h3 id="booking-result-title" class="h4 fw-bold mb-3">Итог бронирования</h3>
+                    <p id="booking-result-status" class="mb-3" role="status" aria-live="polite">Итог ещё не сформирован. В интерактивной версии здесь появятся выбранные параметры и результат проверки данных.</p>
+                    <dl id="booking-summary" class="row mb-3">
+                        <dt class="col-12 col-sm-5">Тариф</dt>
+                        <dd id="booking-summary-tariff" class="col-12 col-sm-7">Не выбран</dd>
+                        <dt class="col-12 col-sm-5">Игровая зона</dt>
+                        <dd id="booking-summary-zone" class="col-12 col-sm-7">Не выбрана</dd>
+                        <dt class="col-12 col-sm-5">Дата</dt>
+                        <dd id="booking-summary-date" class="col-12 col-sm-7">Не выбрана</dd>
+                        <dt class="col-12 col-sm-5">Время</dt>
+                        <dd id="booking-summary-time" class="col-12 col-sm-7">Не выбрано</dd>
+                        <dt class="col-12 col-sm-5">Количество игроков</dt>
+                        <dd id="booking-summary-players" class="col-12 col-sm-7">Итог не сформирован</dd>
+                    </dl>
+                    <p id="booking-total-note" class="mb-2 fw-semibold">Стоимость выбранного тарифа будет показана на следующем этапе проекта.</p>
+                    <output id="booking-total" form="booking-form" for="booking-tariff player-count" aria-describedby="booking-total-note" class="d-block mb-3"></output>
+                    <ul id="booking-result-list" class="list-group list-group-flush hidden mb-3"></ul>
+                    <div id="booking-success" class="success hidden mb-3" role="status" aria-live="polite"></div>
+                    <p class="small text-body-secondary mb-3">Сообщение об успехе появится только после проверки данных на следующем этапе. Сейчас подтверждение бронирования не создаётся.</p>
+                    <a href="prices.html" class="btn btn-outline-danger" id="booking-a-4">Проверить тарифы</a>
+                    <a href="rules.html" class="btn btn-outline-danger" id="booking-a-5">Прочитать правила</a>
+                </section>
             </section>
             <hr>
             <aside id="direct-contact" class="bg-white border rounded-4 p-3 p-md-4 p-lg-5 mb-4 shadow-sm">
@@ -198,7 +194,7 @@
                 <address class="fst-normal row g-3">
                     <p class="mb-3 col-12 col-md-6">
                 Телефон:
-                <a href="tel:+77064005040">
+                <a href="tel:+77064005040" id="booking-a-6">
                             <strong>+7 706 400 50 40</strong>
                         </a>
                     </p>
@@ -213,54 +209,27 @@
         </p>
             </aside>
         </main>
-        <footer class="bg-dark text-white py-5 mt-4">
-            <div class="container">
-                <div class="row g-4 align-items-start">
-                    <div class="col-12 col-md-6 col-lg-4">
-                        <section>
-                            <h2 class="h5 mb-3 fw-bold">Top Game</h2>
-                            <p class="mb-3">
-                                <img src="images/logo-mark-white.svg"
-                                     alt="Знак TOP GAME"
-                                     class="img-fluid me-2"
-                                     width="36">
-                                Киберспортивный клуб в центре Астаны.
-                            </p>
-                        </section>
-                    </div>
-
-                    <div class="col-12 col-md-6 col-lg-4">
-                        <section>
-                            <h2 class="h5 mb-3 fw-bold">Контакты</h2>
-                            <address class="mb-2 fst-normal">
-                                <p class="mb-3">
-                                    Астана, ул. Динмухамеда Кунаева, 23
-                                </p>
-                                <p class="mb-3">
-                                    Телефон:
-                                    <a href="tel:+77064005040" class="link-light">
-                                        +7 706 400 50 40
-                                    </a>
-                                </p>
-                            </address>
-                            <p class="mb-3">
-                                <a href="https://2gis.kz/astana/firm/70000001080411948"
-                                   target="_blank"
-                                   rel="noopener noreferrer"
-                                   class="link-light">
-                                    Посмотреть клуб в 2GIS
-                                </a>
-                            </p>
-                        </section>
-                    </div>
-
-                    <div class="col-12 col-md-6 col-lg-4">
-                        <p class="mb-3">
-                            <small class="small">© 2026 Top Game</small>
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </footer>
+        <footer id="site-footer" class="bg-dark text-white py-5 mt-4">
+    <div class="container"><div class="row g-4 align-items-start">
+        <section class="col-12 col-md-6 col-lg-4" aria-labelledby="footer-brand-title">
+            <h2 id="footer-brand-title" class="h5 fw-bold mb-3">TOP GAME</h2>
+            <p><img src="images/logo-mark-white.svg" alt="Знак TOP GAME" width="36" class="img-fluid me-2">Киберспортивный клуб в центре Астаны.</p>
+            <p class="mb-0">Круглосуточно, 24/7</p>
+        </section>
+        <section class="col-12 col-md-6 col-lg-4" aria-labelledby="footer-contacts-title">
+            <h2 id="footer-contacts-title" class="h5 fw-bold mb-3">Контакты</h2>
+            <address class="fst-normal">
+<p>Астана, ул. Динмухамеда Кунаева, 23</p>
+<a id="footer-phone" href="tel:+77064005040" class="link-light">+7 706 400 50 40</a>
+</address>
+            <a id="footer-map" href="https://2gis.kz/astana/firm/70000001080411948" target="_blank" rel="noopener noreferrer" class="link-light">Посмотреть клуб в 2GIS</a>
+        </section>
+        <div class="col-12 col-md-6 col-lg-4">
+<p>© 2026 TOP GAME</p>
+<p><a id="footer-contacts-link" href="about.html#contacts" class="link-light">Адрес и контакты</a></p>
+<a id="footer-rules-link" href="rules.html" class="link-light">Правила клуба</a>
+</div>
+    </div></div>
+</footer>
     </body>
 </html>

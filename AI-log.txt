@@ -1,1 +1,27 @@
 
+AI log — Midterm preparation
+Date: 2026-10-05, Asia/Yekaterinburg
+Repository: https://github.com/krein63/computerClub
+
+User request (verbatim):
+«https://github.com/krein63/computerClub оформи все по этому документу сделай реадми и пдф для сдачи не добавляй js но оформи как в документе»
+Additional user request (verbatim):
+«сделай агента который это все проверит»
+
+Reference: midterm_project.docx supplied by the user.
+
+Actual AI contribution:
+- Codex extracted and read the requirements, cloned the existing repository and reviewed all seven pages.
+- AI agents independently audited the original and final pages, prepared README and completed booking.html/games.html markup.
+- Codex wrote and edited HTML/CSS: common navigation/footer/title pattern, hooks, state styles, tariff links, forms and result containers, responsive details and content corrections.
+- Existing Bootstrap 5.3.8 CSS was downloaded and verified against its original SHA384. No JavaScript was added to the website.
+- Existing photographs were reused; no stock or AI-generated images were introduced. Photo authorship is not independently established.
+- Codex performed static checks, W3C Nu validation and Chrome checks at 375/768/1440 px, generated screenshots, wrote quality-pass/content-sources and created the PDF report.
+- Browser checks use temporary automation code outside the website. This code is not a website dependency and is not included in the submission package.
+- Final work is attributed to Codex in the local technical commit. Existing student dates and authors were not rewritten. The previous midterm tag is preserved locally as midterm-2026-10-02.
+
+Policy status:
+The assignment permits conceptual explanations but forbids AI writing pages. This work includes AI-written HTML/CSS and does not satisfy that restriction. Logging the assistance does not remove the restriction. This version must not be presented as entirely independent student work.
+
+Limits:
+AI checks do not replace the required personal peer/device review, four real contribution days per participant, proof of photo ownership or an individual defense. The repository's original AI-log file was empty; no fictional earlier prompts or student contributions were reconstructed.

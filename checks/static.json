@@ -1,0 +1,14 @@
+{
+  "pages": 7,
+  "errors": [],
+  "ids": {
+    "about.html": 35,
+    "booking.html": 68,
+    "computers.html": 43,
+    "games.html": 66,
+    "index.html": 40,
+    "prices.html": 41,
+    "rules.html": 33
+  },
+  "no_javascript": true
+}

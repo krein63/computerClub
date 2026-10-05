@@ -6,64 +6,40 @@
         <meta name="description" content="Информация о компьютерном клубе TOP GAME в Астане">
         <meta name="author" content="Ali">
         <title>О клубе — TOP GAME</title>
-        <!-- Bootstrap 5.3.8 via CDN. Custom brand corrections are loaded after Bootstrap. -->
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+        <!-- Bootstrap supplies the layout; only CSS is used. -->
+        <link rel="stylesheet" href="css/bootstrap.min.css">
         <link rel="stylesheet" href="css/base.css">
     </head>
-    <body>
-        <!-- Автор страницы: Ali -->
+    <body id="page-top">
+        <a id="skip-content" href="#about-content" class="visually-hidden-focusable d-inline-block p-3">Перейти к содержимому</a><!-- Автор страницы: Ali -->
         <!-- Bootstrap navbar layout; the mobile menu uses an HTML checkbox and CSS so the site needs no JavaScript. -->
-        <header class="navbar navbar-expand-xl bg-dark border-bottom border-danger border-3 py-3" data-bs-theme="dark">
-            <div class="container-fluid px-3 px-lg-4">
-                <!-- container-fluid keeps the navigation full width, giving seven links room on desktop. -->
-                <a href="index.html" aria-label="Перейти на главную страницу TOP GAME" class="navbar-brand d-flex align-items-center gap-2 fw-bold">
-                    <img src="images/logo.png" alt="Логотип компьютерного клуба TOP GAME" class="img-fluid object-fit-contain" width="44" height="44">
-                    <span>TOP GAME</span>
-                </a>
-                <!-- Список используется внутри nav, потому что меню является перечнем страниц сайта. -->
-                <input type="checkbox" id="main-navigation-toggle" class="navbar-toggler-check visually-hidden d-xl-none" aria-controls="main-navigation">
-                <label for="main-navigation-toggle" class="navbar-toggler d-xl-none">
-                    <span class="visually-hidden">Открыть или закрыть меню</span>
-                    <span class="navbar-toggler-icon"></span>
-                </label>
-                <div class="navbar-collapse" id="main-navigation">
-                    <nav aria-label="Основная навигация" class="flex-grow-1">
-                        <ul class="navbar-nav mx-xl-auto gap-xl-1">
-                            <li class="nav-item">
-                                <a href="index.html" class="nav-link px-2">Главная</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="prices.html" class="nav-link px-2">Цены</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="computers.html" class="nav-link px-2">Компьютеры</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="booking.html" class="nav-link px-2">Бронирование</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="games.html" class="nav-link px-2">Игры</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="rules.html" class="nav-link px-2">Правила</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="about.html" aria-current="page" class="nav-link px-2 active fw-bold">О клубе</a>
-                            </li>
-                        </ul>
-                    </nav>
-                    <a href="booking.html" class="btn btn-danger btn-sm mt-3 mt-xl-0 ms-xl-3 d-none d-md-inline-block">Забронировать</a>
-                </div>
-            </div>
-        </header>
+        <header id="site-header" class="navbar navbar-expand-xl bg-dark border-bottom border-danger border-3 py-3" data-bs-theme="dark">
+    <div class="container-fluid px-3 px-lg-4">
+        <a id="brand-link" href="index.html" aria-label="Главная страница TOP GAME" class="navbar-brand d-flex align-items-center gap-2 fw-bold"><img src="images/logo.png" alt="Логотип TOP GAME" width="44" height="44" class="img-fluid object-fit-contain"><span>TOP GAME</span></a>
+        <input type="checkbox" id="main-navigation-toggle" class="navbar-toggler-check visually-hidden d-xl-none" aria-controls="main-navigation">
+        <label for="main-navigation-toggle" class="navbar-toggler d-xl-none"><span class="visually-hidden">Открыть или закрыть меню</span><span class="navbar-toggler-icon" aria-hidden="true"></span></label>
+        <div id="main-navigation" class="navbar-collapse">
+<nav aria-label="Основная навигация" class="flex-grow-1"><ul class="navbar-nav mx-xl-auto gap-xl-1">
+<li class="nav-item"><a id="nav-index" href="index.html" class="nav-link px-2">Главная</a></li>
+<li class="nav-item"><a id="nav-prices" href="prices.html" class="nav-link px-2">Цены</a></li>
+<li class="nav-item"><a id="nav-computers" href="computers.html" class="nav-link px-2">Компьютеры</a></li>
+<li class="nav-item"><a id="nav-booking" href="booking.html" class="nav-link px-2">Бронирование</a></li>
+<li class="nav-item"><a id="nav-games" href="games.html" class="nav-link px-2">Игры</a></li>
+<li class="nav-item"><a id="nav-rules" href="rules.html" class="nav-link px-2">Правила</a></li>
+<li class="nav-item"><a id="nav-about" href="about.html" class="nav-link px-2 active fw-bold" aria-current="page">О клубе</a></li>
+</ul></nav>
+        <a id="header-booking-link" href="booking.html#booking-form" class="btn btn-danger btn-sm mt-3 mt-xl-0 ms-xl-3">Забронировать</a>
+</div>
+    </div>
+</header>
         <!-- container limits long text to a readable width and stays centered at each Bootstrap breakpoint. -->
-        <main class="container py-4 py-lg-5">
+        <main class="container py-4 py-lg-5" id="about-content">
             <section id="introduction" class="bg-white border rounded-4 p-3 p-md-4 p-lg-5 mb-4 shadow-sm position-relative overflow-hidden text-white">
                 <img src="images/club-exterior.jpg" alt="Внешний вид компьютерного клуба TOP GAME в Астане" class="position-absolute top-0 start-0 w-100 h-100 object-fit-cover brand-backdrop">
                 <p class="mb-3 position-relative z-1">
                     <small class="small">О клубе</small>
                 </p>
-                <h1 class="fw-bold display-5 mb-3 position-relative z-1 text-center text-md-start">TOP GAME — территория игры</h1>
+                <h1 class="fw-bold display-5 mb-3 position-relative z-1 text-center text-md-start" id="about-h1-1">TOP GAME — территория игры</h1>
                 <p class="mb-3 lead position-relative z-1">
             TOP GAME — двухэтажный компьютерный клуб в центре Астаны.
             Клуб работает <strong>круглосуточно</strong>, поэтому посетители
@@ -72,7 +48,7 @@
             рассчитанные на разные форматы отдыха.
         </p>
                 <p class="mb-3 position-relative z-1">
-                    <a href="#contacts" class="btn btn-danger">Как добраться</a>
+                    <a href="#contacts" class="btn btn-danger" id="about-a-1">Как добраться</a>
                 </p>
             </section>
             <hr>
@@ -88,7 +64,7 @@
                 <!-- Bootstrap Cards / grid: official card and card-body markup adapted to existing club content; semantic articles and figures retained. https://getbootstrap.com/docs/5.3/components/card/ -->
                 <div class="row g-4">
                     <div class="col-12 col-md-6">
-                        <figure class="card h-100 shadow-sm p-3">
+                        <figure class="card h-100 shadow-sm p-3" id="about-figure-1">
                             <img src="images/hero.jpg" alt="Игровые компьютеры и кресла в зале клуба TOP GAME" class="img-fluid w-100 rounded-3">
                             <figcaption class="small text-body-secondary mt-2">
                     Игровые места в основном зале компьютерного клуба.
@@ -96,7 +72,7 @@
                         </figure>
                     </div>
                     <div class="col-12 col-md-6">
-                        <figure class="card h-100 shadow-sm p-3">
+                        <figure class="card h-100 shadow-sm p-3" id="about-figure-2">
                             <img src="images/prices-hero.jpg" alt="Белая игровая гарнитура на компьютерном месте TOP GAME" class="img-fluid w-100 rounded-3">
                             <figcaption class="small text-body-secondary mt-2">
                     Игровая гарнитура и оборудование одного из мест клуба.
@@ -104,7 +80,7 @@
                         </figure>
                     </div>
                 </div>
-                <article class="bg-body-tertiary border rounded-3 p-3 p-md-4 my-4">
+                <article class="bg-body-tertiary border rounded-3 p-3 p-md-4 my-4" id="about-article-1">
                     <h3 class="fw-bold h4 mb-3">Основные возможности</h3>
                     <ul>
                         <li>
@@ -123,7 +99,7 @@
                         <li>круглосуточный режим работы.</li>
                     </ul>
                 </article>
-                <article class="bg-body-tertiary border rounded-3 p-3 p-md-4 my-4">
+                <article class="bg-body-tertiary border rounded-3 p-3 p-md-4 my-4" id="about-article-2">
                     <h3 class="fw-bold h4 mb-3">Краткая информация</h3>
                     <dl>
                         <dt class="mt-3 fw-semibold">
@@ -142,13 +118,13 @@
                 </article>
                 <!-- aside используется для дополнительной информации,
              которая связана с клубом, но не является основным описанием. -->
-                <aside>
+                <aside id="about-aside-1">
                     <h2 class="fw-bold h2 mb-3">Перед посещением</h2>
                     <p class="mb-3">
                 Если вы планируете прийти большой командой,
                 <em>заранее забронируйте</em> необходимое количество мест.
                 Для этого перейдите на страницу
-                <a href="booking.html">бронирования</a>.
+                <a href="booking.html" id="about-a-2">бронирования</a>.
             </p>
                 </aside>
             </section>
@@ -163,7 +139,7 @@
             </p>
                     <p class="mb-3 col-12 col-md-6">
                 Телефон:
-                <a href="tel:+77064005040">+7 706 400 50 40</a>
+                <a href="tel:+77064005040" id="about-a-3">+7 706 400 50 40</a>
                     </p>
                 </address>
                 <p class="mb-3">
@@ -173,58 +149,31 @@
                 <!-- span используется для короткой части предложения,
              которой не требуется отдельный смысловой раздел. -->
                 <p class="mb-3">
-                    <a href="#introduction">Вернуться к началу страницы</a>
+                    <a href="#introduction" id="about-a-4">Вернуться к началу страницы</a>
                 </p>
             </section>
         </main>
-        <footer class="bg-dark text-white py-5 mt-4">
-            <div class="container">
-                <div class="row g-4 align-items-start">
-                    <div class="col-12 col-md-6 col-lg-4">
-                        <section>
-                            <h2 class="h5 mb-3 fw-bold">Top Game</h2>
-                            <p class="mb-3">
-                                <img src="images/logo-mark-white.svg"
-                                     alt="Знак TOP GAME"
-                                     class="img-fluid me-2"
-                                     width="36">
-                                Киберспортивный клуб в центре Астаны.
-                            </p>
-                        </section>
-                    </div>
-
-                    <div class="col-12 col-md-6 col-lg-4">
-                        <section>
-                            <h2 class="h5 mb-3 fw-bold">Контакты</h2>
-                            <address class="mb-2 fst-normal">
-                                <p class="mb-3">
-                                    Астана, ул. Динмухамеда Кунаева, 23
-                                </p>
-                                <p class="mb-3">
-                                    Телефон:
-                                    <a href="tel:+77064005040" class="link-light">
-                                        +7 706 400 50 40
-                                    </a>
-                                </p>
-                            </address>
-                            <p class="mb-3">
-                                <a href="https://2gis.kz/astana/firm/70000001080411948"
-                                   target="_blank"
-                                   rel="noopener noreferrer"
-                                   class="link-light">
-                                    Посмотреть клуб в 2GIS
-                                </a>
-                            </p>
-                        </section>
-                    </div>
-
-                    <div class="col-12 col-md-6 col-lg-4">
-                        <p class="mb-3">
-                            <small class="small">© 2026 Top Game</small>
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </footer>
+        <footer id="site-footer" class="bg-dark text-white py-5 mt-4">
+    <div class="container"><div class="row g-4 align-items-start">
+        <section class="col-12 col-md-6 col-lg-4" aria-labelledby="footer-brand-title">
+            <h2 id="footer-brand-title" class="h5 fw-bold mb-3">TOP GAME</h2>
+            <p><img src="images/logo-mark-white.svg" alt="Знак TOP GAME" width="36" class="img-fluid me-2">Киберспортивный клуб в центре Астаны.</p>
+            <p class="mb-0">Круглосуточно, 24/7</p>
+        </section>
+        <section class="col-12 col-md-6 col-lg-4" aria-labelledby="footer-contacts-title">
+            <h2 id="footer-contacts-title" class="h5 fw-bold mb-3">Контакты</h2>
+            <address class="fst-normal">
+<p>Астана, ул. Динмухамеда Кунаева, 23</p>
+<a id="footer-phone" href="tel:+77064005040" class="link-light">+7 706 400 50 40</a>
+</address>
+            <a id="footer-map" href="https://2gis.kz/astana/firm/70000001080411948" target="_blank" rel="noopener noreferrer" class="link-light">Посмотреть клуб в 2GIS</a>
+        </section>
+        <div class="col-12 col-md-6 col-lg-4">
+<p>© 2026 TOP GAME</p>
+<p><a id="footer-contacts-link" href="about.html#contacts" class="link-light">Адрес и контакты</a></p>
+<a id="footer-rules-link" href="rules.html" class="link-light">Правила клуба</a>
+</div>
+    </div></div>
+</footer>
     </body>
 </html>

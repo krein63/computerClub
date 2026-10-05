@@ -1,0 +1,711 @@
+{
+  "results": [
+    {
+      "page": "index.html",
+      "width": 375,
+      "dimensions": {
+        "viewport": 375,
+        "document": 375,
+        "images": [
+          {
+            "src": "images/logo.png",
+            "loaded": true
+          },
+          {
+            "src": "images/hero.jpg",
+            "loaded": true
+          },
+          {
+            "src": "images/peripherals.jpg",
+            "loaded": true
+          },
+          {
+            "src": "images/private-zone.jpg",
+            "loaded": true
+          },
+          {
+            "src": "images/main-zone.jpg",
+            "loaded": true
+          },
+          {
+            "src": "images/duos-zone.jpg",
+            "loaded": true
+          },
+          {
+            "src": "images/private-zone.jpg",
+            "loaded": true
+          },
+          {
+            "src": "images/logo-mark-white.svg",
+            "loaded": true
+          }
+        ]
+      },
+      "menu": true,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "failed": []
+    },
+    {
+      "page": "prices.html",
+      "width": 375,
+      "dimensions": {
+        "viewport": 375,
+        "document": 375,
+        "images": [
+          {
+            "src": "images/logo.png",
+            "loaded": true
+          },
+          {
+            "src": "images/prices-hero.jpg",
+            "loaded": true
+          },
+          {
+            "src": "images/logo-mark-white.svg",
+            "loaded": true
+          }
+        ]
+      },
+      "menu": true,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "failed": []
+    },
+    {
+      "page": "computers.html",
+      "width": 375,
+      "dimensions": {
+        "viewport": 375,
+        "document": 375,
+        "images": [
+          {
+            "src": "images/logo.png",
+            "loaded": true
+          },
+          {
+            "src": "images/main-zone.jpg",
+            "loaded": true
+          },
+          {
+            "src": "images/duos-zone.jpg",
+            "loaded": true
+          },
+          {
+            "src": "images/private-zone.jpg",
+            "loaded": true
+          },
+          {
+            "src": "images/peripherals.jpg",
+            "loaded": true
+          },
+          {
+            "src": "images/logo-mark-white.svg",
+            "loaded": true
+          }
+        ]
+      },
+      "menu": true,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "failed": []
+    },
+    {
+      "page": "booking.html",
+      "width": 375,
+      "dimensions": {
+        "viewport": 375,
+        "document": 375,
+        "images": [
+          {
+            "src": "images/logo.png",
+            "loaded": true
+          },
+          {
+            "src": "images/peripherals.jpg",
+            "loaded": true
+          },
+          {
+            "src": "images/logo-mark-white.svg",
+            "loaded": true
+          }
+        ]
+      },
+      "menu": true,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "failed": []
+    },
+    {
+      "page": "games.html",
+      "width": 375,
+      "dimensions": {
+        "viewport": 375,
+        "document": 375,
+        "images": [
+          {
+            "src": "images/logo.png",
+            "loaded": true
+          },
+          {
+            "src": "images/gaming-hall-blue.jpg",
+            "loaded": true
+          },
+          {
+            "src": "images/peripherals.jpg",
+            "loaded": true
+          },
+          {
+            "src": "images/logo-mark-white.svg",
+            "loaded": true
+          }
+        ]
+      },
+      "menu": true,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "failed": []
+    },
+    {
+      "page": "rules.html",
+      "width": 375,
+      "dimensions": {
+        "viewport": 375,
+        "document": 375,
+        "images": [
+          {
+            "src": "images/logo.png",
+            "loaded": true
+          },
+          {
+            "src": "images/clean.png",
+            "loaded": true
+          },
+          {
+            "src": "images/logo-mark-white.svg",
+            "loaded": true
+          }
+        ]
+      },
+      "menu": true,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "failed": []
+    },
+    {
+      "page": "about.html",
+      "width": 375,
+      "dimensions": {
+        "viewport": 375,
+        "document": 375,
+        "images": [
+          {
+            "src": "images/logo.png",
+            "loaded": true
+          },
+          {
+            "src": "images/club-exterior.jpg",
+            "loaded": true
+          },
+          {
+            "src": "images/hero.jpg",
+            "loaded": true
+          },
+          {
+            "src": "images/prices-hero.jpg",
+            "loaded": true
+          },
+          {
+            "src": "images/logo-mark-white.svg",
+            "loaded": true
+          }
+        ]
+      },
+      "menu": true,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "failed": []
+    },
+    {
+      "page": "index.html",
+      "width": 768,
+      "dimensions": {
+        "viewport": 768,
+        "document": 768,
+        "images": [
+          {
+            "src": "images/logo.png",
+            "loaded": true
+          },
+          {
+            "src": "images/hero.jpg",
+            "loaded": true
+          },
+          {
+            "src": "images/peripherals.jpg",
+            "loaded": true
+          },
+          {
+            "src": "images/private-zone.jpg",
+            "loaded": true
+          },
+          {
+            "src": "images/main-zone.jpg",
+            "loaded": true
+          },
+          {
+            "src": "images/duos-zone.jpg",
+            "loaded": true
+          },
+          {
+            "src": "images/private-zone.jpg",
+            "loaded": true
+          },
+          {
+            "src": "images/logo-mark-white.svg",
+            "loaded": true
+          }
+        ]
+      },
+      "menu": true,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "failed": []
+    },
+    {
+      "page": "prices.html",
+      "width": 768,
+      "dimensions": {
+        "viewport": 768,
+        "document": 768,
+        "images": [
+          {
+            "src": "images/logo.png",
+            "loaded": true
+          },
+          {
+            "src": "images/prices-hero.jpg",
+            "loaded": true
+          },
+          {
+            "src": "images/logo-mark-white.svg",
+            "loaded": true
+          }
+        ]
+      },
+      "menu": true,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "failed": []
+    },
+    {
+      "page": "computers.html",
+      "width": 768,
+      "dimensions": {
+        "viewport": 768,
+        "document": 768,
+        "images": [
+          {
+            "src": "images/logo.png",
+            "loaded": true
+          },
+          {
+            "src": "images/main-zone.jpg",
+            "loaded": true
+          },
+          {
+            "src": "images/duos-zone.jpg",
+            "loaded": true
+          },
+          {
+            "src": "images/private-zone.jpg",
+            "loaded": true
+          },
+          {
+            "src": "images/peripherals.jpg",
+            "loaded": true
+          },
+          {
+            "src": "images/logo-mark-white.svg",
+            "loaded": true
+          }
+        ]
+      },
+      "menu": true,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "failed": []
+    },
+    {
+      "page": "booking.html",
+      "width": 768,
+      "dimensions": {
+        "viewport": 768,
+        "document": 768,
+        "images": [
+          {
+            "src": "images/logo.png",
+            "loaded": true
+          },
+          {
+            "src": "images/peripherals.jpg",
+            "loaded": true
+          },
+          {
+            "src": "images/logo-mark-white.svg",
+            "loaded": true
+          }
+        ]
+      },
+      "menu": true,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "failed": []
+    },
+    {
+      "page": "games.html",
+      "width": 768,
+      "dimensions": {
+        "viewport": 768,
+        "document": 768,
+        "images": [
+          {
+            "src": "images/logo.png",
+            "loaded": true
+          },
+          {
+            "src": "images/gaming-hall-blue.jpg",
+            "loaded": true
+          },
+          {
+            "src": "images/peripherals.jpg",
+            "loaded": true
+          },
+          {
+            "src": "images/logo-mark-white.svg",
+            "loaded": true
+          }
+        ]
+      },
+      "menu": true,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "failed": []
+    },
+    {
+      "page": "rules.html",
+      "width": 768,
+      "dimensions": {
+        "viewport": 768,
+        "document": 768,
+        "images": [
+          {
+            "src": "images/logo.png",
+            "loaded": true
+          },
+          {
+            "src": "images/clean.png",
+            "loaded": true
+          },
+          {
+            "src": "images/logo-mark-white.svg",
+            "loaded": true
+          }
+        ]
+      },
+      "menu": true,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "failed": []
+    },
+    {
+      "page": "about.html",
+      "width": 768,
+      "dimensions": {
+        "viewport": 768,
+        "document": 768,
+        "images": [
+          {
+            "src": "images/logo.png",
+            "loaded": true
+          },
+          {
+            "src": "images/club-exterior.jpg",
+            "loaded": true
+          },
+          {
+            "src": "images/hero.jpg",
+            "loaded": true
+          },
+          {
+            "src": "images/prices-hero.jpg",
+            "loaded": true
+          },
+          {
+            "src": "images/logo-mark-white.svg",
+            "loaded": true
+          }
+        ]
+      },
+      "menu": true,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "failed": []
+    },
+    {
+      "page": "index.html",
+      "width": 1440,
+      "dimensions": {
+        "viewport": 1440,
+        "document": 1440,
+        "images": [
+          {
+            "src": "images/logo.png",
+            "loaded": true
+          },
+          {
+            "src": "images/hero.jpg",
+            "loaded": true
+          },
+          {
+            "src": "images/peripherals.jpg",
+            "loaded": true
+          },
+          {
+            "src": "images/private-zone.jpg",
+            "loaded": true
+          },
+          {
+            "src": "images/main-zone.jpg",
+            "loaded": true
+          },
+          {
+            "src": "images/duos-zone.jpg",
+            "loaded": true
+          },
+          {
+            "src": "images/private-zone.jpg",
+            "loaded": true
+          },
+          {
+            "src": "images/logo-mark-white.svg",
+            "loaded": true
+          }
+        ]
+      },
+      "menu": true,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "failed": []
+    },
+    {
+      "page": "prices.html",
+      "width": 1440,
+      "dimensions": {
+        "viewport": 1440,
+        "document": 1440,
+        "images": [
+          {
+            "src": "images/logo.png",
+            "loaded": true
+          },
+          {
+            "src": "images/prices-hero.jpg",
+            "loaded": true
+          },
+          {
+            "src": "images/logo-mark-white.svg",
+            "loaded": true
+          }
+        ]
+      },
+      "menu": true,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "failed": []
+    },
+    {
+      "page": "computers.html",
+      "width": 1440,
+      "dimensions": {
+        "viewport": 1440,
+        "document": 1440,
+        "images": [
+          {
+            "src": "images/logo.png",
+            "loaded": true
+          },
+          {
+            "src": "images/main-zone.jpg",
+            "loaded": true
+          },
+          {
+            "src": "images/duos-zone.jpg",
+            "loaded": true
+          },
+          {
+            "src": "images/private-zone.jpg",
+            "loaded": true
+          },
+          {
+            "src": "images/peripherals.jpg",
+            "loaded": true
+          },
+          {
+            "src": "images/logo-mark-white.svg",
+            "loaded": true
+          }
+        ]
+      },
+      "menu": true,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "failed": []
+    },
+    {
+      "page": "booking.html",
+      "width": 1440,
+      "dimensions": {
+        "viewport": 1440,
+        "document": 1440,
+        "images": [
+          {
+            "src": "images/logo.png",
+            "loaded": true
+          },
+          {
+            "src": "images/peripherals.jpg",
+            "loaded": true
+          },
+          {
+            "src": "images/logo-mark-white.svg",
+            "loaded": true
+          }
+        ]
+      },
+      "menu": true,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "failed": []
+    },
+    {
+      "page": "games.html",
+      "width": 1440,
+      "dimensions": {
+        "viewport": 1440,
+        "document": 1440,
+        "images": [
+          {
+            "src": "images/logo.png",
+            "loaded": true
+          },
+          {
+            "src": "images/gaming-hall-blue.jpg",
+            "loaded": true
+          },
+          {
+            "src": "images/peripherals.jpg",
+            "loaded": true
+          },
+          {
+            "src": "images/logo-mark-white.svg",
+            "loaded": true
+          }
+        ]
+      },
+      "menu": true,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "failed": []
+    },
+    {
+      "page": "rules.html",
+      "width": 1440,
+      "dimensions": {
+        "viewport": 1440,
+        "document": 1440,
+        "images": [
+          {
+            "src": "images/logo.png",
+            "loaded": true
+          },
+          {
+            "src": "images/clean.png",
+            "loaded": true
+          },
+          {
+            "src": "images/logo-mark-white.svg",
+            "loaded": true
+          }
+        ]
+      },
+      "menu": true,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "failed": []
+    },
+    {
+      "page": "about.html",
+      "width": 1440,
+      "dimensions": {
+        "viewport": 1440,
+        "document": 1440,
+        "images": [
+          {
+            "src": "images/logo.png",
+            "loaded": true
+          },
+          {
+            "src": "images/club-exterior.jpg",
+            "loaded": true
+          },
+          {
+            "src": "images/hero.jpg",
+            "loaded": true
+          },
+          {
+            "src": "images/prices-hero.jpg",
+            "loaded": true
+          },
+          {
+            "src": "images/logo-mark-white.svg",
+            "loaded": true
+          }
+        ]
+      },
+      "menu": true,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "failed": []
+    }
+  ],
+  "formChecks": {
+    "bookingEmptyValid": false,
+    "bookingFilledValid": true,
+    "booking46Valid": false,
+    "bookingEnterDoesNotNavigate": true,
+    "bookingButtonDoesNotNavigate": true,
+    "bookingReset": true,
+    "gameEmptyValid": false,
+    "gameFilledValid": true,
+    "gameEnterDoesNotNavigate": true,
+    "gameReset": true
+  },
+  "journeys": [
+    {
+      "name": "contacts",
+      "end": "file:///C:/Users/aliil/Documents/Codex/2026-10-05/https-github-com-krein63-computerclub-https/work/computerClub/about.html#contacts",
+      "ok": true
+    },
+    {
+      "name": "booking",
+      "end": "file:///C:/Users/aliil/Documents/Codex/2026-10-05/https-github-com-krein63-computerclub-https/work/computerClub/booking.html#tariff-selection",
+      "ok": true
+    },
+    {
+      "name": "games",
+      "end": "file:///C:/Users/aliil/Documents/Codex/2026-10-05/https-github-com-krein63-computerclub-https/work/computerClub/games.html",
+      "ok": true
+    }
+  ]
+}
