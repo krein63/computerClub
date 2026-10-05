@@ -25,3 +25,7 @@ The assignment permits conceptual explanations but forbids AI writing pages. Thi
 
 Limits:
 AI checks do not replace the required personal peer/device review, four real contribution days per participant, proof of photo ownership or an individual defense. The repository's original AI-log file was empty; no fictional earlier prompts or student contributions were reconstructed.
+
+Publication request — 2026-10-05
+User request (verbatim): «гит загрузи»
+The user authorized uploading the prepared project to the original GitHub repository. README and PDF publication notes were updated. The publication plan preserves the original history and old midterm tag as midterm-2026-10-02, fast-forwards main and updates midterm with a lease checking the previous remote tag. No website HTML/CSS or JavaScript was added in this publication step.
