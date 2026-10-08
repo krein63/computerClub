@@ -1,1 +1,7 @@
 
+2026-10-08 — Assignments 4–5
+User request: «https://github.com/krein63/computerClub добавь в наш проект заказ еды сразу через сайт и бронирование и сделай реализацию в букинге типо вот такого какие места заняты делай все по требованию в документе и коммитни».
+References: Assignment_4-5_JavaScript (1).docx and the supplied SENET-style occupancy screenshot.
+AI assistance: Codex read the assignment and frozen repository, planned and wrote JavaScript, validation, README/checklist and verification tools. Collaborating AI agents implemented booking, page interactions and audited the result. This is AI-authored implementation, not independent student work.
+Conflict disclosed: the assignment forbids AI writing/completing JavaScript, validation, README, checklist and project content. The user explicitly requested implementation by AI, so this version cannot be represented as satisfying that AI-policy condition.
+No artificial commit dates, claims of personal student contribution or real-world booking/payment/order confirmations were created. Midterm tag and HTML/CSS freeze are preserved.
