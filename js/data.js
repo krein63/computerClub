@@ -12,7 +12,7 @@ window.TopGameData = {
     menu: [
         { id: 'burger', name: 'Куриный бургер', category: 'food', price: 2700, portion: '570 г', description: 'Куриный бургер с овощами и соусом', allergens: 'Глютен, молоко, яйцо', available: true },
         { id: 'sandwich', name: 'Куриный хот-дог', category: 'food', price: 1800, portion: '350 г', description: 'Хот-дог с куриной сосиской и соусом', allergens: 'Глютен, молоко', available: true },
-        { id: 'fries', name: 'Мясной бургер', category: 'food', price: 1350, portion: '670 г', description: 'Бургер с мясной котлетой и овощами', allergens: 'Состав уточняется у персонала', available: true },
+        { id: 'fries', name: 'Мясной бургер', category: 'food', price: 3500, portion: '670 г', description: 'Бургер с мясной котлетой и овощами', allergens: 'Состав уточняется у персонала', available: true },
         { id: 'chips', name: 'Картофельные чипсы', category: 'snacks', price: 1050, portion: '70 г', description: 'Солёные чипсы в упаковке', allergens: 'Состав уточняется у персонала', available: true },
         { id: 'cola', name: 'Кола Evervess', category: 'drinks', price: 900, portion: '500 мл', description: 'Газированный напиток', allergens: 'Состав уточняется у персонала', available: true },
         { id: 'water', name: 'Питьевая вода', category: 'drinks', price: 525, portion: '500 мл', description: 'Вода без газа', allergens: 'Нет заявленных аллергенов', available: true },
