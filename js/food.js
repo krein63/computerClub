@@ -199,7 +199,7 @@
         const column = el('div', 'col-12 col-md-6 col-lg-4');
         const article = el('article', 'card h-100 shadow-sm');
         article.dataset.foodId = item.id;
-        const photo = el('img', `card-img-top w-100 bg-white ${item.category === 'food' ? 'object-fit-cover' : 'object-fit-contain'}`);
+        const photo = el('img', `card-img-top w-100 bg-white ${item.category === 'food' || item.id === 'cookie' ? 'object-fit-cover' : 'object-fit-contain'}`);
         photo.src = item.image;
         photo.alt = item.imageAlt;
         photo.height = 190;
