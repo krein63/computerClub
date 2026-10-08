@@ -10,7 +10,7 @@ window.TopGameData = {
     ],
     // Sample food and prices for the assignment, not the club's verified menu.
     menu: [
-        { id: 'burger', name: 'Куриный бургер', category: 'food', price: 1800, portion: '230 г', description: 'Курица, сыр, салат, томат и соус', allergens: 'Глютен, молоко, яйцо', available: true },
+        { id: 'burger', name: 'Куриный бургер', category: 'food', price: 1800, portion: '230 г', description: 'Курица, бекон, сыр, салат, томат и соус', allergens: 'Глютен, молоко, яйцо', available: true },
         { id: 'sandwich', name: 'Сэндвич с сыром', category: 'food', price: 1200, portion: '180 г', description: 'Ржаной хлеб и сыр', allergens: 'Глютен, молоко', available: true },
         { id: 'fries', name: 'Картофель фри', category: 'snacks', price: 900, portion: '150 г', description: 'Порция картофеля с кетчупом', allergens: 'Состав уточняется у персонала', available: true },
         { id: 'chips', name: 'Картофельные чипсы', category: 'snacks', price: 700, portion: '90 г', description: 'Солёные чипсы в упаковке', allergens: 'Состав уточняется у персонала', available: true },

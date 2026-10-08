@@ -5,3 +5,9 @@ References: Assignment_4-5_JavaScript (1).docx and the supplied SENET-style occu
 AI assistance: Codex read the assignment and frozen repository, planned and wrote JavaScript, validation, README/checklist and verification tools. Collaborating AI agents implemented booking, page interactions and audited the result. This is AI-authored implementation, not independent student work.
 Conflict disclosed: the assignment forbids AI writing/completing JavaScript, validation, README, checklist and project content. The user explicitly requested implementation by AI, so this version cannot be represented as satisfying that AI-policy condition.
 No artificial commit dates, claims of personal student contribution or real-world booking/payment/order confirmations were created. Midterm tag and HTML/CSS freeze are preserved.
+
+Further user requests, 2026-10-08:
+«сделай под дизайн проекта и общий 20 пк мейн 10 дуо 5 и приват 5». Updated visual map to the existing light project design and all DOM counts/validation to 20 PCs (Main10/Duo5/Private5), preserving frozen HTML/CSS.
+«сделай еда и напитки с фото возьми с инета фото колы и тд». Added sourced internet photographs to the food/drinks catalogue, with attribution and license records.
+
+«агента проверку на качество сделай и что бы под дизайн проверил». A separate independent design agent compared the new map, menu, cart and home panel with the established project at 375/768/1440 px. The implementation was corrected after review: larger cart quantity buttons, light home panel, and food ingredient descriptions consistent with photos. A separate QA agent checked functionality, responsiveness, console, assets, frozen HTML/CSS and source hashes.
