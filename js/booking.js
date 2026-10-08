@@ -20,8 +20,8 @@
     const zoneRadios = [...form.querySelectorAll('[name="gaming-zone"]')];
     const zoneNames = { main: 'MAIN', duo: 'DUO', private: 'PRIVATE' };
     const snapshotOccupied = [3, 4, 8, 12, 17];
-    const selectedSeats = new Set();
-    const seatButtons = new Map();
+    let selectedSeats = []; // Номера выбранных компьютеров.
+    const seatButtons = {}; // Кнопки карты по номеру ПК.
     const result = document.getElementById('booking-result');
     const success = document.getElementById('booking-success');
     const formStatus = document.getElementById('booking-status');
@@ -100,7 +100,7 @@
             const status = el('span', 'd-block small', 'Свободно');
             button.append(number, status);
             button.addEventListener('click', () => toggleSeat(seat));
-            seatButtons.set(seat.id, { button, status });
+            seatButtons[seat.id] = { button, status };
             column.append(button);
             grid.append(column);
         }
@@ -112,7 +112,7 @@
     clearSelection.type = 'button';
     clearSelection.id = 'clear-seat-selection';
     clearSelection.addEventListener('click', () => {
-        selectedSeats.clear();
+        selectedSeats = [];
         notify(mapFeedback, 'Выбор ПК очищен. Выберите места для нового запроса.');
         refresh();
     });
@@ -170,7 +170,7 @@
         return saved.filter(item => {
             if (!item || typeof item.id !== 'string' || item.id.length > 80 || !Object.hasOwn(zoneNames, item.zone) || !tariffs.some(tariff => tariff.id === item.tariff)) return false;
             const requested = interval(item.date, item.time, item.duration);
-            return requested && requested.start === item.start && requested.end === item.end && Array.isArray(item.seats) && item.seats.length > 0 && new Set(item.seats).size === item.seats.length && item.seats.every(id => seats.some(seat => seat.id === id && seat.zone === item.zone));
+            return requested && requested.start === item.start && requested.end === item.end && Array.isArray(item.seats) && item.seats.length > 0 && item.seats.every((id, index) => item.seats.indexOf(id) === index) && item.seats.every(id => seats.some(seat => seat.id === id && seat.zone === item.zone));
         });
     }
 
@@ -186,39 +186,42 @@
     }
 
     function occupiedSeats(requestedInterval) {
-        if (!requestedInterval) return new Set(snapshotOccupied);
-        const busy = new Set();
+        if (!requestedInterval) return snapshotOccupied.slice();
+        const busy = [];
+        function addBusy(id) {
+            if (!busy.includes(id)) busy.push(id);
+        }
         // A fixed sample session demonstrates overlap logic, not live club availability.
         const sampleSession = interval(today(), '18:00', 3);
-        if (overlaps(requestedInterval, sampleSession)) snapshotOccupied.forEach(id => busy.add(id));
-        reservations.filter(item => overlaps(requestedInterval, item)).forEach(item => item.seats.forEach(id => busy.add(id)));
+        if (overlaps(requestedInterval, sampleSession)) snapshotOccupied.forEach(id => addBusy(id));
+        reservations.filter(item => overlaps(requestedInterval, item)).forEach(item => item.seats.forEach(id => addBusy(id)));
         return busy;
     }
 
     function chooseZone(zone) {
         zoneRadios.forEach(radio => { radio.checked = radio.value === zone; });
-        selectedSeats.clear();
+        selectedSeats = [];
         if (zone === 'duo') fields.players.value = '2';
     }
 
     function toggleSeat(seat) {
         const data = values();
-        if (occupiedSeats(interval(data.date, data.time, data.duration)).has(seat.id)) return;
+        if (occupiedSeats(interval(data.date, data.time, data.duration)).includes(seat.id)) return;
         let switched = false;
         if (data.zone !== seat.zone) {
-            switched = selectedSeats.size > 0;
+            switched = selectedSeats.length > 0;
             chooseZone(seat.zone);
         }
-        if (selectedSeats.has(seat.id)) {
-            selectedSeats.delete(seat.id);
+        if (selectedSeats.includes(seat.id)) {
+            selectedSeats = selectedSeats.filter(id => id !== seat.id);
             notify(mapFeedback, `PC ${seat.id} исключён из выбора.`);
         } else {
             const count = Number(fields.players.value);
-            if (Number.isInteger(count) && count > 0 && selectedSeats.size >= count) {
+            if (Number.isInteger(count) && count > 0 && selectedSeats.length >= count) {
                 notify(mapFeedback, `Для ${count} игроков уже выбрано ${count} ПК. Снимите один выбор или увеличьте количество игроков.`, 'error');
                 return;
             }
-            selectedSeats.add(seat.id);
+            selectedSeats.push(seat.id);
             notify(mapFeedback, `${switched ? 'Выбрана другая зона, предыдущие ПК сняты. ' : ''}PC ${seat.id} добавлен в выбор.`);
         }
         refresh();
@@ -240,13 +243,13 @@
         const requestedInterval = interval(data.date, data.time, data.duration);
         const busy = occupiedSeats(requestedInterval);
         for (const seat of seats) {
-            const { button, status } = seatButtons.get(seat.id);
-            const occupied = busy.has(seat.id);
-            const selected = selectedSeats.has(seat.id);
+            const { button, status } = seatButtons[seat.id];
+            const occupied = busy.includes(seat.id);
+            const selected = selectedSeats.includes(seat.id);
             const state = occupied ? 'occupied' : selected ? 'selected' : 'available';
             button.disabled = occupied;
             button.dataset.seatState = state;
-            button.classList.toggle('btn-outline-dark', state === 'available');
+            button.classList.toggle('btn-outline-light', state === 'available');
             button.classList.toggle('btn-secondary', state === 'occupied');
             button.classList.toggle('opacity-100', state === 'occupied');
             button.classList.toggle('btn-danger', state === 'selected');
@@ -257,12 +260,12 @@
             status.textContent = ownRequest ? 'Ваш запрос' : occupied ? 'Занято' : selected ? 'Выбрано' : 'Свободно';
             button.setAttribute('aria-label', `PC ${seat.id}, зона ${zoneNames[seat.zone]}, ${status.textContent.toLowerCase()}`);
         }
-        const freeCount = seats.length - busy.size;
+        const freeCount = seats.length - busy.length;
         const context = requestedInterval ? `${data.date}, ${data.time}, ${data.duration} ч. по Астане.` : 'Демоснимок: укажите дату, время и длительность для проверки пересечений.';
         const sameAcceptedChoice = lastAccepted?.fingerprint === JSON.stringify(data);
-        const conflictHint = requestedInterval && !sameAcceptedChoice && data.seats.some(id => busy.has(id)) ? ' Один из выбранных ПК занят в этом интервале. Нажмите «Снять выбор мест», затем выберите свободные ПК или измените время.' : '';
-        mapStatus.textContent = `${context} Свободно: ${freeCount}. Занято: ${busy.size}. Выбрано: ${selectedSeats.size} из ${Number.isInteger(data.players) && data.players > 0 ? data.players : '—'}.${conflictHint}`;
-        clearSelection.disabled = selectedSeats.size === 0;
+        const conflictHint = requestedInterval && !sameAcceptedChoice && data.seats.some(id => busy.includes(id)) ? ' Один из выбранных ПК занят в этом интервале. Нажмите «Снять выбор мест», затем выберите свободные ПК или измените время.' : '';
+        mapStatus.textContent = `${context} Свободно: ${freeCount}. Занято: ${busy.length}. Выбрано: ${selectedSeats.length} из ${Number.isInteger(data.players) && data.players > 0 ? data.players : '—'}.${conflictHint}`;
+        clearSelection.disabled = selectedSeats.length === 0;
     }
 
     function refresh() {
@@ -309,7 +312,7 @@
         const busy = occupiedSeats(requestedInterval);
         const duplicate = lastAccepted && lastAccepted.fingerprint === JSON.stringify(data) && reservations.some(item => item.id === lastAccepted.id);
         let seatError = data.seats.length !== data.players ? `Выберите ровно ${Number.isInteger(data.players) && data.players > 0 ? data.players : 'по одному'} ПК: сейчас выбрано ${data.seats.length}.` : data.seats.some(id => seats.find(seat => seat.id === id)?.zone !== data.zone) ? 'Все выбранные ПК должны находиться в одной выбранной зоне.' : '';
-        if (!seatError && !duplicate && requestedInterval && data.seats.some(id => busy.has(id))) seatError = 'Выбранный ПК занят в пересекающееся время на демо-схеме. Снимите выбор и выберите свободные места или другой интервал.';
+        if (!seatError && !duplicate && requestedInterval && data.seats.some(id => busy.includes(id))) seatError = 'Выбранный ПК занят в пересекающееся время на демо-схеме. Снимите выбор и выберите свободные места или другой интервал.';
         check(map, seatError);
         check(fields.comment, data.comment.length > 1000 ? 'Сократите комментарий до 1 000 символов.' : '');
         check(fields.agreement, fields.agreement.checked ? '' : 'Подтвердите правильность данных.');
@@ -405,8 +408,8 @@
     form.addEventListener('change', event => {
         if (event.target === fields.tariff && fields.tariff.value === 'three-hours') duration.value = '3';
         if (event.target.matches('[name="gaming-zone"]')) {
-            const removed = selectedSeats.size;
-            selectedSeats.clear();
+            const removed = selectedSeats.length;
+            selectedSeats = [];
             if (event.target.value === 'duo') fields.players.value = '2';
             notify(mapFeedback, `Выбрана зона ${zoneNames[event.target.value]}.${removed ? ' Предыдущий выбор ПК очищен.' : ''} Выберите компьютеры на карте.`);
         }
@@ -420,7 +423,7 @@
         });
         fields.tariff.value = '';
         fields.comment.value = '';
-        selectedSeats.clear();
+        selectedSeats = [];
         lastAccepted = null;
         attempted = false;
         clearErrors(form);

@@ -10,7 +10,7 @@
         { id: 'duo', name: 'Duo’s', processor: 'Ryzen 9600X', graphics: 'RTX 4070', memory: 32, refresh: 380, privacy: false, description: 'Места рядом для двух игроков.', article: 'computers-article-2' },
         { id: 'private', name: 'Private', processor: 'Ryzen 7800X3D', graphics: 'RTX 4070 Super', memory: 32, refresh: 380, privacy: true, description: 'Отдельное игровое пространство.', article: 'computers-article-3' }
     ].map(zone => ({ ...zone, capacity: app.seats.filter(seat => seat.zone === zone.id).length, node: document.getElementById(zone.article).parentElement }));
-    const selected = new Set();
+    let selected = [];
     const controls = app.el('form', 'row g-3 mb-4');
     controls.setAttribute('role', 'search');
     controls.setAttribute('aria-label', 'Подбор игрового оборудования');
@@ -81,8 +81,8 @@
         article.querySelector('.card-body').append(wrapper);
         article.querySelector('.card-body').append(app.el('p', 'small text-body-secondary mt-3 mb-0', `Мест на демонстрационной схеме: ${zone.capacity}.`));
         checkbox.addEventListener('change', () => {
-            if (checkbox.checked) selected.add(zone.id);
-            else selected.delete(zone.id);
+            if (checkbox.checked) selected.push(zone.id);
+            else selected = selected.filter(id => id !== zone.id);
             renderComparison();
         });
     });
@@ -110,7 +110,7 @@
         remove.type = 'button';
         remove.dataset.removeZone = zone.id;
         remove.addEventListener('click', () => {
-            selected.delete(zone.id);
+            selected = selected.filter(id => id !== zone.id);
             renderComparison();
             if (clear.disabled) comparisonStatus.focus();
             else clear.focus();
@@ -121,11 +121,11 @@
         return column;
     }
     function renderComparison() {
-        const choices = equipment.filter(zone => selected.has(zone.id));
+        const choices = equipment.filter(zone => selected.includes(zone.id));
         equipment.forEach(zone => {
             // Nodes remain usable when a filter removes their wrapper from the document.
-            zone.node.querySelector('article').classList.toggle('selected', selected.has(zone.id));
-            zone.node.querySelector(`#compare-${zone.id}`).checked = selected.has(zone.id);
+            zone.node.querySelector('article').classList.toggle('selected', selected.includes(zone.id));
+            zone.node.querySelector(`#compare-${zone.id}`).checked = selected.includes(zone.id);
         });
         app.renderList(comparisonResult, choices, renderComparisonCard, 'Сравнение пусто. Отметьте зоны в карточках выше.');
         comparisonStatus.textContent = choices.length === 0 ? 'Выбрано зон: 0.' : `Выбрано зон: ${choices.length}. Характеристики взяты из исходного описания клуба; наличие мест проверьте при бронировании.`;
@@ -136,7 +136,7 @@
     controls.addEventListener('change', renderEquipment);
     reset.addEventListener('click', () => { controls.reset(); renderEquipment(); search.focus(); });
     clear.addEventListener('click', () => {
-        selected.clear();
+        selected = [];
         renderComparison();
         search.focus();
     });

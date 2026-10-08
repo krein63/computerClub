@@ -16,13 +16,17 @@
     function readCart() {
         const stored = store.get('cart', []);
         if (!Array.isArray(stored)) return [];
-        const quantities = new Map();
-        stored.forEach(line => {
-            if (line && menu.some(item => item.id === line.id && item.available) && Number.isInteger(line.quantity) && line.quantity > 0) {
-                quantities.set(line.id, Math.min(maxQuantity, (quantities.get(line.id) || 0) + line.quantity));
-            }
-        });
-        return Array.from(quantities, ([id, quantity]) => ({ id, quantity }));
+        // Восстанавливаем только доступные товары; повторные строки объединяем.
+        const restored = [];
+        for (const line of stored) {
+            if (!line) continue;
+            const product = menu.find(item => item.id === line.id);
+            if (!product || !product.available || !Number.isInteger(line.quantity) || line.quantity < 1) continue;
+            const existing = restored.find(item => item.id === line.id);
+            if (existing) existing.quantity = Math.min(maxQuantity, existing.quantity + line.quantity);
+            else restored.push({ id: line.id, quantity: Math.min(maxQuantity, line.quantity) });
+        }
+        return restored;
     }
 
     function cartTotals(lines) {
@@ -195,7 +199,7 @@
         const column = el('div', 'col-12 col-md-6 col-lg-4');
         const article = el('article', 'card h-100 shadow-sm');
         article.dataset.foodId = item.id;
-        const photo = el('img', `card-img-top w-100 bg-white ${item.category === 'drinks' ? 'object-fit-contain' : 'object-fit-cover'}`);
+        const photo = el('img', `card-img-top w-100 bg-white ${'object-fit-contain'}`);
         photo.src = item.image;
         photo.alt = item.imageAlt;
         photo.height = 190;

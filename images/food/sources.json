@@ -1,122 +1,50 @@
 [
   {
     "id": "burger",
-    "path": "images/food/burger.jpg",
-    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Fried_chicken_burger_.jpg",
-    "author": "Kurt Kaiser",
-    "license": "CC0",
-    "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/deed.en",
-    "downloadUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c8/Fried_chicken_burger_.jpg/500px-Fried_chicken_burger_.jpg",
-    "dimensions": [
-      500,
-      375
-    ],
-    "bytes": 51790,
-    "changes": "Wikimedia thumbnail; no local image modifications"
+    "image": "https://eda.yandex.ru/images/12773219/7d4233d0d0ad4670995ea9817b86ac6f-orig.jpg",
+    "source": "https://eda7.ru/novye-doma/rest/cyberx-lounge-6nx3z/",
+    "note": "Фото меню CyberX, иллюстрация для учебного проекта; ассортимент TopGame не подтверждён."
   },
   {
     "id": "sandwich",
-    "path": "images/food/sandwich.jpg",
-    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Cheese_Sandwich_with_Rye_Bread.jpg",
-    "author": "Miscellaneous contributor",
-    "license": "CC0",
-    "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/deed.en",
-    "downloadUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a8/Cheese_Sandwich_with_Rye_Bread.jpg/500px-Cheese_Sandwich_with_Rye_Bread.jpg",
-    "dimensions": [
-      500,
-      375
-    ],
-    "bytes": 56151,
-    "changes": "Wikimedia thumbnail; no local image modifications"
+    "image": "https://eda.yandex.ru/images/13802765/c3881438649f433b9e51a3f37def5efb-orig.jpg",
+    "source": "https://eda7.ru/novye-doma/rest/cyberx-lounge-6nx3z/",
+    "note": "Фото меню CyberX, иллюстрация для учебного проекта; ассортимент TopGame не подтверждён."
   },
   {
     "id": "fries",
-    "path": "images/food/fries.jpg",
-    "sourceUrl": "https://commons.wikimedia.org/wiki/File:French_Fries.JPG",
-    "author": "StockSnap",
-    "license": "CC0",
-    "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/deed.en",
-    "downloadUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/83/French_Fries.JPG/500px-French_Fries.JPG",
-    "dimensions": [
-      500,
-      334
-    ],
-    "bytes": 48412,
-    "changes": "Wikimedia thumbnail; no local image modifications"
+    "image": "https://eda.yandex.ru/images/13802765/d39aea2c2f7b41a6bb79b046e5f28da8-orig.jpg",
+    "source": "https://eda7.ru/novye-doma/rest/cyberx-lounge-6nx3z/",
+    "note": "Фото меню CyberX, иллюстрация для учебного проекта; ассортимент TopGame не подтверждён."
   },
   {
     "id": "chips",
-    "path": "images/food/chips.jpg",
-    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Potato-Chips.jpg",
-    "author": "Evan-Amos",
-    "license": "Public domain",
-    "licenseUrl": "https://commons.wikimedia.org/wiki/File:Potato-Chips.jpg#Licensing",
-    "downloadUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/69/Potato-Chips.jpg/500px-Potato-Chips.jpg",
-    "dimensions": [
-      500,
-      375
-    ],
-    "bytes": 54157,
-    "changes": "Wikimedia thumbnail; no local image modifications"
+    "image": "https://cyberxcommunity.ru/upload/vitrina/7.png",
+    "source": "https://cyberxcommunity.ru/vitrina.html",
+    "note": "Фото меню CyberX, иллюстрация для учебного проекта; ассортимент TopGame не подтверждён."
   },
   {
     "id": "cola",
-    "path": "images/food/cola.jpg",
-    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Coca_Cola_200ml_Chinese_stubby.jpg",
-    "author": "Anna Frodesiak",
-    "license": "Public domain",
-    "licenseUrl": "https://commons.wikimedia.org/wiki/File:Coca_Cola_200ml_Chinese_stubby.jpg#Licensing",
-    "downloadUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f3/Coca_Cola_200ml_Chinese_stubby.jpg/500px-Coca_Cola_200ml_Chinese_stubby.jpg",
-    "dimensions": [
-      500,
-      935
-    ],
-    "bytes": 63906,
-    "changes": "Wikimedia thumbnail; no local image modifications"
+    "image": "https://cyberxcommunity.ru/upload/vitrina/05L_Evervess_Cola%20%281%29%20%281%29%201.png",
+    "source": "https://cyberxcommunity.ru/vitrina.html",
+    "note": "Фото меню CyberX, иллюстрация для учебного проекта; ассортимент TopGame не подтверждён."
   },
   {
     "id": "water",
-    "path": "images/food/water.jpg",
-    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Glass_of_Water_(50838445027).jpg",
-    "author": "Alabama Extension",
-    "license": "CC0",
-    "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/deed.en",
-    "downloadUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d2/Glass_of_Water_%2850838445027%29.jpg/500px-Glass_of_Water_%2850838445027%29.jpg",
-    "dimensions": [
-      500,
-      580
-    ],
-    "bytes": 47236,
-    "changes": "Wikimedia thumbnail; no local image modifications"
+    "image": "https://cyberxcommunity.ru/upload/vitrina/3.png",
+    "source": "https://cyberxcommunity.ru/vitrina.html",
+    "note": "Фото меню CyberX, иллюстрация для учебного проекта; ассортимент TopGame не подтверждён."
   },
   {
     "id": "tea",
-    "path": "images/food/tea.jpg",
-    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Black-tea.jpg",
-    "author": "Ultratomio",
-    "license": "Public domain",
-    "licenseUrl": "https://commons.wikimedia.org/wiki/File:Black-tea.jpg#Licensing",
-    "downloadUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/fa/Black-tea.jpg/500px-Black-tea.jpg",
-    "dimensions": [
-      500,
-      375
-    ],
-    "bytes": 36174,
-    "changes": "Wikimedia thumbnail; no local image modifications"
+    "image": "https://cyberxcommunity.ru/upload/vitrina/4.png",
+    "source": "https://cyberxcommunity.ru/vitrina.html",
+    "note": "Фото меню CyberX, иллюстрация для учебного проекта; ассортимент TopGame не подтверждён."
   },
   {
     "id": "cookie",
-    "path": "images/food/cookie.jpg",
-    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Chocolate_chip_cookies_on_cutting_board.jpg",
-    "author": "Mshuang2",
-    "license": "CC0",
-    "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/deed.en",
-    "downloadUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/ae/Chocolate_chip_cookies_on_cutting_board.jpg/500px-Chocolate_chip_cookies_on_cutting_board.jpg",
-    "dimensions": [
-      500,
-      375
-    ],
-    "bytes": 76521,
-    "changes": "Wikimedia thumbnail; no local image modifications"
+    "image": "https://cyberxcommunity.ru/upload/vitrina/5.png",
+    "source": "https://cyberxcommunity.ru/vitrina.html",
+    "note": "Фото меню CyberX, иллюстрация для учебного проекта; ассортимент TopGame не подтверждён."
   }
 ]

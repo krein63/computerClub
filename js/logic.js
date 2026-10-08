@@ -11,16 +11,26 @@
     }
 
     function cartTotals(lines, products) {
-        return lines.reduce((totals, line) => {
+        // Проходим по корзине и складываем количество и стоимость.
+        const totals = { quantity: 0, total: 0 };
+        for (const line of lines) {
             const product = findProduct(products, line.id);
-            if (!product || !validQuantity(line.quantity, 20)) return totals;
-            return { quantity: totals.quantity + line.quantity, total: totals.total + product.price * line.quantity };
-        }, { quantity: 0, total: 0 });
+            if (product && validQuantity(line.quantity, 20)) {
+                totals.quantity += line.quantity;
+                totals.total += product.price * line.quantity;
+            }
+        }
+        return totals;
     }
 
     function filterMenu(products, query, category, availableOnly) {
         const text = query.trim().toLocaleLowerCase('ru');
-        return products.filter(product => (category === 'all' || product.category === category) && (!availableOnly || product.available) && `${product.name} ${product.description}`.toLocaleLowerCase('ru').includes(text));
+        return products.filter(product => {
+            const matchesCategory = category === 'all' || product.category === category;
+            const matchesAvailability = !availableOnly || product.available;
+            const matchesSearch = (product.name + ' ' + product.description).toLocaleLowerCase('ru').includes(text);
+            return matchesCategory && matchesAvailability && matchesSearch;
+        });
     }
 
     function estimateVisit(tariffs, tariffId, hours, players) {

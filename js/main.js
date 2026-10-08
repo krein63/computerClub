@@ -1,10 +1,29 @@
 'use strict';
 
 (() => {
+    // Тёмная тема: используем готовые классы Bootstrap, CSS задания не меняем.
+    document.documentElement.dataset.bsTheme = 'dark';
+    const darkClasses = { 'bg-white': 'bg-body-secondary', 'text-dark': 'text-light', 'btn-outline-dark': 'btn-outline-light', 'border-dark': 'border-secondary', 'alert-light': 'alert-dark' };
+    function darkTheme(element) {
+        for (const lightClass in darkClasses) {
+            if (element.classList.contains(lightClass)) {
+                element.classList.replace(lightClass, darkClasses[lightClass]);
+            }
+        }
+        if (element.matches('.card, .form-control, .form-select')) element.classList.add('bg-dark', 'text-light');
+        if (element.matches('.btn-outline-danger')) element.classList.add('text-light');
+    }
+    document.body.classList.add('bg-dark', 'text-light');
+    document.querySelectorAll('*').forEach(darkTheme);
+
+    // Создаёт один элемент, задаёт классы и безопасный текст.
     function el(tag, classes = '', text = '') {
         const element = document.createElement(tag);
-        if (classes) element.classList.add(...classes.split(' ').filter(Boolean));
+        for (const name of classes.split(' ')) {
+            if (name) element.classList.add(name);
+        }
         if (text !== '') element.textContent = text;
+        darkTheme(element);
         return element;
     }
 
@@ -61,7 +80,8 @@
             error.id = errorId;
             field.insertAdjacentElement('afterend', error);
             const descriptions = (field.getAttribute('aria-describedby') || '').split(' ').filter(Boolean);
-            field.setAttribute('aria-describedby', [...new Set([...descriptions, errorId])].join(' '));
+            if (!descriptions.includes(errorId)) descriptions.push(errorId);
+            field.setAttribute('aria-describedby', descriptions.join(' '));
         }
         error.textContent = message;
         error.classList.toggle('hidden', !message);
