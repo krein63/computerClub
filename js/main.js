@@ -95,6 +95,20 @@
 
     window.TopGame = { ...window.TopGameData, ...window.TopGameLogic, el, money, reference, today, localDateTime, store, renderList, setError, clearErrors, validateContacts, notify };
 
+    // The user revised the club capacity after midterm. Update through DOM only.
+    const main = document.querySelector('main');
+    if (main) {
+        const texts = document.createTreeWalker(main, NodeFilter.SHOW_TEXT);
+        let node = texts.nextNode();
+        while (node) {
+            node.textContent = node.textContent.replace(/45(?=\s+(?:игров|компьютер|ПК))/g, String(window.TopGame.seats.length));
+            node = texts.nextNode();
+        }
+        main.querySelectorAll('input[max="45"]').forEach(field => { field.max = String(window.TopGame.seats.length); });
+        const capacityBadge = main.querySelector('strong abbr[title="персональных компьютеров"]');
+        if (capacityBadge) capacityBadge.parentElement.firstChild.textContent = `${window.TopGame.seats.length} `;
+    }
+
     const toggle = document.getElementById('main-navigation-toggle');
     if (toggle) {
         const menu = document.getElementById('main-navigation');
@@ -125,12 +139,12 @@
 
     const home = document.getElementById('index-content');
     if (home) {
-        const section = el('section', 'bg-dark text-white rounded-4 p-3 p-md-4 p-lg-5 mb-4');
-        section.append(el('p', 'small text-uppercase mb-2', 'Твой следующий сеанс'), el('h2', 'h2 fw-bold mb-3', 'Место для команды и перекус к игре'), el('p', 'mb-3', 'Выберите ПК на схеме зала, подготовьте демо-заявку и соберите заказ еды. Итог и стоимость видны сразу.'));
+        const section = el('section', 'bg-white border rounded-4 p-3 p-md-4 p-lg-5 mb-4 shadow-sm');
+        section.append(el('p', 'small text-uppercase text-danger fw-semibold mb-2', 'Твой следующий сеанс'), el('h2', 'h2 fw-bold mb-3', 'Место для команды и перекус к игре'), el('p', 'mb-3', 'Выберите ПК на схеме зала, подготовьте демо-заявку и соберите заказ еды. Итог и стоимость видны сразу.'));
         const actions = el('div', 'd-flex flex-wrap gap-2');
         const booking = el('a', 'btn btn-danger', 'Выбрать место');
         booking.href = 'booking.html#seat-map';
-        const food = el('a', 'btn btn-outline-light', 'Посмотреть меню');
+        const food = el('a', 'btn btn-outline-danger', 'Посмотреть меню');
         food.href = 'booking.html#food-menu';
         actions.append(booking, food);
         section.append(actions);

@@ -20,6 +20,8 @@
     const genreField = document.getElementById('genre');
     const dateField = document.getElementById('visit-date');
     const playersField = document.getElementById('players');
+    const totalSeats = app.seats.length;
+    playersField.max = String(totalSeats);
     const status = document.getElementById('game-request-status');
     const success = document.getElementById('game-request-success');
     const errors = document.getElementById('game-request-errors');
@@ -139,7 +141,7 @@
         const next = new URL('booking.html', location.href);
         if (titleField.value.trim()) next.searchParams.set('game', titleField.value.trim());
         if (dateField.value) next.searchParams.set('date', dateField.value);
-        if (Number.isInteger(Number(playersField.value)) && Number(playersField.value) >= 1 && Number(playersField.value) <= 45) next.searchParams.set('players', playersField.value);
+        if (Number.isInteger(Number(playersField.value)) && Number(playersField.value) >= 1 && Number(playersField.value) <= totalSeats) next.searchParams.set('players', playersField.value);
         next.hash = 'booking-form';
         document.getElementById('games-a-2').href = `${next.pathname.split('/').pop()}${next.search}${next.hash}`;
     }
@@ -160,7 +162,7 @@
         check(phone, contacts.phone);
         check(dateField, !dateField.value ? 'Укажите дату визита.' : dateField.value < app.today() ? 'Дата визита не может быть в прошлом.' : '');
         const playerCount = Number(playersField.value);
-        check(playersField, !Number.isInteger(playerCount) || playerCount < 1 || playerCount > 45 ? 'Укажите целое число игроков от 1 до 45.' : '');
+        check(playersField, !Number.isInteger(playerCount) || playerCount < 1 || playerCount > totalSeats ? `Укажите целое число игроков от 1 до ${totalSeats}.` : '');
         const title = titleField.value.trim();
         check(titleField, title.length < 2 || title.length > 120 ? 'Название игры должно содержать от 2 до 120 символов.' : '');
         const known = games.find(game => game.title.toLocaleLowerCase('ru') === title.toLocaleLowerCase('ru'));

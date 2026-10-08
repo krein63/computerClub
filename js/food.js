@@ -195,6 +195,12 @@
         const column = el('div', 'col-12 col-md-6 col-lg-4');
         const article = el('article', 'card h-100 shadow-sm');
         article.dataset.foodId = item.id;
+        const photo = el('img', `card-img-top w-100 bg-white ${item.category === 'drinks' ? 'object-fit-contain' : 'object-fit-cover'}`);
+        photo.src = item.image;
+        photo.alt = item.imageAlt;
+        photo.height = 190;
+        photo.loading = 'lazy';
+        photo.decoding = 'async';
         const body = el('div', 'card-body d-flex flex-column');
         const top = el('div', 'd-flex justify-content-between align-items-center gap-2 mb-3');
         top.append(el('span', 'badge text-bg-dark', categoryNames[item.category]), el('span', 'small text-body-secondary', item.portion));
@@ -205,7 +211,7 @@
         add.disabled = !item.available;
         add.setAttribute('aria-label', `${item.available ? 'Добавить в корзину' : 'Недоступно'}: ${item.name}`);
         body.append(add);
-        article.append(body);
+        article.append(photo, body);
         column.append(article);
         return column;
     }
@@ -225,7 +231,7 @@
         article.append(el('h4', 'h6 fw-bold mb-2', item.name), el('p', 'small mb-2', `${money(item.price)} × ${line.quantity} = ${money(item.price * line.quantity)}`));
         const actions = el('div', 'd-flex flex-wrap align-items-center gap-2');
         [['decrease', '−', `Уменьшить количество: ${item.name}`], ['increase', '+', `Увеличить количество: ${item.name}`], ['remove', 'Удалить', `Удалить: ${item.name}`]].forEach(([action, text, label]) => {
-            const button = el('button', 'btn btn-outline-secondary btn-sm', text);
+            const button = el('button', action === 'remove' ? 'btn btn-outline-secondary' : 'btn btn-outline-secondary btn-lg', text);
             button.type = 'button';
             button.dataset.cartAction = action;
             button.dataset.itemId = item.id;

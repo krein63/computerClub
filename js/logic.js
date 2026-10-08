@@ -25,7 +25,7 @@
 
     function estimateVisit(tariffs, tariffId, hours, players) {
         const tariff = findProduct(tariffs, tariffId);
-        if (!tariff || !validQuantity(players, 45) || !validQuantity(hours, 12)) return null;
+        if (!tariff || !validQuantity(players, tariffId === 'private' ? 5 : 10) || !validQuantity(hours, 12)) return null;
         if (tariffId === 'private') return { amount: tariff.price, groupTotalKnown: false };
         if (tariffId === 'three-hours' && hours !== 3) return null;
         const units = tariffId === 'hour' ? hours : 1;

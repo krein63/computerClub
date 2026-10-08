@@ -9,7 +9,7 @@
         { id: 'main', name: 'Main', processor: 'Ryzen 9600X', graphics: 'RTX 4070', memory: 32, refresh: 310, privacy: false, description: 'Общий зал для одиночной игры и матчей с друзьями.', article: 'computers-article-1' },
         { id: 'duo', name: 'Duo’s', processor: 'Ryzen 9600X', graphics: 'RTX 4070', memory: 32, refresh: 380, privacy: false, description: 'Места рядом для двух игроков.', article: 'computers-article-2' },
         { id: 'private', name: 'Private', processor: 'Ryzen 7800X3D', graphics: 'RTX 4070 Super', memory: 32, refresh: 380, privacy: true, description: 'Отдельное игровое пространство.', article: 'computers-article-3' }
-    ].map(zone => ({ ...zone, node: document.getElementById(zone.article).parentElement }));
+    ].map(zone => ({ ...zone, capacity: app.seats.filter(seat => seat.zone === zone.id).length, node: document.getElementById(zone.article).parentElement }));
     const selected = new Set();
     const controls = app.el('form', 'row g-3 mb-4');
     controls.setAttribute('role', 'search');
@@ -79,6 +79,7 @@
         label.htmlFor = checkbox.id;
         wrapper.append(checkbox, label);
         article.querySelector('.card-body').append(wrapper);
+        article.querySelector('.card-body').append(app.el('p', 'small text-body-secondary mt-3 mb-0', `Мест на демонстрационной схеме: ${zone.capacity}.`));
         checkbox.addEventListener('change', () => {
             if (checkbox.checked) selected.add(zone.id);
             else selected.delete(zone.id);
@@ -100,7 +101,7 @@
         const body = app.el('div', 'card-body d-flex flex-column');
         body.append(app.el('h3', 'h4 fw-bold mb-3', zone.name));
         const specifications = app.el('dl', 'mb-3');
-        [['Процессор', zone.processor], ['Видеокарта', zone.graphics], ['Память', `${zone.memory} GB`], ['Монитор', `ASUS ${zone.refresh} Hz`], ['Формат', zone.description]].forEach(([label, value]) => {
+        [['Процессор', zone.processor], ['Видеокарта', zone.graphics], ['Память', `${zone.memory} GB`], ['Монитор', `ASUS ${zone.refresh} Hz`], ['Формат', zone.description], ['Мест на демонстрационной схеме', String(zone.capacity)]].forEach(([label, value]) => {
             specifications.append(app.el('dt', 'fw-semibold', label), app.el('dd', 'mb-2 text-break', value));
         });
         const next = app.el('a', 'btn btn-danger mb-2', 'Выбрать зону');

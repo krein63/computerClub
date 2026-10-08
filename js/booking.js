@@ -19,7 +19,7 @@
     const zoneFieldset = document.getElementById('gaming-zone-selection');
     const zoneRadios = [...form.querySelectorAll('[name="gaming-zone"]')];
     const zoneNames = { main: 'MAIN', duo: 'DUO', private: 'PRIVATE' };
-    const snapshotOccupied = [3, 4, 15, 16, 29, 34, 37, 43];
+    const snapshotOccupied = [3, 4, 8, 12, 17];
     const selectedSeats = new Set();
     const seatButtons = new Map();
     const result = document.getElementById('booking-result');
@@ -64,14 +64,15 @@
     document.getElementById('booking-tariff-note').before(durationNote);
     document.getElementById('booking-tariff-note').textContent = 'Цены из прайса указаны «от». PRIVATE применяется только к зоне PRIVATE. Часы ночного пакета и период оплаты PRIVATE в прайсе не указаны; их необходимо уточнить у клуба.';
 
-    const map = el('fieldset', 'bg-dark text-white border border-secondary rounded-3 p-3 p-md-4 mb-4');
+    const map = el('fieldset', 'bg-body-tertiary border rounded-3 p-3 p-md-4 mb-4');
     map.id = 'seat-map';
     map.tabIndex = -1;
     const mapLegend = el('legend', 'h4 fw-bold mb-3', 'Выберите компьютеры на карте');
-    const mapExplanation = el('p', 'small text-white-50 mb-3', 'Иллюстративная схема: 45 ПК, MAIN — 30, DUO — 10, PRIVATE — 5. Расположение, распределение по зонам и занятость — учебные данные, а не карта реального клуба.');
+    const zoneCapacityText = Object.keys(zoneNames).map(zone => `${zoneNames[zone]} — ${seats.filter(seat => seat.zone === zone).length}`).join(', ');
+    const mapExplanation = el('p', 'small text-body-secondary mb-3', `Иллюстративная схема: ${seats.length} ПК, ${zoneCapacityText}. Расположение и занятость — учебные данные, а не карта реального клуба.`);
     const legend = el('div', 'd-flex flex-wrap gap-2 mb-3');
     legend.setAttribute('aria-label', 'Условные обозначения');
-    legend.append(el('span', 'badge text-bg-success', 'Свободно'), el('span', 'badge text-bg-secondary', 'Занято'), el('span', 'badge text-bg-danger', 'Выбрано'));
+    legend.append(el('span', 'badge bg-white text-dark border border-dark', 'Свободно'), el('span', 'badge text-bg-secondary', 'Занято'), el('span', 'badge text-bg-danger', 'Выбрано'));
     const mapStatus = el('p', 'small mb-3');
     mapStatus.id = 'seat-map-status';
     mapStatus.setAttribute('role', 'status');
@@ -83,14 +84,13 @@
     const mapZones = el('div', 'row g-3 mb-3');
     for (const zone of Object.keys(zoneNames)) {
         const zoneColumn = el('div', zone === 'main' ? 'col-12' : 'col-12 col-lg-6');
-        const zoneCard = el('section', 'border border-secondary rounded-3 p-2 p-md-3 h-100');
+        const zoneCard = el('section', 'bg-white border rounded-3 p-2 p-md-3 h-100');
         const zoneSeats = seats.filter(seat => seat.zone === zone);
         const heading = el('h3', 'h6 fw-bold mb-3', `${zoneNames[zone]} · ${zoneSeats.length} ПК · демо-этаж ${zoneSeats[0].floor}`);
         const grid = el('div', 'row row-cols-3 row-cols-md-5 g-2');
-        if (zone === 'main') grid.classList.add('row-cols-lg-6');
         for (const seat of zoneSeats) {
             const column = el('div', 'col');
-            const button = el('button', 'btn btn-outline-success w-100 h-100 px-1 py-2');
+            const button = el('button', 'btn btn-outline-dark w-100 h-100 px-1 py-2');
             button.id = `seat-${seat.id}`;
             button.type = 'button';
             button.dataset.seatId = String(seat.id);
@@ -108,7 +108,7 @@
         zoneColumn.append(zoneCard);
         mapZones.append(zoneColumn);
     }
-    const clearSelection = el('button', 'btn btn-outline-light btn-sm', 'Снять выбор мест');
+    const clearSelection = el('button', 'btn btn-outline-secondary btn-sm', 'Снять выбор мест');
     clearSelection.type = 'button';
     clearSelection.id = 'clear-seat-selection';
     clearSelection.addEventListener('click', () => {
@@ -246,9 +246,11 @@
             const state = occupied ? 'occupied' : selected ? 'selected' : 'available';
             button.disabled = occupied;
             button.dataset.seatState = state;
-            button.classList.toggle('btn-outline-success', state === 'available');
+            button.classList.toggle('btn-outline-dark', state === 'available');
             button.classList.toggle('btn-secondary', state === 'occupied');
+            button.classList.toggle('opacity-100', state === 'occupied');
             button.classList.toggle('btn-danger', state === 'selected');
+            button.classList.toggle('text-white', state !== 'available');
             button.classList.toggle('selected', state === 'selected');
             button.setAttribute('aria-pressed', String(selected));
             const ownRequest = occupied && selected && lastAccepted?.data.seats.includes(seat.id) && requestedInterval && overlaps(requestedInterval, lastAccepted.data);
@@ -266,7 +268,7 @@
     function refresh() {
         const data = values();
         fields.date.min = today();
-        fields.players.max = String(data.zone === 'duo' ? 2 : data.zone ? seats.filter(seat => seat.zone === data.zone).length : 45);
+        fields.players.max = String(data.zone === 'duo' ? 2 : data.zone ? seats.filter(seat => seat.zone === data.zone).length : seats.length);
         document.getElementById('booking-summary-tariff').textContent = tariffs.find(item => item.id === data.tariff)?.name || 'Не выбран';
         document.getElementById('booking-summary-zone').textContent = zoneNames[data.zone] || 'Не выбрана';
         document.getElementById('booking-summary-date').textContent = data.date || 'Не выбрана';
@@ -297,7 +299,7 @@
         check(fields.date, dateError);
         const validTime = /^([01]\d|2[0-3]):[0-5]\d$/.test(data.time);
         check(fields.time, !validTime ? 'Укажите время начала по Астане.' : !dateError && localDateTime(data.date, data.time) <= Date.now() ? 'Выбранное время уже прошло. Укажите будущее время по Астане.' : '');
-        const capacity = data.zone ? seats.filter(seat => seat.zone === data.zone).length : 45;
+        const capacity = data.zone ? seats.filter(seat => seat.zone === data.zone).length : seats.length;
         const countError = !Number.isInteger(data.players) || data.players < 1 ? 'Количество игроков должно быть целым числом от 1.' : data.players > capacity ? `В выбранной зоне только ${capacity} демонстрационных ПК.` : data.zone === 'duo' && data.players !== 2 ? 'Зона DUO предназначена для двух игроков: укажите ровно 2.' : '';
         check(fields.players, countError);
         check(duration, !Number.isInteger(data.duration) || data.duration < 1 || data.duration > 12 ? 'Укажите целое количество часов от 1 до 12.' : data.tariff === 'three-hours' && data.duration !== 3 ? 'Для тарифа «3 часа» укажите ровно 3 часа.' : '');
@@ -450,7 +452,7 @@
     const initialZone = params.get('zone') || (fields.tariff.value === 'private' ? 'private' : '');
     if (Object.hasOwn(zoneNames, initialZone)) chooseZone(initialZone);
     const initialPlayers = Number(params.get('players'));
-    if (Number.isInteger(initialPlayers) && initialPlayers >= 1 && initialPlayers <= 45) fields.players.value = String(initialPlayers);
+    if (Number.isInteger(initialPlayers) && initialPlayers >= 1 && initialPlayers <= seats.length) fields.players.value = String(initialPlayers);
     const initialDuration = Number(params.get('hours'));
     if (Number.isInteger(initialDuration) && initialDuration >= 1 && initialDuration <= 12) duration.value = String(initialDuration);
     if (fields.tariff.value === 'three-hours') duration.value = '3';

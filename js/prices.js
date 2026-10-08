@@ -65,7 +65,7 @@
     const players = field('calculator-players', 'Количество игроков', 'input');
     players.input.type = 'number';
     players.input.min = '1';
-    players.input.max = '45';
+    players.input.max = String(app.seats.filter(seat => seat.zone === 'main').length);
     players.input.step = '1';
     players.input.value = '1';
     players.input.required = true;
