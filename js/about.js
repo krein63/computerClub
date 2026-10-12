@@ -15,7 +15,7 @@
     const heading = app.el('h2', 'h2 fw-bold mb-3', 'Ваш отзыв о клубе');
     heading.id = 'reviews-title';
     section.setAttribute('aria-labelledby', heading.id);
-    section.append(heading, app.el('p', 'mb-3', 'Здесь можно попробовать форму отзыва. Демонстрационные отзывы сохраняются только в этом браузере и не отправляются в клуб. Опубликованных отзывов клиентов в исходных данных нет.'));
+    section.append(heading, app.el('p', 'mb-3', 'Оставьте отзыв о посещении. Отзывы сохраняются в этом браузере.'));
     const form = app.el('form', 'row g-3 mb-4');
     form.id = 'review-form';
     form.noValidate = true;
@@ -53,7 +53,7 @@
     counter.setAttribute('aria-live', 'polite');
     text.field.setAttribute('aria-describedby', counter.id);
     text.wrapper.append(counter);
-    const submit = app.el('button', 'btn btn-danger', 'Добавить демонстрационный отзыв');
+    const submit = app.el('button', 'btn btn-danger', 'Добавить отзыв');
     submit.type = 'submit';
     submit.id = 'review-submit';
     const reset = app.el('button', 'btn btn-outline-secondary', 'Очистить форму');
@@ -131,7 +131,7 @@
         date.dateTime = review.createdAt;
         date.textContent = new Intl.DateTimeFormat('ru-RU', { timeZone: 'Asia/Almaty', dateStyle: 'medium', timeStyle: 'short' }).format(new Date(review.createdAt)) + ' (Астана)';
         const comment = app.el('p', 'text-break', review.text);
-        const note = app.el('p', 'small text-body-secondary', 'Ваш демонстрационный отзыв. Сохранён только в этом браузере.');
+        const note = app.el('p', 'small text-body-secondary', 'Ваш отзыв. Сохранён в этом браузере.');
         const remove = app.el('button', 'btn btn-outline-secondary mt-auto align-self-start', 'Удалить мой отзыв');
         remove.type = 'button';
         remove.dataset.removeReview = review.id;
@@ -139,7 +139,7 @@
             reviews = reviews.filter(item => item.id !== review.id);
             const saved = saveReviews();
             renderReviews();
-            app.notify(status, saved ? 'Демонстрационный отзыв удалён из этого браузера.' : 'Отзыв удалён с текущей страницы. Браузер не разрешил обновить хранилище; после перезагрузки он может появиться снова.', '');
+            app.notify(status, saved ? 'Отзыв удалён из этого браузера.' : 'Отзыв удалён с текущей страницы. Браузер не разрешил обновить хранилище; после перезагрузки он может появиться снова.', '');
             sort.focus();
         });
         body.append(title, ratingText, date, comment, note, remove);
@@ -153,14 +153,14 @@
             ? second.rating - first.rating || Date.parse(second.createdAt) - Date.parse(first.createdAt)
             : sort.value === 'oldest' ? Date.parse(first.createdAt) - Date.parse(second.createdAt)
                 : Date.parse(second.createdAt) - Date.parse(first.createdAt));
-        app.renderList(list, matches, renderReview, reviews.length === 0 ? 'Отзывы пока не добавлены. Создайте свой демонстрационный отзыв в форме выше.' : 'Отзывов с такой оценкой нет. Выберите другую оценку или сбросьте фильтр.');
+        app.renderList(list, matches, renderReview, reviews.length === 0 ? 'Отзывы пока не добавлены. Создайте свой отзыв в форме выше.' : 'Отзывов с такой оценкой нет. Выберите другую оценку или сбросьте фильтр.');
         count.textContent = `Показано отзывов: ${matches.length} из ${reviews.length}`;
     }
     function onFormEdit() {
         updateCounter();
         if (attempted) {
             const invalid = validateReview();
-            if (invalid.length === 0) app.notify(status, 'Поля исправлены. Можно добавить демонстрационный отзыв.', '');
+            if (invalid.length === 0) app.notify(status, 'Поля исправлены. Можно добавить отзыв.', '');
         } else status.classList.add('hidden');
     }
     form.addEventListener('input', onFormEdit);
@@ -185,7 +185,7 @@
         resetAfterSubmit = false;
         attempted = false;
         updateCounter();
-        app.notify(status, saved ? 'Демонстрационный отзыв добавлен в этом браузере. Данные не отправлены на сервер и не опубликованы клубом.' : 'Демонстрационный отзыв добавлен на текущую страницу. Браузер не разрешил сохранение: после перезагрузки он исчезнет. Данные не отправлены на сервер.', 'success');
+        app.notify(status, saved ? 'Отзыв добавлен в этом браузере. Данные не отправлены на сервер и не опубликованы клубом.' : 'Отзыв добавлен на текущую страницу. Браузер не разрешил сохранение: после перезагрузки он исчезнет. Данные не отправлены на сервер.', 'success');
     });
     form.addEventListener('reset', () => {
         app.clearErrors(form);

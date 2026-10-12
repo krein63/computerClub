@@ -1,12 +1,14 @@
 'use strict';
 
-// Published tariff lower bounds are preserved from the frozen midterm.
+// Тарифы проекта: цена за один ПК, пакеты с фиксированной длительностью.
 window.TopGameData = {
     tariffs: [
-        { id: 'hour', name: '1 час', price: 1200, duration: 1 },
-        { id: 'three-hours', name: '3 часа', price: 3600, duration: 3 },
-        { id: 'night', name: 'Ночь', price: 4700, duration: null },
-        { id: 'private', name: 'PRIVATE', price: 2500, duration: null }
+        { id: 'hour', name: '1 час', price: 1200, duration: 1, hourly: true, description: 'Короткий сеанс', audience: 'Один матч или свободный график' },
+        { id: 'three-hours', name: '3 часа', price: 3600, duration: 3, hourly: false, description: 'Несколько матчей подряд', audience: 'Для игры с друзьями' },
+        { id: 'five-hours', name: '5 часов', price: 5400, duration: 5, hourly: false, description: 'Большой игровой сеанс', audience: 'Для командной тренировки' },
+        { id: 'day', name: 'День · 10 часов', price: 8900, duration: 10, hourly: false, description: 'Пакет на весь день', audience: 'Для долгого игрового марафона' },
+        { id: 'night', name: 'Ночь · 8 часов', price: 4700, duration: 8, hourly: false, description: 'Ночной пакет', audience: 'Для игры ночью' },
+        { id: 'private', name: 'PRIVATE', price: 2500, duration: 1, hourly: true, description: 'Приватный сеанс', audience: 'Для игры в отдельном пространстве' }
     ],
     // Sample food and prices for the assignment, not the club's verified menu.
     menu: [

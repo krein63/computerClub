@@ -69,7 +69,7 @@
     orderSuccess.id = 'food-order-success';
     orderSuccess.setAttribute('role', 'status');
     orderSuccess.setAttribute('aria-live', 'polite');
-    cartSection.append(cartTitle, el('p', 'small text-body-secondary', 'Учебный заказ: меню и цены демонстрационные. Оплаты, отправки на сервер и реального заказа нет.'), cartRows, cartTotal, clear, feedback);
+    cartSection.append(cartTitle, el('p', 'small text-body-secondary', 'Заказы сохраняются в этом браузере. Онлайн-оплата не подключена.'), cartRows, cartTotal, clear, feedback);
     resultContainer.append(cartSection);
 
     const orderForm = el('form', 'border rounded-3 p-3');
@@ -128,10 +128,10 @@
     agreement.id = 'food-agreement';
     agreement.type = 'checkbox';
     agreement.required = true;
-    const agreementLabel = el('label', 'form-check-label', 'Проверил состав и понимаю, что это демонстрационный заказ');
+    const agreementLabel = el('label', 'form-check-label', 'Проверил состав и подтверждаю заказ');
     agreementLabel.htmlFor = agreement.id;
     agreementRow.append(agreement, agreementLabel);
-    const checkout = el('button', 'btn btn-danger', 'Сформировать демо-заказ');
+    const checkout = el('button', 'btn btn-danger', 'Отправить заказ');
     checkout.id = 'food-checkout';
     checkout.type = 'submit';
     const formStatus = el('p', 'small mt-3 mb-0');
@@ -145,7 +145,7 @@
     menuSection.setAttribute('aria-labelledby', 'food-menu-title');
     const menuTitle = el('h2', 'h2 fw-bold mb-3', 'Перекус без паузы в игре');
     menuTitle.id = 'food-menu-title';
-    menuSection.append(el('p', 'small text-uppercase text-danger fw-semibold mb-2', 'Еда и напитки'), menuTitle, el('p', 'mb-4', 'Соберите корзину, выберите получение у стойки или номер ПК и проверьте итог. Это пример меню для учебного проекта; ассортимент, состав и цены клуба не подтверждены.'));
+    menuSection.append(el('p', 'small text-uppercase text-danger fw-semibold mb-2', 'Еда и напитки'), menuTitle, el('p', 'mb-4', 'Соберите корзину, выберите получение у стойки или номер ПК и проверьте итог. Получение у стойки или к выбранному игровому месту.'));
     const controls = el('div', 'row g-3 mb-3');
     function control(id, title, type) {
         const column = el('div', 'col-12 col-md-4');
@@ -178,7 +178,7 @@
     const available = el('input', 'form-check-input');
     available.type = 'checkbox';
     available.id = 'food-available';
-    const availableLabel = el('label', 'form-check-label', 'Только доступные в демо');
+    const availableLabel = el('label', 'form-check-label', 'Только в наличии');
     availableLabel.htmlFor = available.id;
     availabilityRow.append(available, availableLabel);
     const reset = el('button', 'btn btn-outline-secondary btn-sm', 'Сбросить фильтры');
@@ -209,7 +209,7 @@
         const top = el('div', 'd-flex justify-content-between align-items-center gap-2 mb-3');
         top.append(el('span', 'badge text-bg-dark', categoryNames[item.category]), el('span', 'small text-body-secondary', item.portion));
         body.append(top, el('h3', 'h4 card-title', item.name), el('p', 'card-text mb-2', item.description), el('p', 'small text-body-secondary mb-3', `Аллергены: ${item.allergens}`), el('p', 'fw-bold fs-5 text-danger mt-auto', money(item.price)));
-        const add = el('button', 'btn btn-outline-danger w-100', item.available ? 'Добавить в корзину' : 'Недоступно в демо');
+        const add = el('button', 'btn btn-outline-danger w-100', item.available ? 'Добавить в корзину' : 'Нет в наличии');
         add.type = 'button';
         add.dataset.addFood = item.id;
         add.disabled = !item.available;
@@ -346,7 +346,7 @@
             [name, contacts.name], [email, contacts.email], [phone, contacts.phone],
             [delivery, ['bar', 'seat'].includes(delivery.value) ? '' : 'Выберите способ получения.'],
             [seat, delivery.value === 'seat' && !seats.some(item => String(item.id) === seat.value) ? 'Для доставки к месту выберите действующий номер ПК.' : ''],
-            [agreement, agreement.checked ? '' : 'Подтвердите, что проверили состав и понимаете демонстрационный режим.']
+            [agreement, agreement.checked ? '' : 'Подтвердите, что проверили состав заказа.']
         ];
         const invalid = errors.filter(([field, message]) => setError(field, message));
         if (invalid.length > 0) {
@@ -358,7 +358,9 @@
         const items = cart.map(line => `${menu.find(item => item.id === line.id).name} × ${line.quantity}`).join('; ');
         const destination = delivery.value === 'seat' ? `к ПК ${seat.value}` : 'у стойки';
         const orderRef = reference('FOOD');
-        const summary = `${orderRef}. ${name.value.trim()}, получение ${destination}. ${items}. Всего ${totals.quantity} шт., ${money(totals.total)}. Контакты: ${email.value.trim()}, ${phone.value.trim()}. Это демонстрация: данные не отправлены на сервер, реальный заказ и платёж не созданы.`;
+        const summary = `${orderRef}. ${name.value.trim()}, получение ${destination}. ${items}. Всего ${totals.quantity} шт., ${money(totals.total)}. Контакты: ${email.value.trim()}, ${phone.value.trim()}. Заказ сохранён в этом браузере. Оплата не выполнялась.`;
+        const orders = store.get('orders', []);
+        const saved = store.set('orders', [...(Array.isArray(orders) ? orders : []), { id: orderRef, items: cart, total: totals.total, destination, createdAt: new Date().toISOString() }]);
         cart = [];
         store.set('cart', cart);
         renderCart();
@@ -367,8 +369,8 @@
         seat.disabled = true;
         seat.required = false;
         updateOrderSummary();
-        notify(feedback, 'Демонстрационный итог сформирован. Корзина очищена.', 'success');
-        notify(orderSuccess, summary, 'success');
+        notify(feedback, 'Заказ оформлен. Корзина очищена.', 'success');
+        notify(orderSuccess, saved ? summary : summary.replace('Заказ сохранён в этом браузере.', 'Заказ сформирован на странице; браузер не разрешил сохранение.'), 'success');
         orderSuccess.tabIndex = -1;
         orderSuccess.focus();
     });

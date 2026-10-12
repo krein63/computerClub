@@ -79,7 +79,7 @@
         label.htmlFor = checkbox.id;
         wrapper.append(checkbox, label);
         article.querySelector('.card-body').append(wrapper);
-        article.querySelector('.card-body').append(app.el('p', 'small text-body-secondary mt-3 mb-0', `Мест на демонстрационной схеме: ${zone.capacity}.`));
+        article.querySelector('.card-body').append(app.el('p', 'small text-body-secondary mt-3 mb-0', `Мест в зоне: ${zone.capacity}.`));
         checkbox.addEventListener('change', () => {
             if (checkbox.checked) selected.push(zone.id);
             else selected = selected.filter(id => id !== zone.id);
@@ -101,7 +101,7 @@
         const body = app.el('div', 'card-body d-flex flex-column');
         body.append(app.el('h3', 'h4 fw-bold mb-3', zone.name));
         const specifications = app.el('dl', 'mb-3');
-        [['Процессор', zone.processor], ['Видеокарта', zone.graphics], ['Память', `${zone.memory} GB`], ['Монитор', `ASUS ${zone.refresh} Hz`], ['Формат', zone.description], ['Мест на демонстрационной схеме', String(zone.capacity)]].forEach(([label, value]) => {
+        [['Процессор', zone.processor], ['Видеокарта', zone.graphics], ['Память', `${zone.memory} GB`], ['Монитор', `ASUS ${zone.refresh} Hz`], ['Формат', zone.description], ['Мест в зоне', String(zone.capacity)]].forEach(([label, value]) => {
             specifications.append(app.el('dt', 'fw-semibold', label), app.el('dd', 'mb-2 text-break', value));
         });
         const next = app.el('a', 'btn btn-danger mb-2', 'Выбрать зону');

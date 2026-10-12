@@ -1,0 +1,3700 @@
+{
+  "baseline": {
+    "testedAt": "2026-10-12T09:43:34.797Z",
+    "sourceSha256": {
+      "index.html": "475d3e2ff6b1149dce092750921ad79b754a697af7ab9bd97dac41123eb3d2dd",
+      "prices.html": "ef78e1562805c832f7277641f65977891c0ade446c3ea5610d1a21264b4986f3",
+      "computers.html": "5bfcbf39e1c61625557e7639729405067379f14ca58d9e40cd5925cd48ed2221",
+      "booking.html": "b5a47b029258bfec0a8511a600e5dc26fef6ff39d21552773fb7b89fe867177b",
+      "games.html": "00d3f74f776875516aa7441a688e584c35eac41024c2dc56f0d78ccb98a452e2",
+      "rules.html": "6b684592dc1efe069425a54cfb0bbe2274a0c5d39cbea9b7464a5f2bac4a356b",
+      "about.html": "b20f0c75ccae95d76a2a889c4b29ab1850968438eafbd1e7a28e62b8869abd37",
+      "js/about.js": "6a0758f613cb580f18e8455765092770c5d6cb71ac3792ca06280c63c33f849f",
+      "js/booking.js": "bbfce2855b56ab23acf4a2e32f7501aa34cde1ae8dd3676b8fae299550aea26e",
+      "js/computers.js": "4bd4017b139849408b370e7b2afa103c1d909754790cb0aeab907a1c12596e6e",
+      "js/data.js": "29d1cae5a8de2da0d11cdf2687b114ca06a0edebd6106114f969536469dcd217",
+      "js/food.js": "d34d89c6750f8f29bb2e829cd86572d1bef9612b86970dd5920913809340061b",
+      "js/games.js": "8aa2aae0db9b81e410028806c66072b2a90bd66920052b6bf185282268099b38",
+      "js/logic.js": "120af3ac6c3c555ab91863b6bc3db6d2dccbc74e43a8b6a1069c960c0ed95ba1",
+      "js/main.js": "27f7e774570c5df70077cb1f368641e39c31aaf733d5ea6974061ad74475ca66",
+      "js/prices.js": "d8faa385a40c97fc43366da0976ccbef3bcb8addb6f1538f2d46dd0cf1fb3ebc",
+      "css/base.css": "226fca1f1ce6802972b866d389216a39b62c47538505dde489c40b24f6a6fb52",
+      "css/bootstrap.min.css": "d85327d99c7a3ee1f9b5d0500d1370acea3ad2db39c163c2f51f232baedbdede"
+    },
+    "tags": [
+      "assignment-4    Assignment 4 data and reusable calculation/filter functions",
+      "assignment-5    Complete DOM interactions, 20-PC booking, photographed menu and verified demo flows",
+      "midterm         Freeze submitted HTML and CSS; see quality-pass.md and AI-log.txt for validation and personal requirements",
+      "midterm-2026-10-02 Freeze AI-assisted midterm HTML and CSS; see QUALITY_PASS.md for outstanding submission conditions"
+    ],
+    "midterm": "9d569b12cf115dbae2a6ccc6d282e31ae4ec95de",
+    "head": "e5beed7b624e97aa24a34b058ada189faa23f4ca",
+    "cssUnchanged": true,
+    "htmlFreeze": [
+      {
+        "file": "index.html",
+        "unchangedExceptScripts": true,
+        "scripts": [
+          "<script src=\"js/data.js\" defer></script>",
+          "<script src=\"js/logic.js\" defer></script>",
+          "<script src=\"js/main.js\" defer></script>",
+          "<script src=\"js/food.js\" defer></script>"
+        ],
+        "validScripts": true
+      },
+      {
+        "file": "prices.html",
+        "unchangedExceptScripts": true,
+        "scripts": [
+          "<script src=\"js/data.js\" defer></script>",
+          "<script src=\"js/logic.js\" defer></script>",
+          "<script src=\"js/main.js\" defer></script>",
+          "<script src=\"js/food.js\" defer></script>",
+          "<script src=\"js/prices.js\" defer></script>"
+        ],
+        "validScripts": true
+      },
+      {
+        "file": "computers.html",
+        "unchangedExceptScripts": true,
+        "scripts": [
+          "<script src=\"js/data.js\" defer></script>",
+          "<script src=\"js/logic.js\" defer></script>",
+          "<script src=\"js/main.js\" defer></script>",
+          "<script src=\"js/food.js\" defer></script>",
+          "<script src=\"js/computers.js\" defer></script>"
+        ],
+        "validScripts": true
+      },
+      {
+        "file": "booking.html",
+        "unchangedExceptScripts": true,
+        "scripts": [
+          "<script src=\"js/data.js\" defer></script>",
+          "<script src=\"js/logic.js\" defer></script>",
+          "<script src=\"js/main.js\" defer></script>",
+          "<script src=\"js/food.js\" defer></script>",
+          "<script src=\"js/booking.js\" defer></script>"
+        ],
+        "validScripts": true
+      },
+      {
+        "file": "games.html",
+        "unchangedExceptScripts": true,
+        "scripts": [
+          "<script src=\"js/data.js\" defer></script>",
+          "<script src=\"js/logic.js\" defer></script>",
+          "<script src=\"js/main.js\" defer></script>",
+          "<script src=\"js/food.js\" defer></script>",
+          "<script src=\"js/games.js\" defer></script>"
+        ],
+        "validScripts": true
+      },
+      {
+        "file": "rules.html",
+        "unchangedExceptScripts": true,
+        "scripts": [
+          "<script src=\"js/data.js\" defer></script>",
+          "<script src=\"js/logic.js\" defer></script>",
+          "<script src=\"js/main.js\" defer></script>",
+          "<script src=\"js/food.js\" defer></script>"
+        ],
+        "validScripts": true
+      },
+      {
+        "file": "about.html",
+        "unchangedExceptScripts": true,
+        "scripts": [
+          "<script src=\"js/data.js\" defer></script>",
+          "<script src=\"js/logic.js\" defer></script>",
+          "<script src=\"js/main.js\" defer></script>",
+          "<script src=\"js/food.js\" defer></script>",
+          "<script src=\"js/about.js\" defer></script>"
+        ],
+        "validScripts": true
+      }
+    ]
+  },
+  "static": {
+    "localReferences": [],
+    "renderedLocalReferences": []
+  },
+  "layouts": [
+    {
+      "file": "index.html",
+      "width": 375,
+      "viewport": 375,
+      "document": 375,
+      "body": 375,
+      "unloadedImages": [],
+      "nestedParagraphs": 0,
+      "ids": [
+        "page-top",
+        "skip-content",
+        "site-header",
+        "brand-link",
+        "main-navigation-toggle",
+        "main-navigation",
+        "nav-index",
+        "nav-prices",
+        "nav-computers",
+        "nav-booking",
+        "nav-games",
+        "nav-rules",
+        "nav-about",
+        "nav-food",
+        "nav-cart",
+        "header-booking-link",
+        "index-content",
+        "index-section-1",
+        "index-h1-1",
+        "index-a-1",
+        "index-a-2",
+        "index-figure-1",
+        "index-aside-1",
+        "features-title",
+        "visitor-guide",
+        "index-article-1",
+        "index-a-3",
+        "index-article-2",
+        "index-a-4",
+        "gaming-zones",
+        "index-article-3",
+        "index-article-4",
+        "index-article-5",
+        "index-a-5",
+        "index-a-6",
+        "site-footer",
+        "footer-brand-title",
+        "footer-contacts-title",
+        "footer-phone",
+        "footer-map",
+        "footer-contacts-link",
+        "footer-rules-link"
+      ],
+      "localLinks": [
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/index.html#index-content",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/index.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/index.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/prices.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/computers.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/booking.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/games.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/rules.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/about.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/booking.html#food-menu",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/booking.html#food-cart",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/booking.html#booking-form",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/booking.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/prices.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/booking.html#seat-map",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/booking.html#food-menu",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/games.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/rules.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/booking.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/index.html#page-top",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/about.html#contacts",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/rules.html"
+      ],
+      "overflowing": [],
+      "dark": {
+        "theme": "dark",
+        "bodyBg": "rgb(33, 37, 41)",
+        "bodyText": "rgb(248, 249, 250)"
+      },
+      "consoleErrors": [],
+      "pageErrors": [],
+      "requestsFailed": []
+    },
+    {
+      "file": "prices.html",
+      "width": 375,
+      "viewport": 375,
+      "document": 375,
+      "body": 375,
+      "unloadedImages": [],
+      "nestedParagraphs": 0,
+      "ids": [
+        "page-top",
+        "skip-content",
+        "site-header",
+        "brand-link",
+        "main-navigation-toggle",
+        "main-navigation",
+        "nav-index",
+        "nav-prices",
+        "nav-computers",
+        "nav-booking",
+        "nav-games",
+        "nav-rules",
+        "nav-about",
+        "nav-food",
+        "nav-cart",
+        "header-booking-link",
+        "prices-content",
+        "prices-section-1",
+        "prices-h1-1",
+        "prices-a-1",
+        "prices-a-2",
+        "prices-figure-1",
+        "tariffs",
+        "prices-search",
+        "prices-type",
+        "prices-filter-reset",
+        "prices-result-count",
+        "tariff-hour",
+        "tariff-three-hours",
+        "tariff-five-hours",
+        "tariff-day",
+        "tariff-night",
+        "tariff-private",
+        "price-calculator",
+        "price-calculator-title",
+        "price-calculator-form",
+        "calculator-tariff",
+        "calculator-players",
+        "calculator-players-help",
+        "calculator-hours",
+        "calculator-hours-help",
+        "calculator-summary",
+        "calculator-status",
+        "calculator-booking-link",
+        "tariff-comparison",
+        "prices-table-1",
+        "booking-steps",
+        "prices-aside-1",
+        "prices-a-7",
+        "site-footer",
+        "footer-brand-title",
+        "footer-contacts-title",
+        "footer-phone",
+        "footer-map",
+        "footer-contacts-link",
+        "footer-rules-link"
+      ],
+      "localLinks": [
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/prices.html#prices-content",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/index.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/index.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/prices.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/computers.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/booking.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/games.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/rules.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/about.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/booking.html#food-menu",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/booking.html#food-cart",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/booking.html#booking-form",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/prices.html#tariffs",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/prices.html#booking-steps",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/booking.html?tariff=hour#tariff-selection",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/booking.html?tariff=three-hours#tariff-selection",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/booking.html?tariff=five-hours#tariff-selection",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/booking.html?tariff=day#tariff-selection",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/booking.html?tariff=night#tariff-selection",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/booking.html?tariff=private#tariff-selection",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/booking.html?tariff=hour&players=1&hours=1#booking-form",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/booking.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/about.html#contacts",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/rules.html"
+      ],
+      "overflowing": [],
+      "dark": {
+        "theme": "dark",
+        "bodyBg": "rgb(33, 37, 41)",
+        "bodyText": "rgb(248, 249, 250)"
+      },
+      "consoleErrors": [],
+      "pageErrors": [],
+      "requestsFailed": []
+    },
+    {
+      "file": "computers.html",
+      "width": 375,
+      "viewport": 375,
+      "document": 375,
+      "body": 375,
+      "unloadedImages": [],
+      "nestedParagraphs": 0,
+      "ids": [
+        "page-top",
+        "skip-content",
+        "site-header",
+        "brand-link",
+        "main-navigation-toggle",
+        "main-navigation",
+        "nav-index",
+        "nav-prices",
+        "nav-computers",
+        "nav-booking",
+        "nav-games",
+        "nav-rules",
+        "nav-about",
+        "nav-food",
+        "nav-cart",
+        "header-booking-link",
+        "computers-content",
+        "computers-section-1",
+        "computers-h1-1",
+        "computers-a-1",
+        "computers-a-2",
+        "computers-section-2",
+        "zones-title",
+        "equipment-search",
+        "equipment-refresh",
+        "equipment-private",
+        "equipment-filter-reset",
+        "equipment-result-count",
+        "computers-article-1",
+        "computers-figure-1",
+        "computers-a-3",
+        "compare-main",
+        "computers-article-2",
+        "computers-figure-2",
+        "computers-a-4",
+        "compare-duo",
+        "computers-article-3",
+        "computers-figure-3",
+        "computers-a-5",
+        "compare-private",
+        "equipment-comparison",
+        "equipment-comparison-title",
+        "equipment-comparison-status",
+        "equipment-compare-result",
+        "equipment-compare-clear",
+        "computers-section-3",
+        "peripherals-title",
+        "computers-figure-4",
+        "computers-article-4",
+        "computers-aside-1",
+        "computers-a-6",
+        "site-footer",
+        "footer-brand-title",
+        "footer-contacts-title",
+        "footer-phone",
+        "footer-map",
+        "footer-contacts-link",
+        "footer-rules-link"
+      ],
+      "localLinks": [
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/computers.html#computers-content",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/index.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/index.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/prices.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/computers.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/booking.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/games.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/rules.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/about.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/booking.html#food-menu",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/booking.html#food-cart",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/booking.html#booking-form",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/computers.html#zones-title",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/computers.html#peripherals-title",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/booking.html?zone=main#gaming-zone-selection",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/booking.html?zone=duo&players=2#gaming-zone-selection",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/booking.html?zone=private&tariff=private#gaming-zone-selection",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/booking.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/about.html#contacts",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/rules.html"
+      ],
+      "overflowing": [],
+      "dark": {
+        "theme": "dark",
+        "bodyBg": "rgb(33, 37, 41)",
+        "bodyText": "rgb(248, 249, 250)"
+      },
+      "consoleErrors": [],
+      "pageErrors": [],
+      "requestsFailed": []
+    },
+    {
+      "file": "booking.html",
+      "width": 375,
+      "viewport": 375,
+      "document": 375,
+      "body": 375,
+      "unloadedImages": [],
+      "nestedParagraphs": 0,
+      "ids": [
+        "page-top",
+        "skip-content",
+        "site-header",
+        "brand-link",
+        "main-navigation-toggle",
+        "main-navigation",
+        "nav-index",
+        "nav-prices",
+        "nav-computers",
+        "nav-booking",
+        "nav-games",
+        "nav-rules",
+        "nav-about",
+        "nav-food",
+        "nav-cart",
+        "header-booking-link",
+        "booking-content",
+        "booking-introduction",
+        "booking-h1-1",
+        "booking-a-1",
+        "booking-a-2",
+        "booking-details",
+        "booking-figure-1",
+        "booking-form",
+        "booking-status",
+        "booking-errors",
+        "customer-name",
+        "customer-email",
+        "customer-phone",
+        "booking-date",
+        "booking-time",
+        "player-count",
+        "booking-duration",
+        "tariff-selection",
+        "booking-tariff",
+        "booking-duration-note",
+        "booking-tariff-note",
+        "gaming-zone-selection",
+        "zone-main",
+        "zone-duo",
+        "zone-private",
+        "seat-map",
+        "seat-map-status",
+        "seat-map-feedback",
+        "seat-1",
+        "seat-2",
+        "seat-3",
+        "seat-4",
+        "seat-5",
+        "seat-6",
+        "seat-7",
+        "seat-8",
+        "seat-9",
+        "seat-10",
+        "seat-11",
+        "seat-12",
+        "seat-13",
+        "seat-14",
+        "seat-15",
+        "seat-16",
+        "seat-17",
+        "seat-18",
+        "seat-19",
+        "seat-20",
+        "clear-seat-selection",
+        "headphones",
+        "booking-comment",
+        "booking-agreement",
+        "booking-submit",
+        "booking-reset",
+        "booking-result",
+        "booking-result-title",
+        "booking-result-status",
+        "booking-summary",
+        "booking-summary-tariff",
+        "booking-summary-zone",
+        "booking-summary-date",
+        "booking-summary-time",
+        "booking-summary-players",
+        "booking-summary-seats",
+        "booking-summary-duration",
+        "booking-total-note",
+        "booking-total",
+        "booking-result-list",
+        "booking-success",
+        "booking-a-4",
+        "booking-a-5",
+        "food-cart",
+        "food-cart-title",
+        "food-cart-items",
+        "food-cart-total",
+        "food-cart-clear",
+        "food-feedback",
+        "food-order-form",
+        "food-name",
+        "food-email",
+        "food-phone",
+        "food-delivery",
+        "food-seat",
+        "food-agreement",
+        "food-checkout",
+        "food-order-status",
+        "food-order-success",
+        "local-bookings-title",
+        "local-bookings-status",
+        "local-bookings",
+        "food-menu",
+        "food-menu-title",
+        "food-search",
+        "food-category",
+        "food-sort",
+        "food-available",
+        "food-reset",
+        "food-count",
+        "food-cards",
+        "direct-contact",
+        "booking-a-6",
+        "site-footer",
+        "footer-brand-title",
+        "footer-contacts-title",
+        "footer-phone",
+        "footer-map",
+        "footer-contacts-link",
+        "footer-rules-link"
+      ],
+      "localLinks": [
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/booking.html#booking-content",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/index.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/index.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/prices.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/computers.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/booking.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/games.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/rules.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/about.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/booking.html#food-menu",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/booking.html#food-cart",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/booking.html#booking-form",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/booking.html#booking-form",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/booking.html#direct-contact",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/prices.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/rules.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/booking.html#food-cart",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/about.html#contacts",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/rules.html"
+      ],
+      "overflowing": [],
+      "dark": {
+        "theme": "dark",
+        "bodyBg": "rgb(33, 37, 41)",
+        "bodyText": "rgb(248, 249, 250)"
+      },
+      "consoleErrors": [],
+      "pageErrors": [],
+      "requestsFailed": []
+    },
+    {
+      "file": "games.html",
+      "width": 375,
+      "viewport": 375,
+      "document": 375,
+      "body": 375,
+      "unloadedImages": [],
+      "nestedParagraphs": 0,
+      "ids": [
+        "page-top",
+        "skip-content",
+        "site-header",
+        "brand-link",
+        "main-navigation-toggle",
+        "main-navigation",
+        "nav-index",
+        "nav-prices",
+        "nav-computers",
+        "nav-booking",
+        "nav-games",
+        "nav-rules",
+        "nav-about",
+        "nav-food",
+        "nav-cart",
+        "header-booking-link",
+        "games-content",
+        "game-list",
+        "games-h1-1",
+        "games-search",
+        "games-category",
+        "games-availability",
+        "games-sort",
+        "games-filter-reset",
+        "games-result-count",
+        "game-cards",
+        "game-cs2",
+        "game-dota2",
+        "game-lol",
+        "game-rocket-league",
+        "game-civilization",
+        "game-valorant",
+        "games-aside-1",
+        "games-a-1",
+        "game-request",
+        "game-request-form",
+        "game-request-status",
+        "game-request-errors",
+        "visitor-name",
+        "visitor-email",
+        "visitor-phone",
+        "visit-date",
+        "players",
+        "game-title",
+        "genre",
+        "team-play-label",
+        "team-yes",
+        "team-no",
+        "game-agreement",
+        "request-comment",
+        "request-comment-help",
+        "game-request-submit",
+        "game-request-reset",
+        "game-request-result",
+        "game-request-result-title",
+        "game-request-result-status",
+        "game-request-summary",
+        "game-request-summary-title",
+        "game-request-summary-genre",
+        "game-request-summary-date",
+        "game-request-summary-players",
+        "game-request-summary-team",
+        "game-request-list",
+        "game-request-success",
+        "games-a-2",
+        "games-a-3",
+        "games-a-4",
+        "site-footer",
+        "footer-brand-title",
+        "footer-contacts-title",
+        "footer-phone",
+        "footer-map",
+        "footer-contacts-link",
+        "footer-rules-link"
+      ],
+      "localLinks": [
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/games.html#games-content",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/index.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/index.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/prices.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/computers.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/booking.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/games.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/rules.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/about.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/booking.html#food-menu",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/booking.html#food-cart",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/booking.html#booking-form",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/rules.html#account-safety",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/booking.html?players=1#booking-form",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/games.html#game-list",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/index.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/about.html#contacts",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/rules.html"
+      ],
+      "overflowing": [],
+      "dark": {
+        "theme": "dark",
+        "bodyBg": "rgb(33, 37, 41)",
+        "bodyText": "rgb(248, 249, 250)"
+      },
+      "consoleErrors": [],
+      "pageErrors": [],
+      "requestsFailed": []
+    },
+    {
+      "file": "rules.html",
+      "width": 375,
+      "viewport": 375,
+      "document": 375,
+      "body": 375,
+      "unloadedImages": [],
+      "nestedParagraphs": 0,
+      "ids": [
+        "page-top",
+        "skip-content",
+        "site-header",
+        "brand-link",
+        "main-navigation-toggle",
+        "main-navigation",
+        "nav-index",
+        "nav-prices",
+        "nav-computers",
+        "nav-booking",
+        "nav-games",
+        "nav-rules",
+        "nav-about",
+        "nav-food",
+        "nav-cart",
+        "header-booking-link",
+        "rules-content",
+        "main-rules",
+        "rules-h1-1",
+        "rules-article-1",
+        "rules-figure-1",
+        "rule-table",
+        "rules-table-1",
+        "account-safety",
+        "rules-aside-1",
+        "rules-a-1",
+        "rules-a-2",
+        "rules-a-3",
+        "site-footer",
+        "footer-brand-title",
+        "footer-contacts-title",
+        "footer-phone",
+        "footer-map",
+        "footer-contacts-link",
+        "footer-rules-link"
+      ],
+      "localLinks": [
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/rules.html#rules-content",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/index.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/index.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/prices.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/computers.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/booking.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/games.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/rules.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/about.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/booking.html#food-menu",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/booking.html#food-cart",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/booking.html#booking-form",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/rules.html#main-rules",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/index.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/about.html#contacts",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/rules.html"
+      ],
+      "overflowing": [],
+      "dark": {
+        "theme": "dark",
+        "bodyBg": "rgb(33, 37, 41)",
+        "bodyText": "rgb(248, 249, 250)"
+      },
+      "consoleErrors": [],
+      "pageErrors": [],
+      "requestsFailed": []
+    },
+    {
+      "file": "about.html",
+      "width": 375,
+      "viewport": 375,
+      "document": 375,
+      "body": 375,
+      "unloadedImages": [],
+      "nestedParagraphs": 0,
+      "ids": [
+        "page-top",
+        "skip-content",
+        "site-header",
+        "brand-link",
+        "main-navigation-toggle",
+        "main-navigation",
+        "nav-index",
+        "nav-prices",
+        "nav-computers",
+        "nav-booking",
+        "nav-games",
+        "nav-rules",
+        "nav-about",
+        "nav-food",
+        "nav-cart",
+        "header-booking-link",
+        "about-content",
+        "introduction",
+        "about-h1-1",
+        "about-a-1",
+        "club-space",
+        "about-figure-1",
+        "about-figure-2",
+        "about-article-1",
+        "about-article-2",
+        "about-aside-1",
+        "about-a-2",
+        "contacts",
+        "about-a-3",
+        "about-a-4",
+        "reviews",
+        "reviews-title",
+        "review-form",
+        "review-name",
+        "review-rating",
+        "review-text",
+        "review-counter",
+        "review-submit",
+        "review-status",
+        "review-sort",
+        "review-rating-filter",
+        "review-filter-reset",
+        "review-result-count",
+        "review-list",
+        "site-footer",
+        "footer-brand-title",
+        "footer-contacts-title",
+        "footer-phone",
+        "footer-map",
+        "footer-contacts-link",
+        "footer-rules-link"
+      ],
+      "localLinks": [
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/about.html#about-content",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/index.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/index.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/prices.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/computers.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/booking.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/games.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/rules.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/about.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/booking.html#food-menu",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/booking.html#food-cart",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/booking.html#booking-form",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/about.html#contacts",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/booking.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/about.html#introduction",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/about.html#contacts",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/rules.html"
+      ],
+      "overflowing": [],
+      "dark": {
+        "theme": "dark",
+        "bodyBg": "rgb(33, 37, 41)",
+        "bodyText": "rgb(248, 249, 250)"
+      },
+      "consoleErrors": [],
+      "pageErrors": [],
+      "requestsFailed": []
+    },
+    {
+      "file": "index.html",
+      "width": 768,
+      "viewport": 768,
+      "document": 768,
+      "body": 768,
+      "unloadedImages": [],
+      "nestedParagraphs": 0,
+      "ids": [
+        "page-top",
+        "skip-content",
+        "site-header",
+        "brand-link",
+        "main-navigation-toggle",
+        "main-navigation",
+        "nav-index",
+        "nav-prices",
+        "nav-computers",
+        "nav-booking",
+        "nav-games",
+        "nav-rules",
+        "nav-about",
+        "nav-food",
+        "nav-cart",
+        "header-booking-link",
+        "index-content",
+        "index-section-1",
+        "index-h1-1",
+        "index-a-1",
+        "index-a-2",
+        "index-figure-1",
+        "index-aside-1",
+        "features-title",
+        "visitor-guide",
+        "index-article-1",
+        "index-a-3",
+        "index-article-2",
+        "index-a-4",
+        "gaming-zones",
+        "index-article-3",
+        "index-article-4",
+        "index-article-5",
+        "index-a-5",
+        "index-a-6",
+        "site-footer",
+        "footer-brand-title",
+        "footer-contacts-title",
+        "footer-phone",
+        "footer-map",
+        "footer-contacts-link",
+        "footer-rules-link"
+      ],
+      "localLinks": [
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/index.html#index-content",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/index.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/index.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/prices.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/computers.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/booking.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/games.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/rules.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/about.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/booking.html#food-menu",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/booking.html#food-cart",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/booking.html#booking-form",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/booking.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/prices.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/booking.html#seat-map",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/booking.html#food-menu",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/games.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/rules.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/booking.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/index.html#page-top",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/about.html#contacts",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/rules.html"
+      ],
+      "overflowing": [],
+      "dark": {
+        "theme": "dark",
+        "bodyBg": "rgb(33, 37, 41)",
+        "bodyText": "rgb(248, 249, 250)"
+      },
+      "consoleErrors": [],
+      "pageErrors": [],
+      "requestsFailed": []
+    },
+    {
+      "file": "prices.html",
+      "width": 768,
+      "viewport": 768,
+      "document": 768,
+      "body": 768,
+      "unloadedImages": [],
+      "nestedParagraphs": 0,
+      "ids": [
+        "page-top",
+        "skip-content",
+        "site-header",
+        "brand-link",
+        "main-navigation-toggle",
+        "main-navigation",
+        "nav-index",
+        "nav-prices",
+        "nav-computers",
+        "nav-booking",
+        "nav-games",
+        "nav-rules",
+        "nav-about",
+        "nav-food",
+        "nav-cart",
+        "header-booking-link",
+        "prices-content",
+        "prices-section-1",
+        "prices-h1-1",
+        "prices-a-1",
+        "prices-a-2",
+        "prices-figure-1",
+        "tariffs",
+        "prices-search",
+        "prices-type",
+        "prices-filter-reset",
+        "prices-result-count",
+        "tariff-hour",
+        "tariff-three-hours",
+        "tariff-five-hours",
+        "tariff-day",
+        "tariff-night",
+        "tariff-private",
+        "price-calculator",
+        "price-calculator-title",
+        "price-calculator-form",
+        "calculator-tariff",
+        "calculator-players",
+        "calculator-players-help",
+        "calculator-hours",
+        "calculator-hours-help",
+        "calculator-summary",
+        "calculator-status",
+        "calculator-booking-link",
+        "tariff-comparison",
+        "prices-table-1",
+        "booking-steps",
+        "prices-aside-1",
+        "prices-a-7",
+        "site-footer",
+        "footer-brand-title",
+        "footer-contacts-title",
+        "footer-phone",
+        "footer-map",
+        "footer-contacts-link",
+        "footer-rules-link"
+      ],
+      "localLinks": [
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/prices.html#prices-content",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/index.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/index.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/prices.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/computers.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/booking.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/games.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/rules.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/about.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/booking.html#food-menu",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/booking.html#food-cart",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/booking.html#booking-form",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/prices.html#tariffs",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/prices.html#booking-steps",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/booking.html?tariff=hour#tariff-selection",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/booking.html?tariff=three-hours#tariff-selection",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/booking.html?tariff=five-hours#tariff-selection",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/booking.html?tariff=day#tariff-selection",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/booking.html?tariff=night#tariff-selection",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/booking.html?tariff=private#tariff-selection",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/booking.html?tariff=hour&players=1&hours=1#booking-form",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/booking.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/about.html#contacts",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/rules.html"
+      ],
+      "overflowing": [],
+      "dark": {
+        "theme": "dark",
+        "bodyBg": "rgb(33, 37, 41)",
+        "bodyText": "rgb(248, 249, 250)"
+      },
+      "consoleErrors": [],
+      "pageErrors": [],
+      "requestsFailed": []
+    },
+    {
+      "file": "computers.html",
+      "width": 768,
+      "viewport": 768,
+      "document": 768,
+      "body": 768,
+      "unloadedImages": [],
+      "nestedParagraphs": 0,
+      "ids": [
+        "page-top",
+        "skip-content",
+        "site-header",
+        "brand-link",
+        "main-navigation-toggle",
+        "main-navigation",
+        "nav-index",
+        "nav-prices",
+        "nav-computers",
+        "nav-booking",
+        "nav-games",
+        "nav-rules",
+        "nav-about",
+        "nav-food",
+        "nav-cart",
+        "header-booking-link",
+        "computers-content",
+        "computers-section-1",
+        "computers-h1-1",
+        "computers-a-1",
+        "computers-a-2",
+        "computers-section-2",
+        "zones-title",
+        "equipment-search",
+        "equipment-refresh",
+        "equipment-private",
+        "equipment-filter-reset",
+        "equipment-result-count",
+        "computers-article-1",
+        "computers-figure-1",
+        "computers-a-3",
+        "compare-main",
+        "computers-article-2",
+        "computers-figure-2",
+        "computers-a-4",
+        "compare-duo",
+        "computers-article-3",
+        "computers-figure-3",
+        "computers-a-5",
+        "compare-private",
+        "equipment-comparison",
+        "equipment-comparison-title",
+        "equipment-comparison-status",
+        "equipment-compare-result",
+        "equipment-compare-clear",
+        "computers-section-3",
+        "peripherals-title",
+        "computers-figure-4",
+        "computers-article-4",
+        "computers-aside-1",
+        "computers-a-6",
+        "site-footer",
+        "footer-brand-title",
+        "footer-contacts-title",
+        "footer-phone",
+        "footer-map",
+        "footer-contacts-link",
+        "footer-rules-link"
+      ],
+      "localLinks": [
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/computers.html#computers-content",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/index.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/index.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/prices.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/computers.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/booking.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/games.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/rules.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/about.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/booking.html#food-menu",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/booking.html#food-cart",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/booking.html#booking-form",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/computers.html#zones-title",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/computers.html#peripherals-title",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/booking.html?zone=main#gaming-zone-selection",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/booking.html?zone=duo&players=2#gaming-zone-selection",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/booking.html?zone=private&tariff=private#gaming-zone-selection",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/booking.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/about.html#contacts",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/rules.html"
+      ],
+      "overflowing": [],
+      "dark": {
+        "theme": "dark",
+        "bodyBg": "rgb(33, 37, 41)",
+        "bodyText": "rgb(248, 249, 250)"
+      },
+      "consoleErrors": [],
+      "pageErrors": [],
+      "requestsFailed": []
+    },
+    {
+      "file": "booking.html",
+      "width": 768,
+      "viewport": 768,
+      "document": 768,
+      "body": 768,
+      "unloadedImages": [],
+      "nestedParagraphs": 0,
+      "ids": [
+        "page-top",
+        "skip-content",
+        "site-header",
+        "brand-link",
+        "main-navigation-toggle",
+        "main-navigation",
+        "nav-index",
+        "nav-prices",
+        "nav-computers",
+        "nav-booking",
+        "nav-games",
+        "nav-rules",
+        "nav-about",
+        "nav-food",
+        "nav-cart",
+        "header-booking-link",
+        "booking-content",
+        "booking-introduction",
+        "booking-h1-1",
+        "booking-a-1",
+        "booking-a-2",
+        "booking-details",
+        "booking-figure-1",
+        "booking-form",
+        "booking-status",
+        "booking-errors",
+        "customer-name",
+        "customer-email",
+        "customer-phone",
+        "booking-date",
+        "booking-time",
+        "player-count",
+        "booking-duration",
+        "tariff-selection",
+        "booking-tariff",
+        "booking-duration-note",
+        "booking-tariff-note",
+        "gaming-zone-selection",
+        "zone-main",
+        "zone-duo",
+        "zone-private",
+        "seat-map",
+        "seat-map-status",
+        "seat-map-feedback",
+        "seat-1",
+        "seat-2",
+        "seat-3",
+        "seat-4",
+        "seat-5",
+        "seat-6",
+        "seat-7",
+        "seat-8",
+        "seat-9",
+        "seat-10",
+        "seat-11",
+        "seat-12",
+        "seat-13",
+        "seat-14",
+        "seat-15",
+        "seat-16",
+        "seat-17",
+        "seat-18",
+        "seat-19",
+        "seat-20",
+        "clear-seat-selection",
+        "headphones",
+        "booking-comment",
+        "booking-agreement",
+        "booking-submit",
+        "booking-reset",
+        "booking-result",
+        "booking-result-title",
+        "booking-result-status",
+        "booking-summary",
+        "booking-summary-tariff",
+        "booking-summary-zone",
+        "booking-summary-date",
+        "booking-summary-time",
+        "booking-summary-players",
+        "booking-summary-seats",
+        "booking-summary-duration",
+        "booking-total-note",
+        "booking-total",
+        "booking-result-list",
+        "booking-success",
+        "booking-a-4",
+        "booking-a-5",
+        "food-cart",
+        "food-cart-title",
+        "food-cart-items",
+        "food-cart-total",
+        "food-cart-clear",
+        "food-feedback",
+        "food-order-form",
+        "food-name",
+        "food-email",
+        "food-phone",
+        "food-delivery",
+        "food-seat",
+        "food-agreement",
+        "food-checkout",
+        "food-order-status",
+        "food-order-success",
+        "local-bookings-title",
+        "local-bookings-status",
+        "local-bookings",
+        "food-menu",
+        "food-menu-title",
+        "food-search",
+        "food-category",
+        "food-sort",
+        "food-available",
+        "food-reset",
+        "food-count",
+        "food-cards",
+        "direct-contact",
+        "booking-a-6",
+        "site-footer",
+        "footer-brand-title",
+        "footer-contacts-title",
+        "footer-phone",
+        "footer-map",
+        "footer-contacts-link",
+        "footer-rules-link"
+      ],
+      "localLinks": [
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/booking.html#booking-content",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/index.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/index.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/prices.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/computers.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/booking.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/games.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/rules.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/about.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/booking.html#food-menu",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/booking.html#food-cart",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/booking.html#booking-form",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/booking.html#booking-form",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/booking.html#direct-contact",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/prices.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/rules.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/booking.html#food-cart",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/about.html#contacts",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/rules.html"
+      ],
+      "overflowing": [],
+      "dark": {
+        "theme": "dark",
+        "bodyBg": "rgb(33, 37, 41)",
+        "bodyText": "rgb(248, 249, 250)"
+      },
+      "consoleErrors": [],
+      "pageErrors": [],
+      "requestsFailed": []
+    },
+    {
+      "file": "games.html",
+      "width": 768,
+      "viewport": 768,
+      "document": 768,
+      "body": 768,
+      "unloadedImages": [],
+      "nestedParagraphs": 0,
+      "ids": [
+        "page-top",
+        "skip-content",
+        "site-header",
+        "brand-link",
+        "main-navigation-toggle",
+        "main-navigation",
+        "nav-index",
+        "nav-prices",
+        "nav-computers",
+        "nav-booking",
+        "nav-games",
+        "nav-rules",
+        "nav-about",
+        "nav-food",
+        "nav-cart",
+        "header-booking-link",
+        "games-content",
+        "game-list",
+        "games-h1-1",
+        "games-search",
+        "games-category",
+        "games-availability",
+        "games-sort",
+        "games-filter-reset",
+        "games-result-count",
+        "game-cards",
+        "game-cs2",
+        "game-dota2",
+        "game-lol",
+        "game-rocket-league",
+        "game-civilization",
+        "game-valorant",
+        "games-aside-1",
+        "games-a-1",
+        "game-request",
+        "game-request-form",
+        "game-request-status",
+        "game-request-errors",
+        "visitor-name",
+        "visitor-email",
+        "visitor-phone",
+        "visit-date",
+        "players",
+        "game-title",
+        "genre",
+        "team-play-label",
+        "team-yes",
+        "team-no",
+        "game-agreement",
+        "request-comment",
+        "request-comment-help",
+        "game-request-submit",
+        "game-request-reset",
+        "game-request-result",
+        "game-request-result-title",
+        "game-request-result-status",
+        "game-request-summary",
+        "game-request-summary-title",
+        "game-request-summary-genre",
+        "game-request-summary-date",
+        "game-request-summary-players",
+        "game-request-summary-team",
+        "game-request-list",
+        "game-request-success",
+        "games-a-2",
+        "games-a-3",
+        "games-a-4",
+        "site-footer",
+        "footer-brand-title",
+        "footer-contacts-title",
+        "footer-phone",
+        "footer-map",
+        "footer-contacts-link",
+        "footer-rules-link"
+      ],
+      "localLinks": [
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/games.html#games-content",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/index.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/index.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/prices.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/computers.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/booking.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/games.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/rules.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/about.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/booking.html#food-menu",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/booking.html#food-cart",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/booking.html#booking-form",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/rules.html#account-safety",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/booking.html?players=1#booking-form",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/games.html#game-list",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/index.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/about.html#contacts",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/rules.html"
+      ],
+      "overflowing": [],
+      "dark": {
+        "theme": "dark",
+        "bodyBg": "rgb(33, 37, 41)",
+        "bodyText": "rgb(248, 249, 250)"
+      },
+      "consoleErrors": [],
+      "pageErrors": [],
+      "requestsFailed": []
+    },
+    {
+      "file": "rules.html",
+      "width": 768,
+      "viewport": 768,
+      "document": 768,
+      "body": 768,
+      "unloadedImages": [],
+      "nestedParagraphs": 0,
+      "ids": [
+        "page-top",
+        "skip-content",
+        "site-header",
+        "brand-link",
+        "main-navigation-toggle",
+        "main-navigation",
+        "nav-index",
+        "nav-prices",
+        "nav-computers",
+        "nav-booking",
+        "nav-games",
+        "nav-rules",
+        "nav-about",
+        "nav-food",
+        "nav-cart",
+        "header-booking-link",
+        "rules-content",
+        "main-rules",
+        "rules-h1-1",
+        "rules-article-1",
+        "rules-figure-1",
+        "rule-table",
+        "rules-table-1",
+        "account-safety",
+        "rules-aside-1",
+        "rules-a-1",
+        "rules-a-2",
+        "rules-a-3",
+        "site-footer",
+        "footer-brand-title",
+        "footer-contacts-title",
+        "footer-phone",
+        "footer-map",
+        "footer-contacts-link",
+        "footer-rules-link"
+      ],
+      "localLinks": [
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/rules.html#rules-content",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/index.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/index.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/prices.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/computers.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/booking.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/games.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/rules.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/about.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/booking.html#food-menu",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/booking.html#food-cart",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/booking.html#booking-form",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/rules.html#main-rules",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/index.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/about.html#contacts",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/rules.html"
+      ],
+      "overflowing": [],
+      "dark": {
+        "theme": "dark",
+        "bodyBg": "rgb(33, 37, 41)",
+        "bodyText": "rgb(248, 249, 250)"
+      },
+      "consoleErrors": [],
+      "pageErrors": [],
+      "requestsFailed": []
+    },
+    {
+      "file": "about.html",
+      "width": 768,
+      "viewport": 768,
+      "document": 768,
+      "body": 768,
+      "unloadedImages": [],
+      "nestedParagraphs": 0,
+      "ids": [
+        "page-top",
+        "skip-content",
+        "site-header",
+        "brand-link",
+        "main-navigation-toggle",
+        "main-navigation",
+        "nav-index",
+        "nav-prices",
+        "nav-computers",
+        "nav-booking",
+        "nav-games",
+        "nav-rules",
+        "nav-about",
+        "nav-food",
+        "nav-cart",
+        "header-booking-link",
+        "about-content",
+        "introduction",
+        "about-h1-1",
+        "about-a-1",
+        "club-space",
+        "about-figure-1",
+        "about-figure-2",
+        "about-article-1",
+        "about-article-2",
+        "about-aside-1",
+        "about-a-2",
+        "contacts",
+        "about-a-3",
+        "about-a-4",
+        "reviews",
+        "reviews-title",
+        "review-form",
+        "review-name",
+        "review-rating",
+        "review-text",
+        "review-counter",
+        "review-submit",
+        "review-status",
+        "review-sort",
+        "review-rating-filter",
+        "review-filter-reset",
+        "review-result-count",
+        "review-list",
+        "site-footer",
+        "footer-brand-title",
+        "footer-contacts-title",
+        "footer-phone",
+        "footer-map",
+        "footer-contacts-link",
+        "footer-rules-link"
+      ],
+      "localLinks": [
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/about.html#about-content",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/index.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/index.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/prices.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/computers.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/booking.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/games.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/rules.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/about.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/booking.html#food-menu",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/booking.html#food-cart",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/booking.html#booking-form",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/about.html#contacts",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/booking.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/about.html#introduction",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/about.html#contacts",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/rules.html"
+      ],
+      "overflowing": [],
+      "dark": {
+        "theme": "dark",
+        "bodyBg": "rgb(33, 37, 41)",
+        "bodyText": "rgb(248, 249, 250)"
+      },
+      "consoleErrors": [],
+      "pageErrors": [],
+      "requestsFailed": []
+    },
+    {
+      "file": "index.html",
+      "width": 1440,
+      "viewport": 1440,
+      "document": 1440,
+      "body": 1440,
+      "unloadedImages": [],
+      "nestedParagraphs": 0,
+      "ids": [
+        "page-top",
+        "skip-content",
+        "site-header",
+        "brand-link",
+        "main-navigation-toggle",
+        "main-navigation",
+        "nav-index",
+        "nav-prices",
+        "nav-computers",
+        "nav-booking",
+        "nav-games",
+        "nav-rules",
+        "nav-about",
+        "nav-food",
+        "nav-cart",
+        "header-booking-link",
+        "index-content",
+        "index-section-1",
+        "index-h1-1",
+        "index-a-1",
+        "index-a-2",
+        "index-figure-1",
+        "index-aside-1",
+        "features-title",
+        "visitor-guide",
+        "index-article-1",
+        "index-a-3",
+        "index-article-2",
+        "index-a-4",
+        "gaming-zones",
+        "index-article-3",
+        "index-article-4",
+        "index-article-5",
+        "index-a-5",
+        "index-a-6",
+        "site-footer",
+        "footer-brand-title",
+        "footer-contacts-title",
+        "footer-phone",
+        "footer-map",
+        "footer-contacts-link",
+        "footer-rules-link"
+      ],
+      "localLinks": [
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/index.html#index-content",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/index.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/index.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/prices.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/computers.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/booking.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/games.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/rules.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/about.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/booking.html#food-menu",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/booking.html#food-cart",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/booking.html#booking-form",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/booking.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/prices.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/booking.html#seat-map",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/booking.html#food-menu",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/games.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/rules.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/booking.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/index.html#page-top",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/about.html#contacts",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/rules.html"
+      ],
+      "overflowing": [],
+      "dark": {
+        "theme": "dark",
+        "bodyBg": "rgb(33, 37, 41)",
+        "bodyText": "rgb(248, 249, 250)"
+      },
+      "consoleErrors": [],
+      "pageErrors": [],
+      "requestsFailed": []
+    },
+    {
+      "file": "prices.html",
+      "width": 1440,
+      "viewport": 1440,
+      "document": 1440,
+      "body": 1440,
+      "unloadedImages": [],
+      "nestedParagraphs": 0,
+      "ids": [
+        "page-top",
+        "skip-content",
+        "site-header",
+        "brand-link",
+        "main-navigation-toggle",
+        "main-navigation",
+        "nav-index",
+        "nav-prices",
+        "nav-computers",
+        "nav-booking",
+        "nav-games",
+        "nav-rules",
+        "nav-about",
+        "nav-food",
+        "nav-cart",
+        "header-booking-link",
+        "prices-content",
+        "prices-section-1",
+        "prices-h1-1",
+        "prices-a-1",
+        "prices-a-2",
+        "prices-figure-1",
+        "tariffs",
+        "prices-search",
+        "prices-type",
+        "prices-filter-reset",
+        "prices-result-count",
+        "tariff-hour",
+        "tariff-three-hours",
+        "tariff-five-hours",
+        "tariff-day",
+        "tariff-night",
+        "tariff-private",
+        "price-calculator",
+        "price-calculator-title",
+        "price-calculator-form",
+        "calculator-tariff",
+        "calculator-players",
+        "calculator-players-help",
+        "calculator-hours",
+        "calculator-hours-help",
+        "calculator-summary",
+        "calculator-status",
+        "calculator-booking-link",
+        "tariff-comparison",
+        "prices-table-1",
+        "booking-steps",
+        "prices-aside-1",
+        "prices-a-7",
+        "site-footer",
+        "footer-brand-title",
+        "footer-contacts-title",
+        "footer-phone",
+        "footer-map",
+        "footer-contacts-link",
+        "footer-rules-link"
+      ],
+      "localLinks": [
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/prices.html#prices-content",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/index.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/index.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/prices.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/computers.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/booking.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/games.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/rules.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/about.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/booking.html#food-menu",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/booking.html#food-cart",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/booking.html#booking-form",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/prices.html#tariffs",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/prices.html#booking-steps",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/booking.html?tariff=hour#tariff-selection",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/booking.html?tariff=three-hours#tariff-selection",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/booking.html?tariff=five-hours#tariff-selection",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/booking.html?tariff=day#tariff-selection",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/booking.html?tariff=night#tariff-selection",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/booking.html?tariff=private#tariff-selection",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/booking.html?tariff=hour&players=1&hours=1#booking-form",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/booking.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/about.html#contacts",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/rules.html"
+      ],
+      "overflowing": [],
+      "dark": {
+        "theme": "dark",
+        "bodyBg": "rgb(33, 37, 41)",
+        "bodyText": "rgb(248, 249, 250)"
+      },
+      "consoleErrors": [],
+      "pageErrors": [],
+      "requestsFailed": []
+    },
+    {
+      "file": "computers.html",
+      "width": 1440,
+      "viewport": 1440,
+      "document": 1440,
+      "body": 1440,
+      "unloadedImages": [],
+      "nestedParagraphs": 0,
+      "ids": [
+        "page-top",
+        "skip-content",
+        "site-header",
+        "brand-link",
+        "main-navigation-toggle",
+        "main-navigation",
+        "nav-index",
+        "nav-prices",
+        "nav-computers",
+        "nav-booking",
+        "nav-games",
+        "nav-rules",
+        "nav-about",
+        "nav-food",
+        "nav-cart",
+        "header-booking-link",
+        "computers-content",
+        "computers-section-1",
+        "computers-h1-1",
+        "computers-a-1",
+        "computers-a-2",
+        "computers-section-2",
+        "zones-title",
+        "equipment-search",
+        "equipment-refresh",
+        "equipment-private",
+        "equipment-filter-reset",
+        "equipment-result-count",
+        "computers-article-1",
+        "computers-figure-1",
+        "computers-a-3",
+        "compare-main",
+        "computers-article-2",
+        "computers-figure-2",
+        "computers-a-4",
+        "compare-duo",
+        "computers-article-3",
+        "computers-figure-3",
+        "computers-a-5",
+        "compare-private",
+        "equipment-comparison",
+        "equipment-comparison-title",
+        "equipment-comparison-status",
+        "equipment-compare-result",
+        "equipment-compare-clear",
+        "computers-section-3",
+        "peripherals-title",
+        "computers-figure-4",
+        "computers-article-4",
+        "computers-aside-1",
+        "computers-a-6",
+        "site-footer",
+        "footer-brand-title",
+        "footer-contacts-title",
+        "footer-phone",
+        "footer-map",
+        "footer-contacts-link",
+        "footer-rules-link"
+      ],
+      "localLinks": [
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/computers.html#computers-content",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/index.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/index.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/prices.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/computers.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/booking.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/games.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/rules.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/about.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/booking.html#food-menu",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/booking.html#food-cart",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/booking.html#booking-form",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/computers.html#zones-title",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/computers.html#peripherals-title",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/booking.html?zone=main#gaming-zone-selection",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/booking.html?zone=duo&players=2#gaming-zone-selection",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/booking.html?zone=private&tariff=private#gaming-zone-selection",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/booking.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/about.html#contacts",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/rules.html"
+      ],
+      "overflowing": [],
+      "dark": {
+        "theme": "dark",
+        "bodyBg": "rgb(33, 37, 41)",
+        "bodyText": "rgb(248, 249, 250)"
+      },
+      "consoleErrors": [],
+      "pageErrors": [],
+      "requestsFailed": []
+    },
+    {
+      "file": "booking.html",
+      "width": 1440,
+      "viewport": 1440,
+      "document": 1440,
+      "body": 1440,
+      "unloadedImages": [],
+      "nestedParagraphs": 0,
+      "ids": [
+        "page-top",
+        "skip-content",
+        "site-header",
+        "brand-link",
+        "main-navigation-toggle",
+        "main-navigation",
+        "nav-index",
+        "nav-prices",
+        "nav-computers",
+        "nav-booking",
+        "nav-games",
+        "nav-rules",
+        "nav-about",
+        "nav-food",
+        "nav-cart",
+        "header-booking-link",
+        "booking-content",
+        "booking-introduction",
+        "booking-h1-1",
+        "booking-a-1",
+        "booking-a-2",
+        "booking-details",
+        "booking-figure-1",
+        "booking-form",
+        "booking-status",
+        "booking-errors",
+        "customer-name",
+        "customer-email",
+        "customer-phone",
+        "booking-date",
+        "booking-time",
+        "player-count",
+        "booking-duration",
+        "tariff-selection",
+        "booking-tariff",
+        "booking-duration-note",
+        "booking-tariff-note",
+        "gaming-zone-selection",
+        "zone-main",
+        "zone-duo",
+        "zone-private",
+        "seat-map",
+        "seat-map-status",
+        "seat-map-feedback",
+        "seat-1",
+        "seat-2",
+        "seat-3",
+        "seat-4",
+        "seat-5",
+        "seat-6",
+        "seat-7",
+        "seat-8",
+        "seat-9",
+        "seat-10",
+        "seat-11",
+        "seat-12",
+        "seat-13",
+        "seat-14",
+        "seat-15",
+        "seat-16",
+        "seat-17",
+        "seat-18",
+        "seat-19",
+        "seat-20",
+        "clear-seat-selection",
+        "headphones",
+        "booking-comment",
+        "booking-agreement",
+        "booking-submit",
+        "booking-reset",
+        "booking-result",
+        "booking-result-title",
+        "booking-result-status",
+        "booking-summary",
+        "booking-summary-tariff",
+        "booking-summary-zone",
+        "booking-summary-date",
+        "booking-summary-time",
+        "booking-summary-players",
+        "booking-summary-seats",
+        "booking-summary-duration",
+        "booking-total-note",
+        "booking-total",
+        "booking-result-list",
+        "booking-success",
+        "booking-a-4",
+        "booking-a-5",
+        "food-cart",
+        "food-cart-title",
+        "food-cart-items",
+        "food-cart-total",
+        "food-cart-clear",
+        "food-feedback",
+        "food-order-form",
+        "food-name",
+        "food-email",
+        "food-phone",
+        "food-delivery",
+        "food-seat",
+        "food-agreement",
+        "food-checkout",
+        "food-order-status",
+        "food-order-success",
+        "local-bookings-title",
+        "local-bookings-status",
+        "local-bookings",
+        "food-menu",
+        "food-menu-title",
+        "food-search",
+        "food-category",
+        "food-sort",
+        "food-available",
+        "food-reset",
+        "food-count",
+        "food-cards",
+        "direct-contact",
+        "booking-a-6",
+        "site-footer",
+        "footer-brand-title",
+        "footer-contacts-title",
+        "footer-phone",
+        "footer-map",
+        "footer-contacts-link",
+        "footer-rules-link"
+      ],
+      "localLinks": [
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/booking.html#booking-content",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/index.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/index.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/prices.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/computers.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/booking.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/games.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/rules.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/about.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/booking.html#food-menu",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/booking.html#food-cart",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/booking.html#booking-form",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/booking.html#booking-form",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/booking.html#direct-contact",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/prices.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/rules.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/booking.html#food-cart",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/about.html#contacts",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/rules.html"
+      ],
+      "overflowing": [],
+      "dark": {
+        "theme": "dark",
+        "bodyBg": "rgb(33, 37, 41)",
+        "bodyText": "rgb(248, 249, 250)"
+      },
+      "consoleErrors": [],
+      "pageErrors": [],
+      "requestsFailed": []
+    },
+    {
+      "file": "games.html",
+      "width": 1440,
+      "viewport": 1440,
+      "document": 1440,
+      "body": 1440,
+      "unloadedImages": [],
+      "nestedParagraphs": 0,
+      "ids": [
+        "page-top",
+        "skip-content",
+        "site-header",
+        "brand-link",
+        "main-navigation-toggle",
+        "main-navigation",
+        "nav-index",
+        "nav-prices",
+        "nav-computers",
+        "nav-booking",
+        "nav-games",
+        "nav-rules",
+        "nav-about",
+        "nav-food",
+        "nav-cart",
+        "header-booking-link",
+        "games-content",
+        "game-list",
+        "games-h1-1",
+        "games-search",
+        "games-category",
+        "games-availability",
+        "games-sort",
+        "games-filter-reset",
+        "games-result-count",
+        "game-cards",
+        "game-cs2",
+        "game-dota2",
+        "game-lol",
+        "game-rocket-league",
+        "game-civilization",
+        "game-valorant",
+        "games-aside-1",
+        "games-a-1",
+        "game-request",
+        "game-request-form",
+        "game-request-status",
+        "game-request-errors",
+        "visitor-name",
+        "visitor-email",
+        "visitor-phone",
+        "visit-date",
+        "players",
+        "game-title",
+        "genre",
+        "team-play-label",
+        "team-yes",
+        "team-no",
+        "game-agreement",
+        "request-comment",
+        "request-comment-help",
+        "game-request-submit",
+        "game-request-reset",
+        "game-request-result",
+        "game-request-result-title",
+        "game-request-result-status",
+        "game-request-summary",
+        "game-request-summary-title",
+        "game-request-summary-genre",
+        "game-request-summary-date",
+        "game-request-summary-players",
+        "game-request-summary-team",
+        "game-request-list",
+        "game-request-success",
+        "games-a-2",
+        "games-a-3",
+        "games-a-4",
+        "site-footer",
+        "footer-brand-title",
+        "footer-contacts-title",
+        "footer-phone",
+        "footer-map",
+        "footer-contacts-link",
+        "footer-rules-link"
+      ],
+      "localLinks": [
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/games.html#games-content",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/index.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/index.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/prices.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/computers.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/booking.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/games.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/rules.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/about.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/booking.html#food-menu",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/booking.html#food-cart",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/booking.html#booking-form",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/rules.html#account-safety",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/booking.html?players=1#booking-form",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/games.html#game-list",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/index.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/about.html#contacts",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/rules.html"
+      ],
+      "overflowing": [],
+      "dark": {
+        "theme": "dark",
+        "bodyBg": "rgb(33, 37, 41)",
+        "bodyText": "rgb(248, 249, 250)"
+      },
+      "consoleErrors": [],
+      "pageErrors": [],
+      "requestsFailed": []
+    },
+    {
+      "file": "rules.html",
+      "width": 1440,
+      "viewport": 1440,
+      "document": 1440,
+      "body": 1440,
+      "unloadedImages": [],
+      "nestedParagraphs": 0,
+      "ids": [
+        "page-top",
+        "skip-content",
+        "site-header",
+        "brand-link",
+        "main-navigation-toggle",
+        "main-navigation",
+        "nav-index",
+        "nav-prices",
+        "nav-computers",
+        "nav-booking",
+        "nav-games",
+        "nav-rules",
+        "nav-about",
+        "nav-food",
+        "nav-cart",
+        "header-booking-link",
+        "rules-content",
+        "main-rules",
+        "rules-h1-1",
+        "rules-article-1",
+        "rules-figure-1",
+        "rule-table",
+        "rules-table-1",
+        "account-safety",
+        "rules-aside-1",
+        "rules-a-1",
+        "rules-a-2",
+        "rules-a-3",
+        "site-footer",
+        "footer-brand-title",
+        "footer-contacts-title",
+        "footer-phone",
+        "footer-map",
+        "footer-contacts-link",
+        "footer-rules-link"
+      ],
+      "localLinks": [
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/rules.html#rules-content",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/index.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/index.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/prices.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/computers.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/booking.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/games.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/rules.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/about.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/booking.html#food-menu",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/booking.html#food-cart",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/booking.html#booking-form",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/rules.html#main-rules",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/index.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/about.html#contacts",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/rules.html"
+      ],
+      "overflowing": [],
+      "dark": {
+        "theme": "dark",
+        "bodyBg": "rgb(33, 37, 41)",
+        "bodyText": "rgb(248, 249, 250)"
+      },
+      "consoleErrors": [],
+      "pageErrors": [],
+      "requestsFailed": []
+    },
+    {
+      "file": "about.html",
+      "width": 1440,
+      "viewport": 1440,
+      "document": 1440,
+      "body": 1440,
+      "unloadedImages": [],
+      "nestedParagraphs": 0,
+      "ids": [
+        "page-top",
+        "skip-content",
+        "site-header",
+        "brand-link",
+        "main-navigation-toggle",
+        "main-navigation",
+        "nav-index",
+        "nav-prices",
+        "nav-computers",
+        "nav-booking",
+        "nav-games",
+        "nav-rules",
+        "nav-about",
+        "nav-food",
+        "nav-cart",
+        "header-booking-link",
+        "about-content",
+        "introduction",
+        "about-h1-1",
+        "about-a-1",
+        "club-space",
+        "about-figure-1",
+        "about-figure-2",
+        "about-article-1",
+        "about-article-2",
+        "about-aside-1",
+        "about-a-2",
+        "contacts",
+        "about-a-3",
+        "about-a-4",
+        "reviews",
+        "reviews-title",
+        "review-form",
+        "review-name",
+        "review-rating",
+        "review-text",
+        "review-counter",
+        "review-submit",
+        "review-status",
+        "review-sort",
+        "review-rating-filter",
+        "review-filter-reset",
+        "review-result-count",
+        "review-list",
+        "site-footer",
+        "footer-brand-title",
+        "footer-contacts-title",
+        "footer-phone",
+        "footer-map",
+        "footer-contacts-link",
+        "footer-rules-link"
+      ],
+      "localLinks": [
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/about.html#about-content",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/index.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/index.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/prices.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/computers.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/booking.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/games.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/rules.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/about.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/booking.html#food-menu",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/booking.html#food-cart",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/booking.html#booking-form",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/about.html#contacts",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/booking.html",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/about.html#introduction",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/about.html#contacts",
+        "file:///Users/ulanchik/Documents/Codex/2026-10-08/s/outputs/computerClub/rules.html"
+      ],
+      "overflowing": [],
+      "dark": {
+        "theme": "dark",
+        "bodyBg": "rgb(33, 37, 41)",
+        "bodyText": "rgb(248, 249, 250)"
+      },
+      "consoleErrors": [],
+      "pageErrors": [],
+      "requestsFailed": []
+    }
+  ],
+  "flows": [
+    {
+      "name": "dark theme index.html 375",
+      "ok": true,
+      "details": {
+        "theme": "dark",
+        "bodyBg": "rgb(33, 37, 41)",
+        "bodyText": "rgb(248, 249, 250)"
+      }
+    },
+    {
+      "name": "no visible demo wording: index.html 375",
+      "ok": true,
+      "details": []
+    },
+    {
+      "name": "mobile menu index.html 375",
+      "ok": true,
+      "details": null
+    },
+    {
+      "name": "dark theme prices.html 375",
+      "ok": true,
+      "details": {
+        "theme": "dark",
+        "bodyBg": "rgb(33, 37, 41)",
+        "bodyText": "rgb(248, 249, 250)"
+      }
+    },
+    {
+      "name": "no visible demo wording: prices.html 375",
+      "ok": true,
+      "details": []
+    },
+    {
+      "name": "mobile menu prices.html 375",
+      "ok": true,
+      "details": null
+    },
+    {
+      "name": "dark theme computers.html 375",
+      "ok": true,
+      "details": {
+        "theme": "dark",
+        "bodyBg": "rgb(33, 37, 41)",
+        "bodyText": "rgb(248, 249, 250)"
+      }
+    },
+    {
+      "name": "no visible demo wording: computers.html 375",
+      "ok": true,
+      "details": []
+    },
+    {
+      "name": "mobile menu computers.html 375",
+      "ok": true,
+      "details": null
+    },
+    {
+      "name": "dark theme booking.html 375",
+      "ok": true,
+      "details": {
+        "theme": "dark",
+        "bodyBg": "rgb(33, 37, 41)",
+        "bodyText": "rgb(248, 249, 250)"
+      }
+    },
+    {
+      "name": "no visible demo wording: booking.html 375",
+      "ok": true,
+      "details": []
+    },
+    {
+      "name": "mobile menu booking.html 375",
+      "ok": true,
+      "details": null
+    },
+    {
+      "name": "dark theme games.html 375",
+      "ok": true,
+      "details": {
+        "theme": "dark",
+        "bodyBg": "rgb(33, 37, 41)",
+        "bodyText": "rgb(248, 249, 250)"
+      }
+    },
+    {
+      "name": "no visible demo wording: games.html 375",
+      "ok": true,
+      "details": []
+    },
+    {
+      "name": "mobile menu games.html 375",
+      "ok": true,
+      "details": null
+    },
+    {
+      "name": "dark theme rules.html 375",
+      "ok": true,
+      "details": {
+        "theme": "dark",
+        "bodyBg": "rgb(33, 37, 41)",
+        "bodyText": "rgb(248, 249, 250)"
+      }
+    },
+    {
+      "name": "no visible demo wording: rules.html 375",
+      "ok": true,
+      "details": []
+    },
+    {
+      "name": "mobile menu rules.html 375",
+      "ok": true,
+      "details": null
+    },
+    {
+      "name": "dark theme about.html 375",
+      "ok": true,
+      "details": {
+        "theme": "dark",
+        "bodyBg": "rgb(33, 37, 41)",
+        "bodyText": "rgb(248, 249, 250)"
+      }
+    },
+    {
+      "name": "no visible demo wording: about.html 375",
+      "ok": true,
+      "details": []
+    },
+    {
+      "name": "mobile menu about.html 375",
+      "ok": true,
+      "details": null
+    },
+    {
+      "name": "dark theme index.html 768",
+      "ok": true,
+      "details": {
+        "theme": "dark",
+        "bodyBg": "rgb(33, 37, 41)",
+        "bodyText": "rgb(248, 249, 250)"
+      }
+    },
+    {
+      "name": "no visible demo wording: index.html 768",
+      "ok": true,
+      "details": []
+    },
+    {
+      "name": "mobile menu index.html 768",
+      "ok": true,
+      "details": null
+    },
+    {
+      "name": "dark theme prices.html 768",
+      "ok": true,
+      "details": {
+        "theme": "dark",
+        "bodyBg": "rgb(33, 37, 41)",
+        "bodyText": "rgb(248, 249, 250)"
+      }
+    },
+    {
+      "name": "no visible demo wording: prices.html 768",
+      "ok": true,
+      "details": []
+    },
+    {
+      "name": "mobile menu prices.html 768",
+      "ok": true,
+      "details": null
+    },
+    {
+      "name": "dark theme computers.html 768",
+      "ok": true,
+      "details": {
+        "theme": "dark",
+        "bodyBg": "rgb(33, 37, 41)",
+        "bodyText": "rgb(248, 249, 250)"
+      }
+    },
+    {
+      "name": "no visible demo wording: computers.html 768",
+      "ok": true,
+      "details": []
+    },
+    {
+      "name": "mobile menu computers.html 768",
+      "ok": true,
+      "details": null
+    },
+    {
+      "name": "dark theme booking.html 768",
+      "ok": true,
+      "details": {
+        "theme": "dark",
+        "bodyBg": "rgb(33, 37, 41)",
+        "bodyText": "rgb(248, 249, 250)"
+      }
+    },
+    {
+      "name": "no visible demo wording: booking.html 768",
+      "ok": true,
+      "details": []
+    },
+    {
+      "name": "mobile menu booking.html 768",
+      "ok": true,
+      "details": null
+    },
+    {
+      "name": "dark theme games.html 768",
+      "ok": true,
+      "details": {
+        "theme": "dark",
+        "bodyBg": "rgb(33, 37, 41)",
+        "bodyText": "rgb(248, 249, 250)"
+      }
+    },
+    {
+      "name": "no visible demo wording: games.html 768",
+      "ok": true,
+      "details": []
+    },
+    {
+      "name": "mobile menu games.html 768",
+      "ok": true,
+      "details": null
+    },
+    {
+      "name": "dark theme rules.html 768",
+      "ok": true,
+      "details": {
+        "theme": "dark",
+        "bodyBg": "rgb(33, 37, 41)",
+        "bodyText": "rgb(248, 249, 250)"
+      }
+    },
+    {
+      "name": "no visible demo wording: rules.html 768",
+      "ok": true,
+      "details": []
+    },
+    {
+      "name": "mobile menu rules.html 768",
+      "ok": true,
+      "details": null
+    },
+    {
+      "name": "dark theme about.html 768",
+      "ok": true,
+      "details": {
+        "theme": "dark",
+        "bodyBg": "rgb(33, 37, 41)",
+        "bodyText": "rgb(248, 249, 250)"
+      }
+    },
+    {
+      "name": "no visible demo wording: about.html 768",
+      "ok": true,
+      "details": []
+    },
+    {
+      "name": "mobile menu about.html 768",
+      "ok": true,
+      "details": null
+    },
+    {
+      "name": "dark theme index.html 1440",
+      "ok": true,
+      "details": {
+        "theme": "dark",
+        "bodyBg": "rgb(33, 37, 41)",
+        "bodyText": "rgb(248, 249, 250)"
+      }
+    },
+    {
+      "name": "no visible demo wording: index.html 1440",
+      "ok": true,
+      "details": []
+    },
+    {
+      "name": "dark theme prices.html 1440",
+      "ok": true,
+      "details": {
+        "theme": "dark",
+        "bodyBg": "rgb(33, 37, 41)",
+        "bodyText": "rgb(248, 249, 250)"
+      }
+    },
+    {
+      "name": "no visible demo wording: prices.html 1440",
+      "ok": true,
+      "details": []
+    },
+    {
+      "name": "dark theme computers.html 1440",
+      "ok": true,
+      "details": {
+        "theme": "dark",
+        "bodyBg": "rgb(33, 37, 41)",
+        "bodyText": "rgb(248, 249, 250)"
+      }
+    },
+    {
+      "name": "no visible demo wording: computers.html 1440",
+      "ok": true,
+      "details": []
+    },
+    {
+      "name": "dark theme booking.html 1440",
+      "ok": true,
+      "details": {
+        "theme": "dark",
+        "bodyBg": "rgb(33, 37, 41)",
+        "bodyText": "rgb(248, 249, 250)"
+      }
+    },
+    {
+      "name": "no visible demo wording: booking.html 1440",
+      "ok": true,
+      "details": []
+    },
+    {
+      "name": "dark theme games.html 1440",
+      "ok": true,
+      "details": {
+        "theme": "dark",
+        "bodyBg": "rgb(33, 37, 41)",
+        "bodyText": "rgb(248, 249, 250)"
+      }
+    },
+    {
+      "name": "no visible demo wording: games.html 1440",
+      "ok": true,
+      "details": []
+    },
+    {
+      "name": "dark theme rules.html 1440",
+      "ok": true,
+      "details": {
+        "theme": "dark",
+        "bodyBg": "rgb(33, 37, 41)",
+        "bodyText": "rgb(248, 249, 250)"
+      }
+    },
+    {
+      "name": "no visible demo wording: rules.html 1440",
+      "ok": true,
+      "details": []
+    },
+    {
+      "name": "dark theme about.html 1440",
+      "ok": true,
+      "details": {
+        "theme": "dark",
+        "bodyBg": "rgb(33, 37, 41)",
+        "bodyText": "rgb(248, 249, 250)"
+      }
+    },
+    {
+      "name": "no visible demo wording: about.html 1440",
+      "ok": true,
+      "details": []
+    },
+    {
+      "name": "20 booking seats rendered",
+      "ok": true,
+      "details": null
+    },
+    {
+      "name": "Main10 Duo5 Private5 distribution",
+      "ok": true,
+      "details": null
+    },
+    {
+      "name": "no fictitious occupied seats in clean browser",
+      "ok": true,
+      "details": null
+    },
+    {
+      "name": "booking empty validation shown",
+      "ok": true,
+      "details": null
+    },
+    {
+      "name": "booking invalid contact focused",
+      "ok": true,
+      "details": null
+    },
+    {
+      "name": "six booking tariff options",
+      "ok": true,
+      "details": [
+        "hour",
+        "three-hours",
+        "five-hours",
+        "day",
+        "night",
+        "private"
+      ]
+    },
+    {
+      "name": "one DUO computer can be selected",
+      "ok": true,
+      "details": null
+    },
+    {
+      "name": "one DUO computer accepted with hourly tariff",
+      "ok": true,
+      "details": null
+    },
+    {
+      "name": "cancel frees selected DUO seat",
+      "ok": true,
+      "details": null
+    },
+    {
+      "name": "cancel restores focus",
+      "ok": true,
+      "details": null
+    },
+    {
+      "name": "mixed-zone selection counts3",
+      "ok": true,
+      "details": null
+    },
+    {
+      "name": "zone radio preserves mixed-zone selection",
+      "ok": true,
+      "details": null
+    },
+    {
+      "name": "mixed-zone summary correct",
+      "ok": true,
+      "details": null
+    },
+    {
+      "name": "mixed-zone booking accepted",
+      "ok": true,
+      "details": null
+    },
+    {
+      "name": "local booking text contrast",
+      "ok": true,
+      "details": null
+    },
+    {
+      "name": "all20 seats selected across zones",
+      "ok": true,
+      "details": null
+    },
+    {
+      "name": "20-player estimator has no zone cap",
+      "ok": true,
+      "details": null
+    },
+    {
+      "name": "20-PC booking accepted",
+      "ok": true,
+      "details": null
+    },
+    {
+      "name": "booking reference contains no demo prefix",
+      "ok": true,
+      "details": null
+    },
+    {
+      "name": "repeated submit creates no duplicate",
+      "ok": true,
+      "details": null
+    },
+    {
+      "name": "booking stores20PCs without contacts",
+      "ok": true,
+      "details": null
+    },
+    {
+      "name": "20PC booking survives reload",
+      "ok": true,
+      "details": null
+    },
+    {
+      "name": "overlap blocks every reserved seat",
+      "ok": true,
+      "details": null
+    },
+    {
+      "name": "overlap submission rejected without duplicate",
+      "ok": true,
+      "details": null
+    },
+    {
+      "name": "adjacent boundary frees same seats",
+      "ok": true,
+      "details": null
+    },
+    {
+      "name": "adjacent interval accepted",
+      "ok": true,
+      "details": null
+    },
+    {
+      "name": "booking rejects >20",
+      "ok": true,
+      "details": null
+    },
+    {
+      "name": "booking rejects fractional count",
+      "ok": true,
+      "details": null
+    },
+    {
+      "name": "booking rejects past date",
+      "ok": true,
+      "details": null
+    },
+    {
+      "name": "booking rejects past time today",
+      "ok": true,
+      "details": null
+    },
+    {
+      "name": "three-hours booking package duration matches data",
+      "ok": true,
+      "details": null
+    },
+    {
+      "name": "three-hours rejects wrong package duration",
+      "ok": true,
+      "details": null
+    },
+    {
+      "name": "three-hours accepted on PRIVATE computer",
+      "ok": true,
+      "details": null
+    },
+    {
+      "name": "five-hours booking package duration matches data",
+      "ok": true,
+      "details": null
+    },
+    {
+      "name": "five-hours rejects wrong package duration",
+      "ok": true,
+      "details": null
+    },
+    {
+      "name": "five-hours accepted on PRIVATE computer",
+      "ok": true,
+      "details": null
+    },
+    {
+      "name": "day booking package duration matches data",
+      "ok": true,
+      "details": null
+    },
+    {
+      "name": "day rejects wrong package duration",
+      "ok": true,
+      "details": null
+    },
+    {
+      "name": "day accepted on PRIVATE computer",
+      "ok": true,
+      "details": null
+    },
+    {
+      "name": "night booking package duration matches data",
+      "ok": true,
+      "details": null
+    },
+    {
+      "name": "night rejects wrong package duration",
+      "ok": true,
+      "details": null
+    },
+    {
+      "name": "night accepted on PRIVATE computer",
+      "ok": true,
+      "details": null
+    },
+    {
+      "name": "private accepted on PRIVATE computer",
+      "ok": true,
+      "details": null
+    },
+    {
+      "name": "clear-seat button removes selections",
+      "ok": true,
+      "details": null
+    },
+    {
+      "name": "booking reset clears contacts and seat selections",
+      "ok": true,
+      "details": null
+    },
+    {
+      "name": "hour booking query retains20/date/game/duration",
+      "ok": true,
+      "details": null
+    },
+    {
+      "name": "three-hours booking query retains20/date/game/duration",
+      "ok": true,
+      "details": null
+    },
+    {
+      "name": "five-hours booking query retains20/date/game/duration",
+      "ok": true,
+      "details": null
+    },
+    {
+      "name": "day booking query retains20/date/game/duration",
+      "ok": true,
+      "details": null
+    },
+    {
+      "name": "night booking query retains20/date/game/duration",
+      "ok": true,
+      "details": null
+    },
+    {
+      "name": "private booking query retains20/date/game/duration",
+      "ok": true,
+      "details": null
+    },
+    {
+      "name": "no visible demo wording: booking flow",
+      "ok": true,
+      "details": []
+    },
+    {
+      "name": "bookingFlow no nested paragraphs after validation",
+      "ok": true,
+      "details": null
+    },
+    {
+      "name": "game catalogue search exists",
+      "ok": true,
+      "details": null
+    },
+    {
+      "name": "game search no-results count",
+      "ok": true,
+      "details": null
+    },
+    {
+      "name": "game search reset",
+      "ok": true,
+      "details": null
+    },
+    {
+      "name": "game catalogue next action prefills title + genre",
+      "ok": true,
+      "details": null
+    },
+    {
+      "name": "game request empty validation",
+      "ok": true,
+      "details": null
+    },
+    {
+      "name": "game request rejects over20 participants",
+      "ok": true,
+      "details": null
+    },
+    {
+      "name": "game request rejects team + single player",
+      "ok": true,
+      "details": null
+    },
+    {
+      "name": "game request clears corrected dependent team error",
+      "ok": true,
+      "details": null
+    },
+    {
+      "name": "game request rejects known title genre mismatch",
+      "ok": true,
+      "details": null
+    },
+    {
+      "name": "game request clears corrected genre error",
+      "ok": true,
+      "details": null
+    },
+    {
+      "name": "game request successful summary",
+      "ok": true,
+      "details": null
+    },
+    {
+      "name": "game request honest saved confirmation",
+      "ok": true,
+      "details": null
+    },
+    {
+      "name": "game request saved in local storage",
+      "ok": true,
+      "details": null
+    },
+    {
+      "name": "no visible demo wording: game request success",
+      "ok": true,
+      "details": []
+    },
+    {
+      "name": "game request reset clears name",
+      "ok": true,
+      "details": null
+    },
+    {
+      "name": "gamesFlow no nested paragraphs after validation",
+      "ok": true,
+      "details": null
+    },
+    {
+      "name": "home states20 computers",
+      "ok": true,
+      "details": null
+    },
+    {
+      "name": "tariff search no results",
+      "ok": true,
+      "details": null
+    },
+    {
+      "name": "tariff search reset",
+      "ok": true,
+      "details": null
+    },
+    {
+      "name": "equipment no-results count",
+      "ok": true,
+      "details": null
+    },
+    {
+      "name": "equipment compare result",
+      "ok": true,
+      "details": null
+    },
+    {
+      "name": "equipment compare clears",
+      "ok": true,
+      "details": null
+    },
+    {
+      "name": "remove last comparison restores keyboard focus + empty state",
+      "ok": true,
+      "details": null
+    },
+    {
+      "name": "about states20 computers",
+      "ok": true,
+      "details": null
+    },
+    {
+      "name": "review invalid name focused",
+      "ok": true,
+      "details": null
+    },
+    {
+      "name": "review rejects short content",
+      "ok": true,
+      "details": null
+    },
+    {
+      "name": "review character counter",
+      "ok": true,
+      "details": null
+    },
+    {
+      "name": "review appended as card",
+      "ok": true,
+      "details": null
+    },
+    {
+      "name": "review user content safe plain text",
+      "ok": true,
+      "details": null
+    },
+    {
+      "name": "review persists reload with date + rating",
+      "ok": true,
+      "details": null
+    },
+    {
+      "name": "remove last review has empty state + count",
+      "ok": true,
+      "details": null
+    },
+    {
+      "name": "pageFlows no nested paragraphs after validation",
+      "ok": true,
+      "details": null
+    },
+    {
+      "name": "food menu module loaded",
+      "ok": true,
+      "details": null
+    },
+    {
+      "name": "8 food products rendered",
+      "ok": true,
+      "details": null
+    },
+    {
+      "name": "8 food product photos loaded",
+      "ok": true,
+      "details": null
+    },
+    {
+      "name": "food-seat options match20 computers",
+      "ok": true,
+      "details": null
+    },
+    {
+      "name": "unavailable food disabled",
+      "ok": true,
+      "details": null
+    },
+    {
+      "name": "empty food checkout disabled",
+      "ok": true,
+      "details": null
+    },
+    {
+      "name": "food connected category + search",
+      "ok": true,
+      "details": null
+    },
+    {
+      "name": "food no-results count + empty message",
+      "ok": true,
+      "details": null
+    },
+    {
+      "name": "food filters reset",
+      "ok": true,
+      "details": null
+    },
+    {
+      "name": "food availability filter",
+      "ok": true,
+      "details": null
+    },
+    {
+      "name": "food price sort",
+      "ok": true,
+      "details": null
+    },
+    {
+      "name": "cart add totals",
+      "ok": true,
+      "details": null
+    },
+    {
+      "name": "food count preserved after add",
+      "ok": true,
+      "details": null
+    },
+    {
+      "name": "cart increase recalculates total",
+      "ok": true,
+      "details": null
+    },
+    {
+      "name": "cart increase restores keyboard focus",
+      "ok": true,
+      "details": null
+    },
+    {
+      "name": "cart decrease recalculates total",
+      "ok": true,
+      "details": null
+    },
+    {
+      "name": "cart remove recalculates total",
+      "ok": true,
+      "details": null
+    },
+    {
+      "name": "remove last cart item empty state",
+      "ok": true,
+      "details": null
+    },
+    {
+      "name": "remove last item preserves keyboard focus",
+      "ok": true,
+      "details": null
+    },
+    {
+      "name": "food empty contact validation focuses name",
+      "ok": true,
+      "details": null
+    },
+    {
+      "name": "food delivery requires seat selection",
+      "ok": true,
+      "details": null
+    },
+    {
+      "name": "food seat correction clears outdated error",
+      "ok": true,
+      "details": null
+    },
+    {
+      "name": "food saved order success summary",
+      "ok": true,
+      "details": null
+    },
+    {
+      "name": "food order stored in local storage",
+      "ok": true,
+      "details": null
+    },
+    {
+      "name": "no visible demo wording: food order success",
+      "ok": true,
+      "details": []
+    },
+    {
+      "name": "food user content inserted as plain text",
+      "ok": true,
+      "details": null
+    },
+    {
+      "name": "food successful order clears cart",
+      "ok": true,
+      "details": null
+    },
+    {
+      "name": "cart persists across page navigation",
+      "ok": true,
+      "details": null
+    },
+    {
+      "name": "cart clear empties + disables checkout",
+      "ok": true,
+      "details": null
+    },
+    {
+      "name": "foodFlow no nested paragraphs after validation",
+      "ok": true,
+      "details": null
+    },
+    {
+      "name": "six tariff data objects",
+      "ok": true,
+      "details": null
+    },
+    {
+      "name": "all6 tariff cards rendered",
+      "ok": true,
+      "details": null
+    },
+    {
+      "name": "all6 comparison table rows",
+      "ok": true,
+      "details": null
+    },
+    {
+      "name": "tariff table readable contrast",
+      "ok": true,
+      "details": null
+    },
+    {
+      "name": "calculator options identical6 tariff ids",
+      "ok": true,
+      "details": null
+    },
+    {
+      "name": "hour price/name match card and table",
+      "ok": true,
+      "details": null
+    },
+    {
+      "name": "hour calculator accepts20 and computes algebra",
+      "ok": true,
+      "details": null
+    },
+    {
+      "name": "hour calculation submit succeeds",
+      "ok": true,
+      "details": null
+    },
+    {
+      "name": "hour calculator journey retains20/duration/tariff",
+      "ok": true,
+      "details": null
+    },
+    {
+      "name": "three-hours price/name match card and table",
+      "ok": true,
+      "details": null
+    },
+    {
+      "name": "three-hours calculator accepts20 and computes algebra",
+      "ok": true,
+      "details": null
+    },
+    {
+      "name": "three-hours calculation submit succeeds",
+      "ok": true,
+      "details": null
+    },
+    {
+      "name": "three-hours calculator journey retains20/duration/tariff",
+      "ok": true,
+      "details": null
+    },
+    {
+      "name": "five-hours price/name match card and table",
+      "ok": true,
+      "details": null
+    },
+    {
+      "name": "five-hours calculator accepts20 and computes algebra",
+      "ok": true,
+      "details": null
+    },
+    {
+      "name": "five-hours calculation submit succeeds",
+      "ok": true,
+      "details": null
+    },
+    {
+      "name": "five-hours calculator journey retains20/duration/tariff",
+      "ok": true,
+      "details": null
+    },
+    {
+      "name": "day price/name match card and table",
+      "ok": true,
+      "details": null
+    },
+    {
+      "name": "day calculator accepts20 and computes algebra",
+      "ok": true,
+      "details": null
+    },
+    {
+      "name": "day calculation submit succeeds",
+      "ok": true,
+      "details": null
+    },
+    {
+      "name": "day calculator journey retains20/duration/tariff",
+      "ok": true,
+      "details": null
+    },
+    {
+      "name": "night price/name match card and table",
+      "ok": true,
+      "details": null
+    },
+    {
+      "name": "night calculator accepts20 and computes algebra",
+      "ok": true,
+      "details": null
+    },
+    {
+      "name": "night calculation submit succeeds",
+      "ok": true,
+      "details": null
+    },
+    {
+      "name": "night calculator journey retains20/duration/tariff",
+      "ok": true,
+      "details": null
+    },
+    {
+      "name": "private price/name match card and table",
+      "ok": true,
+      "details": null
+    },
+    {
+      "name": "private calculator accepts20 and computes algebra",
+      "ok": true,
+      "details": null
+    },
+    {
+      "name": "private calculation submit succeeds",
+      "ok": true,
+      "details": null
+    },
+    {
+      "name": "private calculator journey retains20/duration/tariff",
+      "ok": true,
+      "details": null
+    },
+    {
+      "name": "calculator rejects >20 and focuses player field",
+      "ok": true,
+      "details": null
+    },
+    {
+      "name": "calculator reset returns valid defaults",
+      "ok": true,
+      "details": null
+    },
+    {
+      "name": "fixed duration tariff filter4",
+      "ok": true,
+      "details": null
+    },
+    {
+      "name": "night tariff filter1",
+      "ok": true,
+      "details": null
+    },
+    {
+      "name": "tariff reset restores6 cards",
+      "ok": true,
+      "details": null
+    },
+    {
+      "name": "no visible demo wording: packages flow",
+      "ok": true,
+      "details": []
+    },
+    {
+      "name": "packagesFlow no nested paragraphs after validation",
+      "ok": true,
+      "details": null
+    },
+    {
+      "name": "six game images",
+      "ok": true,
+      "details": null
+    },
+    {
+      "name": "six distinct cover sources",
+      "ok": true,
+      "details": null
+    },
+    {
+      "name": "game covers same height",
+      "ok": true,
+      "details": null
+    },
+    {
+      "name": "six official game links safely open",
+      "ok": true,
+      "details": null
+    },
+    {
+      "name": "official game links readable contrast",
+      "ok": true,
+      "details": null
+    },
+    {
+      "name": "game genre filter2",
+      "ok": true,
+      "details": null
+    },
+    {
+      "name": "no visible demo wording: games presentation",
+      "ok": true,
+      "details": []
+    },
+    {
+      "name": "mobile menu Escape closes and restores toggle focus",
+      "ok": true,
+      "details": null
+    },
+    {
+      "name": "newPresentationFlow no nested paragraphs after validation",
+      "ok": true,
+      "details": null
+    }
+  ],
+  "errors": [],
+  "contrasts": [
+    {
+      "selector": "#local-bookings li, #local-bookings li strong, #local-bookings li span, #local-bookings button",
+      "measured": [
+        {
+          "tag": "LI",
+          "text": "MAIN, DUO, PRIVATE · 2026-10-13, 14:00 · 2 ч.\nPC 1",
+          "contrast": 14.634395071362922
+        },
+        {
+          "tag": "STRONG",
+          "text": "MAIN, DUO, PRIVATE · 2026-10-13, 14:00 · 2 ч.",
+          "contrast": 14.634395071362922
+        },
+        {
+          "tag": "SPAN",
+          "text": "PC 1, PC 11, PC 16",
+          "contrast": 14.634395071362922
+        },
+        {
+          "tag": "SPAN",
+          "text": "TG-BOOK-MV52EIWX-7998",
+          "contrast": 11.84672274715884
+        },
+        {
+          "tag": "BUTTON",
+          "text": "Отменить бронь",
+          "contrast": 14.634395071362922
+        }
+      ]
+    },
+    {
+      "selector": "#prices-table-1 th, #prices-table-1 td",
+      "measured": [
+        {
+          "tag": "TH",
+          "text": "Тариф",
+          "contrast": 15.426285095510265
+        },
+        {
+          "tag": "TH",
+          "text": "Стоимость",
+          "contrast": 15.426285095510265
+        },
+        {
+          "tag": "TH",
+          "text": "Формат",
+          "contrast": 15.426285095510265
+        },
+        {
+          "tag": "TH",
+          "text": "Подходит для",
+          "contrast": 15.426285095510265
+        },
+        {
+          "tag": "TH",
+          "text": "1 час",
+          "contrast": 15.426285095510265
+        },
+        {
+          "tag": "TD",
+          "text": "1 200 ₸",
+          "contrast": 15.426285095510265
+        },
+        {
+          "tag": "TD",
+          "text": "За час на ПК",
+          "contrast": 15.426285095510265
+        },
+        {
+          "tag": "TD",
+          "text": "Один матч или свободный график",
+          "contrast": 15.426285095510265
+        },
+        {
+          "tag": "TH",
+          "text": "3 часа",
+          "contrast": 15.426285095510265
+        },
+        {
+          "tag": "TD",
+          "text": "3 600 ₸",
+          "contrast": 15.426285095510265
+        },
+        {
+          "tag": "TD",
+          "text": "3 часов на ПК",
+          "contrast": 15.426285095510265
+        },
+        {
+          "tag": "TD",
+          "text": "Для игры с друзьями",
+          "contrast": 15.426285095510265
+        },
+        {
+          "tag": "TH",
+          "text": "5 часов",
+          "contrast": 15.426285095510265
+        },
+        {
+          "tag": "TD",
+          "text": "5 400 ₸",
+          "contrast": 15.426285095510265
+        },
+        {
+          "tag": "TD",
+          "text": "5 часов на ПК",
+          "contrast": 15.426285095510265
+        },
+        {
+          "tag": "TD",
+          "text": "Для командной тренировки",
+          "contrast": 15.426285095510265
+        },
+        {
+          "tag": "TH",
+          "text": "День · 10 часов",
+          "contrast": 15.426285095510265
+        },
+        {
+          "tag": "TD",
+          "text": "8 900 ₸",
+          "contrast": 15.426285095510265
+        },
+        {
+          "tag": "TD",
+          "text": "10 часов на ПК",
+          "contrast": 15.426285095510265
+        },
+        {
+          "tag": "TD",
+          "text": "Для долгого игрового марафона",
+          "contrast": 15.426285095510265
+        },
+        {
+          "tag": "TH",
+          "text": "Ночь · 8 часов",
+          "contrast": 15.426285095510265
+        },
+        {
+          "tag": "TD",
+          "text": "4 700 ₸",
+          "contrast": 15.426285095510265
+        },
+        {
+          "tag": "TD",
+          "text": "8 часов на ПК",
+          "contrast": 15.426285095510265
+        },
+        {
+          "tag": "TD",
+          "text": "Для игры ночью",
+          "contrast": 15.426285095510265
+        },
+        {
+          "tag": "TH",
+          "text": "PRIVATE",
+          "contrast": 15.426285095510265
+        },
+        {
+          "tag": "TD",
+          "text": "2 500 ₸",
+          "contrast": 15.426285095510265
+        },
+        {
+          "tag": "TD",
+          "text": "За час на ПК",
+          "contrast": 15.426285095510265
+        },
+        {
+          "tag": "TD",
+          "text": "Для игры в отдельном пространстве",
+          "contrast": 15.426285095510265
+        }
+      ]
+    },
+    {
+      "selector": "#game-cards a[target=\"_blank\"]",
+      "measured": [
+        {
+          "tag": "A",
+          "text": "Официальный сайт игры",
+          "contrast": 14.634395071362922
+        },
+        {
+          "tag": "A",
+          "text": "Официальный сайт игры",
+          "contrast": 14.634395071362922
+        },
+        {
+          "tag": "A",
+          "text": "Официальный сайт игры",
+          "contrast": 14.634395071362922
+        },
+        {
+          "tag": "A",
+          "text": "Официальный сайт игры",
+          "contrast": 14.634395071362922
+        },
+        {
+          "tag": "A",
+          "text": "Официальный сайт игры",
+          "contrast": 14.634395071362922
+        },
+        {
+          "tag": "A",
+          "text": "Официальный сайт игры",
+          "contrast": 14.634395071362922
+        }
+      ]
+    }
+  ]
+}

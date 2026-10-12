@@ -7,12 +7,12 @@
 
     // Mentioned games and visitor suggestions are distinguished from installed games.
     const games = [
-        { id: 'cs2', title: 'Counter-Strike 2', genre: 'shooter', format: 'Командный шутер, 5 × 5', source: true, official: 'https://www.counter-strike.net/cs2', image: 'images/gaming-hall-blue.jpg' },
-        { id: 'dota2', title: 'Dota 2', genre: 'moba', format: 'MOBA, две команды по пять игроков', source: true, official: 'https://www.dota2.com/', image: 'images/peripherals.jpg' },
-        { id: 'valorant', title: 'VALORANT', genre: 'shooter', format: 'Тактический шутер, 5 × 5', source: false, official: 'https://playvalorant.com/' },
-        { id: 'lol', title: 'League of Legends', genre: 'moba', format: 'Командная MOBA', source: false, official: 'https://www.leagueoflegends.com/' },
-        { id: 'rocket-league', title: 'Rocket League', genre: 'sports', format: 'Футбол на автомобилях', source: false, official: 'https://www.rocketleague.com/' },
-        { id: 'civilization', title: 'Sid Meier’s Civilization VI', genre: 'strategy', format: 'Пошаговая стратегия', source: false, official: 'https://civilization.2k.com/civ-vi/' }
+        { id: 'cs2', title: 'Counter-Strike 2', genre: 'shooter', format: 'Командный шутер, 5 × 5', source: true, official: 'https://www.counter-strike.net/cs2', image: 'images/games/cs2.jpg' },
+        { id: 'dota2', title: 'Dota 2', genre: 'moba', format: 'MOBA, две команды по пять игроков', source: true, official: 'https://www.dota2.com/', image: 'images/games/dota2.jpg' },
+        { id: 'valorant', title: 'VALORANT', genre: 'shooter', format: 'Тактический шутер, 5 × 5', source: false, official: 'https://playvalorant.com/', image: 'images/games/valorant.jpg' },
+        { id: 'lol', title: 'League of Legends', genre: 'moba', format: 'Командная MOBA', source: false, official: 'https://www.leagueoflegends.com/', image: 'images/games/lol.jpg' },
+        { id: 'rocket-league', title: 'Rocket League', genre: 'sports', format: 'Футбол на автомобилях', source: false, official: 'https://www.rocketleague.com/', image: 'images/games/rocket-league.jpg' },
+        { id: 'civilization', title: 'Sid Meier’s Civilization VI', genre: 'strategy', format: 'Пошаговая стратегия', source: false, official: 'https://civilization.2k.com/civ-vi/', image: 'images/games/civilization.jpg' }
     ];
     const genreNames = { shooter: 'Шутер', moba: 'MOBA', strategy: 'Стратегия', sports: 'Спорт' };
     const form = document.getElementById('game-request-form');
@@ -62,25 +62,22 @@
     actions.append(reset, count);
     controls.append(actions);
     list.before(controls);
-    list.closest('section').querySelector('header .lead').textContent = 'Выберите игру для запроса. Counter-Strike 2 и Dota 2 упомянуты в исходном каталоге; остальные игры — предложения. Наличие и версии всех игр нужно уточнить у клуба.';
+    list.closest('section').querySelector('header .lead').textContent = 'Выберите игру и запланируйте визит с друзьями. Наличие нужной версии уточняйте у администратора.';
 
     function renderGame(game) {
         const column = app.el('div', 'col-12 col-md-6 col-lg-4');
-        const card = app.el('article', 'card h-100 shadow-sm');
+        const card = app.el('article', 'card h-100 shadow-sm overflow-hidden');
         card.id = `game-${game.id}`;
+        const cover = app.el('div', 'ratio ratio-16x9');
+        const image = app.el('img', 'w-100 h-100 object-fit-cover');
+        image.src = game.image;
+        image.alt = `Официальное изображение ${game.title}`;
+        image.loading = 'lazy';
+        image.decoding = 'async';
+        cover.append(image);
         const body = app.el('div', 'card-body p-3 p-lg-4 d-flex flex-column');
         body.append(app.el('h2', 'h4 fw-bold mb-3', game.title));
-        if (game.image) {
-            const figure = app.el('figure', 'mb-3');
-            const image = app.el('img', 'w-100 object-fit-cover rounded-3');
-            image.src = game.image;
-            image.alt = game.id === 'cs2' ? 'Игровой зал TOP GAME с синим освещением' : 'Периферия игрового места TOP GAME';
-            image.height = 190;
-            figure.append(image, app.el('figcaption', 'small text-body-secondary mt-2', 'Фотография клуба TOP GAME, не изображение игры.'));
-            body.append(figure);
-        }
         body.append(app.el('p', 'card-text', game.format));
-        body.append(app.el('p', 'small text-body-secondary', game.source ? 'Упомянута на сайте. Установка и версия не подтверждены.' : 'Предложение для клуба. Установка и версия не подтверждены.'));
         const official = app.el('a', 'mb-3', 'Официальный сайт игры');
         official.href = game.official;
         official.target = '_blank';
@@ -92,11 +89,11 @@
             titleField.value = game.title;
             genreField.value = game.genre;
             onRequestEdit({ target: titleField });
-            app.notify(status, `Выбрана игра ${game.title}. Заполните контакты и параметры визита; это демонстрационный запрос.`, '');
+            app.notify(status, `Выбрана игра ${game.title}. Заполните контакты и параметры визита.`, '');
             titleField.focus();
         });
         body.append(official, choose);
-        card.append(body);
+        card.append(cover, body);
         column.append(card);
         return column;
     }
@@ -122,11 +119,13 @@
     genreField.append(moba);
     dateField.min = app.today();
     document.getElementById('game-request-submit-guard').remove();
-    document.getElementById('game-request-submit').type = 'submit';
+    const submit = document.getElementById('game-request-submit');
+    submit.type = 'submit';
+    submit.textContent = 'Отправить запрос';
     form.noValidate = true;
-    form.closest('section').querySelector(':scope > p').textContent = 'Укажите игру и пожелания к версии. Проверьте предварительный итог, затем создайте демонстрационный запрос. Данные не отправляются на сервер, установка игры и реальное бронирование не выполняются.';
-    success.nextElementSibling.textContent = 'Подтверждение относится только к демонстрации в этом браузере. Наличие игры уточняется у администратора.';
-    app.notify(status, 'Заполните форму. Итог обновляется при вводе; запрос не отправляется в клуб.', '');
+    form.closest('section').querySelector(':scope > p').textContent = 'Укажите игру, дату и количество игроков. Параметры запроса сохраняются в этом браузере; наличие игры уточняйте у администратора.';
+    success.nextElementSibling.textContent = 'Для бронирования мест перейдите к выбору ПК.';
+    app.notify(status, 'Заполните форму. Итог обновляется при вводе.', '');
 
     function updateSummary() {
         const team = form.querySelector('[name="team-play"]:checked');
@@ -135,7 +134,7 @@
         document.getElementById('game-request-summary-date').textContent = dateField.value || 'Не выбрана';
         document.getElementById('game-request-summary-players').textContent = playersField.value || 'Не указано';
         document.getElementById('game-request-summary-team').textContent = team ? (team.value === 'yes' ? 'Да' : 'Нет') : 'Не выбрана';
-        resultStatus.textContent = 'Предварительный итог. Нажмите «Показать итог запроса» для проверки.';
+        resultStatus.textContent = 'Проверьте параметры и нажмите «Отправить запрос».';
         success.classList.add('hidden');
         resultList.classList.add('hidden');
         const next = new URL('booking.html', location.href);
@@ -210,8 +209,9 @@
         if (request.comment) lines.push(`Комментарий: ${request.comment}`);
         app.renderList(resultList, lines, text => app.el('li', 'list-group-item text-break', text), 'Нет данных запроса.');
         resultList.classList.remove('hidden');
-        app.notify(success, `Демонстрационный запрос ${request.reference} сформирован. Данные не отправлены на сервер; установка игры и реальное бронирование не созданы.`, 'success');
-        resultStatus.textContent = 'Проверка пройдена. Просмотрите параметры запроса ниже.';
+        const saved = app.store.set('game-request', request);
+        app.notify(success, saved ? `Запрос ${request.reference} сохранён в этом браузере.` : 'Параметры проверены, но браузер не разрешил сохранить запрос.', saved ? 'success' : 'error');
+        resultStatus.textContent = 'Параметры запроса:';
     });
     form.addEventListener('reset', () => {
         attempted = false;
@@ -222,10 +222,20 @@
         resultList.classList.add('hidden');
         setTimeout(() => {
             updateSummary();
-            app.notify(status, 'Форма очищена. Можно сформировать новый демонстрационный запрос.', '');
+            app.notify(status, 'Форма очищена. Можно отправить новый запрос.', '');
             document.getElementById('visitor-name').focus();
         }, 0);
     });
     renderGames();
+    const previousRequest = app.store.get('game-request', null);
+    if (previousRequest && typeof previousRequest.title === 'string') {
+        titleField.value = previousRequest.title;
+        genreField.value = Object.keys(genreNames).find(key => genreNames[key] === previousRequest.genre) || '';
+        dateField.value = previousRequest.date || '';
+        playersField.value = previousRequest.players || 1;
+        document.getElementById(previousRequest.team === 'Да' ? 'team-yes' : 'team-no').checked = true;
+        document.getElementById('request-comment').value = previousRequest.comment || '';
+        app.notify(status, 'Загружены параметры последнего запроса. Контакты заполните заново.', '');
+    }
     updateSummary();
 })();

@@ -4,7 +4,7 @@
     const form = document.getElementById('booking-form');
     if (!form) return;
 
-    const { el, money, reference, today, localDateTime, store, renderList, setError, clearErrors, validateContacts, notify, tariffs, seats } = window.TopGame;
+    const { el, money, reference, today, localDateTime, store, renderList, setError, clearErrors, validateContacts, notify, estimateVisit, tariffs, seats } = window.TopGame;
     const fields = {
         name: document.getElementById('customer-name'),
         email: document.getElementById('customer-email'),
@@ -19,7 +19,6 @@
     const zoneFieldset = document.getElementById('gaming-zone-selection');
     const zoneRadios = [...form.querySelectorAll('[name="gaming-zone"]')];
     const zoneNames = { main: 'MAIN', duo: 'DUO', private: 'PRIVATE' };
-    const snapshotOccupied = [3, 4, 8, 12, 17];
     let selectedSeats = []; // Номера выбранных компьютеров.
     const seatButtons = {}; // Кнопки карты по номеру ПК.
     const result = document.getElementById('booking-result');
@@ -35,15 +34,19 @@
     form.noValidate = true;
     fields.date.min = today();
     fields.players.step = '1';
+    fields.players.max = String(seats.length);
+    for (const field of [fields.name, fields.email, fields.phone, fields.players, fields.tariff]) {
+        field.closest('p').classList.replace('col-md-6', 'col-md-4');
+    }
     document.getElementById('booking-submit').type = 'submit';
-    document.getElementById('booking-submit').textContent = 'Создать демо-заявку';
+    document.getElementById('booking-submit').textContent = 'Отправить заявку';
     document.getElementById('booking-submit-guard').remove();
-    formStatus.textContent = 'Укажите время по Астане, выберите ПК на карте и заполните контакты. Заявка сохраняется только в этом браузере: данные не отправляются в клуб, реальное бронирование не создаётся.';
-    document.querySelector('#booking-introduction > p:nth-of-type(3)').textContent = 'Выберите свободные ПК на демонстрационной схеме, проверьте предварительную стоимость и создайте локальную демо-заявку. Данные не отправляются на сервер, реальные места не бронируются.';
-    document.querySelector('#booking-result > p.small').textContent = 'Все заявки на этой странице демонстрационные. Реальную доступность мест, стоимость и условия пакетов подтвердит клуб по телефону +7 706 400 50 40.';
+    formStatus.textContent = 'Укажите время по Астане, выберите любые свободные ПК и заполните контакты. Брони сохраняются в этом браузере. Для подтверждения в клубе: +7 706 400 50 40.';
+    document.querySelector('#booking-introduction > p:nth-of-type(3)').textContent = 'Выберите компьютеры в одной или нескольких зонах, проверьте стоимость и сохраните бронь в этом браузере.';
+    document.querySelector('#booking-result > p.small').textContent = 'Брони сохраняются в этом браузере. Контакты не сохраняются и не отправляются в клуб.';
     document.getElementById('booking-figure-1').classList.add('hidden');
 
-    const durationWrapper = el('p', 'mb-3 col-12 col-md-6');
+    const durationWrapper = el('p', 'mb-3 col-12 col-md-4');
     const durationLabel = el('label', 'form-label fw-semibold', 'Желаемая продолжительность, часов:');
     durationLabel.htmlFor = 'booking-duration';
     const duration = el('input', 'form-control');
@@ -62,14 +65,28 @@
     const durationNote = el('p', 'small text-body-secondary col-12 mb-3');
     durationNote.id = 'booking-duration-note';
     document.getElementById('booking-tariff-note').before(durationNote);
-    document.getElementById('booking-tariff-note').textContent = 'Цены из прайса указаны «от». PRIVATE применяется только к зоне PRIVATE. Часы ночного пакета и период оплаты PRIVATE в прайсе не указаны; их необходимо уточнить у клуба.';
+    document.getElementById('booking-tariff-note').textContent = 'Цена пакета рассчитывается на каждый выбранный ПК. Компьютеры можно выбирать в разных зонах.';
+    const emptyTariff = el('option', '', 'Выберите тариф');
+    emptyTariff.value = '';
+    fields.tariff.replaceChildren(emptyTariff);
+    for (const tariff of tariffs) {
+        const option = el('option', '', `${tariff.name} — ${money(tariff.price)}${tariff.hourly ? '/час' : ''}`);
+        option.value = tariff.id;
+        fields.tariff.append(option);
+    }
+    zoneFieldset.querySelector('legend').textContent = 'Предпочтительная зона';
+    zoneFieldset.querySelector('p').textContent = 'Можно выбрать ПК сразу в нескольких зонах:';
+    zoneRadios.forEach(radio => {
+        radio.required = false;
+        radio.closest('p').classList.add('col-md-4');
+    });
 
     const map = el('fieldset', 'bg-body-tertiary border rounded-3 p-3 p-md-4 mb-4');
     map.id = 'seat-map';
     map.tabIndex = -1;
     const mapLegend = el('legend', 'h4 fw-bold mb-3', 'Выберите компьютеры на карте');
     const zoneCapacityText = Object.keys(zoneNames).map(zone => `${zoneNames[zone]} — ${seats.filter(seat => seat.zone === zone).length}`).join(', ');
-    const mapExplanation = el('p', 'small text-body-secondary mb-3', `Иллюстративная схема: ${seats.length} ПК, ${zoneCapacityText}. Расположение и занятость — учебные данные, а не карта реального клуба.`);
+    const mapExplanation = el('p', 'small text-body-secondary mb-3', `${seats.length} ПК: ${zoneCapacityText}. Выбирайте любое число свободных мест. Занятость учитывает брони, сохранённые в этом браузере.`);
     const legend = el('div', 'd-flex flex-wrap gap-2 mb-3');
     legend.setAttribute('aria-label', 'Условные обозначения');
     legend.append(el('span', 'badge bg-white text-dark border border-dark', 'Свободно'), el('span', 'badge text-bg-secondary', 'Занято'), el('span', 'badge text-bg-danger', 'Выбрано'));
@@ -86,10 +103,10 @@
         const zoneColumn = el('div', zone === 'main' ? 'col-12' : 'col-12 col-lg-6');
         const zoneCard = el('section', 'bg-white border rounded-3 p-2 p-md-3 h-100');
         const zoneSeats = seats.filter(seat => seat.zone === zone);
-        const heading = el('h3', 'h6 fw-bold mb-3', `${zoneNames[zone]} · ${zoneSeats.length} ПК · демо-этаж ${zoneSeats[0].floor}`);
-        const grid = el('div', 'row row-cols-3 row-cols-md-5 g-2');
+        const heading = el('h3', 'h6 fw-bold mb-3', `${zoneNames[zone]} · ${zoneSeats.length} ПК · этаж ${zoneSeats[0].floor}`);
+        const grid = el('div', 'row row-cols-2 row-cols-sm-5 g-2');
         for (const seat of zoneSeats) {
-            const column = el('div', 'col');
+            const column = el('div', zoneSeats.length % 2 !== 0 && seat.id === zoneSeats[zoneSeats.length - 1].id ? 'col-12 col-sm' : 'col');
             const button = el('button', 'btn btn-outline-dark w-100 h-100 px-1 py-2');
             button.id = `seat-${seat.id}`;
             button.type = 'button';
@@ -108,11 +125,12 @@
         zoneColumn.append(zoneCard);
         mapZones.append(zoneColumn);
     }
-    const clearSelection = el('button', 'btn btn-outline-secondary btn-sm', 'Снять выбор мест');
+    const clearSelection = el('button', 'btn btn-outline-light btn-sm', 'Снять выбор мест');
     clearSelection.type = 'button';
     clearSelection.id = 'clear-seat-selection';
     clearSelection.addEventListener('click', () => {
         selectedSeats = [];
+        fields.players.value = '1';
         notify(mapFeedback, 'Выбор ПК очищен. Выберите места для нового запроса.');
         refresh();
     });
@@ -135,9 +153,9 @@
     success.classList.add('border', 'rounded-3', 'p-3', 'text-break');
     const localSection = el('section', 'border rounded-3 p-3 p-md-4 mt-4');
     localSection.setAttribute('aria-labelledby', 'local-bookings-title');
-    const localTitle = el('h3', 'h5 fw-bold mb-3', 'Мои демо-заявки в этом браузере');
+    const localTitle = el('h3', 'h5 fw-bold mb-3', 'Мои брони в этом браузере');
     localTitle.id = 'local-bookings-title';
-    const localStatus = el('p', 'small mb-3', 'При пересечении времени один и тот же ПК нельзя выбрать дважды. Отмена освобождает место только на этой учебной схеме. Контакты не сохраняются.');
+    const localStatus = el('p', 'small mb-3', 'При пересечении времени один и тот же ПК нельзя выбрать дважды. Отмена освобождает место. Контакты не сохраняются.');
     localStatus.id = 'local-bookings-status';
     localStatus.tabIndex = -1;
     localStatus.setAttribute('role', 'status');
@@ -168,10 +186,14 @@
         const saved = store.get('bookings', []);
         if (!Array.isArray(saved)) return [];
         return saved.filter(item => {
-            if (!item || typeof item.id !== 'string' || item.id.length > 80 || !Object.hasOwn(zoneNames, item.zone) || !tariffs.some(tariff => tariff.id === item.tariff)) return false;
+            if (!item || typeof item.id !== 'string' || item.id.length > 80 || !tariffs.some(tariff => tariff.id === item.tariff)) return false;
             const requested = interval(item.date, item.time, item.duration);
-            return requested && requested.start === item.start && requested.end === item.end && Array.isArray(item.seats) && item.seats.length > 0 && item.seats.every((id, index) => item.seats.indexOf(id) === index) && item.seats.every(id => seats.some(seat => seat.id === id && seat.zone === item.zone));
+            return requested && requested.start === item.start && requested.end === item.end && Array.isArray(item.seats) && item.seats.length > 0 && item.seats.length <= seats.length && item.seats.every((id, index) => item.seats.indexOf(id) === index) && item.seats.every(id => seats.some(seat => seat.id === id));
         });
+    }
+
+    function displayId(id) {
+        return id.replace(/^DEMO-/, 'TG-');
     }
 
     function values() {
@@ -186,57 +208,44 @@
     }
 
     function occupiedSeats(requestedInterval) {
-        if (!requestedInterval) return snapshotOccupied.slice();
+        if (!requestedInterval) return [];
         const busy = [];
         function addBusy(id) {
             if (!busy.includes(id)) busy.push(id);
         }
-        // A fixed sample session demonstrates overlap logic, not live club availability.
-        const sampleSession = interval(today(), '18:00', 3);
-        if (overlaps(requestedInterval, sampleSession)) snapshotOccupied.forEach(id => addBusy(id));
         reservations.filter(item => overlaps(requestedInterval, item)).forEach(item => item.seats.forEach(id => addBusy(id)));
         return busy;
     }
 
     function chooseZone(zone) {
         zoneRadios.forEach(radio => { radio.checked = radio.value === zone; });
-        selectedSeats = [];
-        if (zone === 'duo') fields.players.value = '2';
     }
 
     function toggleSeat(seat) {
         const data = values();
         if (occupiedSeats(interval(data.date, data.time, data.duration)).includes(seat.id)) return;
-        let switched = false;
-        if (data.zone !== seat.zone) {
-            switched = selectedSeats.length > 0;
-            chooseZone(seat.zone);
-        }
         if (selectedSeats.includes(seat.id)) {
             selectedSeats = selectedSeats.filter(id => id !== seat.id);
             notify(mapFeedback, `PC ${seat.id} исключён из выбора.`);
         } else {
-            const count = Number(fields.players.value);
-            if (Number.isInteger(count) && count > 0 && selectedSeats.length >= count) {
-                notify(mapFeedback, `Для ${count} игроков уже выбрано ${count} ПК. Снимите один выбор или увеличьте количество игроков.`, 'error');
-                return;
-            }
             selectedSeats.push(seat.id);
-            notify(mapFeedback, `${switched ? 'Выбрана другая зона, предыдущие ПК сняты. ' : ''}PC ${seat.id} добавлен в выбор.`);
+            notify(mapFeedback, `PC ${seat.id} добавлен в выбор.`);
         }
+        fields.players.value = String(selectedSeats.length || 1);
         refresh();
     }
 
+    function selectedZoneNames(ids) {
+        const names = [];
+        for (const id of ids) {
+            const seat = seats.find(item => item.id === id);
+            if (seat && !names.includes(zoneNames[seat.zone])) names.push(zoneNames[seat.zone]);
+        }
+        return names.join(', ');
+    }
+
     function estimate(data) {
-        const tariff = tariffs.find(item => item.id === data.tariff);
-        if (!tariff || !Number.isInteger(data.players) || data.players < 1 || !Number.isInteger(data.duration) || data.duration < 1 || data.duration > 12) return null;
-        if (tariff.id === 'three-hours' && data.duration !== 3) return null;
-        if (data.zone && ((data.zone === 'private') !== (tariff.id === 'private'))) return null;
-        if (data.zone === 'duo' && data.players !== 2) return null;
-        if (data.zone && data.players > seats.filter(seat => seat.zone === data.zone).length) return null;
-        if (tariff.id === 'private') return { amount: tariff.price, note: 'Опубликованный минимум PRIVATE. Период оплаты и единица тарификации не указаны; итог за группу и выбранную длительность уточняется в клубе.' };
-        const multiplier = tariff.id === 'hour' ? data.duration : 1;
-        return { amount: tariff.price * multiplier * data.players, note: tariff.id === 'night' ? 'Оценка по цене ночного пакета на игрока. Его часы и соответствие желаемой длительности уточняются в клубе.' : 'Предварительная оценка по опубликованным ценам «от» за каждого игрока. Итоговую стоимость подтвердит клуб.' };
+        return estimateVisit(tariffs, data.tariff, data.duration, data.players);
     }
 
     function updateMap(data) {
@@ -261,7 +270,7 @@
             button.setAttribute('aria-label', `PC ${seat.id}, зона ${zoneNames[seat.zone]}, ${status.textContent.toLowerCase()}`);
         }
         const freeCount = seats.length - busy.length;
-        const context = requestedInterval ? `${data.date}, ${data.time}, ${data.duration} ч. по Астане.` : 'Демоснимок: укажите дату, время и длительность для проверки пересечений.';
+        const context = requestedInterval ? `${data.date}, ${data.time}, ${data.duration} ч. по Астане.` : 'Укажите дату, время и длительность для проверки занятости.';
         const sameAcceptedChoice = lastAccepted?.fingerprint === JSON.stringify(data);
         const conflictHint = requestedInterval && !sameAcceptedChoice && data.seats.some(id => busy.includes(id)) ? ' Один из выбранных ПК занят в этом интервале. Нажмите «Снять выбор мест», затем выберите свободные ПК или измените время.' : '';
         mapStatus.textContent = `${context} Свободно: ${freeCount}. Занято: ${busy.length}. Выбрано: ${selectedSeats.length} из ${Number.isInteger(data.players) && data.players > 0 ? data.players : '—'}.${conflictHint}`;
@@ -271,19 +280,19 @@
     function refresh() {
         const data = values();
         fields.date.min = today();
-        fields.players.max = String(data.zone === 'duo' ? 2 : data.zone ? seats.filter(seat => seat.zone === data.zone).length : seats.length);
         document.getElementById('booking-summary-tariff').textContent = tariffs.find(item => item.id === data.tariff)?.name || 'Не выбран';
-        document.getElementById('booking-summary-zone').textContent = zoneNames[data.zone] || 'Не выбрана';
+        document.getElementById('booking-summary-zone').textContent = selectedZoneNames(data.seats) || zoneNames[data.zone] || 'Не выбрана';
         document.getElementById('booking-summary-date').textContent = data.date || 'Не выбрана';
         document.getElementById('booking-summary-time').textContent = data.time ? `${data.time} (Астана)` : 'Не выбрано';
         document.getElementById('booking-summary-players').textContent = Number.isInteger(data.players) && data.players > 0 ? String(data.players) : 'Укажите целое число';
         summarySeats.textContent = data.seats.length ? data.seats.map(id => `PC ${id}`).join(', ') : 'Не выбраны';
-        summaryDuration.textContent = Number.isInteger(data.duration) && data.duration > 0 ? `${data.duration} ч. (желаемый интервал)` : 'Укажите целое число';
-        durationNote.textContent = data.tariff === 'three-hours' ? 'Для пакета «3 часа» продолжительность должна быть ровно 3 часа.' : data.tariff === 'night' || data.tariff === 'private' ? 'От 1 до 12 часов — желаемый интервал для демо-заявки. Это не подтверждение длительности или периода оплаты пакета.' : 'От 1 до 12 полных часов. Для базового тарифа оценка: 1 200 ₸ × часы × игроки.';
+        summaryDuration.textContent = Number.isInteger(data.duration) && data.duration > 0 ? `${data.duration} ч.` : 'Укажите целое число';
+        const tariff = tariffs.find(item => item.id === data.tariff);
+        durationNote.textContent = tariff && !tariff.hourly ? `Пакет «${tariff.name}» включает ${tariff.duration} ч. на каждый ПК.` : 'От 1 до 12 полных часов. Стоимость: тариф × часы × количество ПК.';
         const price = estimate(data);
-        totalNote.textContent = price ? price.note : 'Выберите тариф и укажите корректные количество игроков и длительность для оценки.';
-        total.textContent = price ? `От ${money(price.amount)}${data.tariff === 'private' ? ' — опубликованный минимум, итог за группу неизвестен' : ' — предварительная оценка'}` : 'Стоимость пока не рассчитана';
-        if (!lastAccepted) resultStatus.textContent = 'Итог обновляется при изменении выбора. Для демо-заявки заполните форму и выберите по одному ПК на игрока.';
+        totalNote.textContent = price ? 'Стоимость пакета для всех выбранных компьютеров.' : 'Выберите тариф и укажите количество игроков и длительность.';
+        total.textContent = price ? money(price.amount) : 'Стоимость пока не рассчитана';
+        if (!lastAccepted) resultStatus.textContent = 'Итог обновляется при изменении выбора. Заполните форму и выберите по одному ПК на игрока.';
         updateMap(data);
         if (attempted) validate(false);
     }
@@ -302,46 +311,45 @@
         check(fields.date, dateError);
         const validTime = /^([01]\d|2[0-3]):[0-5]\d$/.test(data.time);
         check(fields.time, !validTime ? 'Укажите время начала по Астане.' : !dateError && localDateTime(data.date, data.time) <= Date.now() ? 'Выбранное время уже прошло. Укажите будущее время по Астане.' : '');
-        const capacity = data.zone ? seats.filter(seat => seat.zone === data.zone).length : seats.length;
-        const countError = !Number.isInteger(data.players) || data.players < 1 ? 'Количество игроков должно быть целым числом от 1.' : data.players > capacity ? `В выбранной зоне только ${capacity} демонстрационных ПК.` : data.zone === 'duo' && data.players !== 2 ? 'Зона DUO предназначена для двух игроков: укажите ровно 2.' : '';
+        const countError = !Number.isInteger(data.players) || data.players < 1 || data.players > seats.length ? `Укажите целое количество игроков от 1 до ${seats.length}.` : '';
         check(fields.players, countError);
-        check(duration, !Number.isInteger(data.duration) || data.duration < 1 || data.duration > 12 ? 'Укажите целое количество часов от 1 до 12.' : data.tariff === 'three-hours' && data.duration !== 3 ? 'Для тарифа «3 часа» укажите ровно 3 часа.' : '');
-        check(fields.tariff, !tariffs.some(tariff => tariff.id === data.tariff) ? 'Выберите тариф из списка.' : data.zone && ((data.zone === 'private') !== (data.tariff === 'private')) ? 'Для зоны PRIVATE нужен тариф PRIVATE; этот тариф применяется только к PRIVATE.' : '');
-        check(zoneFieldset, data.zone ? '' : 'Выберите игровую зону или свободный ПК на карте.', zoneRadios[0]);
+        const tariff = tariffs.find(item => item.id === data.tariff);
+        check(duration, !Number.isInteger(data.duration) || data.duration < 1 || data.duration > 12 ? 'Укажите целое количество часов от 1 до 12.' : tariff && !tariff.hourly && data.duration !== tariff.duration ? `Пакет «${tariff.name}» рассчитан на ${tariff.duration} ч.` : '');
+        check(fields.tariff, tariff ? '' : 'Выберите тариф из списка.');
         const requestedInterval = interval(data.date, data.time, data.duration);
         const busy = occupiedSeats(requestedInterval);
         const duplicate = lastAccepted && lastAccepted.fingerprint === JSON.stringify(data) && reservations.some(item => item.id === lastAccepted.id);
-        let seatError = data.seats.length !== data.players ? `Выберите ровно ${Number.isInteger(data.players) && data.players > 0 ? data.players : 'по одному'} ПК: сейчас выбрано ${data.seats.length}.` : data.seats.some(id => seats.find(seat => seat.id === id)?.zone !== data.zone) ? 'Все выбранные ПК должны находиться в одной выбранной зоне.' : '';
-        if (!seatError && !duplicate && requestedInterval && data.seats.some(id => busy.includes(id))) seatError = 'Выбранный ПК занят в пересекающееся время на демо-схеме. Снимите выбор и выберите свободные места или другой интервал.';
+        let seatError = data.seats.length !== data.players ? `Выберите ровно ${Number.isInteger(data.players) && data.players > 0 ? data.players : 'по одному'} ПК: сейчас выбрано ${data.seats.length}.` : '';
+        if (!seatError && !duplicate && requestedInterval && data.seats.some(id => busy.includes(id))) seatError = 'Выбранный ПК занят в пересекающееся время. Снимите выбор и выберите свободные места или другой интервал.';
         check(map, seatError);
         check(fields.comment, data.comment.length > 1000 ? 'Сократите комментарий до 1 000 символов.' : '');
         check(fields.agreement, fields.agreement.checked ? '' : 'Подтвердите правильность данных.');
-        notify(errors, invalid.length ? `Проверьте поля: ${invalid.length}. Подсказки находятся рядом с каждым полем.${lastAccepted ? ' Предыдущий принятый демо-запрос сохранён.' : ''}` : '', 'error');
+        notify(errors, invalid.length ? `Проверьте поля: ${invalid.length}. Подсказки находятся рядом с каждым полем.${lastAccepted ? ' Предыдущая бронь сохранена.' : ''}` : '', 'error');
         if (focusFirst && invalid.length) invalid[0].focus();
         return invalid.length === 0;
     }
 
     function renderReservations() {
         renderList(localList, reservations, item => {
-            const row = el('li', 'list-group-item');
+            const row = el('li', 'list-group-item bg-dark text-light border-secondary');
             const body = el('div', 'd-flex flex-wrap align-items-start justify-content-between gap-2');
             const details = el('div', 'text-break');
-            details.append(el('strong', 'd-block', `${zoneNames[item.zone]} · ${item.date}, ${item.time} · ${item.duration} ч.`), el('span', 'd-block small', item.seats.map(id => `PC ${id}`).join(', ')), el('span', 'd-block small text-body-secondary text-break', item.id));
-            const cancel = el('button', 'btn btn-outline-danger btn-sm', 'Отменить демо-заявку');
+            details.append(el('strong', 'd-block', `${selectedZoneNames(item.seats)} · ${item.date}, ${item.time} · ${item.duration} ч.`), el('span', 'd-block small', item.seats.map(id => `PC ${id}`).join(', ')), el('span', 'd-block small text-body-secondary text-break', displayId(item.id)));
+            const cancel = el('button', 'btn btn-outline-light btn-sm', 'Отменить бронь');
             cancel.type = 'button';
             cancel.dataset.cancelBooking = item.id;
-            cancel.setAttribute('aria-label', `Отменить демо-заявку ${item.id}`);
+            cancel.setAttribute('aria-label', `Отменить бронь ${displayId(item.id)}`);
             cancel.addEventListener('click', () => cancelReservation(item.id));
             body.append(details, cancel);
             row.append(body);
             return row;
-        }, 'Демо-заявок пока нет. После успешной проверки новая заявка появится здесь.');
+        }, 'Броней пока нет. После отправки новая заявка появится здесь.');
     }
 
     function cancelReservation(id) {
         if (storageAvailable) reservations = readReservations();
         if (!reservations.some(item => item.id === id)) {
-            notify(localStatus, 'Эта демо-заявка уже отменена. Список обновлён.');
+            notify(localStatus, 'Эта бронь уже отменена. Список обновлён.');
             renderReservations();
             refresh();
             localStatus.focus();
@@ -350,10 +358,10 @@
         reservations = reservations.filter(item => item.id !== id);
         const saved = store.set('bookings', reservations);
         storageAvailable = saved;
-        notify(localStatus, `Демо-заявка ${id} отменена, места освобождены на учебной схеме.${saved ? '' : ' Браузер не разрешил сохранение; изменение действует до перезагрузки.'}`);
+        notify(localStatus, `Бронь ${displayId(id)} отменена, места освобождены.${saved ? '' : ' Браузер не разрешил сохранение; изменение действует до перезагрузки.'}`);
         if (lastAccepted?.id === id) {
             lastAccepted = null;
-            notify(success, 'Последняя демо-заявка отменена. Можно подготовить новую.');
+            notify(success, 'Последняя бронь отменена. Можно подготовить новую.');
             list.replaceChildren();
             list.classList.add('hidden');
         }
@@ -373,12 +381,13 @@
         const data = values();
         const fingerprint = JSON.stringify(data);
         if (lastAccepted?.fingerprint === fingerprint && reservations.some(item => item.id === lastAccepted.id)) {
-            resultStatus.textContent = 'Этот демо-запрос уже принят в этом браузере. Повторная заявка не создана.';
+            resultStatus.textContent = 'Эта заявка уже сохранена в этом браузере. Повторная бронь не создана.';
             return;
         }
         const requestedInterval = interval(data.date, data.time, data.duration);
         const id = reference('BOOK');
-        const entry = { id, date: data.date, time: data.time, duration: data.duration, seats: data.seats, zone: data.zone, tariff: data.tariff, ...requestedInterval };
+        const chosenZones = [...new Set(data.seats.map(seatId => seats.find(seat => seat.id === seatId).zone))];
+        const entry = { id, date: data.date, time: data.time, duration: data.duration, seats: data.seats, zone: chosenZones.length === 1 ? chosenZones[0] : 'mixed', tariff: data.tariff, ...requestedInterval };
         reservations.push(entry);
         const saved = store.set('bookings', reservations);
         storageAvailable = saved;
@@ -386,16 +395,15 @@
         const price = estimate(data);
         const confirmation = [
             `Игрок: ${data.name}`, `Контакты: ${data.email}; ${data.phone}`,
-            `Зона: ${zoneNames[data.zone]}; ПК: ${data.seats.join(', ')}; игроков: ${data.players}`,
-            `Визит: ${data.date}, ${data.time} по Астане; желаемая длительность: ${data.duration} ч.`,
-            `Тариф: ${tariffs.find(tariff => tariff.id === data.tariff).name}; ${data.tariff === 'private' ? 'опубликованный минимум' : 'предварительная оценка'}: от ${money(price.amount)}`,
+            `Зоны: ${selectedZoneNames(data.seats)}; ПК: ${data.seats.join(', ')}; игроков: ${data.players}`,
+            `Визит: ${data.date}, ${data.time} по Астане; длительность: ${data.duration} ч.`,
+            `Тариф: ${tariffs.find(tariff => tariff.id === data.tariff).name}; стоимость: ${money(price.amount)}`,
             `Наушники: ${data.headphones ? 'нужны' : 'не запрошены'}`
         ];
         if (data.comment) confirmation.push(`Комментарий: ${data.comment}`);
-        if (data.tariff === 'night' || data.tariff === 'private') confirmation.push('Условия пакета и окончательную стоимость необходимо уточнить у клуба.');
-        renderList(list, confirmation, text => el('li', 'list-group-item text-break', text));
+        renderList(list, confirmation, text => el('li', 'list-group-item bg-dark text-light border-secondary text-break', text));
         list.classList.remove('hidden');
-        notify(success, `Демо-заявка ${id} сохранена ${saved ? 'в этом браузере' : 'до перезагрузки страницы: сохранение браузером недоступно'}. Контакты не сохраняются и не отправляются. Реальное бронирование и оплата не создаются.`, 'success');
+        notify(success, `Заявка ${displayId(id)} сохранена ${saved ? 'в этом браузере' : 'до перезагрузки страницы: сохранение браузером недоступно'}.`, 'success');
         resultStatus.textContent = 'Проверка пройдена. Принятый запрос показан ниже; текущий выбор можно изменить для следующего запроса.';
         renderReservations();
         updateMap(data);
@@ -406,12 +414,12 @@
         if (event.target.matches('input, textarea')) refresh();
     });
     form.addEventListener('change', event => {
-        if (event.target === fields.tariff && fields.tariff.value === 'three-hours') duration.value = '3';
+        if (event.target === fields.tariff) {
+            const tariff = tariffs.find(item => item.id === fields.tariff.value);
+            if (tariff && !tariff.hourly) duration.value = String(tariff.duration);
+        }
         if (event.target.matches('[name="gaming-zone"]')) {
-            const removed = selectedSeats.length;
-            selectedSeats = [];
-            if (event.target.value === 'duo') fields.players.value = '2';
-            notify(mapFeedback, `Выбрана зона ${zoneNames[event.target.value]}.${removed ? ' Предыдущий выбор ПК очищен.' : ''} Выберите компьютеры на карте.`);
+            notify(mapFeedback, `Предпочтительная зона: ${zoneNames[event.target.value]}. Выбранные ПК сохранены, можно добавить места из любой зоны.`);
         }
         refresh();
     });
@@ -429,7 +437,7 @@
         clearErrors(form);
         notify(errors, '');
         notify(success, '');
-        notify(mapFeedback, 'Форма и выбор ПК очищены. Сохранённые демо-заявки можно отменить в списке ниже.');
+        notify(mapFeedback, 'Форма и выбор ПК очищены. Сохранённые брони можно отменить в списке ниже.');
         list.replaceChildren();
         list.classList.add('hidden');
         refresh();
@@ -441,11 +449,11 @@
         reservations = readReservations();
         if (lastAccepted && !reservations.some(item => item.id === lastAccepted.id)) {
             lastAccepted = null;
-            notify(success, 'Предыдущая демо-заявка удалена в другой вкладке.');
+            notify(success, 'Предыдущая бронь удалена в другой вкладке.');
             list.replaceChildren();
             list.classList.add('hidden');
         }
-        notify(localStatus, 'Список демо-заявок и занятость обновлены после изменения в другой вкладке.');
+        notify(localStatus, 'Список броней и занятость обновлены после изменения в другой вкладке.');
         renderReservations();
         refresh();
     });
@@ -458,7 +466,8 @@
     if (Number.isInteger(initialPlayers) && initialPlayers >= 1 && initialPlayers <= seats.length) fields.players.value = String(initialPlayers);
     const initialDuration = Number(params.get('hours'));
     if (Number.isInteger(initialDuration) && initialDuration >= 1 && initialDuration <= 12) duration.value = String(initialDuration);
-    if (fields.tariff.value === 'three-hours') duration.value = '3';
+    const initialTariff = tariffs.find(item => item.id === fields.tariff.value);
+    if (initialTariff && !initialTariff.hourly) duration.value = String(initialTariff.duration);
     const initialDate = params.get('date') || '';
     if (validDate(initialDate) && initialDate >= today()) fields.date.value = initialDate;
     if (params.get('game')) fields.comment.value = `Предпочтительная игра: ${params.get('game').slice(0, 150)}`;

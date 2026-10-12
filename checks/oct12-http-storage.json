@@ -1,0 +1,21 @@
+{
+  "results": [
+    {
+      "name": "HTTP cross-tab new booking synchronizes occupancy",
+      "ok": true
+    },
+    {
+      "name": "HTTP cross-tab cancel synchronizes release",
+      "ok": true
+    },
+    {
+      "name": "HTTP food order survives reload",
+      "ok": true
+    },
+    {
+      "name": "HTTP game request survives reload without contacts",
+      "ok": true
+    }
+  ],
+  "errors": []
+}

@@ -11,6 +11,9 @@
             }
         }
         if (element.matches('.card, .form-control, .form-select')) element.classList.add('bg-dark', 'text-light');
+        if (element.matches('a:not(.btn):not(.nav-link):not(.navbar-brand)')) element.classList.add('link-light');
+        if (element.matches('.table')) element.classList.add('table-dark');
+        if (element.matches('.list-group-item')) element.classList.add('bg-dark', 'text-light', 'border-secondary');
         if (element.matches('.btn-outline-danger')) element.classList.add('text-light');
     }
     document.body.classList.add('bg-dark', 'text-light');
@@ -160,7 +163,7 @@
     const home = document.getElementById('index-content');
     if (home) {
         const section = el('section', 'bg-white border rounded-4 p-3 p-md-4 p-lg-5 mb-4 shadow-sm');
-        section.append(el('p', 'small text-uppercase text-danger fw-semibold mb-2', 'Твой следующий сеанс'), el('h2', 'h2 fw-bold mb-3', 'Место для команды и перекус к игре'), el('p', 'mb-3', 'Выберите ПК на схеме зала, подготовьте демо-заявку и соберите заказ еды. Итог и стоимость видны сразу.'));
+        section.append(el('p', 'small text-uppercase text-danger fw-semibold mb-2', 'Твой следующий сеанс'), el('h2', 'h2 fw-bold mb-3', 'Место для команды и перекус к игре'), el('p', 'mb-3', 'Выберите ПК на схеме зала, оформите бронирование и соберите заказ еды. Итог и стоимость видны сразу.'));
         const actions = el('div', 'd-flex flex-wrap gap-2');
         const booking = el('a', 'btn btn-danger', 'Выбрать место');
         booking.href = 'booking.html#seat-map';
