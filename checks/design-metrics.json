@@ -1,0 +1,1553 @@
+[
+  {
+    "width": 1440,
+    "images": [
+      {
+        "alt": "Куриный бургер — фотоиллюстрация",
+        "src": "images/food/burger.jpg",
+        "loaded": true,
+        "size": [
+          500,
+          375
+        ]
+      },
+      {
+        "alt": "Сэндвич с сыром — фотоиллюстрация",
+        "src": "images/food/sandwich.jpg",
+        "loaded": true,
+        "size": [
+          500,
+          375
+        ]
+      },
+      {
+        "alt": "Картофель фри — фотоиллюстрация",
+        "src": "images/food/fries.jpg",
+        "loaded": true,
+        "size": [
+          500,
+          334
+        ]
+      },
+      {
+        "alt": "Картофельные чипсы — фотоиллюстрация",
+        "src": "images/food/chips.jpg",
+        "loaded": true,
+        "size": [
+          500,
+          375
+        ]
+      },
+      {
+        "alt": "Кола — фотоиллюстрация",
+        "src": "images/food/cola.jpg",
+        "loaded": true,
+        "size": [
+          500,
+          935
+        ]
+      },
+      {
+        "alt": "Питьевая вода — фотоиллюстрация",
+        "src": "images/food/water.jpg",
+        "loaded": true,
+        "size": [
+          500,
+          580
+        ]
+      },
+      {
+        "alt": "Чёрный чай — фотоиллюстрация",
+        "src": "images/food/tea.jpg",
+        "loaded": true,
+        "size": [
+          500,
+          375
+        ]
+      },
+      {
+        "alt": "Шоколадное печенье — фотоиллюстрация",
+        "src": "images/food/cookie.jpg",
+        "loaded": true,
+        "size": [
+          500,
+          375
+        ]
+      }
+    ],
+    "metrics": {
+      "overflow": false,
+      "documentWidth": 1440,
+      "viewWidth": 1440,
+      "blocks": [
+        {
+          "id": "seat-map",
+          "box": {
+            "x": 121,
+            "y": 196.984375,
+            "width": 1198,
+            "height": 642.546875
+          },
+          "background": "rgb(248, 249, 250)",
+          "font": "Arial, Helvetica, sans-serif",
+          "color": "rgb(32, 36, 42)"
+        },
+        {
+          "id": "food-menu",
+          "box": {
+            "x": 72,
+            "y": 3237.09375,
+            "width": 1296,
+            "height": 1807.78125
+          },
+          "background": "rgb(255, 255, 255)",
+          "font": "Arial, Helvetica, sans-serif",
+          "color": "rgb(32, 36, 42)"
+        },
+        {
+          "id": "food-cart",
+          "box": {
+            "x": 146,
+            "y": 1906.328125,
+            "width": 1148,
+            "height": 1008.765625
+          },
+          "background": "rgba(0, 0, 0, 0)",
+          "font": "Arial, Helvetica, sans-serif",
+          "color": "rgb(32, 36, 42)"
+        }
+      ],
+      "controls": [
+        {
+          "id": "seat-1",
+          "box": {
+            "x": 163,
+            "y": 468.34375,
+            "width": 216.390625,
+            "height": 63
+          },
+          "font": "16px"
+        },
+        {
+          "id": "seat-2",
+          "box": {
+            "x": 387.390625,
+            "y": 468.34375,
+            "width": 216.390625,
+            "height": 63
+          },
+          "font": "16px"
+        },
+        {
+          "id": "seat-3",
+          "box": {
+            "x": 611.78125,
+            "y": 468.34375,
+            "width": 216.390625,
+            "height": 63
+          },
+          "font": "16px"
+        },
+        {
+          "id": "seat-4",
+          "box": {
+            "x": 836.171875,
+            "y": 468.34375,
+            "width": 216.390625,
+            "height": 63
+          },
+          "font": "16px"
+        },
+        {
+          "id": "seat-5",
+          "box": {
+            "x": 1060.5625,
+            "y": 468.34375,
+            "width": 216.390625,
+            "height": 63
+          },
+          "font": "16px"
+        },
+        {
+          "id": "seat-6",
+          "box": {
+            "x": 163,
+            "y": 539.34375,
+            "width": 216.390625,
+            "height": 63
+          },
+          "font": "16px"
+        },
+        {
+          "id": "seat-7",
+          "box": {
+            "x": 387.390625,
+            "y": 539.34375,
+            "width": 216.390625,
+            "height": 63
+          },
+          "font": "16px"
+        },
+        {
+          "id": "seat-8",
+          "box": {
+            "x": 611.78125,
+            "y": 539.34375,
+            "width": 216.390625,
+            "height": 63
+          },
+          "font": "16px"
+        },
+        {
+          "id": "seat-9",
+          "box": {
+            "x": 836.171875,
+            "y": 539.34375,
+            "width": 216.390625,
+            "height": 63
+          },
+          "font": "16px"
+        },
+        {
+          "id": "seat-10",
+          "box": {
+            "x": 1060.5625,
+            "y": 539.34375,
+            "width": 216.390625,
+            "height": 63
+          },
+          "font": "16px"
+        },
+        {
+          "id": "seat-11",
+          "box": {
+            "x": 163,
+            "y": 687.53125,
+            "width": 100,
+            "height": 63
+          },
+          "font": "16px"
+        },
+        {
+          "id": "seat-12",
+          "box": {
+            "x": 271,
+            "y": 687.53125,
+            "width": 100,
+            "height": 63
+          },
+          "font": "16px"
+        },
+        {
+          "id": "seat-13",
+          "box": {
+            "x": 379,
+            "y": 687.53125,
+            "width": 100,
+            "height": 63
+          },
+          "font": "16px"
+        },
+        {
+          "id": "seat-14",
+          "box": {
+            "x": 487,
+            "y": 687.53125,
+            "width": 100,
+            "height": 63
+          },
+          "font": "16px"
+        },
+        {
+          "id": "seat-15",
+          "box": {
+            "x": 595,
+            "y": 687.53125,
+            "width": 100,
+            "height": 63
+          },
+          "font": "16px"
+        },
+        {
+          "id": "seat-16",
+          "box": {
+            "x": 745,
+            "y": 687.53125,
+            "width": 100,
+            "height": 63
+          },
+          "font": "16px"
+        },
+        {
+          "id": "seat-17",
+          "box": {
+            "x": 853,
+            "y": 687.53125,
+            "width": 100,
+            "height": 63
+          },
+          "font": "16px"
+        },
+        {
+          "id": "seat-18",
+          "box": {
+            "x": 961,
+            "y": 687.53125,
+            "width": 100,
+            "height": 63
+          },
+          "font": "16px"
+        },
+        {
+          "id": "seat-19",
+          "box": {
+            "x": 1069,
+            "y": 687.53125,
+            "width": 100,
+            "height": 63
+          },
+          "font": "16px"
+        },
+        {
+          "id": "seat-20",
+          "box": {
+            "x": 1177,
+            "y": 687.53125,
+            "width": 100,
+            "height": 63
+          },
+          "font": "16px"
+        },
+        {
+          "id": "clear-seat-selection",
+          "box": {
+            "x": 146,
+            "y": 783.53125,
+            "width": 136.828125,
+            "height": 31
+          },
+          "font": "14px"
+        },
+        {
+          "id": "decrease",
+          "box": {
+            "x": 163,
+            "y": 2091.109375,
+            "width": 45.6875,
+            "height": 48
+          },
+          "font": "20px"
+        },
+        {
+          "id": "increase",
+          "box": {
+            "x": 257.5625,
+            "y": 2091.109375,
+            "width": 45.6875,
+            "height": 48
+          },
+          "font": "20px"
+        },
+        {
+          "id": "remove",
+          "box": {
+            "x": 311.25,
+            "y": 2096.109375,
+            "width": 87.09375,
+            "height": 38
+          },
+          "font": "16px"
+        },
+        {
+          "id": "decrease",
+          "box": {
+            "x": 163,
+            "y": 2245.296875,
+            "width": 45.6875,
+            "height": 48
+          },
+          "font": "20px"
+        },
+        {
+          "id": "increase",
+          "box": {
+            "x": 257.5625,
+            "y": 2245.296875,
+            "width": 45.6875,
+            "height": 48
+          },
+          "font": "20px"
+        },
+        {
+          "id": "remove",
+          "box": {
+            "x": 311.25,
+            "y": 2250.296875,
+            "width": 87.09375,
+            "height": 38
+          },
+          "font": "16px"
+        },
+        {
+          "id": "food-cart-clear",
+          "box": {
+            "x": 146,
+            "y": 2372.296875,
+            "width": 158,
+            "height": 38
+          },
+          "font": "16px"
+        },
+        {
+          "id": "food-checkout",
+          "box": {
+            "x": 163,
+            "y": 2823.09375,
+            "width": 226.328125,
+            "height": 38
+          },
+          "font": "16px"
+        },
+        {
+          "id": "food-reset",
+          "box": {
+            "x": 351.4375,
+            "y": 3527.484375,
+            "width": 142.09375,
+            "height": 31
+          },
+          "font": "14px"
+        },
+        {
+          "id": "Перейти к корзине",
+          "box": {
+            "x": 509.53125,
+            "y": 3527.484375,
+            "width": 138.84375,
+            "height": 31
+          },
+          "font": "14px"
+        },
+        {
+          "id": "burger",
+          "box": {
+            "x": 138,
+            "y": 4007.28125,
+            "width": 354.65625,
+            "height": 38
+          },
+          "font": "16px"
+        },
+        {
+          "id": "sandwich",
+          "box": {
+            "x": 542.65625,
+            "y": 4007.28125,
+            "width": 354.65625,
+            "height": 38
+          },
+          "font": "16px"
+        },
+        {
+          "id": "fries",
+          "box": {
+            "x": 947.3125,
+            "y": 4007.28125,
+            "width": 354.65625,
+            "height": 38
+          },
+          "font": "16px"
+        },
+        {
+          "id": "chips",
+          "box": {
+            "x": 138,
+            "y": 4474.078125,
+            "width": 354.65625,
+            "height": 38
+          },
+          "font": "16px"
+        },
+        {
+          "id": "cola",
+          "box": {
+            "x": 542.65625,
+            "y": 4474.078125,
+            "width": 354.65625,
+            "height": 38
+          },
+          "font": "16px"
+        },
+        {
+          "id": "water",
+          "box": {
+            "x": 947.3125,
+            "y": 4474.078125,
+            "width": 354.65625,
+            "height": 38
+          },
+          "font": "16px"
+        },
+        {
+          "id": "tea",
+          "box": {
+            "x": 138,
+            "y": 4940.875,
+            "width": 354.65625,
+            "height": 38
+          },
+          "font": "16px"
+        },
+        {
+          "id": "cookie",
+          "box": {
+            "x": 542.65625,
+            "y": 4940.875,
+            "width": 354.65625,
+            "height": 38
+          },
+          "font": "16px"
+        }
+      ],
+      "focus": {
+        "id": "seat-2",
+        "shadow": "rgba(33, 37, 41, 0.5) 0px 0px 0px 4px",
+        "outline": "rgb(255, 255, 255) none 0px"
+      }
+    }
+  },
+  {
+    "width": 768,
+    "images": [
+      {
+        "alt": "Куриный бургер — фотоиллюстрация",
+        "src": "images/food/burger.jpg",
+        "loaded": true,
+        "size": [
+          500,
+          375
+        ]
+      },
+      {
+        "alt": "Сэндвич с сыром — фотоиллюстрация",
+        "src": "images/food/sandwich.jpg",
+        "loaded": true,
+        "size": [
+          500,
+          375
+        ]
+      },
+      {
+        "alt": "Картофель фри — фотоиллюстрация",
+        "src": "images/food/fries.jpg",
+        "loaded": true,
+        "size": [
+          500,
+          334
+        ]
+      },
+      {
+        "alt": "Картофельные чипсы — фотоиллюстрация",
+        "src": "images/food/chips.jpg",
+        "loaded": true,
+        "size": [
+          500,
+          375
+        ]
+      },
+      {
+        "alt": "Кола — фотоиллюстрация",
+        "src": "images/food/cola.jpg",
+        "loaded": true,
+        "size": [
+          500,
+          935
+        ]
+      },
+      {
+        "alt": "Питьевая вода — фотоиллюстрация",
+        "src": "images/food/water.jpg",
+        "loaded": true,
+        "size": [
+          500,
+          580
+        ]
+      },
+      {
+        "alt": "Чёрный чай — фотоиллюстрация",
+        "src": "images/food/tea.jpg",
+        "loaded": true,
+        "size": [
+          500,
+          375
+        ]
+      },
+      {
+        "alt": "Шоколадное печенье — фотоиллюстрация",
+        "src": "images/food/cookie.jpg",
+        "loaded": true,
+        "size": [
+          500,
+          375
+        ]
+      }
+    ],
+    "metrics": {
+      "overflow": false,
+      "documentWidth": 768,
+      "viewWidth": 768,
+      "blocks": [
+        {
+          "id": "seat-map",
+          "box": {
+            "x": 61,
+            "y": 156.265625,
+            "width": 646,
+            "height": 831.171875
+          },
+          "background": "rgb(248, 249, 250)",
+          "font": "Arial, Helvetica, sans-serif",
+          "color": "rgb(32, 36, 42)"
+        },
+        {
+          "id": "food-menu",
+          "box": {
+            "x": 36,
+            "y": 3487.8125,
+            "width": 696,
+            "height": 2305.65625
+          },
+          "background": "rgb(255, 255, 255)",
+          "font": "Arial, Helvetica, sans-serif",
+          "color": "rgb(32, 36, 42)"
+        },
+        {
+          "id": "food-cart",
+          "box": {
+            "x": 86,
+            "y": 2119.71875,
+            "width": 596,
+            "height": 1025.09375
+          },
+          "background": "rgba(0, 0, 0, 0)",
+          "font": "Arial, Helvetica, sans-serif",
+          "color": "rgb(32, 36, 42)"
+        }
+      ],
+      "controls": [
+        {
+          "id": "seat-1",
+          "box": {
+            "x": 103,
+            "y": 468.0625,
+            "width": 106,
+            "height": 63
+          },
+          "font": "16px"
+        },
+        {
+          "id": "seat-2",
+          "box": {
+            "x": 217,
+            "y": 468.0625,
+            "width": 106,
+            "height": 63
+          },
+          "font": "16px"
+        },
+        {
+          "id": "seat-3",
+          "box": {
+            "x": 331,
+            "y": 468.0625,
+            "width": 106,
+            "height": 63
+          },
+          "font": "16px"
+        },
+        {
+          "id": "seat-4",
+          "box": {
+            "x": 445,
+            "y": 468.0625,
+            "width": 106,
+            "height": 63
+          },
+          "font": "16px"
+        },
+        {
+          "id": "seat-5",
+          "box": {
+            "x": 559,
+            "y": 468.0625,
+            "width": 106,
+            "height": 63
+          },
+          "font": "16px"
+        },
+        {
+          "id": "seat-6",
+          "box": {
+            "x": 103,
+            "y": 539.0625,
+            "width": 106,
+            "height": 63
+          },
+          "font": "16px"
+        },
+        {
+          "id": "seat-7",
+          "box": {
+            "x": 217,
+            "y": 539.0625,
+            "width": 106,
+            "height": 63
+          },
+          "font": "16px"
+        },
+        {
+          "id": "seat-8",
+          "box": {
+            "x": 331,
+            "y": 539.0625,
+            "width": 106,
+            "height": 63
+          },
+          "font": "16px"
+        },
+        {
+          "id": "seat-9",
+          "box": {
+            "x": 445,
+            "y": 539.0625,
+            "width": 106,
+            "height": 63
+          },
+          "font": "16px"
+        },
+        {
+          "id": "seat-10",
+          "box": {
+            "x": 559,
+            "y": 539.0625,
+            "width": 106,
+            "height": 63
+          },
+          "font": "16px"
+        },
+        {
+          "id": "seat-11",
+          "box": {
+            "x": 103,
+            "y": 687.25,
+            "width": 106,
+            "height": 63
+          },
+          "font": "16px"
+        },
+        {
+          "id": "seat-12",
+          "box": {
+            "x": 217,
+            "y": 687.25,
+            "width": 106,
+            "height": 63
+          },
+          "font": "16px"
+        },
+        {
+          "id": "seat-13",
+          "box": {
+            "x": 331,
+            "y": 687.25,
+            "width": 106,
+            "height": 63
+          },
+          "font": "16px"
+        },
+        {
+          "id": "seat-14",
+          "box": {
+            "x": 445,
+            "y": 687.25,
+            "width": 106,
+            "height": 63
+          },
+          "font": "16px"
+        },
+        {
+          "id": "seat-15",
+          "box": {
+            "x": 559,
+            "y": 687.25,
+            "width": 106,
+            "height": 63
+          },
+          "font": "16px"
+        },
+        {
+          "id": "seat-16",
+          "box": {
+            "x": 103,
+            "y": 835.4375,
+            "width": 106,
+            "height": 63
+          },
+          "font": "16px"
+        },
+        {
+          "id": "seat-17",
+          "box": {
+            "x": 217,
+            "y": 835.4375,
+            "width": 106,
+            "height": 63
+          },
+          "font": "16px"
+        },
+        {
+          "id": "seat-18",
+          "box": {
+            "x": 331,
+            "y": 835.4375,
+            "width": 106,
+            "height": 63
+          },
+          "font": "16px"
+        },
+        {
+          "id": "seat-19",
+          "box": {
+            "x": 445,
+            "y": 835.4375,
+            "width": 106,
+            "height": 63
+          },
+          "font": "16px"
+        },
+        {
+          "id": "seat-20",
+          "box": {
+            "x": 559,
+            "y": 835.4375,
+            "width": 106,
+            "height": 63
+          },
+          "font": "16px"
+        },
+        {
+          "id": "clear-seat-selection",
+          "box": {
+            "x": 86,
+            "y": 931.4375,
+            "width": 136.828125,
+            "height": 31
+          },
+          "font": "14px"
+        },
+        {
+          "id": "decrease",
+          "box": {
+            "x": 103,
+            "y": 2322.390625,
+            "width": 45.6875,
+            "height": 48
+          },
+          "font": "20px"
+        },
+        {
+          "id": "increase",
+          "box": {
+            "x": 197.5625,
+            "y": 2322.390625,
+            "width": 45.6875,
+            "height": 48
+          },
+          "font": "20px"
+        },
+        {
+          "id": "remove",
+          "box": {
+            "x": 251.25,
+            "y": 2327.390625,
+            "width": 87.09375,
+            "height": 38
+          },
+          "font": "16px"
+        },
+        {
+          "id": "decrease",
+          "box": {
+            "x": 103,
+            "y": 2476.578125,
+            "width": 45.6875,
+            "height": 48
+          },
+          "font": "20px"
+        },
+        {
+          "id": "increase",
+          "box": {
+            "x": 197.5625,
+            "y": 2476.578125,
+            "width": 45.6875,
+            "height": 48
+          },
+          "font": "20px"
+        },
+        {
+          "id": "remove",
+          "box": {
+            "x": 251.25,
+            "y": 2481.578125,
+            "width": 87.09375,
+            "height": 38
+          },
+          "font": "16px"
+        },
+        {
+          "id": "food-cart-clear",
+          "box": {
+            "x": 86,
+            "y": 2603.578125,
+            "width": 158,
+            "height": 38
+          },
+          "font": "16px"
+        },
+        {
+          "id": "food-checkout",
+          "box": {
+            "x": 103,
+            "y": 3052.8125,
+            "width": 226.328125,
+            "height": 38
+          },
+          "font": "16px"
+        },
+        {
+          "id": "food-reset",
+          "box": {
+            "x": 291.4375,
+            "y": 3773.53125,
+            "width": 142.09375,
+            "height": 31
+          },
+          "font": "14px"
+        },
+        {
+          "id": "Перейти к корзине",
+          "box": {
+            "x": 449.53125,
+            "y": 3773.53125,
+            "width": 138.84375,
+            "height": 31
+          },
+          "font": "14px"
+        },
+        {
+          "id": "burger",
+          "box": {
+            "x": 78,
+            "y": 4275.765625,
+            "width": 281,
+            "height": 38
+          },
+          "font": "16px"
+        },
+        {
+          "id": "sandwich",
+          "box": {
+            "x": 409,
+            "y": 4275.765625,
+            "width": 281,
+            "height": 38
+          },
+          "font": "16px"
+        },
+        {
+          "id": "fries",
+          "box": {
+            "x": 78,
+            "y": 4762,
+            "width": 281,
+            "height": 38
+          },
+          "font": "16px"
+        },
+        {
+          "id": "chips",
+          "box": {
+            "x": 409,
+            "y": 4762,
+            "width": 281,
+            "height": 38
+          },
+          "font": "16px"
+        },
+        {
+          "id": "cola",
+          "box": {
+            "x": 78,
+            "y": 5248.234375,
+            "width": 281,
+            "height": 38
+          },
+          "font": "16px"
+        },
+        {
+          "id": "water",
+          "box": {
+            "x": 409,
+            "y": 5248.234375,
+            "width": 281,
+            "height": 38
+          },
+          "font": "16px"
+        },
+        {
+          "id": "tea",
+          "box": {
+            "x": 78,
+            "y": 5713.46875,
+            "width": 281,
+            "height": 38
+          },
+          "font": "16px"
+        },
+        {
+          "id": "cookie",
+          "box": {
+            "x": 409,
+            "y": 5713.46875,
+            "width": 281,
+            "height": 38
+          },
+          "font": "16px"
+        }
+      ],
+      "focus": {
+        "id": "seat-2",
+        "shadow": "rgba(33, 37, 41, 0.5) 0px 0px 0px 4px",
+        "outline": "rgb(255, 255, 255) none 0px"
+      }
+    }
+  },
+  {
+    "width": 375,
+    "images": [
+      {
+        "alt": "Куриный бургер — фотоиллюстрация",
+        "src": "images/food/burger.jpg",
+        "loaded": true,
+        "size": [
+          500,
+          375
+        ]
+      },
+      {
+        "alt": "Сэндвич с сыром — фотоиллюстрация",
+        "src": "images/food/sandwich.jpg",
+        "loaded": true,
+        "size": [
+          500,
+          375
+        ]
+      },
+      {
+        "alt": "Картофель фри — фотоиллюстрация",
+        "src": "images/food/fries.jpg",
+        "loaded": true,
+        "size": [
+          500,
+          334
+        ]
+      },
+      {
+        "alt": "Картофельные чипсы — фотоиллюстрация",
+        "src": "images/food/chips.jpg",
+        "loaded": true,
+        "size": [
+          500,
+          375
+        ]
+      },
+      {
+        "alt": "Кола — фотоиллюстрация",
+        "src": "images/food/cola.jpg",
+        "loaded": true,
+        "size": [
+          500,
+          935
+        ]
+      },
+      {
+        "alt": "Питьевая вода — фотоиллюстрация",
+        "src": "images/food/water.jpg",
+        "loaded": true,
+        "size": [
+          500,
+          580
+        ]
+      },
+      {
+        "alt": "Чёрный чай — фотоиллюстрация",
+        "src": "images/food/tea.jpg",
+        "loaded": true,
+        "size": [
+          500,
+          375
+        ]
+      },
+      {
+        "alt": "Шоколадное печенье — фотоиллюстрация",
+        "src": "images/food/cookie.jpg",
+        "loaded": true,
+        "size": [
+          500,
+          375
+        ]
+      }
+    ],
+    "metrics": {
+      "overflow": false,
+      "documentWidth": 375,
+      "viewWidth": 375,
+      "blocks": [
+        {
+          "id": "seat-map",
+          "box": {
+            "x": 29,
+            "y": -0.234375,
+            "width": 317,
+            "height": 1138.59375
+          },
+          "background": "rgb(248, 249, 250)",
+          "font": "Arial, Helvetica, sans-serif",
+          "color": "rgb(32, 36, 42)"
+        },
+        {
+          "id": "food-menu",
+          "box": {
+            "x": 12,
+            "y": 4463.640625,
+            "width": 351,
+            "height": 4468.59375
+          },
+          "background": "rgb(255, 255, 255)",
+          "font": "Arial, Helvetica, sans-serif",
+          "color": "rgb(32, 36, 42)"
+        },
+        {
+          "id": "food-cart",
+          "box": {
+            "x": 46,
+            "y": 2758.78125,
+            "width": 283,
+            "height": 1282.859375
+          },
+          "background": "rgba(0, 0, 0, 0)",
+          "font": "Arial, Helvetica, sans-serif",
+          "color": "rgb(32, 36, 42)"
+        }
+      ],
+      "controls": [
+        {
+          "id": "seat-1",
+          "box": {
+            "x": 55,
+            "y": 382.984375,
+            "width": 83,
+            "height": 63
+          },
+          "font": "16px"
+        },
+        {
+          "id": "seat-2",
+          "box": {
+            "x": 146,
+            "y": 382.984375,
+            "width": 83,
+            "height": 63
+          },
+          "font": "16px"
+        },
+        {
+          "id": "seat-3",
+          "box": {
+            "x": 237,
+            "y": 382.984375,
+            "width": 83,
+            "height": 63
+          },
+          "font": "16px"
+        },
+        {
+          "id": "seat-4",
+          "box": {
+            "x": 55,
+            "y": 453.984375,
+            "width": 83,
+            "height": 63
+          },
+          "font": "16px"
+        },
+        {
+          "id": "seat-5",
+          "box": {
+            "x": 146,
+            "y": 453.984375,
+            "width": 83,
+            "height": 63
+          },
+          "font": "16px"
+        },
+        {
+          "id": "seat-6",
+          "box": {
+            "x": 237,
+            "y": 453.984375,
+            "width": 83,
+            "height": 63
+          },
+          "font": "16px"
+        },
+        {
+          "id": "seat-7",
+          "box": {
+            "x": 55,
+            "y": 524.984375,
+            "width": 83,
+            "height": 63
+          },
+          "font": "16px"
+        },
+        {
+          "id": "seat-8",
+          "box": {
+            "x": 146,
+            "y": 524.984375,
+            "width": 83,
+            "height": 63
+          },
+          "font": "16px"
+        },
+        {
+          "id": "seat-9",
+          "box": {
+            "x": 237,
+            "y": 524.984375,
+            "width": 83,
+            "height": 63
+          },
+          "font": "16px"
+        },
+        {
+          "id": "seat-10",
+          "box": {
+            "x": 55,
+            "y": 595.984375,
+            "width": 83,
+            "height": 63
+          },
+          "font": "16px"
+        },
+        {
+          "id": "seat-11",
+          "box": {
+            "x": 55,
+            "y": 728.171875,
+            "width": 83,
+            "height": 63
+          },
+          "font": "16px"
+        },
+        {
+          "id": "seat-12",
+          "box": {
+            "x": 146,
+            "y": 728.171875,
+            "width": 83,
+            "height": 63
+          },
+          "font": "16px"
+        },
+        {
+          "id": "seat-13",
+          "box": {
+            "x": 237,
+            "y": 728.171875,
+            "width": 83,
+            "height": 63
+          },
+          "font": "16px"
+        },
+        {
+          "id": "seat-14",
+          "box": {
+            "x": 55,
+            "y": 799.171875,
+            "width": 83,
+            "height": 63
+          },
+          "font": "16px"
+        },
+        {
+          "id": "seat-15",
+          "box": {
+            "x": 146,
+            "y": 799.171875,
+            "width": 83,
+            "height": 63
+          },
+          "font": "16px"
+        },
+        {
+          "id": "seat-16",
+          "box": {
+            "x": 55,
+            "y": 931.359375,
+            "width": 83,
+            "height": 63
+          },
+          "font": "16px"
+        },
+        {
+          "id": "seat-17",
+          "box": {
+            "x": 146,
+            "y": 931.359375,
+            "width": 83,
+            "height": 63
+          },
+          "font": "16px"
+        },
+        {
+          "id": "seat-18",
+          "box": {
+            "x": 237,
+            "y": 931.359375,
+            "width": 83,
+            "height": 63
+          },
+          "font": "16px"
+        },
+        {
+          "id": "seat-19",
+          "box": {
+            "x": 55,
+            "y": 1002.359375,
+            "width": 83,
+            "height": 63
+          },
+          "font": "16px"
+        },
+        {
+          "id": "seat-20",
+          "box": {
+            "x": 146,
+            "y": 1002.359375,
+            "width": 83,
+            "height": 63
+          },
+          "font": "16px"
+        },
+        {
+          "id": "clear-seat-selection",
+          "box": {
+            "x": 46,
+            "y": 1090.359375,
+            "width": 136.828125,
+            "height": 31
+          },
+          "font": "14px"
+        },
+        {
+          "id": "decrease",
+          "box": {
+            "x": 63,
+            "y": 2979.625,
+            "width": 45.6875,
+            "height": 48
+          },
+          "font": "20px"
+        },
+        {
+          "id": "increase",
+          "box": {
+            "x": 157.5625,
+            "y": 2979.625,
+            "width": 45.6875,
+            "height": 48
+          },
+          "font": "20px"
+        },
+        {
+          "id": "remove",
+          "box": {
+            "x": 211.25,
+            "y": 2984.625,
+            "width": 87.09375,
+            "height": 38
+          },
+          "font": "16px"
+        },
+        {
+          "id": "decrease",
+          "box": {
+            "x": 63,
+            "y": 3133.8125,
+            "width": 45.6875,
+            "height": 48
+          },
+          "font": "20px"
+        },
+        {
+          "id": "increase",
+          "box": {
+            "x": 157.5625,
+            "y": 3133.8125,
+            "width": 45.6875,
+            "height": 48
+          },
+          "font": "20px"
+        },
+        {
+          "id": "remove",
+          "box": {
+            "x": 211.25,
+            "y": 3138.8125,
+            "width": 87.09375,
+            "height": 38
+          },
+          "font": "16px"
+        },
+        {
+          "id": "food-cart-clear",
+          "box": {
+            "x": 46,
+            "y": 3260.8125,
+            "width": 158,
+            "height": 38
+          },
+          "font": "16px"
+        },
+        {
+          "id": "food-checkout",
+          "box": {
+            "x": 63,
+            "y": 3928.640625,
+            "width": 226.328125,
+            "height": 38
+          },
+          "font": "16px"
+        },
+        {
+          "id": "food-reset",
+          "box": {
+            "x": 29,
+            "y": 5028.609375,
+            "width": 142.09375,
+            "height": 31
+          },
+          "font": "14px"
+        },
+        {
+          "id": "Перейти к корзине",
+          "box": {
+            "x": 187.09375,
+            "y": 5028.609375,
+            "width": 138.84375,
+            "height": 31
+          },
+          "font": "14px"
+        },
+        {
+          "id": "burger",
+          "box": {
+            "x": 46,
+            "y": 5550.4375,
+            "width": 283,
+            "height": 38
+          },
+          "font": "16px"
+        },
+        {
+          "id": "sandwich",
+          "box": {
+            "x": 46,
+            "y": 6014.265625,
+            "width": 283,
+            "height": 38
+          },
+          "font": "16px"
+        },
+        {
+          "id": "fries",
+          "box": {
+            "x": 46,
+            "y": 6499.09375,
+            "width": 283,
+            "height": 38
+          },
+          "font": "16px"
+        },
+        {
+          "id": "chips",
+          "box": {
+            "x": 46,
+            "y": 6983.921875,
+            "width": 283,
+            "height": 38
+          },
+          "font": "16px"
+        },
+        {
+          "id": "cola",
+          "box": {
+            "x": 46,
+            "y": 7468.75,
+            "width": 283,
+            "height": 38
+          },
+          "font": "16px"
+        },
+        {
+          "id": "water",
+          "box": {
+            "x": 46,
+            "y": 7932.578125,
+            "width": 283,
+            "height": 38
+          },
+          "font": "16px"
+        },
+        {
+          "id": "tea",
+          "box": {
+            "x": 46,
+            "y": 8396.40625,
+            "width": 283,
+            "height": 38
+          },
+          "font": "16px"
+        },
+        {
+          "id": "cookie",
+          "box": {
+            "x": 46,
+            "y": 8860.234375,
+            "width": 283,
+            "height": 38
+          },
+          "font": "16px"
+        }
+      ],
+      "focus": {
+        "id": "seat-2",
+        "shadow": "rgba(33, 37, 41, 0.5) 0px 0px 0px 4px",
+        "outline": "rgb(255, 255, 255) none 0px"
+      }
+    }
+  }
+]

@@ -1,0 +1,15 @@
+{
+  "baseline": "computerClub_Games_Rules_Updated.zip",
+  "allHtmlCssIdentical": true,
+  "files": {
+    "booking.html": true,
+    "index.html": true,
+    "games.html": true,
+    "about.html": true,
+    "rules.html": true,
+    "computers.html": true,
+    "prices.html": true,
+    "css/bootstrap.min.css": true,
+    "css/base.css": true
+  }
+}

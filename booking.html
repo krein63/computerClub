@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="ru" data-bs-theme="dark">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,9 +9,14 @@
         <!-- Bootstrap supplies the layout; only CSS is used. -->
         <link rel="stylesheet" href="css/bootstrap.min.css">
         <link rel="stylesheet" href="css/base.css">
+        <script src="js/data.js" defer></script>
+        <script src="js/logic.js" defer></script>
+        <script src="js/main.js" defer></script>
+        <script src="js/food.js" defer></script>
+        <script src="js/booking.js" defer></script>
     </head>
-    <body id="page-top">
-        <a id="skip-content" href="#booking-content" class="visually-hidden-focusable d-inline-block p-3">Перейти к содержимому</a><!-- Автор страницы: Ali -->
+    <body id="page-top" class="bg-dark text-light">
+        <a id="skip-content" href="#booking-content" class="visually-hidden-focusable d-inline-block p-3 link-light">Перейти к содержимому</a><!-- Автор страницы: Ali -->
         <!-- Bootstrap navbar layout; the mobile menu uses an HTML checkbox and CSS so the site needs no JavaScript. -->
         <header id="site-header" class="navbar navbar-expand-xl bg-dark border-bottom border-danger border-3 py-3" data-bs-theme="dark">
     <div class="container-fluid px-3 px-lg-4">
@@ -27,6 +32,8 @@
 <li class="nav-item"><a id="nav-games" href="games.html" class="nav-link px-2">Игры</a></li>
 <li class="nav-item"><a id="nav-rules" href="rules.html" class="nav-link px-2">Правила</a></li>
 <li class="nav-item"><a id="nav-about" href="about.html" class="nav-link px-2">О клубе</a></li>
+<li class="nav-item"><a id="nav-food" class="nav-link px-2" href="booking.html#food-menu">Еда</a></li>
+<li class="nav-item"><a id="nav-cart" class="nav-link px-2" href="booking.html#food-cart">Корзина · 0</a></li>
 </ul></nav>
         <a id="header-booking-link" href="booking.html#booking-form" class="btn btn-danger btn-sm mt-3 mt-xl-0 ms-xl-3">Забронировать</a>
 </div>
@@ -34,34 +41,33 @@
 </header>
         <!-- container limits long text to a readable width and stays centered at each Bootstrap breakpoint. -->
         <main class="container py-4 py-lg-5" id="booking-content">
-            <section id="booking-introduction" class="bg-white border rounded-4 p-3 p-md-4 p-lg-5 mb-4 shadow-sm">
+            <section id="booking-introduction" class="bg-body-secondary border rounded-4 p-3 p-md-4 p-lg-5 mb-4 shadow-sm">
                 <p class="mb-3">
                     <small class="small">Бронирование</small>
                 </p>
                 <h1 class="fw-bold display-5 mb-3 text-center text-md-start" id="booking-h1-1">Подготовь бронирование игрового места</h1>
                 <p class="mb-3 lead">Выберите дату, время, тариф и игровую зону, укажите количество игроков и контакты. Ниже формы находится итог бронирования и область результата.</p>
-                <p class="mb-3">В этой версии можно заполнить и очистить поля. <strong>Данные не отправляются, стоимость не рассчитывается и место не бронируется.</strong> Кнопка и состояния результата подготовлены для следующего этапа проекта.</p>
+                <p class="mb-3">Выберите свободные ПК на демонстрационной схеме, проверьте предварительную стоимость и создайте локальную демо-заявку. Данные не отправляются на сервер, реальные места не бронируются.</p>
                 <p class="mb-3">
                     <a href="#booking-form" class="btn btn-danger" id="booking-a-1">Перейти к форме</a>
                     <a href="#direct-contact" class="btn btn-danger" id="booking-a-2">Связаться напрямую</a>
                 </p>
             </section>
             <hr>
-            <section id="booking-details" class="bg-white border rounded-4 p-3 p-md-4 p-lg-5 mb-4 shadow-sm">
+            <section id="booking-details" class="bg-body-secondary border rounded-4 p-3 p-md-4 p-lg-5 mb-4 shadow-sm">
                 <h2 class="fw-bold h2 mb-3">Данные бронирования</h2>
-                <figure class="mb-4" id="booking-figure-1">
+                <figure class="mb-4" id="booking-figure-1" hidden>
                     <img src="images/peripherals.jpg" alt="Игровое место с компьютером и периферией в клубе TOP GAME" class="w-100 object-fit-cover rounded-3" height="280">
                     <figcaption class="small text-body-secondary mt-2">
                 Игровое место с компьютерным оборудованием в клубе TOP GAME.
             </figcaption>
                 </figure>
-                <!-- No submission endpoint or JavaScript is used in the midterm stage. -->
+                <!-- Форма создаёт учебные заявки только в этом браузере. -->
                 <div class="row">
                     <div class="col-12">
-                        <form id="booking-form" class="mt-4" aria-describedby="booking-status">
-                            <!-- A disabled default submit control prevents implicit submission with Enter. -->
-                            <button id="booking-submit-guard" type="submit" class="hidden" disabled aria-hidden="true" tabindex="-1">Отправка отключена</button>
-                            <p id="booking-status" class="alert alert-light border">Заполните обязательные поля и проверьте выбранный тариф по <a href="prices.html" id="booking-a-3">прайсу</a>. «Показать итог бронирования» в этой статической версии не выполняет действие. Результат будет отображаться в области под формой.</p>
+                        <form novalidate id="booking-form" class="mt-4" aria-describedby="booking-status">
+
+                            <p id="booking-status" class="alert alert-dark border">Укажите время по Астане, выберите ПК на карте и заполните контакты. Заявка сохраняется только в этом браузере: данные не отправляются в клуб, реальное бронирование не создаётся.</p>
                             <div id="booking-errors" class="error hidden mb-3" role="alert"></div>
                             <fieldset class="border rounded-3 p-3 p-md-4 mb-4">
                                 <legend class="form-label fw-semibold">Контактные данные</legend>
@@ -69,42 +75,47 @@
                                     <p class="mb-3 col-12 col-md-6">
                                         <label for="customer-name" class="form-label fw-semibold">Имя:</label>
                                         <br>
-                                        <input type="text" id="customer-name" name="customer-name" autocomplete="name" maxlength="80" required class="form-control">
+                                        <input type="text" id="customer-name" name="customer-name" autocomplete="name" maxlength="80" required class="form-control bg-dark text-light">
                                     </p>
                                     <p class="mb-3 col-12 col-md-6">
                                         <label for="customer-email" class="form-label fw-semibold">Электронная почта:</label>
                                         <br>
-                                        <input type="email" id="customer-email" name="customer-email" autocomplete="email" maxlength="254" required class="form-control">
+                                        <input type="email" id="customer-email" name="customer-email" autocomplete="email" maxlength="254" required class="form-control bg-dark text-light">
                                     </p>
                                     <p class="mb-3 col-12 col-md-6">
                                         <label for="customer-phone" class="form-label fw-semibold">Телефон:</label>
                                         <br>
-                                        <input type="tel" id="customer-phone" name="customer-phone" autocomplete="tel" maxlength="30" required class="form-control">
+                                        <input type="tel" id="customer-phone" name="customer-phone" autocomplete="tel" maxlength="30" required class="form-control bg-dark text-light">
                                     </p>
                                 </div>
                             </fieldset>
+
                             <fieldset class="border rounded-3 p-3 p-md-4 mb-4">
                                 <legend class="form-label fw-semibold">Дата и время посещения</legend>
                                 <div class="row g-3">
                                     <p class="mb-3 col-12 col-md-6">
                                         <label for="booking-date" class="form-label fw-semibold">Дата:</label>
                                         <br>
-                                        <input type="date" id="booking-date" name="booking-date" required class="form-control">
+                                        <input type="date" id="booking-date" name="booking-date" required class="form-control bg-dark text-light">
                                     </p>
                                     <p class="mb-3 col-12 col-md-6">
                                         <label for="booking-time" class="form-label fw-semibold">Время:</label>
                                         <br>
-                                        <input type="time" id="booking-time" name="booking-time" required class="form-control">
+                                        <input type="time" id="booking-time" name="booking-time" required class="form-control bg-dark text-light">
                                     </p>
                                     <p class="mb-3 col-12 col-md-6">
                                         <label for="player-count" class="form-label fw-semibold">Количество игроков:</label>
                                         <br>
-                                        <input type="number" id="player-count" name="player-count" min="1" max="45" value="1" required class="form-control">
+                                        <input type="number" id="player-count" name="player-count" min="1" max="20" step="1" value="1" required class="form-control bg-dark text-light">
                                     </p>
+                            <p class="mb-3 col-12 col-md-6">
+                                <label class="form-label fw-semibold" for="booking-duration">Желаемая продолжительность, часов:</label>
+                                <input class="form-control bg-dark text-light" id="booking-duration" name="booking-duration" type="number" min="1" max="12" step="1" value="1" required aria-describedby="booking-duration-note">
+                            </p>
                                     <p class="mb-3 col-12 col-md-6" id="tariff-selection">
                                         <label for="booking-tariff" class="form-label fw-semibold">Тариф:</label>
                                         <br>
-                                        <select id="booking-tariff" name="booking-tariff" required class="form-select" aria-describedby="booking-tariff-note">
+                                        <select id="booking-tariff" name="booking-tariff" required class="form-select bg-dark text-light" aria-describedby="booking-tariff-note">
                                             <option value="">Выберите тариф</option>
                                             <option value="hour">1 час — от 1 200 ₸</option>
                                             <option value="three-hours">3 часа — от 3 600 ₸</option>
@@ -112,7 +123,8 @@
                                             <option value="private">PRIVATE — от 2 500 ₸</option>
                                         </select>
                                     </p>
-                                    <p id="booking-tariff-note" class="small text-body-secondary mb-0 col-12">В форме приведены тарифы из прайса. Цены «от» не являются окончательной стоимостью бронирования; для зоны PRIVATE выберите тариф PRIVATE.</p>
+                                    <p id="booking-duration-note" class="small text-body-secondary col-12 mb-3"></p>
+                                    <p id="booking-tariff-note" class="small text-body-secondary mb-0 col-12">Цены из прайса указаны «от». PRIVATE применяется только к зоне PRIVATE. Часы ночного пакета и период оплаты PRIVATE в прайсе не указаны; их необходимо уточнить у клуба.</p>
                                 </div>
                             </fieldset>
                             <fieldset class="border rounded-3 p-3 p-md-4 mb-4" id="gaming-zone-selection">
@@ -133,6 +145,62 @@
                                     </p>
                                 </div>
                             </fieldset>
+                            <fieldset id="seat-map" tabindex="-1" class="bg-body-tertiary border rounded-3 p-3 p-md-4 mb-4">
+                                <legend class="h4 fw-bold mb-3">Выберите компьютеры на карте</legend>
+                                <p class="small text-body-secondary mb-3">Иллюстративная схема: 20 ПК, MAIN — 10, DUO — 5, PRIVATE — 5. Расположение и занятость — учебные данные, а не карта реального клуба.</p>
+                                <div class="d-flex flex-wrap gap-2 mb-3" aria-label="Условные обозначения">
+                                    <span class="badge bg-body-secondary text-light border border-secondary">Свободно</span>
+                                    <span class="badge text-bg-secondary">Занято</span>
+                                    <span class="badge text-bg-danger">Выбрано</span>
+                                </div>
+                                <p id="seat-map-status" class="small mb-3" role="status" aria-live="polite"></p>
+                                <p id="seat-map-feedback" class="small mb-3 hidden" role="status" aria-live="polite"></p>
+                                <div class="row g-3 mb-3">
+                                    <div class="col-12">
+                                        <section class="bg-body-secondary border rounded-3 p-2 p-md-3 h-100">
+                                            <h3 class="h6 fw-bold mb-3">MAIN · 10 ПК · демо-этаж 1</h3>
+                                            <div class="row row-cols-3 row-cols-md-5 g-2">
+                                                <div class="col"><button id="seat-1" type="button" class="btn btn-outline-light w-100 h-100 px-1 py-2" data-seat-id="1" data-zone="main" aria-pressed="false"><span class="d-block fw-bold">▰ PC 01</span><span class="d-block small">Свободно</span></button></div>
+                                                <div class="col"><button id="seat-2" type="button" class="btn btn-outline-light w-100 h-100 px-1 py-2" data-seat-id="2" data-zone="main" aria-pressed="false"><span class="d-block fw-bold">▰ PC 02</span><span class="d-block small">Свободно</span></button></div>
+                                                <div class="col"><button id="seat-3" type="button" class="btn btn-outline-light w-100 h-100 px-1 py-2" data-seat-id="3" data-zone="main" aria-pressed="false"><span class="d-block fw-bold">▰ PC 03</span><span class="d-block small">Свободно</span></button></div>
+                                                <div class="col"><button id="seat-4" type="button" class="btn btn-outline-light w-100 h-100 px-1 py-2" data-seat-id="4" data-zone="main" aria-pressed="false"><span class="d-block fw-bold">▰ PC 04</span><span class="d-block small">Свободно</span></button></div>
+                                                <div class="col"><button id="seat-5" type="button" class="btn btn-outline-light w-100 h-100 px-1 py-2" data-seat-id="5" data-zone="main" aria-pressed="false"><span class="d-block fw-bold">▰ PC 05</span><span class="d-block small">Свободно</span></button></div>
+                                                <div class="col"><button id="seat-6" type="button" class="btn btn-outline-light w-100 h-100 px-1 py-2" data-seat-id="6" data-zone="main" aria-pressed="false"><span class="d-block fw-bold">▰ PC 06</span><span class="d-block small">Свободно</span></button></div>
+                                                <div class="col"><button id="seat-7" type="button" class="btn btn-outline-light w-100 h-100 px-1 py-2" data-seat-id="7" data-zone="main" aria-pressed="false"><span class="d-block fw-bold">▰ PC 07</span><span class="d-block small">Свободно</span></button></div>
+                                                <div class="col"><button id="seat-8" type="button" class="btn btn-outline-light w-100 h-100 px-1 py-2" data-seat-id="8" data-zone="main" aria-pressed="false"><span class="d-block fw-bold">▰ PC 08</span><span class="d-block small">Свободно</span></button></div>
+                                                <div class="col"><button id="seat-9" type="button" class="btn btn-outline-light w-100 h-100 px-1 py-2" data-seat-id="9" data-zone="main" aria-pressed="false"><span class="d-block fw-bold">▰ PC 09</span><span class="d-block small">Свободно</span></button></div>
+                                                <div class="col"><button id="seat-10" type="button" class="btn btn-outline-light w-100 h-100 px-1 py-2" data-seat-id="10" data-zone="main" aria-pressed="false"><span class="d-block fw-bold">▰ PC 10</span><span class="d-block small">Свободно</span></button></div>
+                                            </div>
+                                        </section>
+                                    </div>
+                                    <div class="col-12 col-lg-6">
+                                        <section class="bg-body-secondary border rounded-3 p-2 p-md-3 h-100">
+                                            <h3 class="h6 fw-bold mb-3">DUO · 5 ПК · демо-этаж 2</h3>
+                                            <div class="row row-cols-3 row-cols-md-5 g-2">
+                                                <div class="col"><button id="seat-11" type="button" class="btn btn-outline-light w-100 h-100 px-1 py-2" data-seat-id="11" data-zone="duo" aria-pressed="false"><span class="d-block fw-bold">▰ PC 11</span><span class="d-block small">Свободно</span></button></div>
+                                                <div class="col"><button id="seat-12" type="button" class="btn btn-outline-light w-100 h-100 px-1 py-2" data-seat-id="12" data-zone="duo" aria-pressed="false"><span class="d-block fw-bold">▰ PC 12</span><span class="d-block small">Свободно</span></button></div>
+                                                <div class="col"><button id="seat-13" type="button" class="btn btn-outline-light w-100 h-100 px-1 py-2" data-seat-id="13" data-zone="duo" aria-pressed="false"><span class="d-block fw-bold">▰ PC 13</span><span class="d-block small">Свободно</span></button></div>
+                                                <div class="col"><button id="seat-14" type="button" class="btn btn-outline-light w-100 h-100 px-1 py-2" data-seat-id="14" data-zone="duo" aria-pressed="false"><span class="d-block fw-bold">▰ PC 14</span><span class="d-block small">Свободно</span></button></div>
+                                                <div class="col"><button id="seat-15" type="button" class="btn btn-outline-light w-100 h-100 px-1 py-2" data-seat-id="15" data-zone="duo" aria-pressed="false"><span class="d-block fw-bold">▰ PC 15</span><span class="d-block small">Свободно</span></button></div>
+                                            </div>
+                                        </section>
+                                    </div>
+                                    <div class="col-12 col-lg-6">
+                                        <section class="bg-body-secondary border rounded-3 p-2 p-md-3 h-100">
+                                            <h3 class="h6 fw-bold mb-3">PRIVATE · 5 ПК · демо-этаж 2</h3>
+                                            <div class="row row-cols-3 row-cols-md-5 g-2">
+                                                <div class="col"><button id="seat-16" type="button" class="btn btn-outline-light w-100 h-100 px-1 py-2" data-seat-id="16" data-zone="private" aria-pressed="false"><span class="d-block fw-bold">▰ PC 16</span><span class="d-block small">Свободно</span></button></div>
+                                                <div class="col"><button id="seat-17" type="button" class="btn btn-outline-light w-100 h-100 px-1 py-2" data-seat-id="17" data-zone="private" aria-pressed="false"><span class="d-block fw-bold">▰ PC 17</span><span class="d-block small">Свободно</span></button></div>
+                                                <div class="col"><button id="seat-18" type="button" class="btn btn-outline-light w-100 h-100 px-1 py-2" data-seat-id="18" data-zone="private" aria-pressed="false"><span class="d-block fw-bold">▰ PC 18</span><span class="d-block small">Свободно</span></button></div>
+                                                <div class="col"><button id="seat-19" type="button" class="btn btn-outline-light w-100 h-100 px-1 py-2" data-seat-id="19" data-zone="private" aria-pressed="false"><span class="d-block fw-bold">▰ PC 19</span><span class="d-block small">Свободно</span></button></div>
+                                                <div class="col"><button id="seat-20" type="button" class="btn btn-outline-light w-100 h-100 px-1 py-2" data-seat-id="20" data-zone="private" aria-pressed="false"><span class="d-block fw-bold">▰ PC 20</span><span class="d-block small">Свободно</span></button></div>
+                                            </div>
+                                        </section>
+                                    </div>
+                                </div>
+                                <button id="clear-seat-selection" type="button" class="btn btn-outline-light btn-sm">Снять выбор мест</button>
+                            </fieldset>
+
                             <fieldset class="border rounded-3 p-3 p-md-4 mb-4">
                                 <legend class="form-label fw-semibold">Дополнительная информация</legend>
                                 <div class="row g-3">
@@ -147,7 +215,7 @@
                         Комментарий к бронированию:
                     </label>
                                         <br>
-                                        <textarea id="booking-comment" name="booking-comment" rows="5" cols="40" maxlength="1000" class="form-control"></textarea>
+                                        <textarea id="booking-comment" name="booking-comment" rows="5" cols="40" maxlength="1000" class="form-control bg-dark text-light"></textarea>
                                     </p>
                                     <p class="mb-3 col-12">
                                         <input type="checkbox" id="booking-agreement" name="booking-agreement" required class="form-check-input me-1">
@@ -158,8 +226,8 @@
                                 </div>
                             </fieldset>
                             <p class="mb-3 d-flex flex-wrap gap-2">
-                                <button id="booking-submit" type="button" class="btn btn-danger" aria-describedby="booking-status">Показать итог бронирования</button>
-                                <button id="booking-reset" type="reset" class="btn btn-outline-secondary">Очистить форму</button>
+                                <button id="booking-submit" type="submit" class="btn btn-danger" aria-describedby="booking-status">Создать демо-заявку</button>
+                                <button id="booking-reset" type="reset" class="btn btn-outline-light">Очистить форму</button>
                             </p>
                         </form>
                     </div>
@@ -178,23 +246,118 @@
                         <dd id="booking-summary-time" class="col-12 col-sm-7">Не выбрано</dd>
                         <dt class="col-12 col-sm-5">Количество игроков</dt>
                         <dd id="booking-summary-players" class="col-12 col-sm-7">Итог не сформирован</dd>
+                        <dt class="col-12 col-sm-5">Компьютеры</dt>
+                        <dd id="booking-summary-seats" class="col-12 col-sm-7"></dd>
+                        <dt class="col-12 col-sm-5">Продолжительность</dt>
+                        <dd id="booking-summary-duration" class="col-12 col-sm-7"></dd>
                     </dl>
                     <p id="booking-total-note" class="mb-2 fw-semibold">Стоимость выбранного тарифа будет показана на следующем этапе проекта.</p>
-                    <output id="booking-total" form="booking-form" for="booking-tariff player-count" aria-describedby="booking-total-note" class="d-block mb-3"></output>
+                    <output id="booking-total" form="booking-form" for="booking-tariff player-count booking-duration" aria-describedby="booking-total-note" class="d-block mb-3"></output>
                     <ul id="booking-result-list" class="list-group list-group-flush hidden mb-3"></ul>
-                    <div id="booking-success" class="success hidden mb-3" role="status" aria-live="polite"></div>
-                    <p class="small text-body-secondary mb-3">Сообщение об успехе появится только после проверки данных на следующем этапе. Сейчас подтверждение бронирования не создаётся.</p>
-                    <a href="prices.html" class="btn btn-outline-danger" id="booking-a-4">Проверить тарифы</a>
-                    <a href="rules.html" class="btn btn-outline-danger" id="booking-a-5">Прочитать правила</a>
+                    <div id="booking-success" class="success hidden mb-3 border rounded-3 p-3 text-break" role="status" aria-live="polite"></div>
+                    <p class="small text-body-secondary mb-3">Все заявки на этой странице демонстрационные. Реальную доступность мест, стоимость и условия пакетов подтвердит клуб по телефону +7 706 400 50 40.</p>
+                    <a href="prices.html" class="btn btn-outline-danger text-light" id="booking-a-4">Проверить тарифы</a>
+                    <a href="rules.html" class="btn btn-outline-danger text-light" id="booking-a-5">Прочитать правила</a>
+                    <section class="border rounded-3 p-3 p-md-4 mt-4" aria-labelledby="local-bookings-title">
+                        <h3 id="local-bookings-title" class="h5 fw-bold mb-3">Мои демо-заявки в этом браузере</h3>
+                        <p id="local-bookings-status" class="small mb-3" tabindex="-1" role="status" aria-live="polite">При пересечении времени один и тот же ПК нельзя выбрать дважды. Отмена освобождает место только на этой учебной схеме. Контакты не сохраняются.</p>
+                        <ul id="local-bookings" class="list-group"></ul>
+                    </section>
+<section id="food-cart" class="border-top pt-4 mt-4" aria-labelledby="food-cart-title">
+            <h3 id="food-cart-title" class="h3 fw-bold mb-3">Твой заказ еды</h3>
+            <p class="small text-body-secondary">Учебный заказ: меню и цены демонстрационные. Оплаты, отправки на сервер и реального заказа нет.</p>
+            <div id="food-cart-items" class="vstack gap-3 mb-3"></div>
+            <p id="food-cart-total" class="fw-bold fs-5" aria-live="polite"></p>
+            <button id="food-cart-clear" class="btn btn-outline-danger text-light mb-3" type="button">Очистить корзину</button>
+            <p id="food-feedback" class="small mb-3" role="status"></p>
+            <form id="food-order-form" class="border rounded-3 p-3" novalidate>
+                <h4 class="h4 mb-3">Получение заказа</h4>
+                <div class="row g-3">
+                    <div class="col-12 col-md-6">
+                        <label class="form-label fw-semibold" for="food-name">Имя</label>
+                        <input id="food-name" name="food-name" class="form-control bg-dark text-light" type="text" autocomplete="name" maxlength="80" required>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <label class="form-label fw-semibold" for="food-email">Электронная почта</label>
+                        <input id="food-email" name="food-email" class="form-control bg-dark text-light" type="email" autocomplete="email" maxlength="254" required>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <label class="form-label fw-semibold" for="food-phone">Телефон (+7 и 10 цифр)</label>
+                        <input id="food-phone" name="food-phone" class="form-control bg-dark text-light" type="tel" autocomplete="tel" maxlength="30" required>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <label class="form-label fw-semibold" for="food-delivery">Способ получения</label>
+                        <select id="food-delivery" class="form-select bg-dark text-light" required>
+                            <option value="">Выберите способ</option>
+                            <option value="bar">Заберу у стойки</option>
+                            <option value="seat">К игровому месту</option>
+                        </select>
+                    </div>
+                    <div id="food-seat-column" class="col-12 col-md-6 hidden">
+                        <label class="form-label fw-semibold" for="food-seat">Номер ПК</label>
+                        <select id="food-seat" class="form-select bg-dark text-light" disabled>
+                            <option value="">Выберите ПК</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-check my-3">
+                    <input id="food-agreement" class="form-check-input" type="checkbox" required>
+                    <label class="form-check-label" for="food-agreement">Проверил состав и понимаю, что это демонстрационный заказ</label>
+                </div>
+                <button id="food-checkout" class="btn btn-danger" type="submit">Сформировать демо-заказ</button>
+                <p id="food-order-status" class="small mt-3 mb-0" aria-live="polite"></p>
+            </form>
+            <div id="food-order-success" class="alert hidden mt-3 text-break" role="status" aria-live="polite"></div>
+        </section>
+
                 </section>
             </section>
             <hr>
-            <aside id="direct-contact" class="bg-white border rounded-4 p-3 p-md-4 p-lg-5 mb-4 shadow-sm">
+            <section id="food-menu" class="bg-body-secondary border rounded-4 p-3 p-md-4 p-lg-5 mb-4 shadow-sm" aria-labelledby="food-menu-title">
+            <p class="small text-uppercase text-danger-emphasis fw-semibold mb-2">Еда и напитки</p>
+            <h2 id="food-menu-title" class="h2 fw-bold mb-3">Перекус без паузы в игре</h2>
+            <p class="mb-4">Соберите корзину, выберите получение у стойки или номер ПК и проверьте итог. Это пример меню для учебного проекта; ассортимент, состав и цены клуба не подтверждены.</p>
+            <div class="row g-3 mb-3">
+                <div class="col-12 col-md-4">
+                    <label class="form-label fw-semibold" for="food-search">Найти в меню</label>
+                    <input id="food-search" class="form-control bg-dark text-light" type="search" placeholder="Например, бургер или чай" maxlength="80">
+                </div>
+                <div class="col-12 col-md-4">
+                    <label class="form-label fw-semibold" for="food-category">Категория</label>
+                    <select id="food-category" class="form-select bg-dark text-light">
+                        <option value="all">Всё меню</option>
+                        <option value="food">Еда</option>
+                        <option value="snacks">Снеки</option>
+                        <option value="drinks">Напитки</option>
+                    </select>
+                </div>
+                <div class="col-12 col-md-4">
+                    <label class="form-label fw-semibold" for="food-sort">Порядок</label>
+                    <select id="food-sort" class="form-select bg-dark text-light">
+                        <option value="default">По меню</option>
+                        <option value="price-asc">Сначала дешевле</option>
+                        <option value="price-desc">Сначала дороже</option>
+                        <option value="name">По названию</option>
+                    </select>
+                </div>
+            </div>
+            <div class="d-flex flex-wrap align-items-center gap-3 mb-3">
+                <div class="form-check">
+                    <input id="food-available" class="form-check-input" type="checkbox">
+                    <label class="form-check-label" for="food-available">Только доступные в демо</label>
+                </div>
+                <button id="food-reset" class="btn btn-outline-light btn-sm" type="button">Сбросить фильтры</button>
+                <a class="btn btn-outline-danger text-light btn-sm" href="#food-cart">Перейти к корзине</a>
+            </div>
+            <p id="food-count" class="small text-body-secondary mb-3" role="status"></p>
+            <div id="food-cards" class="row g-3"></div>
+        </section>
+<aside id="direct-contact" class="bg-body-secondary border rounded-4 p-3 p-md-4 p-lg-5 mb-4 shadow-sm">
                 <h2 class="fw-bold h2 mb-3">Связаться напрямую</h2>
                 <address class="fst-normal row g-3">
                     <p class="mb-3 col-12 col-md-6">
                 Телефон:
-                <a href="tel:+77064005040" id="booking-a-6">
+                <a href="tel:+77064005040" id="booking-a-6" class="link-light">
                             <strong>+7 706 400 50 40</strong>
                         </a>
                     </p>

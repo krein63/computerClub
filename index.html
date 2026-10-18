@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="ru" data-bs-theme="dark">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,9 +9,13 @@
         <!-- Bootstrap supplies the layout; only CSS is used. -->
         <link rel="stylesheet" href="css/bootstrap.min.css">
         <link rel="stylesheet" href="css/base.css">
+        <script src="js/data.js" defer></script>
+        <script src="js/logic.js" defer></script>
+        <script src="js/main.js" defer></script>
+        <script src="js/food.js" defer></script>
     </head>
-    <body id="page-top">
-        <a id="skip-content" href="#index-content" class="visually-hidden-focusable d-inline-block p-3">Перейти к содержимому</a><!-- Authors: Ulan and Ali and Amir-->
+    <body id="page-top" class="bg-dark text-light">
+        <a id="skip-content" href="#index-content" class="visually-hidden-focusable d-inline-block p-3 link-light">Перейти к содержимому</a><!-- Authors: Ulan and Ali and Amir-->
         <!-- Bootstrap navbar layout; the mobile menu uses an HTML checkbox and CSS so the site needs no JavaScript. -->
         <header id="site-header" class="navbar navbar-expand-xl bg-dark border-bottom border-danger border-3 py-3" data-bs-theme="dark">
     <div class="container-fluid px-3 px-lg-4">
@@ -27,6 +31,8 @@
 <li class="nav-item"><a id="nav-games" href="games.html" class="nav-link px-2">Игры</a></li>
 <li class="nav-item"><a id="nav-rules" href="rules.html" class="nav-link px-2">Правила</a></li>
 <li class="nav-item"><a id="nav-about" href="about.html" class="nav-link px-2">О клубе</a></li>
+<li class="nav-item"><a id="nav-food" class="nav-link px-2" href="booking.html#food-menu">Еда</a></li>
+<li class="nav-item"><a id="nav-cart" class="nav-link px-2" href="booking.html#food-cart">Корзина · 0</a></li>
 </ul></nav>
         <a id="header-booking-link" href="booking.html#booking-form" class="btn btn-danger btn-sm mt-3 mt-xl-0 ms-xl-3">Забронировать</a>
 </div>
@@ -34,10 +40,12 @@
 </header>
         <!-- container limits long text to a readable width and stays centered at each Bootstrap breakpoint. -->
         <main class="container py-4 py-lg-5" id="index-content">
-            <section class="bg-white border rounded-4 p-3 p-md-4 p-lg-5 mb-4 shadow-sm" id="index-section-1">
+
+
+            <section class="bg-body-secondary border rounded-4 p-3 p-md-4 p-lg-5 mb-4 shadow-sm" id="index-section-1">
                 <div class="row g-4 align-items-center">
                     <header class="col-12 col-lg-6">
-                        <p class="text-danger fw-semibold text-uppercase small mb-3">Астана • 24/7</p>
+                        <p class="text-danger-emphasis fw-semibold text-uppercase small mb-3">Астана • 24/7</p>
                         <h1 class="fw-bold display-5 mb-3 text-center text-md-start" id="index-h1-1">ИГРАЙ.<br>ПОБЕЖДАЙ.<br>ПОВТОРЯЙ.</h1>
                         <p class="lead text-body-secondary mb-3">
                     Top Game — круглосуточный компьютерный клуб в Астане.
@@ -47,7 +55,7 @@
                 </p>
                         <nav aria-label="Основные действия" class="d-flex flex-wrap gap-2 mt-4">
                             <a href="booking.html" class="btn btn-danger btn-lg" id="index-a-1">Забронировать</a>
-                            <a href="prices.html" class="btn btn-outline-dark btn-lg" id="index-a-2">Смотреть тарифы →</a>
+                            <a href="prices.html" class="btn btn-outline-light btn-lg" id="index-a-2">Смотреть тарифы →</a>
                         </nav>
                     </header>
                     <figure class="mb-0 col-12 col-lg-6" id="index-figure-1">
@@ -56,38 +64,47 @@
                     </figure>
                 </div>
             </section>
-            <aside aria-labelledby="features-title" class="bg-white border rounded-4 p-3 p-md-4 p-lg-5 mb-4 shadow-sm" id="index-aside-1">
+            <section class="bg-body-secondary border rounded-4 p-3 p-md-4 p-lg-5 mb-4 shadow-sm">
+                <p class="small text-uppercase text-danger-emphasis fw-semibold mb-2">Твой следующий сеанс</p>
+                <h2 class="h2 fw-bold mb-3">Место для команды и перекус к игре</h2>
+                <p class="mb-3">Выберите ПК на схеме зала, подготовьте демо-заявку и соберите заказ еды. Итог и стоимость видны сразу.</p>
+                <div class="d-flex flex-wrap gap-2">
+                    <a class="btn btn-danger" href="booking.html#seat-map">Выбрать место</a>
+                    <a class="btn btn-outline-danger text-light" href="booking.html#food-menu">Посмотреть меню</a>
+                </div>
+            </section>
+            <aside aria-labelledby="features-title" class="bg-body-secondary border rounded-4 p-3 p-md-4 p-lg-5 mb-4 shadow-sm" id="index-aside-1">
                 <h2 id="features-title" class="fw-bold h2 mb-3">Краткая информация о клубе</h2>
                 <ul class="row g-3 list-unstyled mb-0">
                     <li class="col-12 col-sm-6 col-lg-3">
                         <div class="border rounded-3 p-3 h-100 bg-body-tertiary border-danger border-top border-3">
-                            <strong class="d-block text-danger fs-4 fw-bold">От 1 200 ₸</strong>
+                            <strong class="d-block text-danger-emphasis fs-4 fw-bold">От 1 200 ₸</strong>
                             <span class="d-block text-body-secondary small">за час игры</span>
                         </div>
                     </li>
                     <li class="col-12 col-sm-6 col-lg-3">
                         <div class="border rounded-3 p-3 h-100 bg-body-tertiary">
-                            <strong class="d-block text-danger fs-4 fw-bold">45 <abbr title="персональных компьютеров">ПК</abbr>
+                            <strong class="d-block text-danger-emphasis fs-4 fw-bold">20 <abbr title="персональных компьютеров">ПК</abbr>
                             </strong>
                             <span class="d-block text-body-secondary small">во всём клубе</span>
                         </div>
                     </li>
                     <li class="col-12 col-sm-6 col-lg-3">
                         <div class="border rounded-3 p-3 h-100 bg-body-tertiary">
-                            <strong class="d-block text-danger fs-4 fw-bold">310–380 <abbr title="герц">Hz</abbr>
+                            <strong class="d-block text-danger-emphasis fs-4 fw-bold">310–380 <abbr title="герц">Hz</abbr>
                             </strong>
                             <span class="d-block text-body-secondary small">частота игровых мониторов</span>
                         </div>
                     </li>
                     <li class="col-12 col-sm-6 col-lg-3">
                         <div class="border rounded-3 p-3 h-100 bg-body-tertiary">
-                            <strong class="d-block text-danger fs-4 fw-bold">24/7</strong>
+                            <strong class="d-block text-danger-emphasis fs-4 fw-bold">24/7</strong>
                             <span class="d-block text-body-secondary small">работа без выходных</span>
                         </div>
                     </li>
                 </ul>
             </aside>
-            <section id="visitor-guide" class="bg-white border rounded-4 p-3 p-md-4 p-lg-5 mb-4 shadow-sm">
+            <section id="visitor-guide" class="bg-body-secondary border rounded-4 p-3 p-md-4 p-lg-5 mb-4 shadow-sm">
                 <header>
                     <h2 class="fw-bold h2 mb-3">Подготовься к игре</h2>
                     <p class="mb-3">
@@ -99,7 +116,7 @@
                 <!-- Bootstrap Cards / grid: official card and card-body markup adapted to existing club content; semantic articles and figures retained. https://getbootstrap.com/docs/5.3/components/card/ -->
                 <div class="mt-1 row g-4">
                     <div class="col-12 col-md-6">
-                        <article class="card h-100 shadow-sm" id="index-article-1">
+                        <article class="card h-100 shadow-sm bg-dark text-light" id="index-article-1">
                             <div class="card-body p-3 p-lg-4">
                                 <img src="images/peripherals.jpg" alt="Игровая клавиатура, мышь и гарнитура Top Game" class="w-100 object-fit-cover rounded-3 mb-3" height="190">
                                 <h3 class="fw-bold h4 mb-3 card-title">Игры</h3>
@@ -107,12 +124,12 @@
                         Узнай о популярных командных играх и заполни запрос игры,
                         если нужной игры нет в списке.
                     </p>
-                                <a href="games.html" id="index-a-3">Перейти к играм →</a>
+                                <a href="games.html" id="index-a-3" class="link-light">Перейти к играм →</a>
                             </div>
                         </article>
                     </div>
                     <div class="col-12 col-md-6">
-                        <article class="card h-100 shadow-sm" id="index-article-2">
+                        <article class="card h-100 shadow-sm bg-dark text-light" id="index-article-2">
                             <div class="card-body p-3 p-lg-4">
                                 <img src="images/private-zone.jpg" alt="Аккуратно организованное место в зоне Private" class="w-100 object-fit-cover rounded-3 mb-3" height="190">
                                 <h3 class="fw-bold h4 mb-3 card-title">Правила клуба</h3>
@@ -120,13 +137,13 @@
                         Прочитай правила поведения, защиты аккаунта и
                         безопасного использования оборудования.
                     </p>
-                                <a href="rules.html" id="index-a-4">Прочитать правила →</a>
+                                <a href="rules.html" id="index-a-4" class="link-light">Прочитать правила →</a>
                             </div>
                         </article>
                     </div>
                 </div>
             </section>
-            <section id="gaming-zones" class="bg-white border rounded-4 p-3 p-md-4 p-lg-5 mb-4 shadow-sm">
+            <section id="gaming-zones" class="bg-body-secondary border rounded-4 p-3 p-md-4 p-lg-5 mb-4 shadow-sm">
                 <header>
                     <h2 class="fw-bold h2 mb-3">Выбери свою зону</h2>
                     <p class="mb-3">
@@ -143,7 +160,7 @@
                 <!-- Bootstrap Cards / grid: official card and card-body markup adapted to existing club content; semantic articles and figures retained. https://getbootstrap.com/docs/5.3/components/card/ -->
                 <div class="mt-1 row g-4">
                     <div class="col-12 col-md-6 col-lg-4">
-                        <article class="card h-100 shadow-sm" id="index-article-3">
+                        <article class="card h-100 shadow-sm bg-dark text-light" id="index-article-3">
                             <div class="card-body p-3 p-lg-4">
                                 <img src="images/main-zone.jpg" alt="Компьютерное место в основной зоне Main" class="w-100 object-fit-cover rounded-3 mb-3" height="190">
                                 <h3 class="fw-bold h4 mb-3 card-title">Main</h3>
@@ -162,7 +179,7 @@
                         </article>
                     </div>
                     <div class="col-12 col-md-6 col-lg-4">
-                        <article class="card h-100 shadow-sm" id="index-article-4">
+                        <article class="card h-100 shadow-sm bg-dark text-light" id="index-article-4">
                             <div class="card-body p-3 p-lg-4">
                                 <img src="images/duos-zone.jpg" alt="Два компьютерных места в игровой зоне Duo’s" class="w-100 object-fit-cover rounded-3 mb-3" height="190">
                                 <h3 class="fw-bold h4 mb-3 card-title">Duo’s</h3>
@@ -181,7 +198,7 @@
                         </article>
                     </div>
                     <div class="col-12 col-md-6 col-lg-4">
-                        <article class="card h-100 shadow-sm" id="index-article-5">
+                        <article class="card h-100 shadow-sm bg-dark text-light" id="index-article-5">
                             <div class="card-body p-3 p-lg-4">
                                 <img src="images/private-zone.jpg" alt="Компьютерное место в приватной зоне Private" class="w-100 object-fit-cover rounded-3 mb-3" height="190">
                                 <h3 class="fw-bold h4 mb-3 card-title">Private</h3>
@@ -207,7 +224,7 @@
                 </footer>
             </section>
         </main>
-        <a href="#page-top" class="btn btn-outline-dark btn-sm d-block mx-auto mb-4 w-50" id="index-a-6">↑ Наверх</a>
+        <a href="#page-top" class="btn btn-outline-light btn-sm d-block mx-auto mb-4 w-50" id="index-a-6">↑ Наверх</a>
         <footer id="site-footer" class="bg-dark text-white py-5 mt-4">
     <div class="container"><div class="row g-4 align-items-start">
         <section class="col-12 col-md-6 col-lg-4" aria-labelledby="footer-brand-title">

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="ru" data-bs-theme="dark">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,9 +9,14 @@
         <!-- Bootstrap supplies the layout; only CSS is used. -->
         <link rel="stylesheet" href="css/bootstrap.min.css">
         <link rel="stylesheet" href="css/base.css">
+        <script src="js/data.js" defer></script>
+        <script src="js/logic.js" defer></script>
+        <script src="js/main.js" defer></script>
+        <script src="js/food.js" defer></script>
+        <script src="js/computers.js" defer></script>
     </head>
-    <body id="page-top">
-        <a id="skip-content" href="#computers-content" class="visually-hidden-focusable d-inline-block p-3">Перейти к содержимому</a><!-- Authors: Ulan-->
+    <body id="page-top" class="bg-dark text-light">
+        <a id="skip-content" href="#computers-content" class="visually-hidden-focusable d-inline-block p-3 link-light">Перейти к содержимому</a><!-- Authors: Ulan-->
         <!-- Bootstrap navbar layout; the mobile menu uses an HTML checkbox and CSS so the site needs no JavaScript. -->
         <header id="site-header" class="navbar navbar-expand-xl bg-dark border-bottom border-danger border-3 py-3" data-bs-theme="dark">
     <div class="container-fluid px-3 px-lg-4">
@@ -27,6 +32,8 @@
 <li class="nav-item"><a id="nav-games" href="games.html" class="nav-link px-2">Игры</a></li>
 <li class="nav-item"><a id="nav-rules" href="rules.html" class="nav-link px-2">Правила</a></li>
 <li class="nav-item"><a id="nav-about" href="about.html" class="nav-link px-2">О клубе</a></li>
+<li class="nav-item"><a id="nav-food" class="nav-link px-2" href="booking.html#food-menu">Еда</a></li>
+<li class="nav-item"><a id="nav-cart" class="nav-link px-2" href="booking.html#food-cart">Корзина · 0</a></li>
 </ul></nav>
         <a id="header-booking-link" href="booking.html#booking-form" class="btn btn-danger btn-sm mt-3 mt-xl-0 ms-xl-3">Забронировать</a>
 </div>
@@ -34,10 +41,10 @@
 </header>
         <!-- container limits long text to a readable width and stays centered at each Bootstrap breakpoint. -->
         <main class="container py-4 py-lg-5" id="computers-content">
-            <section class="bg-white border rounded-4 p-3 p-md-4 p-lg-5 mb-4 shadow-sm" id="computers-section-1">
+            <section class="bg-body-secondary border rounded-4 p-3 p-md-4 p-lg-5 mb-4 shadow-sm" id="computers-section-1">
                 <div class="row g-4 align-items-center">
                     <header class="col-12">
-                        <p class="text-danger fw-semibold text-uppercase small mb-3">Компьютеры</p>
+                        <p class="text-danger-emphasis fw-semibold text-uppercase small mb-3">Компьютеры</p>
                         <h1 class="fw-bold display-5 mb-3 text-center text-md-start" id="computers-h1-1">ЖЕЛЕЗО, КОТОРОЕ<br>НЕ ТОРМОЗИТ ТВОЮ ИГРУ</h1>
                         <p class="mb-3 lead">
                     В Top Game представлены <em>три формата игровых мест</em>
@@ -56,7 +63,7 @@
                     </header>
                 </div>
             </section>
-            <section aria-labelledby="zones-title" class="bg-white border rounded-4 p-3 p-md-4 p-lg-5 mb-4 shadow-sm" id="computers-section-2">
+            <section aria-labelledby="zones-title" class="bg-body-secondary border rounded-4 p-3 p-md-4 p-lg-5 mb-4 shadow-sm" id="computers-section-2">
                 <h2 id="zones-title" class="fw-bold h2 mb-3">Игровые зоны</h2>
                 <p class="mb-3">
                 Выбери подходящее место:
@@ -66,11 +73,37 @@
                 Зоны отличаются характеристиками компьютеров,
                 частотой мониторов и уровнем приватности.
             </p>
+                <form id="equipment-filters" class="row g-3 mb-4" role="search" aria-label="Подбор игрового оборудования">
+                    <div class="col-12 col-md-4">
+                        <label for="equipment-search" class="form-label fw-semibold">Зона, процессор или видеокарта</label>
+                        <input id="equipment-search" type="search" class="form-control bg-dark text-light">
+                    </div>
+                    <div class="col-12 col-md-4">
+                        <label for="equipment-refresh" class="form-label fw-semibold">Минимальная частота монитора</label>
+                        <select id="equipment-refresh" class="form-select bg-dark text-light">
+                            <option value="0">Любая частота</option>
+                            <option value="310">От 310 Hz</option>
+                            <option value="380">От 380 Hz</option>
+                        </select>
+                    </div>
+                    <div class="col-12 col-md-4">
+                        <label for="equipment-private" class="form-label fw-semibold">Игровое пространство</label>
+                        <select id="equipment-private" class="form-select bg-dark text-light">
+                            <option value="all">Все зоны</option>
+                            <option value="shared">Общий зал / Duo’s</option>
+                            <option value="private">Отдельная зона</option>
+                        </select>
+                    </div>
+                    <div class="col-12 d-flex flex-wrap align-items-center gap-3">
+                        <button id="equipment-filter-reset" type="button" class="btn btn-outline-light">Сбросить фильтры</button>
+                        <p id="equipment-result-count" class="mb-0" aria-live="polite"></p>
+                    </div>
+                </form>
                 <!-- div группирует самостоятельные статьи об игровых зонах -->
                 <!-- Bootstrap Cards / grid: official card and card-body markup adapted to existing club content; semantic articles and figures retained. https://getbootstrap.com/docs/5.3/components/card/ -->
                 <div class="row g-4">
                     <div class="col-12 col-md-6 col-lg-4">
-                        <article class="card h-100 shadow-sm" id="computers-article-1">
+                        <article class="card h-100 shadow-sm bg-dark text-light" id="computers-article-1">
                             <div class="card-body p-3 p-lg-4">
                                 <figure class="mb-3" id="computers-figure-1">
                                     <img src="images/main-zone.jpg" alt="Компьютерное место в основной зоне Main" class="w-100 object-fit-cover rounded-3 mb-3" height="190">
@@ -78,7 +111,7 @@
                                 </figure>
                                 <header class="d-flex flex-wrap align-items-center justify-content-between gap-2">
                                     <h3 class="fw-bold h4 mb-3 card-title">Main</h3>
-                                    <span class="text-danger fw-semibold">310 Hz</span>
+                                    <span class="text-danger-emphasis fw-semibold">310 Hz</span>
                                 </header>
                                 <p class="mb-3 card-text">
                         Основная зона подходит для одиночной игры,
@@ -96,12 +129,17 @@
                                     <dd class="mb-2">ASUS 310 <abbr title="герц">Hz</abbr>
                                     </dd>
                                 </dl>
-                                <a href="booking.html#gaming-zone-selection" id="computers-a-3">Выбрать эту зону →</a>
+                                <a href="booking.html#gaming-zone-selection" id="computers-a-3" class="link-light">Выбрать эту зону →</a>
+                                <div class="form-check mt-3">
+                                    <input id="compare-main" type="checkbox" class="form-check-input">
+                                    <label for="compare-main" class="form-check-label">Сравнить Main</label>
+                                </div>
+                                <p class="small text-body-secondary mt-3 mb-0" data-zone-capacity></p>
                             </div>
                         </article>
                     </div>
                     <div class="col-12 col-md-6 col-lg-4">
-                        <article class="card h-100 shadow-sm" id="computers-article-2">
+                        <article class="card h-100 shadow-sm bg-dark text-light" id="computers-article-2">
                             <div class="card-body p-3 p-lg-4">
                                 <figure class="mb-3" id="computers-figure-2">
                                     <img src="images/duos-zone.jpg" alt="Два компьютерных места в игровой зоне Duo’s" class="w-100 object-fit-cover rounded-3 mb-3" height="190">
@@ -109,7 +147,7 @@
                                 </figure>
                                 <header class="d-flex flex-wrap align-items-center justify-content-between gap-2">
                                     <h3 class="fw-bold h4 mb-3 card-title">Duo’s</h3>
-                                    <span class="text-danger fw-semibold">380 Hz</span>
+                                    <span class="text-danger-emphasis fw-semibold">380 Hz</span>
                                 </header>
                                 <p class="mb-3 card-text">
                         Зона Duo’s предназначена для двух игроков,
@@ -126,12 +164,17 @@
                                     <dt class="fw-semibold">Монитор</dt>
                                     <dd class="mb-2">ASUS 380 Hz</dd>
                                 </dl>
-                                <a href="booking.html#gaming-zone-selection" id="computers-a-4">Выбрать эту зону →</a>
+                                <a href="booking.html#gaming-zone-selection" id="computers-a-4" class="link-light">Выбрать эту зону →</a>
+                                <div class="form-check mt-3">
+                                    <input id="compare-duo" type="checkbox" class="form-check-input">
+                                    <label for="compare-duo" class="form-check-label">Сравнить Duo’s</label>
+                                </div>
+                                <p class="small text-body-secondary mt-3 mb-0" data-zone-capacity></p>
                             </div>
                         </article>
                     </div>
                     <div class="col-12 col-md-6 col-lg-4">
-                        <article class="card h-100 shadow-sm" id="computers-article-3">
+                        <article class="card h-100 shadow-sm bg-dark text-light" id="computers-article-3">
                             <div class="card-body p-3 p-lg-4">
                                 <figure class="mb-3" id="computers-figure-3">
                                     <img src="images/private-zone.jpg" alt="Компьютерное место в приватной зоне Private" class="w-100 object-fit-cover rounded-3 mb-3" height="190">
@@ -139,7 +182,7 @@
                                 </figure>
                                 <header class="d-flex flex-wrap align-items-center justify-content-between gap-2">
                                     <h3 class="fw-bold h4 mb-3 card-title">Private</h3>
-                                    <span class="text-danger fw-semibold">
+                                    <span class="text-danger-emphasis fw-semibold">
                                         <b>PRO</b>
                                     </span>
                                 </header>
@@ -158,13 +201,43 @@
                                     <dt class="fw-semibold">Монитор</dt>
                                     <dd class="mb-2">ASUS 380 Hz</dd>
                                 </dl>
-                                <a href="booking.html#gaming-zone-selection" id="computers-a-5">Выбрать эту зону →</a>
+                                <a href="booking.html#gaming-zone-selection" id="computers-a-5" class="link-light">Выбрать эту зону →</a>
+                                <div class="form-check mt-3">
+                                    <input id="compare-private" type="checkbox" class="form-check-input">
+                                    <label for="compare-private" class="form-check-label">Сравнить Private</label>
+                                </div>
+                                <p class="small text-body-secondary mt-3 mb-0" data-zone-capacity></p>
                             </div>
                         </article>
                     </div>
                 </div>
             </section>
-            <section aria-labelledby="peripherals-title" class="bg-white border rounded-4 p-3 p-md-4 p-lg-5 mb-4 shadow-sm" id="computers-section-3">
+            <section id="equipment-comparison" class="bg-body-secondary border rounded-4 p-3 p-md-4 p-lg-5 mb-4 shadow-sm" aria-labelledby="equipment-comparison-title">
+                <h2 id="equipment-comparison-title" class="h2 fw-bold mb-3">Сравнить выбранные зоны</h2>
+                <p id="equipment-comparison-status" class="mb-3" role="status" aria-live="polite" tabindex="-1"></p>
+                <div id="equipment-compare-result" class="row g-3 mb-3"></div>
+                <button id="equipment-compare-clear" type="button" class="btn btn-outline-light">Очистить сравнение</button>
+            </section>
+            <template id="equipment-card-template">
+                <div class="col-12 col-md-6 col-lg-4">
+                    <article class="card h-100 bg-dark text-light">
+                        <div class="card-body d-flex flex-column">
+                            <h3 class="h4 fw-bold mb-3"></h3>
+                            <dl class="mb-3">
+                                <dt class="fw-semibold">Процессор</dt><dd class="mb-2 text-break" data-processor></dd>
+                                <dt class="fw-semibold">Видеокарта</dt><dd class="mb-2 text-break" data-graphics></dd>
+                                <dt class="fw-semibold">Память</dt><dd class="mb-2 text-break" data-memory></dd>
+                                <dt class="fw-semibold">Монитор</dt><dd class="mb-2 text-break" data-refresh></dd>
+                                <dt class="fw-semibold">Формат</dt><dd class="mb-2 text-break" data-description></dd>
+                                <dt class="fw-semibold">Мест на демонстрационной схеме</dt><dd class="mb-2 text-break" data-capacity></dd>
+                            </dl>
+                            <a class="btn btn-danger mb-2">Выбрать зону</a>
+                            <button type="button" class="btn btn-outline-light">Убрать из сравнения</button>
+                        </div>
+                    </article>
+                </div>
+            </template>
+            <section aria-labelledby="peripherals-title" class="bg-body-secondary border rounded-4 p-3 p-md-4 p-lg-5 mb-4 shadow-sm" id="computers-section-3">
                 <div class="row g-4 align-items-center">
                     <h2 id="peripherals-title" class="fw-bold h2 mb-3 col-12">Периферия &amp; оборудование</h2>
                     <figure class="col-12 col-lg-6" id="computers-figure-4">

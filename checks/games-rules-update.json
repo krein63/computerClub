@@ -1,0 +1,230 @@
+{
+  "testedAt": "2026-10-16T10:26:18.639Z",
+  "checks": [
+    {
+      "name": "375: index.html loads without overflow",
+      "passed": true
+    },
+    {
+      "name": "375: prices.html loads without overflow",
+      "passed": true
+    },
+    {
+      "name": "375: computers.html loads without overflow",
+      "passed": true
+    },
+    {
+      "name": "375: booking.html loads without overflow",
+      "passed": true
+    },
+    {
+      "name": "375: games.html loads without overflow",
+      "passed": true
+    },
+    {
+      "name": "375: rules.html loads without overflow",
+      "passed": true
+    },
+    {
+      "name": "375: about.html loads without overflow",
+      "passed": true
+    },
+    {
+      "name": "375: Rules starts with six results and 0/4",
+      "passed": true
+    },
+    {
+      "name": "375: Rules search and category combine; no-results and reset",
+      "passed": true
+    },
+    {
+      "name": "375: Rules selection, focus, close, filtered-out selection",
+      "passed": true
+    },
+    {
+      "name": "375: Checklist partial, complete, repeated confirmation, uncheck and reset",
+      "passed": true
+    },
+    {
+      "name": "375: Games connected filters, empty state, sort and reset",
+      "passed": true
+    },
+    {
+      "name": "375: Empty Games form shows specific errors and focuses name",
+      "passed": true
+    },
+    {
+      "name": "375: Games selection, live counter and related-field validation",
+      "passed": true
+    },
+    {
+      "name": "375: Games valid summary, same reference on repeated submit, safe text",
+      "passed": true
+    },
+    {
+      "name": "375: Game choice carries through to booking",
+      "passed": true
+    },
+    {
+      "name": "375: Games reset clears result, errors, counter and focus",
+      "passed": true
+    },
+    {
+      "name": "375: no console, script or resource errors",
+      "passed": true
+    },
+    {
+      "name": "768: index.html loads without overflow",
+      "passed": true
+    },
+    {
+      "name": "768: prices.html loads without overflow",
+      "passed": true
+    },
+    {
+      "name": "768: computers.html loads without overflow",
+      "passed": true
+    },
+    {
+      "name": "768: booking.html loads without overflow",
+      "passed": true
+    },
+    {
+      "name": "768: games.html loads without overflow",
+      "passed": true
+    },
+    {
+      "name": "768: rules.html loads without overflow",
+      "passed": true
+    },
+    {
+      "name": "768: about.html loads without overflow",
+      "passed": true
+    },
+    {
+      "name": "768: Rules starts with six results and 0/4",
+      "passed": true
+    },
+    {
+      "name": "768: Rules search and category combine; no-results and reset",
+      "passed": true
+    },
+    {
+      "name": "768: Rules selection, focus, close, filtered-out selection",
+      "passed": true
+    },
+    {
+      "name": "768: Checklist partial, complete, repeated confirmation, uncheck and reset",
+      "passed": true
+    },
+    {
+      "name": "768: Games connected filters, empty state, sort and reset",
+      "passed": true
+    },
+    {
+      "name": "768: Empty Games form shows specific errors and focuses name",
+      "passed": true
+    },
+    {
+      "name": "768: Games selection, live counter and related-field validation",
+      "passed": true
+    },
+    {
+      "name": "768: Games valid summary, same reference on repeated submit, safe text",
+      "passed": true
+    },
+    {
+      "name": "768: Game choice carries through to booking",
+      "passed": true
+    },
+    {
+      "name": "768: Games reset clears result, errors, counter and focus",
+      "passed": true
+    },
+    {
+      "name": "768: no console, script or resource errors",
+      "passed": true
+    },
+    {
+      "name": "1440: index.html loads without overflow",
+      "passed": true
+    },
+    {
+      "name": "1440: prices.html loads without overflow",
+      "passed": true
+    },
+    {
+      "name": "1440: computers.html loads without overflow",
+      "passed": true
+    },
+    {
+      "name": "1440: booking.html loads without overflow",
+      "passed": true
+    },
+    {
+      "name": "1440: games.html loads without overflow",
+      "passed": true
+    },
+    {
+      "name": "1440: rules.html loads without overflow",
+      "passed": true
+    },
+    {
+      "name": "1440: about.html loads without overflow",
+      "passed": true
+    },
+    {
+      "name": "1440: Rules starts with six results and 0/4",
+      "passed": true
+    },
+    {
+      "name": "1440: Rules search and category combine; no-results and reset",
+      "passed": true
+    },
+    {
+      "name": "1440: Rules selection, focus, close, filtered-out selection",
+      "passed": true
+    },
+    {
+      "name": "1440: Checklist partial, complete, repeated confirmation, uncheck and reset",
+      "passed": true
+    },
+    {
+      "name": "1440: Games connected filters, empty state, sort and reset",
+      "passed": true
+    },
+    {
+      "name": "1440: Empty Games form shows specific errors and focuses name",
+      "passed": true
+    },
+    {
+      "name": "1440: Games selection, live counter and related-field validation",
+      "passed": true
+    },
+    {
+      "name": "1440: Games valid summary, same reference on repeated submit, safe text",
+      "passed": true
+    },
+    {
+      "name": "1440: Game choice carries through to booking",
+      "passed": true
+    },
+    {
+      "name": "1440: Games reset clears result, errors, counter and focus",
+      "passed": true
+    },
+    {
+      "name": "1440: no console, script or resource errors",
+      "passed": true
+    }
+  ],
+  "errors": [],
+  "sourceSha256": {
+    "js/games.js": "3fc7bc9b42f792295be01fcfee32243465e21b233ed0ba792b54f284f0af8b11",
+    "js/rules.js": "59152d27ae2c91a9d7a8762dcd720acc780463898a6c1aad4cc650d35a6c2760",
+    "rules.html": "392dae515006b500bc9b9d317ee643b45d58e59866e834c60cd24eaa35f404e8",
+    "css/base.css": "226fca1f1ce6802972b866d389216a39b62c47538505dde489c40b24f6a6fb52",
+    "css/bootstrap.min.css": "d85327d99c7a3ee1f9b5d0500d1370acea3ad2db39c163c2f51f232baedbdede"
+  },
+  "passed": true
+}

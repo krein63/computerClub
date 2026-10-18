@@ -1,0 +1,254 @@
+{
+  "testedAt": "2026-10-16T10:26:05.471Z",
+  "checks": [
+    {
+      "name": "375: index no horizontal page overflow",
+      "passed": true
+    },
+    {
+      "name": "375: index visible text has no severe contrast failures",
+      "passed": true
+    },
+    {
+      "name": "375: prices no horizontal page overflow",
+      "passed": true
+    },
+    {
+      "name": "375: prices visible text has no severe contrast failures",
+      "passed": true
+    },
+    {
+      "name": "375: all four comparison fields available",
+      "passed": true
+    },
+    {
+      "name": "375: calculator error and confirmation remain readable",
+      "passed": true
+    },
+    {
+      "name": "375: computers no horizontal page overflow",
+      "passed": true
+    },
+    {
+      "name": "375: computers visible text has no severe contrast failures",
+      "passed": true
+    },
+    {
+      "name": "375: booking no horizontal page overflow",
+      "passed": true
+    },
+    {
+      "name": "375: booking visible text has no severe contrast failures",
+      "passed": true
+    },
+    {
+      "name": "375: saved booking ID, details and cancel are readable",
+      "passed": true
+    },
+    {
+      "name": "375: cancellation still works after theme update",
+      "passed": true
+    },
+    {
+      "name": "375: games no horizontal page overflow",
+      "passed": true
+    },
+    {
+      "name": "375: games visible text has no severe contrast failures",
+      "passed": true
+    },
+    {
+      "name": "375: rules no horizontal page overflow",
+      "passed": true
+    },
+    {
+      "name": "375: rules visible text has no severe contrast failures",
+      "passed": true
+    },
+    {
+      "name": "375: Rules table text readable",
+      "passed": true
+    },
+    {
+      "name": "375: about no horizontal page overflow",
+      "passed": true
+    },
+    {
+      "name": "375: about visible text has no severe contrast failures",
+      "passed": true
+    },
+    {
+      "name": "375: no console or resource errors",
+      "passed": true
+    },
+    {
+      "name": "768: index no horizontal page overflow",
+      "passed": true
+    },
+    {
+      "name": "768: index visible text has no severe contrast failures",
+      "passed": true
+    },
+    {
+      "name": "768: prices no horizontal page overflow",
+      "passed": true
+    },
+    {
+      "name": "768: prices visible text has no severe contrast failures",
+      "passed": true
+    },
+    {
+      "name": "768: all four comparison fields available",
+      "passed": true
+    },
+    {
+      "name": "768: calculator error and confirmation remain readable",
+      "passed": true
+    },
+    {
+      "name": "768: computers no horizontal page overflow",
+      "passed": true
+    },
+    {
+      "name": "768: computers visible text has no severe contrast failures",
+      "passed": true
+    },
+    {
+      "name": "768: booking no horizontal page overflow",
+      "passed": true
+    },
+    {
+      "name": "768: booking visible text has no severe contrast failures",
+      "passed": true
+    },
+    {
+      "name": "768: saved booking ID, details and cancel are readable",
+      "passed": true
+    },
+    {
+      "name": "768: cancellation still works after theme update",
+      "passed": true
+    },
+    {
+      "name": "768: games no horizontal page overflow",
+      "passed": true
+    },
+    {
+      "name": "768: games visible text has no severe contrast failures",
+      "passed": true
+    },
+    {
+      "name": "768: rules no horizontal page overflow",
+      "passed": true
+    },
+    {
+      "name": "768: rules visible text has no severe contrast failures",
+      "passed": true
+    },
+    {
+      "name": "768: Rules table text readable",
+      "passed": true
+    },
+    {
+      "name": "768: about no horizontal page overflow",
+      "passed": true
+    },
+    {
+      "name": "768: about visible text has no severe contrast failures",
+      "passed": true
+    },
+    {
+      "name": "768: no console or resource errors",
+      "passed": true
+    },
+    {
+      "name": "1440: index no horizontal page overflow",
+      "passed": true
+    },
+    {
+      "name": "1440: index visible text has no severe contrast failures",
+      "passed": true
+    },
+    {
+      "name": "1440: prices no horizontal page overflow",
+      "passed": true
+    },
+    {
+      "name": "1440: prices visible text has no severe contrast failures",
+      "passed": true
+    },
+    {
+      "name": "1440: all four comparison fields available",
+      "passed": true
+    },
+    {
+      "name": "1440: calculator error and confirmation remain readable",
+      "passed": true
+    },
+    {
+      "name": "1440: computers no horizontal page overflow",
+      "passed": true
+    },
+    {
+      "name": "1440: computers visible text has no severe contrast failures",
+      "passed": true
+    },
+    {
+      "name": "1440: booking no horizontal page overflow",
+      "passed": true
+    },
+    {
+      "name": "1440: booking visible text has no severe contrast failures",
+      "passed": true
+    },
+    {
+      "name": "1440: saved booking ID, details and cancel are readable",
+      "passed": true
+    },
+    {
+      "name": "1440: cancellation still works after theme update",
+      "passed": true
+    },
+    {
+      "name": "1440: games no horizontal page overflow",
+      "passed": true
+    },
+    {
+      "name": "1440: games visible text has no severe contrast failures",
+      "passed": true
+    },
+    {
+      "name": "1440: rules no horizontal page overflow",
+      "passed": true
+    },
+    {
+      "name": "1440: rules visible text has no severe contrast failures",
+      "passed": true
+    },
+    {
+      "name": "1440: Rules table text readable",
+      "passed": true
+    },
+    {
+      "name": "1440: about no horizontal page overflow",
+      "passed": true
+    },
+    {
+      "name": "1440: about visible text has no severe contrast failures",
+      "passed": true
+    },
+    {
+      "name": "1440: no console or resource errors",
+      "passed": true
+    }
+  ],
+  "lowContrast": [],
+  "errors": [],
+  "sourceSha256": {
+    "js/main.js": "7258d067e62b1dafc052e14b4ae1030c9e784185ea1e1b9c3b52c5f9ff8db090",
+    "js/prices.js": "12eb7f023829ff57d0fc8a18fbe4b41e4feffaaf3c71387b241ddbd2add2185e",
+    "css/base.css": "226fca1f1ce6802972b866d389216a39b62c47538505dde489c40b24f6a6fb52",
+    "css/bootstrap.min.css": "d85327d99c7a3ee1f9b5d0500d1370acea3ad2db39c163c2f51f232baedbdede"
+  },
+  "passed": true
+}

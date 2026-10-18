@@ -1,0 +1,11 @@
+{
+  "booking.html": true,
+  "index.html": true,
+  "prices.html": true,
+  "games.html": true,
+  "computers.html": true,
+  "about.html": true,
+  "rules.html": true,
+  "css/base.css": true,
+  "css/bootstrap.min.css": true
+}

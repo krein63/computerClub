@@ -1,0 +1,50 @@
+[
+  {
+    "id": "burger",
+    "image": "https://eda.yandex.ru/images/12773219/7d4233d0d0ad4670995ea9817b86ac6f-orig.jpg",
+    "source": "https://eda7.ru/novye-doma/rest/cyberx-lounge-6nx3z/",
+    "note": "Фото меню CyberX, иллюстрация для учебного проекта; ассортимент TopGame не подтверждён."
+  },
+  {
+    "id": "sandwich",
+    "image": "https://eda.yandex.ru/images/13802765/c3881438649f433b9e51a3f37def5efb-orig.jpg",
+    "source": "https://eda7.ru/novye-doma/rest/cyberx-lounge-6nx3z/",
+    "note": "Фото меню CyberX, иллюстрация для учебного проекта; ассортимент TopGame не подтверждён."
+  },
+  {
+    "id": "fries",
+    "image": "https://eda.yandex.ru/images/13802765/d39aea2c2f7b41a6bb79b046e5f28da8-orig.jpg",
+    "source": "https://eda7.ru/novye-doma/rest/cyberx-lounge-6nx3z/",
+    "note": "Фото меню CyberX, иллюстрация для учебного проекта; ассортимент TopGame не подтверждён."
+  },
+  {
+    "id": "chips",
+    "image": "https://cyberxcommunity.ru/upload/vitrina/7.png",
+    "source": "https://cyberxcommunity.ru/vitrina.html",
+    "note": "Фото меню CyberX, иллюстрация для учебного проекта; ассортимент TopGame не подтверждён."
+  },
+  {
+    "id": "cola",
+    "image": "https://cyberxcommunity.ru/upload/vitrina/05L_Evervess_Cola%20%281%29%20%281%29%201.png",
+    "source": "https://cyberxcommunity.ru/vitrina.html",
+    "note": "Фото меню CyberX, иллюстрация для учебного проекта; ассортимент TopGame не подтверждён."
+  },
+  {
+    "id": "water",
+    "image": "https://cyberxcommunity.ru/upload/vitrina/3.png",
+    "source": "https://cyberxcommunity.ru/vitrina.html",
+    "note": "Фото меню CyberX, иллюстрация для учебного проекта; ассортимент TopGame не подтверждён."
+  },
+  {
+    "id": "tea",
+    "image": "https://cyberxcommunity.ru/upload/vitrina/4.png",
+    "source": "https://cyberxcommunity.ru/vitrina.html",
+    "note": "Фото меню CyberX, иллюстрация для учебного проекта; ассортимент TopGame не подтверждён."
+  },
+  {
+    "id": "cookie",
+    "image": "https://cyberxcommunity.ru/upload/vitrina/5.png",
+    "source": "https://cyberxcommunity.ru/vitrina.html",
+    "note": "Фото меню CyberX, иллюстрация для учебного проекта; ассортимент TopGame не подтверждён."
+  }
+]

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="ru" data-bs-theme="dark">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,9 +9,14 @@
         <!-- Bootstrap supplies the layout; only CSS is used. -->
         <link rel="stylesheet" href="css/bootstrap.min.css">
         <link rel="stylesheet" href="css/base.css">
+        <script src="js/data.js" defer></script>
+        <script src="js/logic.js" defer></script>
+        <script src="js/main.js" defer></script>
+        <script src="js/food.js" defer></script>
+        <script src="js/games.js" defer></script>
     </head>
-    <body id="page-top">
-        <a id="skip-content" href="#games-content" class="visually-hidden-focusable d-inline-block p-3">Перейти к содержимому</a><!-- Автор страницы: Amir  -->
+    <body id="page-top" class="bg-dark text-light">
+        <a id="skip-content" href="#games-content" class="visually-hidden-focusable d-inline-block p-3 link-light">Перейти к содержимому</a><!-- Автор страницы: Amir  -->
         <!-- Bootstrap navbar layout; the mobile menu uses an HTML checkbox and CSS so the site needs no JavaScript. -->
         <header id="site-header" class="navbar navbar-expand-xl bg-dark border-bottom border-danger border-3 py-3" data-bs-theme="dark">
     <div class="container-fluid px-3 px-lg-4">
@@ -27,6 +32,8 @@
 <li class="nav-item"><a id="nav-games" href="games.html" class="nav-link px-2 active fw-bold" aria-current="page">Игры</a></li>
 <li class="nav-item"><a id="nav-rules" href="rules.html" class="nav-link px-2">Правила</a></li>
 <li class="nav-item"><a id="nav-about" href="about.html" class="nav-link px-2">О клубе</a></li>
+<li class="nav-item"><a id="nav-food" class="nav-link px-2" href="booking.html#food-menu">Еда</a></li>
+<li class="nav-item"><a id="nav-cart" class="nav-link px-2" href="booking.html#food-cart">Корзина · 0</a></li>
 </ul></nav>
         <a id="header-booking-link" href="booking.html#booking-form" class="btn btn-danger btn-sm mt-3 mt-xl-0 ms-xl-3">Забронировать</a>
 </div>
@@ -34,52 +41,123 @@
 </header>
         <!-- container limits long text to a readable width and stays centered at each Bootstrap breakpoint. -->
         <main class="container py-4 py-lg-5" id="games-content">
-            <section id="game-list" class="bg-white border rounded-4 p-3 p-md-4 p-lg-5 mb-4 shadow-sm">
+            <section id="game-list" class="bg-body-secondary border rounded-4 p-3 p-md-4 p-lg-5 mb-4 shadow-sm">
                 <header class="mb-4">
-                    <p class="text-danger fw-semibold mb-3">
+                    <p class="text-danger-emphasis fw-semibold mb-3">
                         <small class="small">Игровая библиотека</small>
                     </p>
                     <h1 class="fw-bold display-5 mb-3 text-center text-md-start" id="games-h1-1">Выбери игру для следующего матча</h1>
-                    <p class="mb-3 lead">
-                В каталоге представлены игры для командных матчей.
-                Для сетевого матча важны стабильный <abbr title="Frames Per Second">FPS</abbr>
-                и низкий <abbr title="время отклика между компьютером и сервером">ping</abbr>.
-                Название игры и пожелания к версии можно указать в форме ниже.
-            </p>
+                    <p class="mb-3 lead">Выберите игру для запроса. Counter-Strike 2 и Dota 2 упомянуты в исходном каталоге; остальные игры — предложения. Наличие и версии всех игр нужно уточнить у клуба.</p>
                 </header>
                 <!-- div группирует самостоятельные карточки игр. -->
                 <!-- Bootstrap Cards / grid: official card and card-body markup adapted to existing club content; semantic articles and figures retained. https://getbootstrap.com/docs/5.3/components/card/ -->
+                <form id="games-filters" class="row g-3 mb-4" role="search" aria-label="Поиск и фильтры игр">
+                    <div class="col-12 col-md-6 col-lg-3">
+                        <label for="games-search" class="form-label fw-semibold">Название игры</label>
+                        <input id="games-search" type="search" class="form-control bg-dark text-light">
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-3">
+                        <label for="games-category" class="form-label fw-semibold">Жанр</label>
+                        <select id="games-category" class="form-select bg-dark text-light">
+                            <option value="all">Все жанры</option>
+                            <option value="shooter">Шутер</option>
+                            <option value="moba">MOBA</option>
+                            <option value="strategy">Стратегия</option>
+                            <option value="sports">Спорт</option>
+                        </select>
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-3">
+                        <label for="games-availability" class="form-label fw-semibold">Каталог</label>
+                        <select id="games-availability" class="form-select bg-dark text-light">
+                            <option value="all">Все игры</option>
+                            <option value="source">Упомянуты на сайте</option>
+                            <option value="suggestion">Предложения для клуба</option>
+                        </select>
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-3">
+                        <label for="games-sort" class="form-label fw-semibold">Сортировать</label>
+                        <select id="games-sort" class="form-select bg-dark text-light">
+                            <option value="name">По названию А–Я</option>
+                            <option value="genre">По жанру</option>
+                        </select>
+                    </div>
+                    <div class="col-12 d-flex flex-wrap align-items-center gap-3">
+                        <button id="games-filter-reset" type="button" class="btn btn-outline-light">Сбросить фильтры</button>
+                        <p id="games-result-count" class="mb-0" aria-live="polite"></p>
+                    </div>
+                </form>
                 <div id="game-cards" class="row g-4">
-                    <div class="col-12 col-md-6">
-                        <article id="game-cs2" class="card h-100 shadow-sm">
-                            <div class="card-body p-3 p-lg-4">
-                                <h2 class="h4 fw-bold h2 mb-3">Counter-Strike 2</h2>
-                                <figure class="mb-3" id="games-figure-1">
-                                    <img src="images/gaming-hall-blue.jpg" alt="Игровой зал TOP GAME с синим освещением" class="w-100 object-fit-cover rounded-3 mb-3" height="190">
-                                    <figcaption class="small text-body-secondary mt-2">Фотография игрового зала TOP GAME.</figcaption>
+                    <div class="col-12 col-md-6 col-lg-4">
+                        <article id="game-cs2" class="card h-100 shadow-sm bg-dark text-light">
+                            <div class="card-body p-3 p-lg-4 d-flex flex-column">
+                                <h2 class="h4 fw-bold mb-3">Counter-Strike 2</h2>
+                                <figure id="games-figure-1" class="mb-3">
+                                    <img src="images/gaming-hall-blue.jpg" alt="Игровой зал TOP GAME с синим освещением" height="190" class="w-100 object-fit-cover rounded-3">
+                                    <figcaption class="small text-body-secondary mt-2">Фотография клуба TOP GAME, не изображение игры.</figcaption>
                                 </figure>
-                                <p class="mb-3 card-text">
-                                    <strong>Жанр:</strong> командный шутер. Для матча нужны две команды
-                    по пять игроков; формат можно записать как 5 × 5.
-                </p>
+                                <p class="card-text">Командный шутер, 5 × 5</p>
+                                <p class="small text-body-secondary">Упомянута на сайте. Установка и версия не подтверждены.</p>
+                                <a href="https://www.counter-strike.net/cs2" target="_blank" rel="noopener noreferrer" class="mb-3 link-light">Официальный сайт игры</a>
+                                <button type="button" data-game="cs2" aria-pressed="false" class="btn btn-outline-danger mt-auto text-light">Выбрать для запроса</button>
                             </div>
                         </article>
                     </div>
-                    <div class="col-12 col-md-6">
-                        <article id="game-dota2" class="card h-100 shadow-sm">
-                            <div class="card-body p-3 p-lg-4">
-                                <h2 class="h4 fw-bold h2 mb-3">Dota 2</h2>
-                                <figure class="mb-3" id="games-figure-2">
-                                    <img src="images/peripherals.jpg" alt="Клавиатура, мышь и гарнитура игрового места TOP GAME" class="w-100 object-fit-cover rounded-3 mb-3" height="190">
-                                    <figcaption class="small text-body-secondary mt-2">Фотография периферии игрового места TOP GAME.</figcaption>
+                    <div class="col-12 col-md-6 col-lg-4">
+                        <article id="game-dota2" class="card h-100 shadow-sm bg-dark text-light">
+                            <div class="card-body p-3 p-lg-4 d-flex flex-column">
+                                <h2 class="h4 fw-bold mb-3">Dota 2</h2>
+                                <figure id="games-figure-2" class="mb-3">
+                                    <img src="images/peripherals.jpg" alt="Периферия игрового места TOP GAME" height="190" class="w-100 object-fit-cover rounded-3">
+                                    <figcaption class="small text-body-secondary mt-2">Фотография клуба TOP GAME, не изображение игры.</figcaption>
                                 </figure>
-                                <p class="mb-3 card-text">
-                                    <strong>Жанр:</strong>
-                                    <i>MOBA</i>. Игра подходит для команды и
-                    требует согласованных действий в серии BO<sub>3</sub>.
-                    <!-- span выделяет короткий статус внутри предложения; отдельный смысловой раздел здесь не нужен. -->
-                                    <span id="game-dota2-availability" class="text-danger fw-semibold">Наличие и версия игры не подтверждены.</span>
-                                </p>
+                                <p class="card-text">MOBA, две команды по пять игроков</p>
+                                <p id="game-dota2-availability" class="small text-body-secondary">Упомянута на сайте. Установка и версия не подтверждены.</p>
+                                <a href="https://www.dota2.com/" target="_blank" rel="noopener noreferrer" class="mb-3 link-light">Официальный сайт игры</a>
+                                <button type="button" data-game="dota2" aria-pressed="false" class="btn btn-outline-danger mt-auto text-light">Выбрать для запроса</button>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-4">
+                        <article id="game-valorant" class="card h-100 shadow-sm bg-dark text-light">
+                            <div class="card-body p-3 p-lg-4 d-flex flex-column">
+                                <h2 class="h4 fw-bold mb-3">VALORANT</h2>
+                                <p class="card-text">Тактический шутер, 5 × 5</p>
+                                <p class="small text-body-secondary">Предложение для клуба. Установка и версия не подтверждены.</p>
+                                <a href="https://playvalorant.com/" target="_blank" rel="noopener noreferrer" class="mb-3 link-light">Официальный сайт игры</a>
+                                <button type="button" data-game="valorant" aria-pressed="false" class="btn btn-outline-danger mt-auto text-light">Выбрать для запроса</button>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-4">
+                        <article id="game-lol" class="card h-100 shadow-sm bg-dark text-light">
+                            <div class="card-body p-3 p-lg-4 d-flex flex-column">
+                                <h2 class="h4 fw-bold mb-3">League of Legends</h2>
+                                <p class="card-text">Командная MOBA</p>
+                                <p class="small text-body-secondary">Предложение для клуба. Установка и версия не подтверждены.</p>
+                                <a href="https://www.leagueoflegends.com/" target="_blank" rel="noopener noreferrer" class="mb-3 link-light">Официальный сайт игры</a>
+                                <button type="button" data-game="lol" aria-pressed="false" class="btn btn-outline-danger mt-auto text-light">Выбрать для запроса</button>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-4">
+                        <article id="game-rocket-league" class="card h-100 shadow-sm bg-dark text-light">
+                            <div class="card-body p-3 p-lg-4 d-flex flex-column">
+                                <h2 class="h4 fw-bold mb-3">Rocket League</h2>
+                                <p class="card-text">Футбол на автомобилях</p>
+                                <p class="small text-body-secondary">Предложение для клуба. Установка и версия не подтверждены.</p>
+                                <a href="https://www.rocketleague.com/" target="_blank" rel="noopener noreferrer" class="mb-3 link-light">Официальный сайт игры</a>
+                                <button type="button" data-game="rocket-league" aria-pressed="false" class="btn btn-outline-danger mt-auto text-light">Выбрать для запроса</button>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-4">
+                        <article id="game-civilization" class="card h-100 shadow-sm bg-dark text-light">
+                            <div class="card-body p-3 p-lg-4 d-flex flex-column">
+                                <h2 class="h4 fw-bold mb-3">Sid Meier’s Civilization VI</h2>
+                                <p class="card-text">Пошаговая стратегия</p>
+                                <p class="small text-body-secondary">Предложение для клуба. Установка и версия не подтверждены.</p>
+                                <a href="https://civilization.2k.com/civ-vi/" target="_blank" rel="noopener noreferrer" class="mb-3 link-light">Официальный сайт игры</a>
+                                <button type="button" data-game="civilization" aria-pressed="false" class="btn btn-outline-danger mt-auto text-light">Выбрать для запроса</button>
                             </div>
                         </article>
                     </div>
@@ -89,21 +167,19 @@
                     <p class="mb-3">
                 Войдите только в <em>собственную</em> учётную запись и не сохраняйте пароль.
                 После игры выполните выход. Правила безопасности находятся на
-                <a href="rules.html#account-safety" id="games-a-1">странице правил</a>.
+                <a href="rules.html#account-safety" id="games-a-1" class="link-light">странице правил</a>.
             </p>
                 </aside>
             </section>
             <hr>
-            <section id="game-request" class="bg-white border rounded-4 p-3 p-md-4 p-lg-5 mb-4 shadow-sm">
+            <section id="game-request" class="bg-body-secondary border rounded-4 p-3 p-md-4 p-lg-5 mb-4 shadow-sm">
                 <h2 class="fw-bold h2 mb-3">Предложить игру</h2>
-                <p class="mb-3">Укажите название игры, жанр и пожелания к версии. Итог запроса и сообщения о проверке данных предусмотрены под формой. В этой версии поля можно заполнить и очистить; запрос не отправляется и установка игры не выполняется.</p>
-                <!-- The result and message containers are prepared for later JavaScript. -->
+                <p class="mb-3">Укажите игру и пожелания к версии. Проверьте предварительный итог, затем создайте демонстрационный запрос. Данные не отправляются на сервер, установка игры и реальное бронирование не выполняются.</p>
                 <div class="row">
                     <div class="col-12">
                         <form id="game-request-form" class="mt-4" aria-describedby="game-request-status">
-                            <!-- A disabled default submit control prevents implicit submission with Enter. -->
                             <button id="game-request-submit-guard" type="submit" class="hidden" disabled aria-hidden="true" tabindex="-1">Отправка отключена</button>
-                            <p id="game-request-status" class="alert alert-light border">«Показать итог запроса» в этой статической версии не выполняет действие. На следующем этапе результат проверки и итог запроса появятся под формой.</p>
+                            <p id="game-request-status" class="alert alert-dark border">Заполните форму. Итог обновляется при вводе; запрос не отправляется в клуб.</p>
                             <div id="game-request-errors" class="error hidden mb-3" role="alert"></div>
                             <fieldset class="border rounded-3 p-3 p-md-4 mb-4">
                                 <legend class="form-label fw-semibold">Контакты и запрос</legend>
@@ -111,39 +187,40 @@
                                     <p class="mb-3 col-12 col-md-6">
                                         <label for="visitor-name" class="form-label fw-semibold">Имя:</label>
                                         <br>
-                                        <input type="text" id="visitor-name" name="visitor-name" autocomplete="name" maxlength="80" required class="form-control">
+                                        <input type="text" id="visitor-name" name="visitor-name" autocomplete="name" maxlength="80" required class="form-control bg-dark text-light">
                                     </p>
                                     <p class="mb-3 col-12 col-md-6">
                                         <label for="visitor-email" class="form-label fw-semibold">Почта:</label>
                                         <br>
-                                        <input type="email" id="visitor-email" name="visitor-email" autocomplete="email" maxlength="254" required class="form-control">
+                                        <input type="email" id="visitor-email" name="visitor-email" autocomplete="email" maxlength="254" required class="form-control bg-dark text-light">
                                     </p>
                                     <p class="mb-3 col-12 col-md-6">
                                         <label for="visitor-phone" class="form-label fw-semibold">Телефон:</label>
                                         <br>
-                                        <input type="tel" id="visitor-phone" name="visitor-phone" autocomplete="tel" maxlength="30" required class="form-control">
+                                        <input type="tel" id="visitor-phone" name="visitor-phone" autocomplete="tel" maxlength="30" required class="form-control bg-dark text-light">
                                     </p>
                                     <p class="mb-3 col-12 col-md-6">
                                         <label for="visit-date" class="form-label fw-semibold">Дата визита:</label>
                                         <br>
-                                        <input type="date" id="visit-date" name="visit-date" required class="form-control">
+                                        <input type="date" id="visit-date" name="visit-date" required class="form-control bg-dark text-light">
                                     </p>
                                     <p class="mb-3 col-12 col-md-6">
                                         <label for="players" class="form-label fw-semibold">Игроков:</label>
                                         <br>
-                                        <input type="number" id="players" name="players" min="1" max="45" value="1" required class="form-control">
+                                        <input type="number" id="players" name="players" min="1" max="20" value="1" required class="form-control bg-dark text-light">
                                     </p>
                                     <p class="mb-3 col-12 col-md-6">
                                         <label for="game-title" class="form-label fw-semibold">Название игры:</label>
                                         <br>
-                                        <input type="text" id="game-title" name="game-title" maxlength="120" required class="form-control">
+                                        <input type="text" id="game-title" name="game-title" maxlength="120" required class="form-control bg-dark text-light">
                                     </p>
                                     <p class="mb-3 col-12 col-md-6">
                                         <label for="genre" class="form-label fw-semibold">Жанр:</label>
                                         <br>
-                                        <select id="genre" name="genre" required class="form-select">
+                                        <select id="genre" name="genre" required class="form-select bg-dark text-light">
                                             <option value="">Выберите жанр</option>
                                             <option value="shooter">Шутер</option>
+                                            <option value="moba">MOBA</option>
                                             <option value="strategy">Стратегия</option>
                                             <option value="sports">Спорт</option>
                                         </select>
@@ -162,12 +239,13 @@
                                     <p class="mb-3 col-12">
                                         <label for="request-comment" class="form-label fw-semibold">Комментарий:</label>
                                         <br>
-                                        <textarea id="request-comment" name="request-comment" rows="4" cols="40" maxlength="1000" class="form-control" aria-describedby="request-comment-help"></textarea>
+                                        <textarea id="request-comment" name="request-comment" rows="4" cols="40" maxlength="1000" class="form-control bg-dark text-light" aria-describedby="request-comment-help game-comment-counter"></textarea>
+                                        <span id="game-comment-counter" class="form-text d-block">Символов: 0 / 1000</span>
                                         <span id="request-comment-help" class="form-text">Укажите версию игры и дополнительные пожелания.</span>
                                     </p>
                                     <p class="mb-3 col-12 d-flex flex-wrap gap-2">
                                         <button id="game-request-submit" type="button" class="btn btn-danger" aria-describedby="game-request-status">Показать итог запроса</button>
-                                        <button id="game-request-reset" type="reset" class="btn btn-outline-secondary">Очистить форму</button>
+                                        <button id="game-request-reset" type="reset" class="btn btn-outline-light">Очистить форму</button>
                                     </p>
                                 </div>
                             </fieldset>
@@ -191,12 +269,12 @@
                     </dl>
                     <ul id="game-request-list" class="list-group list-group-flush hidden mb-3"></ul>
                     <div id="game-request-success" class="success hidden mb-3" role="status" aria-live="polite"></div>
-                    <p class="small text-body-secondary mb-3">Сообщение об успехе предусмотрено для следующего этапа; в этой версии подтверждение запроса не создаётся.</p>
-                    <a href="booking.html" class="btn btn-outline-danger" id="games-a-2">Перейти к бронированию</a>
+                    <p class="small text-body-secondary mb-3">Подтверждение относится только к демонстрации в этом браузере. Наличие игры уточняется у администратора.</p>
+                    <a href="booking.html" class="btn btn-outline-danger text-light" id="games-a-2">Перейти к бронированию</a>
                 </section>
                 <nav aria-label="Дополнительная навигация" class="d-flex flex-column flex-md-row gap-2 mt-4">
-                    <a href="#game-list" class="btn btn-outline-danger" id="games-a-3">Вернуться к списку игр</a>
-                    <a href="index.html" class="btn btn-outline-danger" id="games-a-4">Вернуться на главную страницу</a>
+                    <a href="#game-list" class="btn btn-outline-danger text-light" id="games-a-3">Вернуться к списку игр</a>
+                    <a href="index.html" class="btn btn-outline-danger text-light" id="games-a-4">Вернуться на главную страницу</a>
                 </nav>
             </section>
         </main>

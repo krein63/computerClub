@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="ru" data-bs-theme="dark">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,9 +9,14 @@
         <!-- Bootstrap supplies the layout; only CSS is used. -->
         <link rel="stylesheet" href="css/bootstrap.min.css">
         <link rel="stylesheet" href="css/base.css">
+        <script src="js/data.js" defer></script>
+        <script src="js/logic.js" defer></script>
+        <script src="js/main.js" defer></script>
+        <script src="js/food.js" defer></script>
+        <script src="js/about.js" defer></script>
     </head>
-    <body id="page-top">
-        <a id="skip-content" href="#about-content" class="visually-hidden-focusable d-inline-block p-3">Перейти к содержимому</a><!-- Автор страницы: Ali -->
+    <body id="page-top" class="bg-dark text-light">
+        <a id="skip-content" href="#about-content" class="visually-hidden-focusable d-inline-block p-3 link-light">Перейти к содержимому</a><!-- Автор страницы: Ali -->
         <!-- Bootstrap navbar layout; the mobile menu uses an HTML checkbox and CSS so the site needs no JavaScript. -->
         <header id="site-header" class="navbar navbar-expand-xl bg-dark border-bottom border-danger border-3 py-3" data-bs-theme="dark">
     <div class="container-fluid px-3 px-lg-4">
@@ -27,6 +32,8 @@
 <li class="nav-item"><a id="nav-games" href="games.html" class="nav-link px-2">Игры</a></li>
 <li class="nav-item"><a id="nav-rules" href="rules.html" class="nav-link px-2">Правила</a></li>
 <li class="nav-item"><a id="nav-about" href="about.html" class="nav-link px-2 active fw-bold" aria-current="page">О клубе</a></li>
+<li class="nav-item"><a id="nav-food" class="nav-link px-2" href="booking.html#food-menu">Еда</a></li>
+<li class="nav-item"><a id="nav-cart" class="nav-link px-2" href="booking.html#food-cart">Корзина · 0</a></li>
 </ul></nav>
         <a id="header-booking-link" href="booking.html#booking-form" class="btn btn-danger btn-sm mt-3 mt-xl-0 ms-xl-3">Забронировать</a>
 </div>
@@ -34,7 +41,7 @@
 </header>
         <!-- container limits long text to a readable width and stays centered at each Bootstrap breakpoint. -->
         <main class="container py-4 py-lg-5" id="about-content">
-            <section id="introduction" class="bg-white border rounded-4 p-3 p-md-4 p-lg-5 mb-4 shadow-sm position-relative overflow-hidden text-white">
+            <section id="introduction" class="bg-body-secondary border rounded-4 p-3 p-md-4 p-lg-5 mb-4 shadow-sm position-relative overflow-hidden text-white">
                 <img src="images/club-exterior.jpg" alt="Внешний вид компьютерного клуба TOP GAME в Астане" class="position-absolute top-0 start-0 w-100 h-100 object-fit-cover brand-backdrop">
                 <p class="mb-3 position-relative z-1">
                     <small class="small">О клубе</small>
@@ -52,19 +59,19 @@
                 </p>
             </section>
             <hr>
-            <section id="club-space" class="bg-white border rounded-4 p-3 p-md-4 p-lg-5 mb-4 shadow-sm">
+            <section id="club-space" class="bg-body-secondary border rounded-4 p-3 p-md-4 p-lg-5 mb-4 shadow-sm">
                 <h2 class="fw-bold h2 mb-3">Пространство для твоей команды</h2>
                 <p class="mb-3">
             Общий зал, <abbr title="игра вдвоём">DUO</abbr> и
             <abbr title="приватная игровая зона">PRIVATE</abbr>-зоны
             объединены одной идеей: создать удобное пространство для игры,
             общения и командных матчей. В клубе установлено
-            <mark class="bg-danger-subtle text-danger-emphasis">45 игровых компьютеров</mark>, расположенных на двух этажах.
+            <mark class="bg-danger-subtle text-danger-emphasis">20 игровых компьютеров</mark>, расположенных на двух этажах.
         </p>
                 <!-- Bootstrap Cards / grid: official card and card-body markup adapted to existing club content; semantic articles and figures retained. https://getbootstrap.com/docs/5.3/components/card/ -->
                 <div class="row g-4">
                     <div class="col-12 col-md-6">
-                        <figure class="card h-100 shadow-sm p-3" id="about-figure-1">
+                        <figure class="card h-100 shadow-sm p-3 bg-dark text-light" id="about-figure-1">
                             <img src="images/hero.jpg" alt="Игровые компьютеры и кресла в зале клуба TOP GAME" class="img-fluid w-100 rounded-3">
                             <figcaption class="small text-body-secondary mt-2">
                     Игровые места в основном зале компьютерного клуба.
@@ -72,7 +79,7 @@
                         </figure>
                     </div>
                     <div class="col-12 col-md-6">
-                        <figure class="card h-100 shadow-sm p-3" id="about-figure-2">
+                        <figure class="card h-100 shadow-sm p-3 bg-dark text-light" id="about-figure-2">
                             <img src="images/prices-hero.jpg" alt="Белая игровая гарнитура на компьютерном месте TOP GAME" class="img-fluid w-100 rounded-3">
                             <figcaption class="small text-body-secondary mt-2">
                     Игровая гарнитура и оборудование одного из мест клуба.
@@ -92,7 +99,7 @@
                             </ul>
                         </li>
                         <li>
-                    45 игровых
+                    20 игровых
                     <abbr title="персональный компьютер">ПК</abbr>;
                 </li>
                         <li>два этажа;</li>
@@ -113,7 +120,7 @@
                         <dt class="mt-3 fw-semibold">
                             <b>Количество компьютеров</b>
                         </dt>
-                        <dd class="mb-3">45 игровых компьютеров.</dd>
+                        <dd class="mb-3">20 игровых компьютеров.</dd>
                     </dl>
                 </article>
                 <!-- aside используется для дополнительной информации,
@@ -124,12 +131,12 @@
                 Если вы планируете прийти большой командой,
                 <em>заранее забронируйте</em> необходимое количество мест.
                 Для этого перейдите на страницу
-                <a href="booking.html" id="about-a-2">бронирования</a>.
+                <a href="booking.html" id="about-a-2" class="link-light">бронирования</a>.
             </p>
                 </aside>
             </section>
             <hr>
-            <section id="contacts" class="bg-white border rounded-4 p-3 p-md-4 p-lg-5 mb-4 shadow-sm">
+            <section id="contacts" class="bg-body-secondary border rounded-4 p-3 p-md-4 p-lg-5 mb-4 shadow-sm">
                 <h2 class="fw-bold h2 mb-3">Адрес и контакты</h2>
                 <address class="fst-normal row g-3">
                     <p class="mb-3 col-12 col-md-6">
@@ -139,7 +146,7 @@
             </p>
                     <p class="mb-3 col-12 col-md-6">
                 Телефон:
-                <a href="tel:+77064005040" id="about-a-3">+7 706 400 50 40</a>
+                <a href="tel:+77064005040" id="about-a-3" class="link-light">+7 706 400 50 40</a>
                     </p>
                 </address>
                 <p class="mb-3">
@@ -149,9 +156,80 @@
                 <!-- span используется для короткой части предложения,
              которой не требуется отдельный смысловой раздел. -->
                 <p class="mb-3">
-                    <a href="#introduction" id="about-a-4">Вернуться к началу страницы</a>
+                    <a href="#introduction" id="about-a-4" class="link-light">Вернуться к началу страницы</a>
                 </p>
             </section>
+            <section id="reviews" class="bg-body-secondary border rounded-4 p-3 p-md-4 p-lg-5 mb-4 shadow-sm" aria-labelledby="reviews-title">
+                <h2 id="reviews-title" class="h2 fw-bold mb-3">Ваш отзыв о клубе</h2>
+                <p class="mb-3">Здесь можно попробовать форму отзыва. Демонстрационные отзывы сохраняются только в этом браузере и не отправляются в клуб. Опубликованных отзывов клиентов в исходных данных нет.</p>
+                <form id="review-form" class="row g-3 mb-4" novalidate>
+                    <div class="col-12 col-md-6">
+                        <label for="review-name" class="form-label fw-semibold">Имя</label>
+                        <input id="review-name" name="review-name" class="form-control bg-dark text-light" type="text" autocomplete="name" maxlength="80" required>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <label for="review-rating" class="form-label fw-semibold">Оценка от 1 до 5</label>
+                        <select id="review-rating" name="review-rating" class="form-select bg-dark text-light" required>
+                            <option value="">Выберите оценку</option>
+                            <option value="1">1 из 5</option>
+                            <option value="2">2 из 5</option>
+                            <option value="3">3 из 5</option>
+                            <option value="4">4 из 5</option>
+                            <option value="5">5 из 5</option>
+                        </select>
+                    </div>
+                    <div class="col-12">
+                        <label for="review-text" class="form-label fw-semibold">Текст отзыва</label>
+                        <textarea id="review-text" name="review-text" class="form-control bg-dark text-light" rows="5" minlength="20" maxlength="1000" aria-describedby="review-counter" required></textarea>
+                        <p id="review-counter" class="form-text mb-0" aria-live="polite"></p>
+                    </div>
+                    <div class="col-12 d-flex flex-wrap gap-2">
+                        <button id="review-submit" type="submit" class="btn btn-danger">Добавить демонстрационный отзыв</button>
+                        <button type="reset" class="btn btn-outline-light">Очистить форму</button>
+                    </div>
+                    <p id="review-status" class="col-12 hidden p-3 rounded-3 text-break" role="status" aria-live="polite"></p>
+                </form>
+                <h3 class="h4 fw-bold mb-3">Отзывы из вашего браузера</h3>
+                <div class="row g-3 mb-3">
+                    <div class="col-12 col-md-6">
+                        <label for="review-sort" class="form-label fw-semibold">Порядок отзывов</label>
+                        <select id="review-sort" class="form-select bg-dark text-light">
+                            <option value="newest">Сначала новые</option>
+                            <option value="oldest">Сначала старые</option>
+                            <option value="rating">Сначала высокая оценка</option>
+                        </select>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <label for="review-rating-filter" class="form-label fw-semibold">Оценка</label>
+                        <select id="review-rating-filter" class="form-select bg-dark text-light">
+                            <option value="0">Все оценки</option>
+                            <option value="1">1 из 5</option>
+                            <option value="2">2 из 5</option>
+                            <option value="3">3 из 5</option>
+                            <option value="4">4 из 5</option>
+                            <option value="5">5 из 5</option>
+                        </select>
+                    </div>
+                </div>
+                <button id="review-filter-reset" type="button" class="btn btn-outline-light mb-3">Сбросить фильтр отзывов</button>
+                <p id="review-result-count" class="mb-3" aria-live="polite"></p>
+                <div id="review-list" class="row g-3"></div>
+            </section>
+            <!-- Шаблон карточки: JavaScript подставляет только данные отзыва. -->
+            <template id="review-card-template">
+                <div class="col-12 col-lg-6">
+                    <article class="card h-100 bg-dark text-light">
+                        <div class="card-body d-flex flex-column">
+                            <h4 class="h5 fw-bold text-break" data-review-name></h4>
+                            <p class="fw-semibold mb-2" data-review-rating></p>
+                            <time class="small text-body-secondary mb-3"></time>
+                            <p class="text-break" data-review-text></p>
+                            <p class="small text-body-secondary">Ваш демонстрационный отзыв. Сохранён только в этом браузере.</p>
+                            <button type="button" class="btn btn-outline-light mt-auto align-self-start">Удалить мой отзыв</button>
+                        </div>
+                    </article>
+                </div>
+            </template>
         </main>
         <footer id="site-footer" class="bg-dark text-white py-5 mt-4">
     <div class="container"><div class="row g-4 align-items-start">

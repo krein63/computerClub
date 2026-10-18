@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="ru" data-bs-theme="dark">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,9 +9,14 @@
         <!-- Bootstrap supplies the layout; only CSS is used. -->
         <link rel="stylesheet" href="css/bootstrap.min.css">
         <link rel="stylesheet" href="css/base.css">
+        <script src="js/data.js" defer></script>
+        <script src="js/logic.js" defer></script>
+        <script src="js/main.js" defer></script>
+        <script src="js/food.js" defer></script>
+        <script src="js/rules.js" defer></script>
     </head>
-    <body id="page-top">
-        <a id="skip-content" href="#rules-content" class="visually-hidden-focusable d-inline-block p-3">Перейти к содержимому</a><!-- Автор страницы: Amir  -->
+    <body id="page-top" class="bg-dark text-light">
+        <a id="skip-content" href="#rules-content" class="visually-hidden-focusable d-inline-block p-3 link-light">Перейти к содержимому</a><!-- Автор страницы: Amir  -->
         <!-- Bootstrap navbar layout; the mobile menu uses an HTML checkbox and CSS so the site needs no JavaScript. -->
         <header id="site-header" class="navbar navbar-expand-xl bg-dark border-bottom border-danger border-3 py-3" data-bs-theme="dark">
     <div class="container-fluid px-3 px-lg-4">
@@ -27,6 +32,8 @@
 <li class="nav-item"><a id="nav-games" href="games.html" class="nav-link px-2">Игры</a></li>
 <li class="nav-item"><a id="nav-rules" href="rules.html" class="nav-link px-2 active fw-bold" aria-current="page">Правила</a></li>
 <li class="nav-item"><a id="nav-about" href="about.html" class="nav-link px-2">О клубе</a></li>
+<li class="nav-item"><a id="nav-food" class="nav-link px-2" href="booking.html#food-menu">Еда</a></li>
+<li class="nav-item"><a id="nav-cart" class="nav-link px-2" href="booking.html#food-cart">Корзина · 0</a></li>
 </ul></nav>
         <a id="header-booking-link" href="booking.html#booking-form" class="btn btn-danger btn-sm mt-3 mt-xl-0 ms-xl-3">Забронировать</a>
 </div>
@@ -34,9 +41,9 @@
 </header>
         <!-- container limits long text to a readable width and stays centered at each Bootstrap breakpoint. -->
         <main class="container py-4 py-lg-5" id="rules-content">
-            <section id="main-rules" class="bg-white border rounded-4 p-3 p-md-4 p-lg-5 mb-4 shadow-sm">
+            <section id="main-rules" class="bg-body-secondary border rounded-4 p-3 p-md-4 p-lg-5 mb-4 shadow-sm">
                 <header class="mb-4">
-                    <p class="text-danger fw-semibold mb-3">
+                    <p class="text-danger-emphasis fw-semibold mb-3">
                         <small class="small">Памятка посетителя</small>
                     </p>
                     <h1 class="fw-bold display-5 mb-3 text-center text-md-start" id="rules-h1-1">Правила комфортной и безопасной игры</h1>
@@ -67,11 +74,11 @@
                 </figure>
             </section>
             <hr>
-            <section id="rule-table" class="bg-white border rounded-4 p-3 p-md-4 p-lg-5 mb-4 shadow-sm">
+            <section id="rule-table" class="bg-body-secondary border rounded-4 p-3 p-md-4 p-lg-5 mb-4 shadow-sm">
                 <h2 class="fw-bold h2 mb-3">Что делать в разных ситуациях</h2>
                 <!-- Таблица выбрана вместо div, потому что ситуации сравниваются с соответствующими действиями. -->
                 <!-- Bootstrap Table: striped and bordered styles added to the existing comparison; cells wrap at phone widths. -->
-                <table class="table table-striped table-bordered align-middle mb-0 small" id="rules-table-1">
+                <table class="table table-dark table-striped table-bordered align-middle mb-0 small" id="rules-table-1">
                     <caption class="caption-top text-body-secondary small">Действия посетителя во время игрового сеанса</caption>
                     <thead class="table-dark">
                         <tr>
@@ -94,8 +101,98 @@
                         </tr>
                     </tbody>
                 </table>
+                <div class="mt-4">
+                    <h3 class="h4 fw-bold mb-3">Найти помощь по ситуации</h3>
+                    <form id="rules-filters" class="row g-3 mb-3" role="search" aria-label="Поиск помощи по правилам клуба">
+                        <div class="col-12 col-md-6">
+                            <label for="rules-search" class="form-label fw-semibold">Опишите ситуацию</label>
+                            <input id="rules-search" type="search" class="form-control bg-dark text-light">
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <label for="rules-category" class="form-label fw-semibold">Категория</label>
+                            <select id="rules-category" class="form-select bg-dark text-light">
+                                <option value="all">Все категории</option>
+                                <option value="equipment">Оборудование</option>
+                                <option value="visit">Посещение</option>
+                                <option value="account">Аккаунты</option>
+                            </select>
+                        </div>
+                        <div class="col-12 d-flex flex-wrap gap-3 align-items-center">
+                            <button id="rules-filter-reset" type="button" class="btn btn-outline-light">Сбросить поиск</button>
+                            <p id="rules-result-count" class="mb-0" role="status"></p>
+                        </div>
+                    </form>
+                    <div id="rules-help-list" class="row g-3">
+                        <div class="col-12 col-md-6">
+                            <article class="card h-100 bg-dark text-light">
+                                <div class="card-body d-flex flex-column">
+                                    <p class="small text-body-secondary mb-2">Оборудование</p>
+                                    <h4 class="h5 fw-bold mb-3">Не работает устройство</h4>
+                                    <button id="rules-choose-device" type="button" data-situation="device" aria-controls="rules-help-detail" aria-pressed="false" class="btn btn-outline-danger mt-auto text-light">Показать действия</button>
+                                </div>
+                            </article>
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <article class="card h-100 bg-dark text-light">
+                                <div class="card-body d-flex flex-column">
+                                    <p class="small text-body-secondary mb-2">Оборудование</p>
+                                    <h4 class="h5 fw-bold mb-3">Обнаружено повреждение до начала игры</h4>
+                                    <button id="rules-choose-damage" type="button" data-situation="damage" aria-controls="rules-help-detail" aria-pressed="false" class="btn btn-outline-danger mt-auto text-light">Показать действия</button>
+                                </div>
+                            </article>
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <article class="card h-100 bg-dark text-light">
+                                <div class="card-body d-flex flex-column">
+                                    <p class="small text-body-secondary mb-2">Посещение</p>
+                                    <h4 class="h5 fw-bold mb-3">Нужно продлить время</h4>
+                                    <button id="rules-choose-extend" type="button" data-situation="extend" aria-controls="rules-help-detail" aria-pressed="false" class="btn btn-outline-danger mt-auto text-light">Показать действия</button>
+                                </div>
+                            </article>
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <article class="card h-100 bg-dark text-light">
+                                <div class="card-body d-flex flex-column">
+                                    <p class="small text-body-secondary mb-2">Посещение</p>
+                                    <h4 class="h5 fw-bold mb-3">Найдена чужая вещь</h4>
+                                    <button id="rules-choose-lost" type="button" data-situation="lost" aria-controls="rules-help-detail" aria-pressed="false" class="btn btn-outline-danger mt-auto text-light">Показать действия</button>
+                                </div>
+                            </article>
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <article class="card h-100 bg-dark text-light">
+                                <div class="card-body d-flex flex-column">
+                                    <p class="small text-body-secondary mb-2">Аккаунты</p>
+                                    <h4 class="h5 fw-bold mb-3">Нужно безопасно выйти из аккаунтов</h4>
+                                    <button id="rules-choose-account" type="button" data-situation="account" aria-controls="rules-help-detail" aria-pressed="false" class="btn btn-outline-danger mt-auto text-light">Показать действия</button>
+                                </div>
+                            </article>
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <article class="card h-100 bg-dark text-light">
+                                <div class="card-body d-flex flex-column">
+                                    <p class="small text-body-secondary mb-2">Оборудование</p>
+                                    <h4 class="h5 fw-bold mb-3">Нужна другая игра или программа</h4>
+                                    <button id="rules-choose-install" type="button" data-situation="install" aria-controls="rules-help-detail" aria-pressed="false" class="btn btn-outline-danger mt-auto text-light">Показать действия</button>
+                                </div>
+                            </article>
+                        </div>
+                    </div>
+                    <section id="rules-help-detail" class="bg-body-tertiary border rounded-3 p-3 p-md-4 mt-4" aria-label="Инструкции для выбранной ситуации">
+                        <p id="rules-detail-prompt" class="mb-0">Выберите ситуацию, чтобы увидеть инструкции и следующий шаг.</p>
+                        <div id="rules-detail-content" class="hidden">
+                            <h3 id="rules-detail-title" class="h4 fw-bold mb-3" tabindex="-1"></h3>
+                            <ol id="rules-detail-steps" class="ps-3 mb-3"></ol>
+                            <div class="d-flex flex-wrap gap-2">
+                                <a id="rules-detail-next" class="btn btn-danger"></a>
+                                <button id="rules-detail-close" type="button" class="btn btn-outline-light">Закрыть инструкции</button>
+                            </div>
+                            <p class="small text-body-secondary mt-3 mb-0">Инструкции не отправляют сообщение администратору. Для помощи обратитесь к персоналу клуба.</p>
+                        </div>
+                    </section>
+                </div>
             </section>
-            <section id="account-safety" class="bg-white border rounded-4 p-3 p-md-4 p-lg-5 mb-4 shadow-sm">
+            <section id="account-safety" class="bg-body-secondary border rounded-4 p-3 p-md-4 p-lg-5 mb-4 shadow-sm">
                 <h2 class="fw-bold h2 mb-3">Безопасность аккаунта</h2>
                 <dl class="border rounded-3 overflow-hidden">
                     <dt class="p-3 mb-0 bg-body-tertiary fw-semibold">
@@ -113,17 +210,47 @@
             Главное правило — «уважайте других посетителей».
         </p>
                 <p class="mb-3">Перед уходом выйдите из игровых клиентов и браузера. Не сохраняйте пароли на общем компьютере.</p>
+                <section id="departure-checklist" class="bg-body-tertiary border rounded-3 p-3 p-md-4 mt-4" aria-labelledby="departure-title">
+                    <h3 id="departure-title" class="h4 fw-bold mb-3">Проверка перед уходом</h3>
+                    <p class="mb-3">Отметьте выполненные действия. Это ваша самостоятельная проверка: сайт не проверяет аккаунты и не завершает сеанс на ПК.</p>
+                    <ul id="departure-list" class="list-group mb-3">
+                        <li class="list-group-item bg-dark text-light border-secondary">
+                            <input id="departure-clients" type="checkbox" value="clients" class="form-check-input me-2">
+                            <label for="departure-clients" class="form-check-label">Я вышел из игровых клиентов.</label>
+                        </li>
+                        <li class="list-group-item bg-dark text-light border-secondary">
+                            <input id="departure-browser" type="checkbox" value="browser" class="form-check-input me-2">
+                            <label for="departure-browser" class="form-check-label">Я вышел из аккаунтов в браузере и не сохранил пароли.</label>
+                        </li>
+                        <li class="list-group-item bg-dark text-light border-secondary">
+                            <input id="departure-belongings" type="checkbox" value="belongings" class="form-check-input me-2">
+                            <label for="departure-belongings" class="form-check-label">Я забрал свои личные вещи.</label>
+                        </li>
+                        <li class="list-group-item bg-dark text-light border-secondary">
+                            <input id="departure-workstation" type="checkbox" value="workstation" class="form-check-input me-2">
+                            <label for="departure-workstation" class="form-check-label">Я проверил чистоту места и сообщил о проблемах администратору.</label>
+                        </li>
+                    </ul>
+                    <p id="departure-progress" class="fw-semibold mb-3" role="status"></p>
+                    <p id="departure-remaining-label" class="mb-2">Осталось выполнить:</p>
+                    <ul id="departure-remaining" class="ps-3 mb-3"></ul>
+                    <div class="d-flex flex-wrap gap-2">
+                        <button id="departure-complete" type="button" class="btn btn-danger" disabled>Завершить проверку</button>
+                        <button id="departure-reset" type="button" class="btn btn-outline-light">Начать заново</button>
+                    </div>
+                    <p id="departure-confirmation" class="p-3 mt-3 mb-0 hidden" role="status"></p>
+                </section>
                 <aside class="bg-body-tertiary border border-start border-danger border-4 rounded-3 p-3 p-md-4 mt-4" id="rules-aside-1">
                     <h2 class="fw-bold h2 mb-3">Нужна помощь?</h2>
                     <p class="mb-3">
                 Обратитесь к администратору или позвоните по номеру клуба.
                 Официальную информацию о месте можно проверить в
-                <a href="https://2gis.kz/astana/firm/70000001080411948" target="_blank" rel="noopener noreferrer" id="rules-a-1">2GIS</a>.
+                <a href="https://2gis.kz/astana/firm/70000001080411948" target="_blank" rel="noopener noreferrer" id="rules-a-1" class="link-light">2GIS</a>.
             </p>
                 </aside>
                 <nav aria-label="Дополнительная навигация" class="d-flex flex-column flex-md-row gap-2 mt-4">
-                    <a href="#main-rules" class="btn btn-outline-danger" id="rules-a-2">Вернуться к началу правил</a>
-                    <a href="index.html" class="btn btn-outline-danger" id="rules-a-3">Вернуться на главную страницу</a>
+                    <a href="#main-rules" class="btn btn-outline-danger text-light" id="rules-a-2">Вернуться к началу правил</a>
+                    <a href="index.html" class="btn btn-outline-danger text-light" id="rules-a-3">Вернуться на главную страницу</a>
                 </nav>
             </section>
         </main>
