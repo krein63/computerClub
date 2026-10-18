@@ -25,7 +25,7 @@ window.TopGameData = {
 // У каждого блюда есть фотография с таким же именем файла, как его id.
 for (const item of window.TopGameData.menu) {
     item.image = 'images/food/' + item.id + '.jpg';
-    item.imageAlt = item.name + ' — фото меню CyberX';
+    item.imageAlt = item.name + ' — иллюстрация меню';
 }
 
 // Первые 10 ПК — MAIN, следующие 5 — DUO, последние 5 — PRIVATE.

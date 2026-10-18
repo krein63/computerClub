@@ -4,164 +4,108 @@ function setupBooking() {
     const form = document.getElementById('booking-form');
     if (!form) return;
     const app = window.TopGame;
-    const el = app.el;
-    const money = app.money;
-    const reference = app.reference;
-    const today = app.today;
-    const localDateTime = app.localDateTime;
-    const store = app.store;
-    const renderList = app.renderList;
-    const setError = app.setError;
-    const clearErrors = app.clearErrors;
-    const validateContacts = app.validateContacts;
-    const notify = app.notify;
-    const tariffs = app.tariffs;
-    const seats = app.seats;
-
-    // 1. Получаем готовые элементы из HTML и запоминаем выбор пользователя.
+    const food = window.TopGameFood;
+    function byId(id) { return document.getElementById(id); }
     const fields = {
-        name: document.getElementById('customer-name'),
-        email: document.getElementById('customer-email'),
-        phone: document.getElementById('customer-phone'),
-        date: document.getElementById('booking-date'),
-        time: document.getElementById('booking-time'),
-        players: document.getElementById('player-count'),
-        tariff: document.getElementById('booking-tariff'),
-        comment: document.getElementById('booking-comment'),
-        agreement: document.getElementById('booking-agreement')
+        date: byId('booking-date'), time: byId('booking-time'),
+        duration: byId('booking-duration'), tariff: byId('booking-tariff'),
+        name: byId('customer-name'), phone: byId('customer-phone'),
+        email: byId('customer-email'), comment: byId('booking-comment'),
+        agreement: byId('booking-agreement')
     };
-    const duration = document.getElementById('booking-duration');
-    const durationNote = document.getElementById('booking-duration-note');
-    const zoneFieldset = document.getElementById('gaming-zone-selection');
-    const zoneRadios = form.querySelectorAll('[name="gaming-zone"]');
-    const zoneNames = { main: 'MAIN', duo: 'DUO', private: 'PRIVATE' };
-    const snapshotOccupied = [3, 4, 8, 12, 17];
-    const map = document.getElementById('seat-map');
-    const mapStatus = document.getElementById('seat-map-status');
-    const mapFeedback = document.getElementById('seat-map-feedback');
-    const clearSelection = document.getElementById('clear-seat-selection');
-    const summarySeats = document.getElementById('booking-summary-seats');
-    const summaryDuration = document.getElementById('booking-summary-duration');
-    const totalNote = document.getElementById('booking-total-note');
-    const total = document.getElementById('booking-total');
-    const resultStatus = document.getElementById('booking-result-status');
-    const list = document.getElementById('booking-result-list');
-    const success = document.getElementById('booking-success');
-    const errors = document.getElementById('booking-errors');
-    const localStatus = document.getElementById('local-bookings-status');
-    const localList = document.getElementById('local-bookings');
+    const zoneNames = { main: 'Main', duo: 'Duo', private: 'Private' };
+    const cartContent = byId('cart-content');
+    const dialog = byId('cart-dialog');
     let selectedSeats = [];
-    let reservations = [];
-    let lastAccepted = null;
-    let attempted = false;
+    let zone = 'main';
+    let step = 0;
+    let foodOnly = false;
+    let completed = false;
     let storageAvailable = true;
+    let syncingDraft = false;
+    let reservations = readReservations();
+    let foodOrders = readFoodOrders();
 
-    for (const seat of seats) {
-        document.getElementById('seat-' + seat.id).addEventListener('click', function () {
-            toggleSeat(seat);
-        });
+    // 1. Дата и время всегда по Астане, даже если посетитель в другом часовом поясе.
+    function dateInAstana(date) {
+        return new Intl.DateTimeFormat('en-CA', { timeZone: 'Asia/Almaty', year: 'numeric', month: '2-digit', day: '2-digit' }).format(date);
     }
-    clearSelection.addEventListener('click', function () {
-        selectedSeats = [];
-        notify(mapFeedback, 'Выбор ПК очищен. Выберите места для нового запроса.');
-        refresh();
-    });
-
-    // 2. Проверяем дату и пересечения сеансов.
+    function defaultVisit() {
+        const nextHour = new Date(Date.now() + 60 * 60 * 1000);
+        fields.date.value = dateInAstana(nextHour);
+        const hour = new Intl.DateTimeFormat('en-GB', { timeZone: 'Asia/Almaty', hour: '2-digit', hourCycle: 'h23' }).format(nextHour);
+        fields.time.value = hour + ':00';
+        fields.duration.value = '2';
+    }
     function validDate(date) {
-        if (typeof date !== 'string') return false;
-        if (!/^\d{4}-\d{2}-\d{2}$/.test(date)) return false;
+        if (typeof date !== 'string' || !/^\d{4}-\d{2}-\d{2}$/.test(date)) return false;
         const parts = date.split('-');
-        const year = Number(parts[0]);
-        const month = Number(parts[1]);
-        const day = Number(parts[2]);
-        const calendarDate = new Date(Date.UTC(year, month - 1, day));
-        return calendarDate.getUTCFullYear() === year && calendarDate.getUTCMonth() === month - 1 && calendarDate.getUTCDate() === day;
+        const check = new Date(date + 'T12:00:00+05:00');
+        return Number.isFinite(check.getTime()) && dateInAstana(check) === date && Number(parts[0]) >= 2020;
     }
-
-    function interval(date, time, hours) {
-        if (typeof time !== 'string') return null;
-        if (!validDate(date) || !/^([01]\d|2[0-3]):[0-5]\d$/.test(time) || !Number.isInteger(hours) || hours < 1 || hours > 12) return null;
-        const start = localDateTime(date, time);
-        if (!Number.isFinite(start)) return null;
-        return { start: start, end: start + hours * 60 * 60 * 1000 };
+    function interval(date, time, duration) {
+        if (!validDate(date) || typeof time !== 'string' || !/^([01]\d|2[0-3]):[0-5]\d$/.test(time)) return null;
+        if (!app.validQuantity(duration, 12)) return null;
+        const start = app.localDateTime(date, time);
+        return { start: start, end: start + duration * 60 * 60 * 1000 };
     }
-
+    function currentInterval() {
+        return interval(fields.date.value, fields.time.value, Number(fields.duration.value));
+    }
     function overlaps(first, second) {
         return first.start < second.end && first.end > second.start;
     }
-
+    function seatNames(ids) {
+        const result = [];
+        for (const id of ids) result.push('PC ' + String(id).padStart(2, '0'));
+        return result.join(', ');
+    }
     function readReservations() {
-        const saved = store.get('bookings', []);
+        const saved = app.store.get('bookings', []);
         const result = [];
         if (!Array.isArray(saved)) return result;
         for (const item of saved) {
             if (!item || typeof item.id !== 'string' || item.id.length > 80) continue;
-            if (!zoneNames[item.zone] || !app.findProduct(tariffs, item.tariff)) continue;
-            const requested = interval(item.date, item.time, item.duration);
-            if (!requested || requested.start !== item.start || requested.end !== item.end) continue;
-            if (!Array.isArray(item.seats) || item.seats.length === 0) continue;
-            let correctSeats = true;
+            if (item.zone !== 'main' && item.zone !== 'duo' && item.zone !== 'private') continue;
+            if (!app.findProduct(app.tariffs, item.tariff)) continue;
+            const visit = interval(item.date, item.time, item.duration);
+            if (!visit || item.start !== visit.start || item.end !== visit.end) continue;
+            if (!Array.isArray(item.seats) || item.seats.length < 1) continue;
+            let valid = true;
             for (let index = 0; index < item.seats.length; index++) {
                 const id = item.seats[index];
-                const seat = app.findProduct(seats, id);
-                if (!seat || seat.zone !== item.zone || item.seats.indexOf(id) !== index) {
-                    correctSeats = false;
-                }
+                const seat = app.findProduct(app.seats, id);
+                if (!seat || seat.zone !== item.zone || item.seats.indexOf(id) !== index) valid = false;
             }
-            if (correctSeats) result.push(item);
+            if (valid) result.push(item);
         }
         return result;
     }
-
-    function zoneCapacity(zone) {
-        if (!zone) return seats.length;
-        let count = 0;
-        for (const seat of seats) {
-            if (seat.zone === zone) count++;
+    function readFoodOrders() {
+        const saved = app.store.get('orders', []);
+        const result = [];
+        if (!Array.isArray(saved)) return result;
+        for (const item of saved) {
+            if (!item || typeof item.id !== 'string' || item.id.length > 80 || !Array.isArray(item.items) || item.items.length === 0) continue;
+            let valid = true;
+            for (const line of item.items) {
+                if (!line || !app.findProduct(app.menu, line.id) || !app.validQuantity(line.quantity, 20)) valid = false;
+            }
+            if (valid) result.push(item);
         }
-        return count;
+        return result;
     }
-
-    function seatNames(ids) {
-        const names = [];
-        for (const id of ids) names.push('PC ' + id);
-        return names.join(', ');
-    }
-
-    function acceptedRequestExists() {
-        if (!lastAccepted) return false;
-        return app.findProduct(reservations, lastAccepted.id) !== null;
-    }
-
-    function sameRequest(data) {
-        return acceptedRequestExists() && lastAccepted.fingerprint === JSON.stringify(data);
-    }
-
-    function values() {
-        let zone = '';
-        for (const radio of zoneRadios) {
-            if (radio.checked) zone = radio.value;
-        }
-        return {
-            name: fields.name.value.trim(), email: fields.email.value.trim(), phone: fields.phone.value.trim(),
-            date: fields.date.value, time: fields.time.value, players: Number(fields.players.value),
-            tariff: fields.tariff.value, duration: Number(duration.value), zone,
-            seats: selectedSeats.slice().sort(function (first, second) { return first - second; }),
-            headphones: document.getElementById('headphones').checked, comment: fields.comment.value.trim()
-        };
-    }
-
-    function occupiedSeats(requestedInterval) {
-        if (!requestedInterval) return snapshotOccupied.slice();
+    function busySeats() {
+        const requested = currentInterval();
         const busy = [];
-        // Учебный сеанс сегодня с 18:00 до 21:00 показывает занятость.
-        const sampleSession = interval(today(), '18:00', 3);
-        if (overlaps(requestedInterval, sampleSession)) {
-            for (const id of snapshotOccupied) busy.push(id);
+        if (!requested) return busy;
+        // Учебный сеанс показывает, как проверяются пересечения времени.
+        const sample = interval(app.today(), '18:00', 3);
+        if (overlaps(requested, sample)) {
+            for (const id of [3, 4, 8, 12, 17]) busy.push(id);
         }
         for (const item of reservations) {
-            if (!overlaps(requestedInterval, item)) continue;
+            if (!overlaps(requested, item)) continue;
             for (const id of item.seats) {
                 if (!busy.includes(id)) busy.push(id);
             }
@@ -169,389 +113,661 @@ function setupBooking() {
         return busy;
     }
 
-    function chooseZone(zone) {
-        for (const radio of zoneRadios) radio.checked = radio.value === zone;
-        selectedSeats = [];
-        if (zone === 'duo') fields.players.value = '2';
+    // 2. Число выбранных ПК — это количество игроков.
+    function showMessage(id, message) {
+        const element = byId(id);
+        element.textContent = message;
+        element.hidden = !message;
     }
-
-    function toggleSeat(seat) {
-        const data = values();
-        if (occupiedSeats(interval(data.date, data.time, data.duration)).includes(seat.id)) return;
-        let switched = false;
-        if (data.zone !== seat.zone) {
-            switched = selectedSeats.length > 0;
-            chooseZone(seat.zone);
+    function setZone(nextZone, explain) {
+        if (!zoneNames[nextZone]) return;
+        const changed = zone !== nextZone;
+        if (changed && selectedSeats.length > 0) {
+            selectedSeats = [];
+            if (explain) showMessage('booking-feedback', 'Выбрана зона ' + zoneNames[nextZone] + '. Предыдущие места сняты — выбери новые на схеме.');
         }
-        if (selectedSeats.includes(seat.id)) {
-            selectedSeats.splice(selectedSeats.indexOf(seat.id), 1);
-            notify(mapFeedback, `PC ${seat.id} исключён из выбора.`);
-        } else {
-            const count = Number(fields.players.value);
-            if (Number.isInteger(count) && count > 0 && selectedSeats.length >= count) {
-                notify(mapFeedback, `Для ${count} игроков уже выбрано ${count} ПК. Снимите один выбор или увеличьте количество игроков.`, 'error');
-                return;
-            }
-            selectedSeats.push(seat.id);
-            let message = 'PC ' + seat.id + ' добавлен в выбор.';
-            if (switched) message = 'Выбрана другая зона, предыдущие ПК сняты. ' + message;
-            notify(mapFeedback, message);
-        }
+        zone = nextZone;
+        if (zone === 'private') fields.tariff.value = 'private';
+        else if (fields.tariff.value === 'private') fields.tariff.value = 'hour';
+        for (const radio of form.querySelectorAll('[name="gaming-zone"]')) radio.checked = radio.value === zone;
+    }
+    function setTariff(id) {
+        if (!app.findProduct(app.tariffs, id)) return;
+        fields.tariff.value = id;
+        if (id === 'private') setZone('private', true);
+        else if (zone === 'private') setZone('main', true);
+        if (id === 'three-hours') fields.duration.value = '3';
+        saveDraft();
         refresh();
     }
-
-    // 3. Считаем цену и обновляем карту и предварительный итог.
-    function estimate(data) {
-        const tariff = app.findProduct(tariffs, data.tariff);
-        if (!tariff || !app.validQuantity(data.players, zoneCapacity(data.zone))) return null;
-        if (!app.validQuantity(data.duration, 12)) return null;
-        if (tariff.id === 'three-hours' && data.duration !== 3) return null;
-        if (data.zone === 'private' && tariff.id !== 'private') return null;
-        if (data.zone && data.zone !== 'private' && tariff.id === 'private') return null;
-        if (data.zone === 'duo' && data.players !== 2) return null;
-        let amount = tariff.price;
-        let note = 'Опубликованный минимум PRIVATE. Период оплаты и единица тарификации не указаны; итог за группу и выбранную длительность уточняется в клубе.';
-        if (tariff.id !== 'private') {
-            amount *= data.players;
-            note = 'Предварительная оценка по опубликованным ценам «от» за каждого игрока. Итоговую стоимость подтвердит клуб.';
+    function toggleSeat(id) {
+        if (busySeats().includes(id)) return;
+        const seat = app.findProduct(app.seats, id);
+        if (!seat) return;
+        if (seat.zone !== zone) setZone(seat.zone, true);
+        const index = selectedSeats.indexOf(id);
+        if (index >= 0) selectedSeats.splice(index, 1);
+        else {
+            if (zone === 'duo' && selectedSeats.length === 2) {
+                showMessage('booking-feedback', 'Для Duo выбери два места. Сними одно из выбранных, чтобы заменить его.');
+                return;
+            }
+            selectedSeats.push(id);
         }
-        if (tariff.id === 'hour') amount *= data.duration;
-        if (tariff.id === 'night') note = 'Оценка по цене ночного пакета на игрока. Его часы и соответствие желаемой длительности уточняются в клубе.';
-        return { amount: amount, note: note };
+        selectedSeats.sort(function (first, second) { return first - second; });
+        foodOnly = false;
+        showMessage('booking-step-error', '');
+        saveDraft();
+        refresh();
     }
-
-    function updateMap(data) {
-        const requestedInterval = interval(data.date, data.time, data.duration);
-        const busy = occupiedSeats(requestedInterval);
-        let hasConflict = false;
-        for (const seat of seats) {
-            const button = document.getElementById('seat-' + seat.id);
-            const status = button.lastElementChild;
+    function removeSeat(id) {
+        const index = selectedSeats.indexOf(id);
+        if (index < 0) return;
+        selectedSeats.splice(index, 1);
+        if (selectedSeats.length === 0 && food.getCart().length > 0) foodOnly = true;
+        saveDraft();
+        refresh();
+        const next = document.querySelector('[data-remove-seat]');
+        if (next) next.focus();
+        else byId('cart-title').focus();
+    }
+    function updateMap() {
+        const busy = busySeats();
+        let free = 0;
+        for (const seat of app.seats) {
+            const button = byId('seat-' + seat.id);
             const occupied = busy.includes(seat.id);
             const selected = selectedSeats.includes(seat.id);
             let state = 'available';
-            status.textContent = 'Свободно';
-            if (selected) {
-                state = 'selected';
-                status.textContent = 'Выбрано';
-            }
-            if (occupied) {
-                state = 'occupied';
-                status.textContent = 'Занято';
-                if (selected) hasConflict = true;
-                if (selected && lastAccepted && lastAccepted.data.seats.includes(seat.id)
-                    && requestedInterval && overlaps(requestedInterval, lastAccepted.data)) {
-                    status.textContent = 'Ваш запрос';
-                }
-            }
+            let label = 'Свободно';
+            if (selected) { state = 'selected'; label = 'Выбрано'; }
+            if (occupied) { state = 'occupied'; label = 'Занято'; }
             button.disabled = occupied;
             button.dataset.seatState = state;
-            button.classList.toggle('btn-outline-light', state === 'available');
-            button.classList.toggle('btn-secondary', state === 'occupied');
-            button.classList.toggle('opacity-100', state === 'occupied');
-            button.classList.toggle('btn-danger', state === 'selected');
-            button.classList.toggle('text-white', state !== 'available');
-            button.classList.toggle('selected', state === 'selected');
+            button.classList.toggle('is-conflict', occupied && selected);
             button.setAttribute('aria-pressed', String(selected));
-            button.setAttribute('aria-label', `PC ${seat.id}, зона ${zoneNames[seat.zone]}, ${status.textContent.toLowerCase()}`);
+            button.setAttribute('aria-label', 'PC ' + seat.id + ', ' + zoneNames[seat.zone] + ', ' + label);
+            button.querySelector('.station-status').textContent = label;
+            if (seat.zone === zone && !occupied) free++;
         }
-        let context = 'Демоснимок: укажите дату, время и длительность для проверки пересечений.';
-        if (requestedInterval) context = `${data.date}, ${data.time}, ${data.duration} ч. по Астане.`;
-        let playerCount = '—';
-        if (Number.isInteger(data.players) && data.players > 0) playerCount = data.players;
-        mapStatus.textContent = `${context} Свободно: ${seats.length - busy.length}. Занято: ${busy.length}. Выбрано: ${selectedSeats.length} из ${playerCount}.`;
-        if (requestedInterval && !sameRequest(data) && hasConflict) {
-            mapStatus.textContent += ' Один из выбранных ПК занят в этом интервале. Нажмите «Снять выбор мест», затем выберите свободные ПК или измените время.';
+        for (const map of document.querySelectorAll('[data-zone-map]')) map.hidden = map.dataset.zoneMap !== zone;
+        for (const button of document.querySelectorAll('[data-zone-pick]')) button.setAttribute('aria-pressed', String(button.dataset.zonePick === zone));
+        for (const button of document.querySelectorAll('[data-tariff-pick]')) button.setAttribute('aria-pressed', String(button.dataset.tariffPick === fields.tariff.value));
+        byId('seat-map-status').textContent = zoneNames[zone] + ' · свободно ' + free + ' ПК';
+        byId('player-count').textContent = selectedSeats.length;
+        byId('clear-seat-selection').disabled = selectedSeats.length === 0;
+        byId('seat-zone-note').textContent = 'Нажми на свободный ПК, чтобы добавить его в заказ. Можно выбрать несколько.';
+        if (zone === 'duo') byId('seat-zone-note').textContent = 'Duo — для игры вдвоём. Выбери два свободных ПК.';
+        fields.duration.disabled = fields.tariff.value === 'three-hours';
+        byId('duration-decrease').disabled = fields.duration.disabled || Number(fields.duration.value) <= 1;
+        byId('duration-increase').disabled = fields.duration.disabled || Number(fields.duration.value) >= 12;
+        let note = 'Цена за каждый выбранный ПК. Количество игроков определим по местам.';
+        if (fields.tariff.value === 'three-hours') note = 'Пакет включает ровно 3 часа на каждом выбранном ПК.';
+        if (fields.tariff.value === 'night') note = 'Укажи желаемый интервал. Точное время ночного пакета нужно подтвердить у администратора.';
+        if (fields.tariff.value === 'private') note = 'Укажи желаемый интервал. Цена Private — от 2 500 ₸; стоимость группы и период оплаты уточняются в клубе.';
+        byId('booking-duration-note').textContent = note;
+        const visit = currentInterval();
+        byId('visit-end-time').textContent = '';
+        if (visit) {
+            const end = new Date(visit.end);
+            const time = new Intl.DateTimeFormat('en-GB', { timeZone: 'Asia/Almaty', hour: '2-digit', minute: '2-digit', hourCycle: 'h23' }).format(end);
+            let suffix = '';
+            if (dateInAstana(end) !== fields.date.value) suffix = ' · следующий день';
+            byId('visit-end-time').textContent = 'До ' + time + suffix;
         }
-        clearSelection.disabled = selectedSeats.length === 0;
+        fields.date.min = app.today();
+        byId('date-today').setAttribute('aria-pressed', String(fields.date.value === app.today()));
+        const tomorrow = dateInAstana(new Date(app.localDateTime(app.today(), '12:00') + 24 * 60 * 60 * 1000));
+        byId('date-tomorrow').setAttribute('aria-pressed', String(fields.date.value === tomorrow));
+    }
+    function gamesPrice() {
+        if (selectedSeats.length === 0) return 0;
+        const tariff = app.findProduct(app.tariffs, fields.tariff.value);
+        if (!tariff || !app.validQuantity(Number(fields.duration.value), 12)) return null;
+        if (tariff.id === 'private') return null;
+        let total = tariff.price * selectedSeats.length;
+        if (tariff.id === 'hour') total *= Number(fields.duration.value);
+        return total;
     }
 
+    // 3. ПК и еда находятся в одной корзине. Контакты вводятся один раз.
+    function element(tag, classes, text) { return app.el(tag, classes, text); }
+    function renderPcItem(id) {
+        const item = element('div', 'cart-item');
+        const icon = element('span', 'cart-item-icon');
+        icon.append(element('span', 'pc-display'));
+        icon.setAttribute('aria-hidden', 'true');
+        const copy = element('div', 'cart-item-copy');
+        const tariff = app.findProduct(app.tariffs, fields.tariff.value);
+        copy.append(element('strong', '', 'PC ' + String(id).padStart(2, '0') + ' · ' + zoneNames[zone]));
+        copy.append(element('small', '', fields.duration.value + ' ч. · ' + tariff.name));
+        let price = 'Уточняется';
+        const total = gamesPrice();
+        if (total !== null) price = app.money(total / selectedSeats.length);
+        const remove = element('button', 'remove-item', '×');
+        remove.type = 'button';
+        remove.dataset.removeSeat = id;
+        remove.setAttribute('aria-label', 'Убрать PC ' + id + ' из заказа');
+        remove.addEventListener('click', function () { removeSeat(id); });
+        item.append(icon, copy, element('span', 'cart-item-price', price), remove);
+        return item;
+    }
+    function foodAction(id, action, text, label) {
+        const button = element('button', 'quantity-button', text);
+        button.type = 'button';
+        button.id = 'cart-' + id + '-' + action;
+        button.dataset.foodId = id;
+        button.dataset.foodAction = action;
+        button.setAttribute('aria-label', label);
+        button.addEventListener('click', function () {
+            if (action === 'remove') food.removeItem(id);
+            else if (action === 'increase') food.changeQuantity(id, 1);
+            else food.changeQuantity(id, -1);
+            const replacement = byId('cart-' + id + '-' + action);
+            if (replacement && !replacement.disabled) replacement.focus();
+            else byId('cart-title').focus();
+        });
+        return button;
+    }
+    function renderFoodItem(line) {
+        const product = app.findProduct(app.menu, line.id);
+        const item = element('div', 'cart-item');
+        const image = element('img', '');
+        image.src = product.image;
+        image.alt = '';
+        const copy = element('div', 'cart-item-copy');
+        copy.append(element('strong', '', product.name));
+        const actions = element('div', 'cart-food-actions');
+        const counter = element('div', 'quantity-control');
+        const minus = foodAction(product.id, 'decrease', '−', 'Уменьшить количество: ' + product.name);
+        const plus = foodAction(product.id, 'increase', '+', 'Увеличить количество: ' + product.name);
+        plus.disabled = line.quantity >= 20;
+        counter.append(minus, element('span', 'quantity-value', line.quantity), plus);
+        actions.append(counter, element('span', 'cart-item-price', app.money(product.price * line.quantity)));
+        copy.append(actions);
+        const remove = foodAction(product.id, 'remove', '×', 'Удалить: ' + product.name);
+        remove.className = 'remove-item';
+        item.append(image, copy, remove);
+        return item;
+    }
+    function renderCart() {
+        const lines = food.getCart();
+        let count = selectedSeats.length;
+        for (const line of lines) count += line.quantity;
+        byId('cart-count').textContent = count;
+        byId('mobile-cart-count').textContent = count;
+        byId('cart-empty').hidden = count > 0;
+        byId('cart-totals').hidden = count === 0;
+        byId('cart-pc-section').hidden = selectedSeats.length === 0;
+        byId('cart-food-section').hidden = lines.length === 0;
+        byId('cart-pc-items').replaceChildren();
+        byId('cart-food-items').replaceChildren();
+        for (const id of selectedSeats) byId('cart-pc-items').append(renderPcItem(id));
+        for (const line of lines) byId('cart-food-items').append(renderFoodItem(line));
+        let visitText = fields.date.value + ' · ' + fields.time.value + ' · ' + fields.duration.value + ' ч.';
+        if (validDate(fields.date.value)) {
+            const date = new Date(fields.date.value + 'T12:00:00+05:00');
+            visitText = new Intl.DateTimeFormat('ru-RU', { timeZone: 'Asia/Almaty', day: 'numeric', month: 'long' }).format(date) + ' · ' + fields.time.value + ' · ' + fields.duration.value + ' ч.';
+        }
+        byId('cart-visit').textContent = visitText;
+        const pcTotal = gamesPrice();
+        const foodTotal = food.getTotal();
+        let total = app.money(foodTotal);
+        let pcText = '0 ₸';
+        let note = 'Цены «от». Итоговую стоимость подтвердит администратор.';
+        if (selectedSeats.length > 0 && pcTotal !== null) {
+            pcText = 'от ' + app.money(pcTotal);
+            total = 'от ' + app.money(pcTotal + foodTotal);
+        }
+        if (pcTotal === null) {
+            pcText = 'Уточняется';
+            total = 'Уточняется';
+            note = 'Private — от 2 500 ₸. Стоимость группы и период оплаты уточняются. Еда указана отдельно.';
+            if (fields.tariff.value !== 'private') note = 'Укажи от 1 до 12 полных часов, чтобы рассчитать стоимость.';
+        }
+        byId('cart-games-total').textContent = pcText;
+        byId('cart-food-total').textContent = app.money(foodTotal);
+        byId('cart-total').textContent = total;
+        byId('mobile-cart-total').textContent = total;
+        byId('cart-price-note').textContent = note;
+        // В шапке показываем количество всех позиций заказа.
+        byId('nav-cart').textContent = 'Корзина · ' + count;
+    }
+    function updateDelivery() {
+        const hasFood = food.getCart().length > 0;
+        byId('food-delivery-fields').hidden = !hasFood;
+        const select = byId('food-seat');
+        const previous = select.value;
+        select.replaceChildren();
+        const placeholder = element('option', '', 'Выбери ПК');
+        placeholder.value = '';
+        select.append(placeholder);
+        for (const seat of app.seats) {
+            if (selectedSeats.length > 0 && !selectedSeats.includes(seat.id)) continue;
+            const option = element('option', '', 'PC ' + String(seat.id).padStart(2, '0') + ' · ' + zoneNames[seat.zone]);
+            option.value = seat.id;
+            select.append(option);
+        }
+        select.value = previous;
+        if (!select.value && selectedSeats.length > 0) select.value = String(selectedSeats[0]);
+        const toSeat = byId('food-delivery').value === 'seat';
+        byId('food-seat-column').hidden = !toSeat;
+        select.disabled = !toSeat;
+        byId('delivery-help').textContent = 'Еду принесём к одному из выбранных мест.';
+        if (selectedSeats.length === 0) byId('delivery-help').textContent = 'Если уже играешь в клубе, укажи свой ПК. Можно также забрать заказ у стойки.';
+        if (!toSeat) byId('delivery-help').textContent = 'Готовый заказ можно будет забрать у стойки.';
+    }
     function refresh() {
-        const data = values();
-        fields.date.min = today();
-        fields.players.max = String(zoneCapacity(data.zone));
-        if (data.zone === 'duo') fields.players.max = '2';
-        const tariff = app.findProduct(tariffs, data.tariff);
-        let tariffName = 'Не выбран';
-        if (tariff) tariffName = tariff.name;
-        document.getElementById('booking-summary-tariff').textContent = tariffName;
-        document.getElementById('booking-summary-zone').textContent = zoneNames[data.zone] || 'Не выбрана';
-        document.getElementById('booking-summary-date').textContent = data.date || 'Не выбрана';
-        document.getElementById('booking-summary-time').textContent = 'Не выбрано';
-        if (data.time) document.getElementById('booking-summary-time').textContent = data.time + ' (Астана)';
-        document.getElementById('booking-summary-players').textContent = 'Укажите целое число';
-        if (Number.isInteger(data.players) && data.players > 0) {
-            document.getElementById('booking-summary-players').textContent = data.players;
-        }
-        summarySeats.textContent = seatNames(data.seats) || 'Не выбраны';
-        summaryDuration.textContent = 'Укажите целое число';
-        if (Number.isInteger(data.duration) && data.duration > 0) {
-            summaryDuration.textContent = data.duration + ' ч. (желаемый интервал)';
-        }
-        durationNote.textContent = 'От 1 до 12 полных часов. Для базового тарифа оценка: 1 200 ₸ × часы × игроки.';
-        if (data.tariff === 'three-hours') durationNote.textContent = 'Для пакета «3 часа» продолжительность должна быть ровно 3 часа.';
-        if (data.tariff === 'night' || data.tariff === 'private') {
-            durationNote.textContent = 'От 1 до 12 часов — желаемый интервал для демо-заявки. Это не подтверждение длительности или периода оплаты пакета.';
-        }
-        const price = estimate(data);
-        totalNote.textContent = 'Выберите тариф и укажите корректные количество игроков и длительность для оценки.';
-        total.textContent = 'Стоимость пока не рассчитана';
-        if (price) {
-            totalNote.textContent = price.note;
-            total.textContent = 'От ' + money(price.amount) + ' — предварительная оценка';
-            if (data.tariff === 'private') total.textContent = 'От ' + money(price.amount) + ' — опубликованный минимум, итог за группу неизвестен';
-        }
-        if (!lastAccepted) resultStatus.textContent = 'Итог обновляется при изменении выбора. Для демо-заявки заполните форму и выберите по одному ПК на игрока.';
-        updateMap(data);
-        if (attempted) validate(false);
+        updateMap();
+        renderCart();
+        updateDelivery();
+        let label = 'Дальше: еда →';
+        if (step === 1) label = 'Дальше: контакты →';
+        if (step === 2) label = 'Создать демо-заявку ↗';
+        if (completed) label = 'Собрать новый заказ ↗';
+        byId('cart-continue').textContent = label;
+        byId('mobile-next').textContent = 'Дальше →';
+        if (step === 2) byId('mobile-next').textContent = 'Оформить ↗';
+        if (completed) byId('mobile-next').textContent = 'Новый заказ ↗';
+        byId('booking-next').textContent = label;
+        if (step === 1 && food.getCart().length === 0 && !foodOnly) byId('booking-next').textContent = 'Без еды, к контактам →';
     }
 
-    // 4. Перед отправкой проверяем каждое поле и показываем ошибки рядом с ним.
-    function validate(focusFirst) {
-        const data = values();
-        const contactErrors = validateContacts(data.name, data.email, data.phone);
-        const invalid = [];
-        function check(field, message, focusField) {
-            if (!focusField) focusField = field;
-            if (setError(field, message)) invalid.push(focusField);
+    // 4. Переходы между тремя шагами сохраняют введённые значения.
+    function validateVisit() {
+        if (!selectedSeats.length) return 'Выбери хотя бы один свободный ПК на схеме.';
+        const visit = currentInterval();
+        if (!visit) return 'Укажи корректные дату, время и целую длительность от 1 до 12 часов.';
+        if (visit.start <= Date.now()) return 'Это время уже прошло. Выбери будущее время по Астане.';
+        if (zone === 'duo' && selectedSeats.length !== 2) return 'Для Duo выбери ровно два свободных ПК.';
+        if (fields.tariff.value === 'three-hours' && Number(fields.duration.value) !== 3) return 'Пакет «3 часа» включает ровно три часа.';
+        const busy = busySeats();
+        for (const id of selectedSeats) {
+            if (busy.includes(id)) return 'Один из выбранных ПК занят на это время. Убери его из корзины или измени время.';
         }
-        check(fields.name, contactErrors.name);
-        check(fields.email, contactErrors.email);
-        check(fields.phone, contactErrors.phone);
-        let dateError = '';
-        if (!validDate(data.date)) dateError = 'Выберите корректную дату посещения.';
-        else if (data.date < today()) dateError = 'Дата посещения не может быть в прошлом по времени Астаны.';
-        check(fields.date, dateError);
-        let timeError = '';
-        if (!/^([01]\d|2[0-3]):[0-5]\d$/.test(data.time)) timeError = 'Укажите время начала по Астане.';
-        else if (!dateError && localDateTime(data.date, data.time) <= Date.now()) timeError = 'Выбранное время уже прошло. Укажите будущее время по Астане.';
-        check(fields.time, timeError);
-        let countError = '';
-        const capacity = zoneCapacity(data.zone);
-        if (!Number.isInteger(data.players) || data.players < 1) countError = 'Количество игроков должно быть целым числом от 1.';
-        else if (data.players > capacity) countError = `В выбранной зоне только ${capacity} демонстрационных ПК.`;
-        else if (data.zone === 'duo' && data.players !== 2) countError = 'Зона DUO предназначена для двух игроков: укажите ровно 2.';
-        check(fields.players, countError);
-        let durationError = '';
-        if (!app.validQuantity(data.duration, 12)) durationError = 'Укажите целое количество часов от 1 до 12.';
-        else if (data.tariff === 'three-hours' && data.duration !== 3) durationError = 'Для тарифа «3 часа» укажите ровно 3 часа.';
-        check(duration, durationError);
-        let tariffError = '';
-        if (!app.findProduct(tariffs, data.tariff)) tariffError = 'Выберите тариф из списка.';
-        else if (data.zone === 'private' && data.tariff !== 'private') tariffError = 'Для зоны PRIVATE нужен тариф PRIVATE; этот тариф применяется только к PRIVATE.';
-        else if (data.zone && data.zone !== 'private' && data.tariff === 'private') tariffError = 'Для зоны PRIVATE нужен тариф PRIVATE; этот тариф применяется только к PRIVATE.';
-        check(fields.tariff, tariffError);
-        let zoneError = '';
-        if (!data.zone) zoneError = 'Выберите игровую зону или свободный ПК на карте.';
-        check(zoneFieldset, zoneError, zoneRadios[0]);
-        const requestedInterval = interval(data.date, data.time, data.duration);
-        const busy = occupiedSeats(requestedInterval);
-        let seatError = '';
-        if (data.seats.length !== data.players) seatError = `Выберите по одному ПК на игрока: сейчас выбрано ${data.seats.length}.`;
-        for (const id of data.seats) {
-            const seat = app.findProduct(seats, id);
-            if (!seat || seat.zone !== data.zone) seatError = 'Все выбранные ПК должны находиться в одной выбранной зоне.';
-            if (!seatError && !sameRequest(data) && requestedInterval && busy.includes(id)) {
-                seatError = 'Выбранный ПК занят в пересекающееся время на демо-схеме. Снимите выбор и выберите свободные места или другой интервал.';
+        return '';
+    }
+    function showStep(next, focusHeading) {
+        step = next;
+        for (const panel of document.querySelectorAll('[data-step-panel]')) panel.hidden = Number(panel.dataset.stepPanel) !== step;
+        for (const button of document.querySelectorAll('[data-step]')) {
+            if (Number(button.dataset.step) === step) button.setAttribute('aria-current', 'step');
+            else button.removeAttribute('aria-current');
+            button.classList.toggle('is-complete', Number(button.dataset.step) < step);
+        }
+        byId('booking-back').hidden = step === 0;
+        byId('booking-next').hidden = step === 2;
+        byId('booking-submit').hidden = step !== 2;
+        byId('choose-pc-button').hidden = !foodOnly || step === 0;
+        refresh();
+        saveDraft();
+        if (focusHeading) {
+            const panel = document.querySelector('[data-step-panel="' + step + '"]');
+            const heading = panel.querySelector('h2');
+            heading.tabIndex = -1;
+            heading.focus({ preventScroll: true });
+            document.querySelector('.booking-steps').scrollIntoView({ block: 'start', behavior: 'smooth' });
+        }
+    }
+    function goToStep(next) {
+        if (completed) return;
+        showMessage('booking-step-error', '');
+        if (next === 0) { foodOnly = false; showStep(0, true); return; }
+        if (selectedSeats.length > 0) {
+            const error = validateVisit();
+            if (error) { showStep(0, true); showMessage('booking-step-error', error); return; }
+        } else foodOnly = true;
+        if (next === 2 && selectedSeats.length === 0 && food.getCart().length === 0) {
+            showStep(1, true);
+            showMessage('booking-step-error', 'Корзина пока пустая. Добавь еду или выбери ПК.');
+            return;
+        }
+        showStep(next, true);
+    }
+    function continueFlow() {
+        if (dialog.open) dialog.close();
+        if (completed) { newBooking(); return; }
+        if (step === 0) {
+            const error = validateVisit();
+            if (error) {
+                showMessage('booking-step-error', error);
+                if (!selectedSeats.length) byId('seat-map').focus();
+                else fields.date.focus();
+                return;
+            }
+            foodOnly = false;
+            goToStep(1);
+        } else if (step === 1) goToStep(2);
+        else form.requestSubmit();
+    }
+    function saveDraft() {
+        if (completed || syncingDraft) return;
+        app.store.set('visit-draft', {
+            date: fields.date.value, time: fields.time.value, duration: Number(fields.duration.value),
+            tariff: fields.tariff.value, zone: zone, seats: selectedSeats,
+            foodOnly: foodOnly, step: step
+        });
+    }
+    function restoreDraft() {
+        const saved = app.store.get('visit-draft', null);
+        if (!saved || typeof saved !== 'object') return false;
+        const visit = interval(saved.date, saved.time, saved.duration);
+        if (!visit || visit.start <= Date.now()) return false;
+        if (saved.zone !== 'main' && saved.zone !== 'duo' && saved.zone !== 'private') return false;
+        if (!app.findProduct(app.tariffs, saved.tariff)) return false;
+        selectedSeats = [];
+        step = 0;
+        fields.date.value = saved.date;
+        fields.time.value = saved.time;
+        fields.duration.value = saved.duration;
+        fields.tariff.value = saved.tariff;
+        setZone(saved.zone, false);
+        if (Array.isArray(saved.seats)) {
+            for (const id of saved.seats) {
+                const seat = app.findProduct(app.seats, id);
+                if (seat && seat.zone === zone && !selectedSeats.includes(id)) selectedSeats.push(id);
             }
         }
-        check(map, seatError);
-        let commentError = '';
-        if (data.comment.length > 1000) commentError = 'Сократите комментарий до 1 000 символов.';
-        check(fields.comment, commentError);
-        let agreementError = '';
-        if (!fields.agreement.checked) agreementError = 'Подтвердите правильность данных.';
-        check(fields.agreement, agreementError);
-        let message = '';
-        if (invalid.length > 0) {
-            message = `Проверьте поля: ${invalid.length}. Подсказки находятся рядом с каждым полем.`;
-            if (lastAccepted) message += ' Предыдущий принятый демо-запрос сохранён.';
-        }
-        notify(errors, message, 'error');
-        if (focusFirst && invalid.length > 0) invalid[0].focus();
-        return invalid.length === 0;
+        foodOnly = saved.foodOnly === true;
+        if (saved.step === 1 || saved.step === 2) step = saved.step;
+        return true;
     }
 
-    // 5. Показываем сохранённые заявки и обрабатываем их отмену.
-    function renderReservation(item) {
-        const row = el('li', 'list-group-item bg-dark text-light border-secondary');
-        const body = el('div', 'd-flex flex-wrap align-items-start justify-content-between gap-2');
-        const details = el('div', 'text-break');
-        details.append(el('strong', 'd-block', `${zoneNames[item.zone]} · ${item.date}, ${item.time} · ${item.duration} ч.`));
-        details.append(el('span', 'd-block small', seatNames(item.seats)));
-        details.append(el('span', 'd-block small text-body-secondary text-break', item.id));
-        const cancel = el('button', 'btn btn-outline-danger btn-sm text-light', 'Отменить демо-заявку');
-        cancel.type = 'button';
-        cancel.dataset.cancelBooking = item.id;
-        cancel.setAttribute('aria-label', 'Отменить демо-заявку ' + item.id);
-        cancel.addEventListener('click', function () { cancelReservation(item.id); });
-        body.append(details, cancel);
-        row.append(body);
-        return row;
-    }
-
-    function renderReservations() {
-        renderList(localList, reservations, renderReservation, 'Демо-заявок пока нет. После успешной проверки новая заявка появится здесь.');
-    }
-
-    function cancelReservation(id) {
+    // 5. Проверяем контакты и сохраняем демо-заказ без личных данных.
+    function submitOrder(event) {
+        event.preventDefault();
+        if (completed) return;
+        if (step !== 2) { continueFlow(); return; }
         if (storageAvailable) reservations = readReservations();
-        if (!app.findProduct(reservations, id)) {
-            notify(localStatus, 'Эта демо-заявка уже отменена. Список обновлён.');
+        const lines = food.getCart();
+        if (selectedSeats.length > 0) {
+            const error = validateVisit();
+            if (error) { showStep(0, true); showMessage('booking-step-error', error); return; }
+        } else if (lines.length === 0) {
+            showStep(1, true);
+            showMessage('booking-step-error', 'Корзина пустая. Добавь товары или выбери ПК.');
+            return;
+        }
+        app.clearErrors(form);
+        const contacts = app.validateContacts(fields.name.value, fields.email.value, fields.phone.value);
+        if (fields.email.value.trim() === '') contacts.email = '';
+        const invalid = [];
+        function check(field, message) {
+            if (app.setError(field, message)) invalid.push(field);
+        }
+        check(fields.name, contacts.name);
+        check(fields.phone, contacts.phone);
+        check(fields.email, contacts.email);
+        let deliveryError = '';
+        if (lines.length > 0 && byId('food-delivery').value === 'seat') {
+            const id = Number(byId('food-seat').value);
+            if (!app.findProduct(app.seats, id) || (selectedSeats.length > 0 && !selectedSeats.includes(id))) deliveryError = 'Выбери ПК, к которому нужно принести еду.';
+        }
+        check(byId('food-seat'), deliveryError);
+        let agreementError = '';
+        if (!fields.agreement.checked) agreementError = 'Подтверди, что проверил заказ и понимаешь демонстрационный режим.';
+        check(fields.agreement, agreementError);
+        let commentError = '';
+        if (fields.comment.value.trim().length > 1000) commentError = 'Сократи комментарий до 1 000 символов.';
+        check(fields.comment, commentError);
+        if (invalid.length > 0) {
+            showMessage('booking-errors', 'Проверь отмеченные поля — и можно оформлять заказ.');
+            const details = invalid[0].closest('details');
+            if (details) details.open = true;
+            invalid[0].focus();
+            return;
+        }
+        showMessage('booking-errors', '');
+        const id = app.reference('ORDER');
+        const pcTotal = gamesPrice();
+        const foodTotal = food.getTotal();
+        const requested = currentInterval();
+        const entry = {
+            id: id, items: lines, delivery: byId('food-delivery').value,
+            deliverySeat: Number(byId('food-seat').value), createdAt: new Date().toISOString()
+        };
+        let saved = true;
+        if (selectedSeats.length > 0) {
+            entry.date = fields.date.value;
+            entry.time = fields.time.value;
+            entry.duration = Number(fields.duration.value);
+            entry.zone = zone;
+            entry.tariff = fields.tariff.value;
+            entry.seats = selectedSeats.slice();
+            entry.start = requested.start;
+            entry.end = requested.end;
+            reservations.push(entry);
+            saved = app.store.set('bookings', reservations);
+        } else {
+            foodOrders.push(entry);
+            saved = app.store.set('orders', foodOrders);
+        }
+        storageAvailable = saved;
+        completed = true;
+        form.hidden = true;
+        document.querySelector('.booking-steps').hidden = true;
+        showMessage('booking-step-error', '');
+        showMessage('booking-feedback', '');
+        byId('booking-success').hidden = false;
+        byId('booking-success-reference').textContent = id;
+        const details = byId('booking-success-details');
+        details.replaceChildren();
+        details.append(element('p', '', 'Для: ' + fields.name.value.trim() + ' · ' + fields.phone.value.trim()));
+        if (selectedSeats.length > 0) {
+            details.append(element('p', '', seatNames(selectedSeats) + ' · ' + zoneNames[zone]));
+            details.append(element('p', '', fields.date.value + ', ' + fields.time.value + ' по Астане · ' + fields.duration.value + ' ч.'));
+        }
+        for (const line of lines) {
+            const product = app.findProduct(app.menu, line.id);
+            details.append(element('p', '', product.name + ' × ' + line.quantity + ' · ' + app.money(product.price * line.quantity)));
+        }
+        if (lines.length > 0) {
+            let delivery = 'Получение еды: у стойки';
+            if (entry.delivery === 'seat') delivery = 'Еду принести к PC ' + entry.deliverySeat;
+            details.append(element('p', '', delivery));
+        }
+        let price = 'Предварительно: ' + app.money(foodTotal);
+        if (pcTotal !== null && selectedSeats.length > 0) price = 'Предварительно от ' + app.money(pcTotal + foodTotal);
+        if (pcTotal === null) price = 'Стоимость Private уточняется в клубе. Еда: ' + app.money(foodTotal);
+        details.append(element('p', '', price));
+        if (fields.comment.value.trim()) details.append(element('p', '', 'Комментарий: ' + fields.comment.value.trim()));
+        if (byId('headphones').checked) details.append(element('p', '', 'Пожелание: игровые наушники'));
+        let storageNote = 'Контакты не сохранены в браузерном хранилище и не отправлены на сервер.';
+        if (!saved) storageNote = 'Браузер запретил сохранение. Демо-заказ доступен до перезагрузки. Контакты не отправлены на сервер.';
+        byId('booking-storage-note').textContent = storageNote;
+        selectedSeats = [];
+        app.store.set('visit-draft', null);
+        food.clear();
+        renderReservations();
+        refresh();
+        byId('cart-continue').textContent = 'Собрать новый заказ ↗';
+        byId('mobile-next').textContent = 'Новый заказ ↗';
+        byId('booking-success').focus();
+        byId('booking-success').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+    function newBooking() {
+        completed = false;
+        foodOnly = false;
+        selectedSeats = [];
+        zone = 'main';
+        fields.tariff.value = 'hour';
+        defaultVisit();
+        fields.name.value = '';
+        fields.phone.value = '';
+        fields.email.value = '';
+        fields.comment.value = '';
+        fields.agreement.checked = false;
+        byId('headphones').checked = false;
+        app.clearErrors(form);
+        byId('booking-success').hidden = true;
+        form.hidden = false;
+        document.querySelector('.booking-steps').hidden = false;
+        showStep(0, true);
+    }
+    function renderReservations() {
+        const list = byId('local-bookings');
+        list.replaceChildren();
+        byId('local-booking-count').textContent = reservations.length + foodOrders.length;
+        for (const item of reservations) {
+            const row = element('li', 'reservation-row');
+            const copy = element('div', '');
+            copy.append(element('strong', '', seatNames(item.seats) + ' · ' + zoneNames[item.zone]));
+            copy.append(element('p', '', item.date + ' · ' + item.time + ' · ' + item.duration + ' ч.'));
+            if (Array.isArray(item.items) && item.items.length > 0) copy.append(element('p', '', 'Еда и напитки включены в этот демо-заказ.'));
+            copy.append(element('small', '', item.id));
+            const cancel = element('button', 'text-button', 'Отменить');
+            cancel.type = 'button';
+            cancel.dataset.cancelBooking = item.id;
+            cancel.setAttribute('aria-label', 'Отменить демо-заявку ' + item.id);
+            cancel.addEventListener('click', function () { cancelOrder(item.id, false); });
+            row.append(copy, cancel);
+            list.append(row);
+        }
+        for (const item of foodOrders) {
+            const row = element('li', 'reservation-row');
+            const copy = element('div', '');
+            copy.append(element('strong', '', 'Еда и напитки · ' + app.money(app.cartTotals(item.items, app.menu).total)));
+            for (const line of item.items) copy.append(element('p', '', app.findProduct(app.menu, line.id).name + ' × ' + line.quantity));
+            copy.append(element('small', '', item.id));
+            const cancel = element('button', 'text-button', 'Отменить');
+            cancel.type = 'button';
+            cancel.dataset.cancelOrder = item.id;
+            cancel.addEventListener('click', function () { cancelOrder(item.id, true); });
+            row.append(copy, cancel);
+            list.append(row);
+        }
+        if (list.children.length === 0) list.append(element('li', 'field-help', 'Пока нет заявок. Здесь появятся твои демо-заказы.'));
+    }
+    function cancelOrder(id, onlyFood) {
+        if (storageAvailable) { reservations = readReservations(); foodOrders = readFoodOrders(); }
+        let items = reservations;
+        let key = 'bookings';
+        if (onlyFood) { items = foodOrders; key = 'orders'; }
+        for (let index = 0; index < items.length; index++) {
+            if (items[index].id === id) { items.splice(index, 1); break; }
+        }
+        const saved = app.store.set(key, items);
+        storageAvailable = saved;
+        let message = 'Демо-заказ отменён. Места освобождены на учебной схеме.';
+        if (onlyFood) message = 'Демо-заказ еды отменён.';
+        if (!saved) message += ' Сохранение недоступно, изменение действует до перезагрузки.';
+        byId('local-bookings-status').textContent = message;
+        renderReservations();
+        refresh();
+        byId('local-bookings-status').focus();
+    }
+
+    // 6. На телефоне та же корзина открывается в обычном диалоге браузера.
+    function openCart() {
+        if (dialog.open) return;
+        dialog.append(cartContent);
+        dialog.showModal();
+        document.body.style.overflow = 'hidden';
+    }
+    dialog.addEventListener('close', function () {
+        byId('order-rail').prepend(cartContent);
+        document.body.style.overflow = '';
+    });
+    byId('cart-open').addEventListener('click', openCart);
+    byId('cart-close').addEventListener('click', function () { dialog.close(); });
+    dialog.addEventListener('click', function (event) { if (event.target === dialog) dialog.close(); });
+    window.addEventListener('resize', function () { if (window.innerWidth >= 1000 && dialog.open) dialog.close(); });
+    for (const button of document.querySelectorAll('[data-seat-id]')) {
+        button.addEventListener('click', function () { toggleSeat(Number(button.dataset.seatId)); });
+    }
+    for (const button of document.querySelectorAll('[data-zone-pick]')) {
+        button.addEventListener('click', function () { setZone(button.dataset.zonePick, true); foodOnly = false; saveDraft(); refresh(); });
+    }
+    for (const button of document.querySelectorAll('[data-tariff-pick]')) {
+        button.addEventListener('click', function () { setTariff(button.dataset.tariffPick); });
+    }
+    for (const button of document.querySelectorAll('[data-step]')) button.addEventListener('click', function () { goToStep(Number(button.dataset.step)); });
+    for (const button of document.querySelectorAll('[data-edit-step]')) button.addEventListener('click', function () { if (dialog.open) dialog.close(); goToStep(Number(button.dataset.editStep)); });
+    byId('booking-next').addEventListener('click', continueFlow);
+    byId('cart-continue').addEventListener('click', continueFlow);
+    byId('mobile-next').addEventListener('click', continueFlow);
+    byId('booking-back').addEventListener('click', function () { goToStep(Math.max(0, step - 1)); });
+    byId('choose-pc-button').addEventListener('click', function () { goToStep(0); });
+    byId('food-only-button').addEventListener('click', function () {
+        selectedSeats = [];
+        foodOnly = true;
+        showMessage('booking-step-error', '');
+        showStep(1, true);
+    });
+    byId('clear-seat-selection').addEventListener('click', function () { selectedSeats = []; saveDraft(); refresh(); });
+    byId('duration-decrease').addEventListener('click', function () { fields.duration.stepDown(); saveDraft(); refresh(); });
+    byId('duration-increase').addEventListener('click', function () { fields.duration.stepUp(); saveDraft(); refresh(); });
+    byId('date-today').addEventListener('click', function () { fields.date.value = app.today(); saveDraft(); refresh(); });
+    byId('date-tomorrow').addEventListener('click', function () { fields.date.value = dateInAstana(new Date(app.localDateTime(app.today(), '12:00') + 24 * 60 * 60 * 1000)); saveDraft(); refresh(); });
+    form.addEventListener('input', function (event) {
+        if (event.target === fields.date || event.target === fields.time || event.target === fields.duration) { showMessage('booking-step-error', ''); saveDraft(); refresh(); }
+        else if (event.target.id) app.setError(event.target, '');
+    });
+    form.addEventListener('change', function (event) {
+        if (event.target === fields.tariff) { setTariff(fields.tariff.value); return; }
+        if (event.target.name === 'gaming-zone') { setZone(event.target.value, true); saveDraft(); refresh(); return; }
+        if (event.target === byId('food-delivery')) updateDelivery();
+        if (event.target.id) app.setError(event.target, '');
+    });
+    byId('food-search').addEventListener('keydown', function (event) { if (event.key === 'Enter') event.preventDefault(); });
+    form.addEventListener('submit', submitOrder);
+    byId('new-booking-button').addEventListener('click', newBooking);
+    food.onChange(function () { refresh(); });
+    window.addEventListener('storage', function (event) {
+        if (event.key === 'topgame-visit-draft' && !completed) {
+            syncingDraft = true;
+            if (!restoreDraft()) {
+                selectedSeats = [];
+                foodOnly = false;
+                step = 0;
+            }
+            showStep(step, false);
+            syncingDraft = false;
+            showMessage('booking-feedback', 'Выбор мест обновлён в другой вкладке.');
+            return;
+        }
+        if (event.key === 'topgame-bookings' || event.key === 'topgame-orders' || event.key === null) {
+            reservations = readReservations();
+            foodOrders = readFoodOrders();
             renderReservations();
             refresh();
-            localStatus.focus();
-            return;
+            if (!completed) showMessage('booking-feedback', 'Заказы и занятость обновлены после изменения в другой вкладке.');
         }
-        for (let index = 0; index < reservations.length; index++) {
-            if (reservations[index].id === id) {
-                reservations.splice(index, 1);
-                break;
-            }
-        }
-        const saved = store.set('bookings', reservations);
-        storageAvailable = saved;
-        let message = `Демо-заявка ${id} отменена, места освобождены на учебной схеме.`;
-        if (!saved) message += ' Браузер не разрешил сохранение; изменение действует до перезагрузки.';
-        notify(localStatus, message);
-        if (lastAccepted && lastAccepted.id === id) {
-            lastAccepted = null;
-            notify(success, 'Последняя демо-заявка отменена. Можно подготовить новую.');
-            list.replaceChildren();
-            list.classList.add('hidden');
-        }
-        renderReservations();
-        refresh();
-        localStatus.focus();
-    }
-
-    // 6. События связывают кнопки и поля с нужными функциями.
-    function submitBooking(event) {
+    });
+    byId('nav-cart').addEventListener('click', function (event) {
         event.preventDefault();
-        if (storageAvailable) reservations = readReservations();
-        attempted = true;
-        if (!validate(true)) {
-            updateMap(values());
-            return;
+        const toggle = byId('main-navigation-toggle');
+        toggle.checked = false;
+        toggle.setAttribute('aria-expanded', 'false');
+        history.replaceState(null, '', location.pathname + location.search + '#food-cart');
+        if (window.innerWidth < 1000) openCart();
+        else cartContent.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+    function openFromHash() {
+        if (location.hash === '#seat-map' || location.hash === '#tariff-selection' || location.hash === '#gaming-zone-selection') {
+            foodOnly = false;
+            showStep(0, false);
         }
-        const data = values();
-        const fingerprint = JSON.stringify(data);
-        if (sameRequest(data)) {
-            resultStatus.textContent = 'Этот демо-запрос уже принят в этом браузере. Повторная заявка не создана.';
-            return;
-        }
-        const requestedInterval = interval(data.date, data.time, data.duration);
-        const id = reference('BOOK');
-        const entry = { id: id, date: data.date, time: data.time, duration: data.duration, seats: data.seats, zone: data.zone, tariff: data.tariff, start: requestedInterval.start, end: requestedInterval.end };
-        reservations.push(entry);
-        const saved = store.set('bookings', reservations);
-        storageAvailable = saved;
-        lastAccepted = { id: id, data: entry, fingerprint: fingerprint };
-        const price = estimate(data);
-        let priceLabel = 'предварительная оценка';
-        if (data.tariff === 'private') priceLabel = 'опубликованный минимум';
-        let headphones = 'не запрошены';
-        if (data.headphones) headphones = 'нужны';
-        const confirmation = [
-            `Игрок: ${data.name}`, `Контакты: ${data.email}; ${data.phone}`,
-            `Зона: ${zoneNames[data.zone]}; ПК: ${data.seats.join(', ')}; игроков: ${data.players}`,
-            `Визит: ${data.date}, ${data.time} по Астане; желаемая длительность: ${data.duration} ч.`,
-            `Тариф: ${app.findProduct(tariffs, data.tariff).name}; ${priceLabel}: от ${money(price.amount)}`,
-            `Наушники: ${headphones}`
-        ];
-        if (data.comment) confirmation.push(`Комментарий: ${data.comment}`);
-        if (data.tariff === 'night' || data.tariff === 'private') confirmation.push('Условия пакета и окончательную стоимость необходимо уточнить у клуба.');
-        renderList(list, confirmation, renderConfirmation);
-        list.classList.remove('hidden');
-        let savedWhere = 'в этом браузере';
-        if (!saved) savedWhere = 'до перезагрузки страницы: сохранение браузером недоступно';
-        notify(success, `Демо-заявка ${id} сохранена ${savedWhere}. Контакты не сохраняются и не отправляются. Реальное бронирование и оплата не создаются.`, 'success');
-        resultStatus.textContent = 'Проверка пройдена. Принятый запрос показан ниже; текущий выбор можно изменить для следующего запроса.';
-        renderReservations();
-        updateMap(data);
-        success.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        if (location.hash === '#food-menu') { if (!selectedSeats.length) foodOnly = true; showStep(1, false); }
+        if (location.hash === '#food-cart') { if (window.innerWidth < 1000) openCart(); else cartContent.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
     }
+    window.addEventListener('hashchange', openFromHash);
 
-    function renderConfirmation(text) {
-        return el('li', 'list-group-item text-break bg-dark text-light border-secondary', text);
-    }
-
-    function onBookingInput(event) {
-        if (event.target.matches('input, textarea')) refresh();
-    }
-
-    function onBookingChange(event) {
-        if (event.target === fields.tariff && fields.tariff.value === 'three-hours') duration.value = '3';
-        if (event.target.matches('[name="gaming-zone"]')) {
-            const removed = selectedSeats.length;
-            selectedSeats = [];
-            if (event.target.value === 'duo') fields.players.value = '2';
-            let message = 'Выбрана зона ' + zoneNames[event.target.value] + '.';
-            if (removed) message += ' Предыдущий выбор ПК очищен.';
-            notify(mapFeedback, message + ' Выберите компьютеры на карте.');
-        }
-        refresh();
-    }
-
-    function resetBooking(event) {
-        event.preventDefault();
-        for (const field of form.querySelectorAll('input')) {
-            if (field.type === 'radio' || field.type === 'checkbox') field.checked = false;
-            else if (field === fields.players || field === duration) field.value = '1';
-            else field.value = '';
-        }
-        fields.tariff.value = '';
-        fields.comment.value = '';
-        selectedSeats = [];
-        lastAccepted = null;
-        attempted = false;
-        clearErrors(form);
-        notify(errors, '');
-        notify(success, '');
-        notify(mapFeedback, 'Форма и выбор ПК очищены. Сохранённые демо-заявки можно отменить в списке ниже.');
-        list.replaceChildren();
-        list.classList.add('hidden');
-        refresh();
-        fields.name.focus();
-    }
-
-    function syncBookings(event) {
-        if (event.key !== 'topgame-bookings' && event.key !== null) return;
-        reservations = readReservations();
-        if (lastAccepted && !acceptedRequestExists()) {
-            lastAccepted = null;
-            notify(success, 'Предыдущая демо-заявка удалена в другой вкладке.');
-            list.replaceChildren();
-            list.classList.add('hidden');
-        }
-        notify(localStatus, 'Список демо-заявок и занятость обновлены после изменения в другой вкладке.');
-        renderReservations();
-        refresh();
-    }
-
-    form.addEventListener('submit', submitBooking);
-    form.addEventListener('input', onBookingInput);
-    form.addEventListener('change', onBookingChange);
-    form.addEventListener('reset', resetBooking);
-    window.addEventListener('storage', syncBookings);
-
-    // Переход с тарифов или игр может заранее заполнить часть формы.
-    const params = new URLSearchParams(window.location.search);
-    if (app.findProduct(tariffs, params.get('tariff'))) fields.tariff.value = params.get('tariff');
-    let initialZone = params.get('zone');
-    if (!initialZone && fields.tariff.value === 'private') initialZone = 'private';
-    if (initialZone === 'main' || initialZone === 'duo' || initialZone === 'private') chooseZone(initialZone);
-    const initialPlayers = Number(params.get('players'));
-    if (Number.isInteger(initialPlayers) && initialPlayers >= 1 && initialPlayers <= seats.length) fields.players.value = String(initialPlayers);
-    const initialDuration = Number(params.get('hours'));
-    if (Number.isInteger(initialDuration) && initialDuration >= 1 && initialDuration <= 12) duration.value = String(initialDuration);
-    if (fields.tariff.value === 'three-hours') duration.value = '3';
-    const initialDate = params.get('date') || '';
-    if (validDate(initialDate) && initialDate >= today()) fields.date.value = initialDate;
-    if (params.get('game')) fields.comment.value = `Предпочтительная игра: ${params.get('game').slice(0, 150)}`;
-    reservations = readReservations();
+    defaultVisit();
+    restoreDraft();
+    const params = new URLSearchParams(location.search);
+    if (app.findProduct(app.tariffs, params.get('tariff'))) { fields.tariff.value = params.get('tariff'); step = 0; }
+    if (fields.tariff.value === 'private') setZone('private', false);
+    const initialZone = params.get('zone');
+    if (initialZone === 'main' || initialZone === 'duo' || initialZone === 'private') { setZone(initialZone, false); step = 0; }
+    if (app.validQuantity(Number(params.get('hours')), 12)) fields.duration.value = params.get('hours');
+    if (fields.tariff.value === 'three-hours') fields.duration.value = '3';
+    const initialDate = params.get('date');
+    if (validDate(initialDate) && initialDate >= app.today()) fields.date.value = initialDate;
+    if (params.get('game')) fields.comment.value = 'Предпочтительная игра: ' + params.get('game').slice(0, 150);
     renderReservations();
-    refresh();
+    showStep(step, false);
+    openFromHash();
 }
 
 setupBooking();

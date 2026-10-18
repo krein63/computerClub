@@ -1,0 +1,77 @@
+{
+  "purpose": "Иллюстрации шести игр в учебном каталоге TOP GAME. Все изображения получены из официальных источников; права принадлежат указанным правообладателям.",
+  "assets": [
+    {
+      "id": "cs2",
+      "name": "Counter-Strike 2",
+      "filename": "cs2.jpg",
+      "source_page": "https://store.steampowered.com/app/730/CounterStrike_2/",
+      "image_url": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/730/6328493f4cc4a8fb83e1149be1cac5a7823fe588/capsule_616x353.jpg?t=1791824795",
+      "owner": "Valve",
+      "description": "Официальная обложка Steam с персонажами и логотипом Counter-Strike 2.",
+      "local_file": "images/games/cs2.jpg",
+      "verified_on": "2026-10-18",
+      "note": "Промоматериал игры. Изображение не подтверждает установку или доступность игры в клубе."
+    },
+    {
+      "id": "dota2",
+      "name": "Dota 2",
+      "filename": "dota2.jpg",
+      "source_page": "https://store.steampowered.com/app/570/Dota_2/",
+      "image_url": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/570/capsule_616x353.jpg?t=1791407503",
+      "owner": "Valve",
+      "description": "Официальная обложка Steam с героями и логотипом Dota 2.",
+      "local_file": "images/games/dota2.jpg",
+      "verified_on": "2026-10-18",
+      "note": "Промоматериал игры. Изображение не подтверждает установку или доступность игры в клубе."
+    },
+    {
+      "id": "valorant",
+      "name": "VALORANT",
+      "filename": "valorant.png",
+      "source_page": "https://playvalorant.com/en-us/",
+      "image_url": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/news/7b76209193f1bfe190d3ae6ef8728328870be9c3-736x138.png?accountingTag=VAL",
+      "owner": "Riot Games",
+      "description": "Официальный глобальный логотип VALORANT из главного блока сайта Riot Games.",
+      "local_file": "images/games/valorant.png",
+      "verified_on": "2026-10-18",
+      "note": "Промоматериал игры. Изображение не подтверждает установку или доступность игры в клубе."
+    },
+    {
+      "id": "lol",
+      "name": "League of Legends",
+      "filename": "league-of-legends.jpg",
+      "source_page": "https://www.leagueoflegends.com/en-us/",
+      "image_url": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/news/565197caf987af4e4da307df6e2b235a28714736-837x469.jpg?accountingTag=LoL?w=1200&h=630&fm=webp&fit=crop&crop=center",
+      "owner": "Riot Games",
+      "description": "Официальный логотип League of Legends из Open Graph главной страницы игры.",
+      "local_file": "images/games/league-of-legends.jpg",
+      "verified_on": "2026-10-18",
+      "note": "Промоматериал игры. Изображение не подтверждает установку или доступность игры в клубе."
+    },
+    {
+      "id": "rocket-league",
+      "name": "Rocket League",
+      "filename": "rocket-league.jpg",
+      "source_page": "https://www.rocketleague.com/",
+      "image_url": "https://cms-assets.unrealengine.com/cmkr1i7c9047e07n0es5291ez/output=format:webp/cmu5yg9qz118q08omc9mqo50e",
+      "owner": "Psyonix / Epic Games",
+      "description": "Официальная иллюстрация Rocket League с игровыми автомобилями, блок Season 24 на главной странице.",
+      "local_file": "images/games/rocket-league.jpg",
+      "verified_on": "2026-10-18",
+      "note": "Промоматериал игры. Изображение не подтверждает установку или доступность игры в клубе."
+    },
+    {
+      "id": "civilization",
+      "name": "Sid Meier’s Civilization VI",
+      "filename": "civilization-vi.jpg",
+      "source_page": "https://store.steampowered.com/app/289070/Sid_Meiers_Civilization_VI/",
+      "image_url": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/289070/capsule_616x353.jpg?t=1784651829",
+      "owner": "Firaxis Games / 2K",
+      "description": "Официальная обложка Steam с логотипом Civilization VI и статуей Атланта.",
+      "local_file": "images/games/civilization-vi.jpg",
+      "verified_on": "2026-10-18",
+      "note": "Промоматериал игры. Изображение не подтверждает установку или доступность игры в клубе."
+    }
+  ]
+}

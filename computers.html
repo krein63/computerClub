@@ -2,6 +2,7 @@
 <html lang="ru" data-bs-theme="dark">
     <head>
         <meta charset="UTF-8">
+    <link rel="icon" type="image/svg+xml" href="images/logo-mark-white.svg">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="Компьютеры, игровые зоны и периферия компьютерного клуба Top Game в Астане">
         <meta name="author" content="Ulan">
@@ -16,27 +17,25 @@
         <script src="js/computers.js" defer></script>
     </head>
     <body id="page-top" class="bg-dark text-light">
-        <a id="skip-content" href="#computers-content" class="visually-hidden-focusable d-inline-block p-3 link-light">Перейти к содержимому</a><!-- Authors: Ulan-->
+        <a id="skip-content" href="#computers-content" class="skip-link">К содержимому</a><!-- Authors: Ulan-->
         <!-- Bootstrap navbar layout; the mobile menu uses an HTML checkbox and CSS so the site needs no JavaScript. -->
-        <header id="site-header" class="navbar navbar-expand-xl bg-dark border-bottom border-danger border-3 py-3" data-bs-theme="dark">
-    <div class="container-fluid px-3 px-lg-4">
-        <a id="brand-link" href="index.html" aria-label="Главная страница TOP GAME" class="navbar-brand d-flex align-items-center gap-2 fw-bold"><img src="images/logo.png" alt="Логотип TOP GAME" width="44" height="44" class="img-fluid object-fit-contain"><span>TOP GAME</span></a>
-        <input type="checkbox" id="main-navigation-toggle" class="navbar-toggler-check visually-hidden d-xl-none" aria-controls="main-navigation">
-        <label for="main-navigation-toggle" class="navbar-toggler d-xl-none"><span class="visually-hidden">Открыть или закрыть меню</span><span class="navbar-toggler-icon" aria-hidden="true"></span></label>
-        <div id="main-navigation" class="navbar-collapse">
-<nav aria-label="Основная навигация" class="flex-grow-1"><ul class="navbar-nav mx-xl-auto gap-xl-1">
-<li class="nav-item"><a id="nav-index" href="index.html" class="nav-link px-2">Главная</a></li>
-<li class="nav-item"><a id="nav-prices" href="prices.html" class="nav-link px-2">Цены</a></li>
-<li class="nav-item"><a id="nav-computers" href="computers.html" class="nav-link px-2 active fw-bold" aria-current="page">Компьютеры</a></li>
-<li class="nav-item"><a id="nav-booking" href="booking.html" class="nav-link px-2">Бронирование</a></li>
-<li class="nav-item"><a id="nav-games" href="games.html" class="nav-link px-2">Игры</a></li>
-<li class="nav-item"><a id="nav-rules" href="rules.html" class="nav-link px-2">Правила</a></li>
-<li class="nav-item"><a id="nav-about" href="about.html" class="nav-link px-2">О клубе</a></li>
-<li class="nav-item"><a id="nav-food" class="nav-link px-2" href="booking.html#food-menu">Еда</a></li>
-<li class="nav-item"><a id="nav-cart" class="nav-link px-2" href="booking.html#food-cart">Корзина · 0</a></li>
-</ul></nav>
-        <a id="header-booking-link" href="booking.html#booking-form" class="btn btn-danger btn-sm mt-3 mt-xl-0 ms-xl-3">Забронировать</a>
-</div>
+        <header id="site-header" class="club-header">
+    <div class="club-header-inner">
+        <a id="brand-link" class="club-brand" href="index.html" aria-label="TOP GAME — главная"><img src="images/logo-mark-white.svg" alt="" width="34" height="34"><span><strong>TOP<span>GAME</span></strong><small>COMPUTER CLUB · ASTANA</small></span></a>
+        <input id="main-navigation-toggle" class="navbar-toggler-check visually-hidden" type="checkbox" aria-controls="main-navigation" aria-label="Открыть меню">
+        <label for="main-navigation-toggle" class="club-menu-toggle"><span aria-hidden="true">☰</span><span class="visually-hidden">Меню</span></label>
+        <div id="main-navigation" class="club-navigation navbar-collapse">
+            <nav class="club-nav-links" aria-label="Основная навигация"><a id="nav-index" href="index.html">Главная</a>
+<a id="nav-prices" href="prices.html">Тарифы</a>
+<a id="nav-computers" href="computers.html" aria-current="page">Компьютеры</a>
+<a id="nav-booking" href="booking.html">Бронирование</a>
+<a id="nav-games" href="games.html">Игры</a>
+<a id="nav-rules" href="rules.html">Правила</a>
+<a id="nav-about" href="about.html">О клубе</a>
+</nav>
+            <a id="nav-cart" class="header-cart" href="booking.html#food-cart">Корзина · 0</a>
+            <a id="header-booking-link" class="button button-primary" href="booking.html#seat-map">Выбрать ПК <span aria-hidden="true">↗</span></a>
+        </div>
     </div>
 </header>
         <!-- container limits long text to a readable width and stays centered at each Bootstrap breakpoint. -->
@@ -281,27 +280,9 @@
                 <a href="booking.html" class="btn btn-danger" id="computers-a-6">Забронировать</a>
             </aside>
         </main>
-        <footer id="site-footer" class="bg-dark text-white py-5 mt-4">
-    <div class="container"><div class="row g-4 align-items-start">
-        <section class="col-12 col-md-6 col-lg-4" aria-labelledby="footer-brand-title">
-            <h2 id="footer-brand-title" class="h5 fw-bold mb-3">TOP GAME</h2>
-            <p><img src="images/logo-mark-white.svg" alt="Знак TOP GAME" width="36" class="img-fluid me-2">Киберспортивный клуб в центре Астаны.</p>
-            <p class="mb-0">Круглосуточно, 24/7</p>
-        </section>
-        <section class="col-12 col-md-6 col-lg-4" aria-labelledby="footer-contacts-title">
-            <h2 id="footer-contacts-title" class="h5 fw-bold mb-3">Контакты</h2>
-            <address class="fst-normal">
-<p>Астана, ул. Динмухамеда Кунаева, 23</p>
-<a id="footer-phone" href="tel:+77064005040" class="link-light">+7 706 400 50 40</a>
-</address>
-            <a id="footer-map" href="https://2gis.kz/astana/firm/70000001080411948" target="_blank" rel="noopener noreferrer" class="link-light">Посмотреть клуб в 2GIS</a>
-        </section>
-        <div class="col-12 col-md-6 col-lg-4">
-<p>© 2026 TOP GAME</p>
-<p><a id="footer-contacts-link" href="about.html#contacts" class="link-light">Адрес и контакты</a></p>
-<a id="footer-rules-link" href="rules.html" class="link-light">Правила клуба</a>
-</div>
-    </div></div>
+        <footer id="site-footer" class="club-footer">
+    <div class="footer-main"><div><p class="footer-brand">TOP GAME</p><p>Твоё место для хорошей игры.</p><p>Астана · круглосуточно</p></div><nav class="footer-links" aria-label="Информация о клубе"><a href="prices.html">Тарифы</a><a href="computers.html">Компьютеры</a><a href="games.html">Игры</a><a href="about.html">О клубе</a><a href="rules.html">Правила клуба</a></nav><div class="footer-address"><a href="tel:+77064005040">+7 706 400 50 40</a><p>ул. Динмухамеда Кунаева, 23</p><p>Астана, Казахстан</p></div></div>
+    <div class="footer-bottom"><span>© TOP GAME · Учебный проект</span><span>Бронирования и заказы на сайте демонстрационные</span></div>
 </footer>
     </body>
 </html>

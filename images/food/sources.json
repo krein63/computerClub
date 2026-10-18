@@ -1,9 +1,13 @@
 [
   {
     "id": "burger",
-    "image": "https://eda.yandex.ru/images/12773219/7d4233d0d0ad4670995ea9817b86ac6f-orig.jpg",
-    "source": "https://eda7.ru/novye-doma/rest/cyberx-lounge-6nx3z/",
-    "note": "Фото меню CyberX, иллюстрация для учебного проекта; ассортимент TopGame не подтверждён."
+    "image": "https://upload.wikimedia.org/wikipedia/commons/7/73/Fried_chicken_sandwich.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Fried_chicken_sandwich.jpg",
+    "note": "Реальная фотография куриного бургера. Иллюстрация учебного меню; не фото блюда TOP GAME.",
+    "author": "Breawycker",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "changes": "Уменьшено до 1400 × 787, JPEG 82%; кадр и содержимое не изменены."
   },
   {
     "id": "sandwich",
@@ -13,9 +17,13 @@
   },
   {
     "id": "fries",
-    "image": "https://eda.yandex.ru/images/13802765/d39aea2c2f7b41a6bb79b046e5f28da8-orig.jpg",
-    "source": "https://eda7.ru/novye-doma/rest/cyberx-lounge-6nx3z/",
-    "note": "Фото меню CyberX, иллюстрация для учебного проекта; ассортимент TopGame не подтверждён."
+    "image": "https://upload.wikimedia.org/wikipedia/commons/f/f4/Food_burger_003_beef_with_cheddar_and_bacon.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Food_burger_003_beef_with_cheddar_and_bacon.jpg",
+    "note": "Реальная фотография говяжьего бургера. Иллюстрация учебного меню; не фото блюда TOP GAME. Имя fries.jpg сохранено для совместимости корзины.",
+    "author": "Jan Helebrant",
+    "license": "CC0 1.0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "changes": "Уменьшено до 1400 × 1050, JPEG 82%; кадр и содержимое не изменены."
   },
   {
     "id": "chips",

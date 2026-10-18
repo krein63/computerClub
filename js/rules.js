@@ -26,8 +26,7 @@ function setupRules() {
     const checklist = document.getElementById('departure-list');
     const checkboxes = checklist.querySelectorAll('input');
     const progress = document.getElementById('departure-progress');
-    const remainingLabel = document.getElementById('departure-remaining-label');
-    const remainingList = document.getElementById('departure-remaining');
+    const meter = document.getElementById('departure-meter');
     const complete = document.getElementById('departure-complete');
     const message = document.getElementById('departure-confirmation');
     let selectedSituation = '';
@@ -61,9 +60,9 @@ function setupRules() {
             list.append(situation.column);
         }
         if (matches.length === 0) {
-            list.append(app.el('p', 'mb-0', 'Подходящих ситуаций нет. Измените запрос или сбросьте поиск.'));
+            list.append(app.el('p', '', 'Ничего не найдено. Измени запрос или сбрось поиск.'));
         }
-        count.textContent = 'Найдено ситуаций: ' + matches.length + ' из ' + situations.length;
+        count.textContent = 'Найдено: ' + matches.length + ' из ' + situations.length;
         showInstructions(selected);
     }
 
@@ -74,7 +73,7 @@ function setupRules() {
         detailTitle.textContent = situation.title;
         detailSteps.replaceChildren();
         for (const step of situation.steps) {
-            detailSteps.append(app.el('li', 'mb-2', step));
+            detailSteps.append(app.el('li', '', step));
         }
         detailNext.textContent = situation.action;
         detailNext.href = situation.link;
@@ -106,30 +105,18 @@ function setupRules() {
         search.focus();
     }
 
-    // 3. Считаем отметки и выводим оставшиеся пункты проверки.
+    // 3. Считаем отметки и заполняем полосу прогресса.
     function updateChecklist() {
         completedCount = 0;
-        remainingList.replaceChildren();
         for (const checkbox of checkboxes) {
             const row = checkbox.parentElement;
             row.classList.toggle('selected', checkbox.checked);
-            if (checkbox.checked) {
-                completedCount += 1;
-            } else {
-                const label = row.querySelector('label');
-                remainingList.append(app.el('li', 'mb-2', label.textContent));
-            }
+            if (checkbox.checked) completedCount += 1;
         }
         const ready = completedCount === checkboxes.length;
-        let hint = 'Отметьте оставшиеся действия.';
-        if (ready) {
-            hint = 'Можно завершить проверку.';
-            remainingList.append(app.el('li', 'mb-2', 'Все пункты отмечены.'));
-        }
-        progress.textContent = 'Выполнено: ' + completedCount + ' из ' + checkboxes.length + '. ' + hint;
-        progress.classList.toggle('success', ready);
+        progress.textContent = completedCount + ' из ' + checkboxes.length;
+        meter.value = completedCount;
         complete.disabled = !ready;
-        remainingLabel.classList.toggle('hidden', ready);
         app.notify(message, '');
     }
 
@@ -147,16 +134,25 @@ function setupRules() {
         checkboxes[0].focus();
     }
 
-    controls.addEventListener('input', renderHelp);
-    controls.addEventListener('change', renderHelp);
+    // Открываем подробное правило, если на него ведёт ссылка с другой страницы.
+    function openLinkedRule() {
+        const id = window.location.hash.slice(1);
+        const target = document.getElementById(id);
+        if (target && target.matches('details.rule-card')) target.open = true;
+    }
+
+    search.addEventListener('input', renderHelp);
+    category.addEventListener('change', renderHelp);
     controls.addEventListener('submit', searchHelp);
     document.getElementById('rules-filter-reset').addEventListener('click', resetFilters);
     document.getElementById('rules-detail-close').addEventListener('click', closeInstructions);
     checklist.addEventListener('change', updateChecklist);
     complete.addEventListener('click', completeChecklist);
     document.getElementById('departure-reset').addEventListener('click', resetChecklist);
+    window.addEventListener('hashchange', openLinkedRule);
     renderHelp();
     updateChecklist();
+    openLinkedRule();
 }
 
 setupRules();

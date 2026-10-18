@@ -61,7 +61,7 @@ function setupAbout() {
     }
 
     function updateCounter() {
-        counter.textContent = `${text.value.length} / 1000 символов. Минимум 20 символов без пробелов по краям.`;
+        counter.textContent = `${text.value.length} / 1000 · минимум 20 символов`;
     }
 
     // 3. Копируем HTML-шаблон и заполняем его безопасным текстом.
@@ -69,7 +69,7 @@ function setupAbout() {
         const card = template.content.firstElementChild.cloneNode(true);
         card.querySelector('article').dataset.review = review.id;
         card.querySelector('[data-review-name]').textContent = review.name;
-        card.querySelector('[data-review-rating]').textContent = `Оценка: ${review.rating} из 5`;
+        card.querySelector('[data-review-rating]').textContent = '★ ' + review.rating + ' / 5';
         card.querySelector('[data-review-text]').textContent = review.text;
         const date = card.querySelector('time');
         date.dateTime = review.createdAt;
@@ -100,12 +100,12 @@ function setupAbout() {
             }
         }
         matches.sort(compareReviews);
-        let emptyText = 'Отзывов с такой оценкой нет. Выберите другую оценку или сбросьте фильтр.';
+        let emptyText = 'С такой оценкой пока нет отзывов. Попробуй другой фильтр.';
         if (reviews.length === 0) {
-            emptyText = 'Отзывы пока не добавлены. Создайте свой демонстрационный отзыв в форме выше.';
+            emptyText = 'Отзывов пока нет. Можно оставить первый в форме выше.';
         }
         app.renderList(list, matches, renderReview, emptyText);
-        count.textContent = `Показано отзывов: ${matches.length} из ${reviews.length}`;
+        count.textContent = `${matches.length} из ${reviews.length} отзывов`;
     }
 
     function removeReview(event) {
@@ -158,7 +158,7 @@ function setupAbout() {
         updateCounter();
         let message = 'Демонстрационный отзыв добавлен на текущую страницу. Браузер не разрешил сохранение: после перезагрузки он исчезнет. Данные не отправлены на сервер.';
         if (saved) {
-            message = 'Демонстрационный отзыв добавлен в этом браузере. Данные не отправлены на сервер и не опубликованы клубом.';
+            message = 'Отзыв сохранён в этом браузере. В клуб он не отправлен.';
         }
         app.notify(status, message, 'success');
     }

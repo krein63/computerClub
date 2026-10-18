@@ -5,48 +5,20 @@ function setupFood() {
     const menu = app.menu;
     const maxQuantity = 20;
     const categoryNames = { food: 'Еда', snacks: 'Снеки', drinks: 'Напитки' };
-    let cart = readCart();
-
-    // Ссылка на корзину нужна на каждой странице.
     const cartLink = document.getElementById('nav-cart');
-    updateBadge();
-    window.addEventListener('storage', syncCart);
-
-    const resultContainer = document.getElementById('booking-result');
-    if (!resultContainer) return;
-
-    // Находим элементы, с которыми дальше работает JavaScript.
-    const cartRows = document.getElementById('food-cart-items');
-    const cartTotal = document.getElementById('food-cart-total');
-    const clearButton = document.getElementById('food-cart-clear');
-    const feedback = document.getElementById('food-feedback');
-    const orderForm = document.getElementById('food-order-form');
-    const name = document.getElementById('food-name');
-    const email = document.getElementById('food-email');
-    const phone = document.getElementById('food-phone');
-    const delivery = document.getElementById('food-delivery');
-    const seatColumn = document.getElementById('food-seat-column');
-    const seat = document.getElementById('food-seat');
-    const agreement = document.getElementById('food-agreement');
-    const checkout = document.getElementById('food-checkout');
-    const formStatus = document.getElementById('food-order-status');
-    const orderSuccess = document.getElementById('food-order-success');
     const search = document.getElementById('food-search');
     const category = document.getElementById('food-category');
     const sort = document.getElementById('food-sort');
-    const available = document.getElementById('food-available');
-    const resetButton = document.getElementById('food-reset');
     const count = document.getElementById('food-count');
     const menuCards = document.getElementById('food-cards');
+    const categoryButtons = document.querySelectorAll('[data-food-category]');
+    let cart = readCart();
+    let selectedCategory = 'all';
+    let changeCallback = null;
 
-    for (const computer of app.seats) {
-        const option = app.el('option');
-        option.value = computer.id;
-        option.textContent = `ПК ${String(computer.id).padStart(2, '0')} · ${computer.zone.toUpperCase()}`;
-        seat.append(option);
-    }
+    if (category) selectedCategory = category.value;
 
-    // Восстанавливаем корзину: пропускаем неверные данные и объединяем повторы.
+    // Восстанавливаем только доступные товары и правильное количество.
     function readCart() {
         const stored = app.store.get('cart', []);
         const restored = [];
@@ -60,295 +32,240 @@ function setupFood() {
             if (existing) {
                 existing.quantity = Math.min(maxQuantity, existing.quantity + line.quantity);
             } else {
-                restored.push({ id: line.id, quantity: Math.min(maxQuantity, line.quantity) });
+                restored.push({ id: product.id, quantity: Math.min(maxQuantity, line.quantity) });
             }
         }
         return restored;
     }
 
+    // Возвращаем копию, чтобы другой файл случайно не изменил корзину.
+    function getCart() {
+        const copy = [];
+        for (const line of cart) {
+            copy.push({ id: line.id, quantity: line.quantity });
+        }
+        return copy;
+    }
+
+    function getTotal() {
+        return app.cartTotals(cart, menu).total;
+    }
+
     function updateBadge() {
+        if (!cartLink) return;
         const totals = app.cartTotals(cart, menu);
-        cartLink.textContent = `Корзина · ${totals.quantity}`;
-    }
-
-    function syncCart(event) {
-        if (event.key !== 'topgame-cart') return;
-        cart = readCart();
-        if (!resultContainer) {
-            updateBadge();
-            return;
+        cartLink.href = 'booking.html#food-cart';
+        let count = totals.quantity;
+        const draft = app.store.get('visit-draft', null);
+        if (draft && typeof draft.date === 'string' && typeof draft.time === 'string' && Array.isArray(draft.seats)) {
+            const start = app.localDateTime(draft.date, draft.time);
+            if (Number.isFinite(start) && start > Date.now()) {
+                const counted = [];
+                for (const id of draft.seats) {
+                    if (app.findProduct(app.seats, id) && !counted.includes(id)) counted.push(id);
+                }
+                count += counted.length;
+            }
         }
-        renderCart();
-        app.notify(feedback, 'Корзина обновлена в другой вкладке.', '');
-        app.notify(orderSuccess, '', '');
+        cartLink.textContent = 'Корзина · ' + count;
     }
 
-    // Карточка одного товара. app.el задаёт текст безопасно через textContent.
-    function renderProduct(item) {
-        const column = app.el('div', 'col-12 col-md-6 col-lg-4');
-        const article = app.el('article', 'card h-100 shadow-sm bg-dark text-light');
-        article.dataset.foodId = item.id;
-        const photo = app.el('img', 'card-img-top w-100 bg-dark object-fit-cover');
-        photo.src = item.image;
-        photo.alt = item.imageAlt;
-        photo.height = 190;
-        photo.loading = 'lazy';
-        photo.decoding = 'async';
-        const body = app.el('div', 'card-body d-flex flex-column');
-        const top = app.el('div', 'd-flex justify-content-between align-items-center gap-2 mb-3');
-        top.append(app.el('span', 'badge text-bg-dark', categoryNames[item.category]));
-        top.append(app.el('span', 'small text-body-secondary', item.portion));
-        body.append(top);
-        body.append(app.el('h3', 'h4 card-title', item.name));
-        body.append(app.el('p', 'card-text mb-2', item.description));
-        body.append(app.el('p', 'small text-body-secondary mb-3', `Аллергены: ${item.allergens}`));
-        body.append(app.el('p', 'fw-bold fs-5 text-danger-emphasis mt-auto', app.money(item.price)));
-        const add = app.el('button', 'btn btn-outline-danger w-100 text-light', 'Добавить в корзину');
-        add.type = 'button';
-        add.dataset.addFood = item.id;
-        add.setAttribute('aria-label', `Добавить в корзину: ${item.name}`);
-        if (!item.available) {
-            add.disabled = true;
-            add.textContent = 'Недоступно в демо';
-            add.setAttribute('aria-label', `Недоступно: ${item.name}`);
-        }
-        body.append(add);
-        article.append(photo, body);
-        column.append(article);
-        return column;
-    }
-
-    function compareProducts(a, b) {
-        if (sort.value === 'price-asc') return a.price - b.price;
-        if (sort.value === 'price-desc') return b.price - a.price;
-        if (sort.value === 'name') return a.name.localeCompare(b.name, 'ru');
-        return 0;
-    }
-
-    function renderMenu() {
-        const matches = app.filterMenu(menu, search.value, category.value, available.checked);
-        matches.sort(compareProducts);
-        count.textContent = `Найдено: ${matches.length} из ${menu.length}.`;
-        app.renderList(menuCards, matches, renderProduct, 'Ничего не найдено. Измените запрос или сбросьте фильтры.');
-    }
-
-    // У каждой строки корзины есть три действия: уменьшить, увеличить и удалить.
-    function cartButton(item, action, text, label) {
-        let classes = 'btn btn-outline-light btn-lg';
-        if (action === 'remove') classes = 'btn btn-outline-light';
-        const button = app.el('button', classes, text);
-        button.type = 'button';
-        button.dataset.cartAction = action;
-        button.dataset.itemId = item.id;
-        button.setAttribute('aria-label', `${label}: ${item.name}`);
-        return button;
-    }
-
-    function renderCartLine(line) {
-        const item = app.findProduct(menu, line.id);
-        const article = app.el('article', 'bg-body-secondary border rounded-3 p-3');
-        article.append(app.el('h4', 'h6 fw-bold mb-2', item.name));
-        article.append(app.el('p', 'small mb-2', `${app.money(item.price)} × ${line.quantity} = ${app.money(item.price * line.quantity)}`));
-        const actions = app.el('div', 'd-flex flex-wrap align-items-center gap-2');
-        const decrease = cartButton(item, 'decrease', '−', 'Уменьшить количество');
-        const increase = cartButton(item, 'increase', '+', 'Увеличить количество');
-        const remove = cartButton(item, 'remove', 'Удалить', 'Удалить');
-        increase.disabled = line.quantity >= maxQuantity;
-        actions.append(decrease, app.el('span', 'small fw-semibold', `${line.quantity} шт.`), increase, remove);
-        article.append(actions);
-        return article;
-    }
-
-    function renderCart() {
-        const totals = app.cartTotals(cart, menu);
-        app.renderList(cartRows, cart, renderCartLine, 'Корзина пустая. Добавьте еду или напиток из меню.');
-        cartTotal.textContent = `Товаров: ${totals.quantity} · Итого: ${app.money(totals.total)}`;
-        clearButton.disabled = cart.length === 0;
-        checkout.disabled = cart.length === 0;
-        updateBadge();
-        updateOrderSummary();
-    }
-
-    function orderDestination() {
-        if (delivery.value === 'bar') return 'у стойки';
-        if (delivery.value === 'seat') {
-            if (seat.value) return `к ПК ${seat.value}`;
-            return 'выберите ПК';
-        }
-        return 'выберите получение';
-    }
-
-    function updateOrderSummary() {
-        const totals = app.cartTotals(cart, menu);
-        formStatus.textContent = `${totals.quantity} шт., ${app.money(totals.total)} · ${orderDestination()}. Максимум ${maxQuantity} шт. каждого товара.`;
-    }
-
-    function saveCart(message) {
-        const saved = app.store.set('cart', cart);
-        if (!saved) message += ' Сохранение недоступно; корзина работает до закрытия страницы.';
-        renderCart();
-        app.notify(feedback, message, '');
-        app.notify(orderSuccess, '', '');
-    }
-
-    function addToCart(event) {
-        const button = event.target.closest('[data-add-food]');
-        if (!button) return;
-        const item = app.findProduct(menu, button.dataset.addFood);
-        if (!item || !item.available) return;
-        const line = app.findProduct(cart, item.id);
-        if (line && line.quantity >= maxQuantity) {
-            app.notify(feedback, `В корзине уже ${maxQuantity} шт. «${item.name}».`, 'error');
-            return;
-        }
-        if (line) {
-            line.quantity += 1;
-        } else {
-            cart.push({ id: item.id, quantity: 1 });
-        }
-        const message = `Добавлено: ${item.name}. В корзине ${app.cartTotals(cart, menu).quantity} шт.`;
-        saveCart(message);
+    // После изменения обновляем карточки и общую корзину бронирования.
+    function updateCart() {
+        app.store.set('cart', cart);
         renderMenu();
-        count.textContent += ' ' + message;
-        menuCards.querySelector(`[data-add-food="${item.id}"]`).focus();
+        updateBadge();
+        if (changeCallback) changeCallback();
     }
 
-    function changeCart(event) {
-        const button = event.target.closest('[data-cart-action]');
-        if (!button) return;
-        const line = app.findProduct(cart, button.dataset.itemId);
-        if (!line) return;
-        const action = button.dataset.cartAction;
-        if (action === 'increase' && line.quantity < maxQuantity) line.quantity += 1;
-        if (action === 'decrease') line.quantity -= 1;
-        if (action === 'remove') line.quantity = 0;
-        if (line.quantity === 0) cart.splice(cart.indexOf(line), 1);
-        saveCart('Корзина обновлена.');
-
-        // После перерисовки возвращаем фокус на кнопку или на поиск.
-        const replacement = cartRows.querySelector(`[data-item-id="${line.id}"][data-cart-action="${action}"]`);
-        if (replacement && !replacement.disabled) {
-            replacement.focus();
-        } else if (!clearButton.disabled) {
-            clearButton.focus();
+    function changeQuantity(id, delta) {
+        const product = app.findProduct(menu, id);
+        if (!product || !product.available || !Number.isInteger(delta) || delta === 0) return false;
+        const line = app.findProduct(cart, id);
+        if (!line) {
+            if (delta < 1) return false;
+            cart.push({ id: id, quantity: Math.min(maxQuantity, delta) });
         } else {
-            search.focus();
+            const quantity = Math.min(maxQuantity, line.quantity + delta);
+            if (quantity === line.quantity) return false;
+            if (quantity < 1) {
+                cart.splice(cart.indexOf(line), 1);
+            } else {
+                line.quantity = quantity;
+            }
         }
+        updateCart();
+        return true;
+    }
+
+    function removeItem(id) {
+        const line = app.findProduct(cart, id);
+        if (!line) return false;
+        cart.splice(cart.indexOf(line), 1);
+        updateCart();
+        return true;
     }
 
     function clearCart() {
         cart = [];
-        app.clearErrors(orderForm);
-        saveCart('Корзина очищена.');
-        search.focus();
+        updateCart();
     }
 
-    function resetFilters() {
-        search.value = '';
-        category.value = 'all';
-        sort.value = 'default';
-        available.checked = false;
+    function onChange(callback) {
+        changeCallback = callback;
+    }
+
+    // Эти функции доступны и на страницах без меню.
+    window.TopGameFood = {
+        getCart: getCart,
+        getTotal: getTotal,
+        changeQuantity: changeQuantity,
+        removeItem: removeItem,
+        clear: clearCart,
+        onChange: onChange
+    };
+
+    function quantityButton(item, action, text, label) {
+        const button = app.el('button', 'quantity-button', text);
+        button.type = 'button';
+        button.dataset.foodAction = action;
+        button.dataset.foodId = item.id;
+        button.setAttribute('aria-label', label + ': ' + item.name);
+        return button;
+    }
+
+    // Вся подпись товара задаётся через textContent внутри app.el.
+    function renderProduct(item) {
+        const article = app.el('article', 'menu-item');
+        article.dataset.foodId = item.id;
+        const photo = app.el('img', 'menu-photo');
+        photo.src = item.image;
+        photo.alt = item.imageAlt;
+        photo.loading = 'lazy';
+        photo.decoding = 'async';
+        photo.width = 400;
+        photo.height = 240;
+        const copy = app.el('div', 'menu-copy');
+        copy.append(app.el('p', 'menu-category', categoryNames[item.category] + ' · ' + item.portion));
+        copy.append(app.el('h3', 'menu-name', item.name));
+        copy.append(app.el('p', 'menu-description', item.description));
+        const details = app.el('details', 'menu-details');
+        details.append(app.el('summary', '', 'Состав и аллергены'));
+        details.append(app.el('p', 'menu-allergens', item.allergens));
+        copy.append(details);
+        const bottom = app.el('div', 'menu-bottom');
+        bottom.append(app.el('strong', 'menu-price', app.money(item.price)));
+        const line = app.findProduct(cart, item.id);
+        if (line) {
+            const control = app.el('div', 'quantity-control');
+            const decrease = quantityButton(item, 'decrease', '−', 'Уменьшить количество');
+            const increase = quantityButton(item, 'increase', '+', 'Увеличить количество');
+            increase.disabled = line.quantity >= maxQuantity;
+            if (increase.disabled) increase.title = 'Максимум 20 штук';
+            control.append(decrease, app.el('span', 'quantity-value', String(line.quantity)), increase);
+            bottom.append(control);
+        } else {
+            const add = app.el('button', 'add-food-button', '+ Добавить');
+            add.type = 'button';
+            add.dataset.addFood = item.id;
+            add.setAttribute('aria-label', 'Добавить в корзину: ' + item.name);
+            if (!item.available) {
+                add.disabled = true;
+                add.textContent = 'Нет в наличии';
+                add.setAttribute('aria-label', 'Нет в наличии: ' + item.name);
+                article.classList.add('is-unavailable');
+            }
+            bottom.append(add);
+        }
+        copy.append(bottom);
+        article.append(photo, copy);
+        return article;
+    }
+
+    function compareProducts(a, b) {
+        if (sort && sort.value === 'price-asc') return a.price - b.price;
+        if (sort && sort.value === 'price-desc') return b.price - a.price;
+        if (sort && sort.value === 'name') return a.name.localeCompare(b.name, 'ru');
+        return 0;
+    }
+
+    function updateCategories() {
+        if (category) category.value = selectedCategory;
+        for (const button of categoryButtons) {
+            const active = button.dataset.foodCategory === selectedCategory;
+            button.classList.toggle('active', active);
+            button.setAttribute('aria-pressed', String(active));
+        }
+    }
+
+    function renderMenu() {
+        if (!menuCards) return;
+        let query = '';
+        if (search) query = search.value;
+        const matches = app.filterMenu(menu, query, selectedCategory, false);
+        matches.sort(compareProducts);
+        app.renderList(menuCards, matches, renderProduct, 'Ничего не найдено. Попробуйте другое название или категорию.');
+        if (count) count.textContent = 'В меню: ' + matches.length + ' из ' + menu.length;
+        updateCategories();
+    }
+
+    function changeCategory(event) {
+        selectedCategory = event.currentTarget.dataset.foodCategory;
         renderMenu();
-        count.textContent += ' Фильтры сброшены.';
-        search.focus();
     }
 
-    function changeDelivery() {
-        const toSeat = delivery.value === 'seat';
-        seatColumn.classList.toggle('hidden', !toSeat);
-        seat.disabled = !toSeat;
-        seat.required = toSeat;
-        if (!toSeat) {
-            seat.value = '';
-            app.setError(seat, '');
-        }
+    function selectCategory() {
+        selectedCategory = category.value;
+        renderMenu();
     }
 
-    function editOrder(event) {
-        if (event.target.id) app.setError(event.target, '');
-        app.notify(orderSuccess, '', '');
-        updateOrderSummary();
-    }
+    function changeMenuQuantity(event) {
+        const button = event.target.closest('button');
+        if (!button || !menuCards.contains(button) || button.disabled) return;
+        let id = button.dataset.addFood;
+        let action = 'increase';
+        if (!id) {
+            id = button.dataset.foodId;
+            action = button.dataset.foodAction;
+        }
+        if (!id || !action) return;
+        let delta = 1;
+        if (action === 'decrease') delta = -1;
+        const keepFocus = document.activeElement === button;
+        if (!changeQuantity(id, delta)) return;
 
-    // Собираем ошибки и переводим фокус на первое неверное поле.
-    function validateOrder() {
-        const contacts = app.validateContacts(name.value, email.value, phone.value);
-        const errors = [
-            { field: name, message: contacts.name },
-            { field: email, message: contacts.email },
-            { field: phone, message: contacts.phone }
-        ];
-        if (delivery.value !== 'bar' && delivery.value !== 'seat') {
-            errors.push({ field: delivery, message: 'Выберите способ получения.' });
-        }
-        let validSeat = false;
-        for (const computer of app.seats) {
-            if (String(computer.id) === seat.value) validSeat = true;
-        }
-        if (delivery.value === 'seat' && !validSeat) {
-            errors.push({ field: seat, message: 'Для доставки к месту выберите действующий номер ПК.' });
-        }
-        if (!agreement.checked) {
-            errors.push({ field: agreement, message: 'Подтвердите, что проверили состав и понимаете демонстрационный режим.' });
-        }
-        let firstInvalid = null;
-        let errorCount = 0;
-        for (const error of errors) {
-            if (app.setError(error.field, error.message)) {
-                errorCount += 1;
-                if (!firstInvalid) firstInvalid = error.field;
+        // Возвращаем фокус только после кнопки внутри карточки.
+        // Поиск, фильтры и поля бронирования при этом не затрагиваются.
+        if (keepFocus) {
+            const cards = menuCards.querySelectorAll('[data-food-id]');
+            for (const card of cards) {
+                if (card.tagName !== 'ARTICLE' || card.dataset.foodId !== id) continue;
+                let nextButton = card.querySelector('[data-food-action="' + action + '"]');
+                if (!nextButton || nextButton.disabled) nextButton = card.querySelector('button:not(:disabled)');
+                if (nextButton) nextButton.focus({ preventScroll: true });
             }
         }
-        if (firstInvalid) {
-            app.notify(feedback, `Исправьте поля: ${errorCount}.`, 'error');
-            firstInvalid.focus();
-            return false;
-        }
-        return true;
     }
 
-    function submitOrder(event) {
-        event.preventDefault();
-        app.clearErrors(orderForm);
-        if (cart.length === 0) {
-            app.notify(feedback, 'Добавьте хотя бы один товар.', 'error');
-            return;
-        }
-        if (!validateOrder()) return;
-        const totals = app.cartTotals(cart, menu);
-        const items = [];
-        for (const line of cart) {
-            const item = app.findProduct(menu, line.id);
-            items.push(`${item.name} × ${line.quantity}`);
-        }
-        const summary = `${app.reference('FOOD')}. ${name.value.trim()}, получение ${orderDestination()}. ${items.join('; ')}. Всего ${totals.quantity} шт., ${app.money(totals.total)}. Контакты: ${email.value.trim()}, ${phone.value.trim()}. Это демонстрация: данные не отправлены на сервер, реальный заказ и платёж не созданы.`;
-        cart = [];
-        app.store.set('cart', cart);
-        renderCart();
-        orderForm.reset();
-        changeDelivery();
-        updateOrderSummary();
-        app.notify(feedback, 'Демонстрационный итог сформирован. Корзина очищена.', 'success');
-        app.notify(orderSuccess, summary, 'success');
-        orderSuccess.tabIndex = -1;
-        orderSuccess.focus();
+    function syncCart(event) {
+        if (event.key === 'topgame-visit-draft') { updateBadge(); return; }
+        if (event.key !== 'topgame-cart' && event.key !== null) return;
+        cart = readCart();
+        renderMenu();
+        updateBadge();
+        if (changeCallback) changeCallback();
     }
 
-    // Связываем действия пользователя с функциями.
-    menuCards.addEventListener('click', addToCart);
-    cartRows.addEventListener('click', changeCart);
-    clearButton.addEventListener('click', clearCart);
-    search.addEventListener('input', renderMenu);
-    category.addEventListener('change', renderMenu);
-    sort.addEventListener('change', renderMenu);
-    available.addEventListener('change', renderMenu);
-    resetButton.addEventListener('click', resetFilters);
-    delivery.addEventListener('change', changeDelivery);
-    orderForm.addEventListener('input', editOrder);
-    orderForm.addEventListener('change', editOrder);
-    orderForm.addEventListener('submit', submitOrder);
+    window.addEventListener('storage', syncCart);
+    if (menuCards) menuCards.addEventListener('click', changeMenuQuantity);
+    if (search) search.addEventListener('input', renderMenu);
+    if (category) category.addEventListener('change', selectCategory);
+    if (sort) sort.addEventListener('change', renderMenu);
+    for (const button of categoryButtons) {
+        button.addEventListener('click', changeCategory);
+    }
     renderMenu();
-    renderCart();
+    updateBadge();
 }
 
 setupFood();
