@@ -201,9 +201,48 @@ async function run() {
       await page.locator('#seat-1').click();
       check('Three-hour package total is 3600 per PC', digits(await text(page, '#cart-games-total')) === 3600);
       await page.locator('[data-tariff-pick="private"]').click();
-      check('PRIVATE tariff selects PRIVATE zone', await page.locator('#zone-private').isChecked());
+      check('PRIVATE tariff selects PRIVATE zone', await page.locator('[data-zone-pick="private"]').getAttribute('aria-pressed') === 'true' && await page.locator('[data-zone-map="private"]').isVisible());
       await page.locator('[data-zone-pick="main"]').click();
       check('Leaving PRIVATE selects hourly tariff', await page.locator('#booking-tariff').inputValue() === 'hour');
+    });
+
+    await scenario('Private order with unknown group price', async page => {
+      await visitTime(page);
+      await page.locator('[data-tariff-pick="private"]').click();
+      await page.locator('#seat-16').click();
+      check('Private total remains explicitly unknown', await text(page, '#cart-total') === 'Уточняется');
+      await page.locator('#booking-next').click();
+      await page.locator('#booking-next').click();
+      await contacts(page);
+      await page.locator('#booking-submit').click();
+      check('Private submission explains that price needs confirmation', await page.locator('#booking-success').isVisible() && /Стоимость Private уточняется/.test(await text(page, '#booking-success')));
+    });
+
+    await scenario('Duo requires two PCs', async page => {
+      await visitTime(page);
+      await page.locator('[data-zone-pick="duo"]').click();
+      await page.locator('#seat-11').click();
+      await page.locator('#booking-next').click();
+      check('One Duo PC cannot advance', await activeStep(page) === 0 && /ровно два/.test(await text(page, '#booking-step-error')));
+      await page.locator('#seat-13').click();
+      await page.locator('#booking-next').click();
+      await page.locator('#booking-next').click();
+      await contacts(page);
+      await page.locator('#booking-submit').click();
+      check('Two Duo PCs submit successfully', await page.locator('#booking-success').isVisible() && /PC 11, PC 13/.test(await text(page, '#booking-success')));
+    });
+
+    await scenario('Food-only delivery to an existing PC', async page => {
+      await page.locator('#food-only-button').click();
+      await page.locator('[data-add-food="tea"]').click();
+      await page.locator('#booking-next').click();
+      await contacts(page);
+      await page.locator('#booking-submit').click();
+      check('Seat delivery requires a PC even without a booking', await page.locator('#food-seat').getAttribute('aria-invalid') === 'true' && await page.evaluate(() => document.activeElement.id) === 'food-seat');
+      await page.locator('#food-seat').selectOption('7');
+      await page.locator('#booking-submit').click();
+      check('Food-only delivery to an existing PC succeeds', await page.locator('#booking-success').isVisible() && /Еду принести к PC 7/.test(await text(page, '#booking-success')));
+      check('Food delivery does not create a PC reservation', await page.locator('[data-cancel-booking]').count() === 0 && await page.locator('[data-cancel-order]').count() === 1);
     });
 
     await scenario('Validation and contacts once', async page => {
@@ -275,10 +314,57 @@ async function run() {
       check('Removing last PC restores a useful focus', await page.evaluate(() => document.activeElement.id) === 'cart-title');
     });
 
+    await scenario('Actions in mobile cart dialog', async page => {
+      await visitTime(page);
+      await page.locator('#seat-1').click();
+      await page.locator('#seat-2').click();
+      await page.locator('#booking-next').click();
+      await page.locator('[data-add-food="burger"]').click();
+      await page.locator('#cart-open').click();
+      await page.locator('#cart-burger-increase').focus();
+      await page.keyboard.press('Enter');
+      check('Mobile cart plus updates quantity and preserves focus', await page.locator('#cart-food-items .quantity-value').innerText() === '2' && await page.evaluate(() => document.activeElement.id) === 'cart-burger-increase');
+      await page.locator('#cart-burger-decrease').click();
+      check('Mobile cart minus updates quantity and preserves focus', await page.locator('#cart-food-items .quantity-value').innerText() === '1' && await page.evaluate(() => document.activeElement.id) === 'cart-burger-decrease');
+      await page.locator('[data-remove-seat="1"]').click();
+      check('Mobile cart PC removal recalculates price and focuses next PC', digits(await text(page, '#cart-games-total')) === 2400 && await page.evaluate(() => document.activeElement.dataset.removeSeat) === '2');
+      await page.locator('[data-remove-seat="2"]').click();
+      check('Mobile cart last PC removal keeps food and useful focus', digits(await text(page, '#cart-total')) === 2700 && await page.evaluate(() => document.activeElement.id) === 'cart-title' && await page.locator('#cart-dialog').evaluate(element => element.open));
+      await page.keyboard.press('Escape');
+      check('Adding PCs remains available after removing all PCs', await page.locator('#choose-pc-button').isVisible());
+    }, { viewport: { width: 375, height: 900 } });
+
     await scenario('Corrupted storage', async page => {
       check('Malformed saved data does not prevent checkout', await activeStep(page) === 0 && await page.locator('#seat-1').isEnabled());
       check('Malformed saved cart is safely empty', (await page.evaluate(() => window.TopGameFood.getCart())).length === 0);
     }, { corruptStorage: true });
+
+    await scenario('Structurally invalid saved data and zone URL', async page => {
+      await page.evaluate(() => {
+        const start = Date.parse('2030-06-16T14:00:00+05:00');
+        const booking = { id: 'valid-booking', zone: 'main', tariff: 'hour', date: '2030-06-16', time: '14:00', duration: 2, start, end: start + 7200000, seats: [1], items: [] };
+        localStorage.setItem('topgame-bookings', JSON.stringify([
+          null, 42, { ...booking, id: 'duplicate-seat', seats: [2, 2] },
+          { ...booking, id: 'bad-time', start: start + 1 },
+          { ...booking, id: 'bad-tariff', tariff: 'missing' },
+          { ...booking, id: 'bad-date', date: '2030-02-31' }, booking
+        ]));
+        localStorage.setItem('topgame-orders', JSON.stringify([
+          null, { id: 'bad-line', items: [null] },
+          { id: 'bad-product', items: [{ id: 'missing', quantity: 1 }] },
+          { id: 'bad-quantity', items: [{ id: 'tea', quantity: 21 }] },
+          { id: 'valid-food', items: [{ id: 'tea', quantity: 1 }] }
+        ]));
+        localStorage.setItem('topgame-visit-draft', JSON.stringify({ ...booking, zone: 'constructor', seats: [2], step: 2 }));
+      });
+      await page.reload();
+      check('Only structurally valid stored orders are restored', await page.locator('[data-cancel-booking]').count() === 1 && await page.locator('[data-cancel-order]').count() === 1);
+      check('Invalid zone draft leaves Main visible', await page.locator('[data-zone-map="main"]').isVisible());
+      await visitTime(page);
+      check('Only valid saved booking affects PC availability', await page.locator('#seat-1').isDisabled() && await page.locator('#seat-2').isEnabled());
+      await page.goto(origin + '/booking.html?zone=constructor');
+      check('Inherited object key in URL cannot replace Main zone', await page.locator('[data-zone-pick="main"]').getAttribute('aria-pressed') === 'true' && await page.locator('[data-zone-map="main"]').isVisible());
+    });
 
     await scenario('Storage disabled', async page => {
       await visitTime(page);

@@ -76,7 +76,6 @@
                                 <button type="button" data-zone-pick="duo"><span>Duo</span><small>5 ПК</small></button>
                                 <button type="button" data-zone-pick="private"><span>Private</span><small>5 ПК</small></button>
                             </div>
-                            <div hidden><input type="radio" id="zone-main" name="gaming-zone" value="main" checked><input type="radio" id="zone-duo" name="gaming-zone" value="duo"><input type="radio" id="zone-private" name="gaming-zone" value="private"></div>
                             <div class="map-meta"><p id="seat-map-status" role="status" aria-live="polite"></p><div class="map-legend"><span><i class="legend-dot free"></i>Свободно</span><span><i class="legend-dot picked"></i>Твоё</span><span><i class="legend-dot busy"></i>Занято</span></div></div>
                             <div class="hall-map">
                                 <div class="hall-label"><span></span>ИГРОВАЯ ЗОНА<span></span></div>
@@ -148,5 +147,31 @@
     <div class="footer-main"><div><p class="footer-brand">TOP GAME</p><p>Твоё место для хорошей игры.</p><p>Астана · круглосуточно</p></div><nav class="footer-links" aria-label="Информация о клубе"><a href="prices.html">Тарифы</a><a href="computers.html">Компьютеры</a><a href="games.html">Игры</a><a href="about.html">О клубе</a><a href="rules.html">Правила клуба</a></nav><div class="footer-address"><a href="tel:+77064005040">+7 706 400 50 40</a><p>ул. Динмухамеда Кунаева, 23</p><p>Астана, Казахстан</p></div></div>
     <div class="footer-bottom"><span>© TOP GAME · Учебный проект</span><span>Бронирования и заказы на сайте демонстрационные</span></div>
 </footer>
+    <!-- Шаблоны корзины: JavaScript заполняет только данные. -->
+    <template id="pc-item-template">
+        <div class="cart-item">
+            <span class="cart-item-icon" aria-hidden="true"><span class="pc-display"></span></span>
+            <div class="cart-item-copy"><strong></strong><small></small></div>
+            <span class="cart-item-price"></span>
+            <button type="button" class="remove-item" data-remove-seat>×</button>
+        </div>
+    </template>
+    <template id="food-item-template">
+        <div class="cart-item">
+            <img alt="">
+            <div class="cart-item-copy">
+                <strong></strong>
+                <div class="cart-food-actions">
+                    <div class="quantity-control">
+                        <button type="button" class="quantity-button" data-food-action="decrease">−</button>
+                        <span class="quantity-value"></span>
+                        <button type="button" class="quantity-button" data-food-action="increase">+</button>
+                    </div>
+                    <span class="cart-item-price"></span>
+                </div>
+            </div>
+            <button type="button" class="remove-item" data-food-action="remove">×</button>
+        </div>
+    </template>
 </body>
 </html>
