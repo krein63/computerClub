@@ -1,0 +1,35 @@
+{
+  "checks": [
+    {
+      "name": "All seven pages, navigation, scripts, images and 3 responsive widths",
+      "pass": true
+    },
+    {
+      "name": "Catalogue filters, restore, checkbox state, dynamically delegated comparison removal",
+      "pass": true
+    },
+    {
+      "name": "Review validation, safe text, filter, persistence, delegated deletion and effect callback",
+      "pass": true
+    },
+    {
+      "name": "Fixed booking: validation, correction, prices, selected PCs, demo confirmation and reset",
+      "pass": true
+    },
+    {
+      "name": "Fixed food: filters, delegated quantity controls, prices and independent checkout",
+      "pass": true
+    },
+    {
+      "name": "Archived implementations not loaded; existing AI Log untouched",
+      "pass": true
+    },
+    {
+      "name": "No JavaScript console or resource errors",
+      "pass": true
+    }
+  ],
+  "errors": [],
+  "runtime": [],
+  "at": "2026-10-31T14:51:40.944Z"
+}

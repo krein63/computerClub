@@ -1,65 +1,50 @@
 'use strict';
 
-// Здесь только расчёты: эти функции не меняют HTML.
-function findProduct(products, id) {
-    for (const product of products) {
-        if (product.id === id) return product;
+// Assignment 4: pure functions can be checked without a DOM or a server.
+(() => {
+    function findProduct(products, id) {
+        return products.find(product => product.id === id);
     }
-    return null;
-}
 
-function validQuantity(value, maximum) {
-    return Number.isInteger(value) && value >= 1 && value <= maximum;
-}
+    function validQuantity(value, maximum) {
+        return Number.isInteger(value) && value >= 1 && value <= maximum;
+    }
 
-function cartTotals(lines, products) {
-    const totals = { quantity: 0, total: 0 };
-    for (const line of lines) {
-        const product = findProduct(products, line.id);
-        if (product && validQuantity(line.quantity, 20)) {
-            totals.quantity += line.quantity;
-            totals.total += product.price * line.quantity;
+    function cartTotals(lines, products) {
+        // Проходим по корзине и складываем количество и стоимость.
+        const totals = { quantity: 0, total: 0 };
+        for (const line of lines) {
+            const product = findProduct(products, line.id);
+            if (product && validQuantity(line.quantity, 20)) {
+                totals.quantity += line.quantity;
+                totals.total += product.price * line.quantity;
+            }
         }
+        return totals;
     }
-    return totals;
-}
 
-function filterMenu(products, query, category, availableOnly) {
-    const text = query.trim().toLowerCase();
-    const result = [];
-    for (const product of products) {
-        const description = (product.name + ' ' + product.description).toLowerCase();
-        if (category !== 'all' && product.category !== category) continue;
-        if (availableOnly && !product.available) continue;
-        if (!description.includes(text)) continue;
-        result.push(product);
+    function filterMenu(products, query, category, availableOnly) {
+        const text = query.trim().toLocaleLowerCase('ru');
+        return products.filter(product => {
+            const matchesCategory = category === 'all' || product.category === category;
+            const matchesAvailability = !availableOnly || product.available;
+            const matchesSearch = (product.name + ' ' + product.description).toLocaleLowerCase('ru').includes(text);
+            return matchesCategory && matchesAvailability && matchesSearch;
+        });
     }
-    return result;
-}
 
-function estimateVisit(tariffs, tariffId, hours, players) {
-    const tariff = findProduct(tariffs, tariffId);
-    let maximum = 10;
-    if (tariffId === 'private') maximum = 5;
-    if (!tariff || !validQuantity(players, maximum) || !validQuantity(hours, 12)) return null;
-    if (tariffId === 'private') return { amount: tariff.price, groupTotalKnown: false };
-    if (tariffId === 'three-hours' && hours !== 3) return null;
-    let amount = tariff.price * players;
-    if (tariffId === 'hour') amount *= hours;
-    return { amount: amount, groupTotalKnown: true };
-}
+    function estimateVisit(tariffs, tariffId, hours, players) {
+        const tariff = findProduct(tariffs, tariffId);
+        if (!tariff || !validQuantity(players, tariffId === 'private' ? 5 : 10) || !validQuantity(hours, 12)) return null;
+        if (tariffId === 'private') return { amount: tariff.price, groupTotalKnown: false };
+        if (tariffId === 'three-hours' && hours !== 3) return null;
+        const units = tariffId === 'hour' ? hours : 1;
+        return { amount: tariff.price * units * players, groupTotalKnown: true };
+    }
 
-function reference(prefix) {
-    const time = Date.now().toString(36).toUpperCase();
-    const number = Math.floor(1000 + Math.random() * 9000);
-    return 'DEMO-' + prefix + '-' + time + '-' + number;
-}
+    function reference(prefix) {
+        return `DEMO-${prefix}-${Date.now().toString(36).toUpperCase()}-${Math.floor(1000 + Math.random() * 9000)}`;
+    }
 
-window.TopGameLogic = {
-    findProduct: findProduct,
-    validQuantity: validQuantity,
-    cartTotals: cartTotals,
-    filterMenu: filterMenu,
-    estimateVisit: estimateVisit,
-    reference: reference
-};
+    window.TopGameLogic = { findProduct, validQuantity, cartTotals, filterMenu, estimateVisit, reference };
+})();

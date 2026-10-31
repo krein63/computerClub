@@ -1,18 +1,41 @@
 'use strict';
 
-function setupMain() {
-    // Общие функции используются на всех страницах.
+(() => {
+    // Тёмная тема: используем готовые классы Bootstrap, CSS задания не меняем.
+    document.documentElement.dataset.bsTheme = 'dark';
+    const darkClasses = { 'bg-white': 'bg-body-secondary', 'bg-light': 'bg-body-tertiary', 'text-dark': 'text-light', 'text-danger': 'text-danger-emphasis', 'btn-outline-dark': 'btn-outline-light', 'btn-outline-secondary': 'btn-outline-light', 'border-dark': 'border-secondary', 'alert-light': 'alert-dark', 'table-light': 'table-dark' };
+    function darkTheme(element) {
+        for (const lightClass in darkClasses) {
+            if (element.classList.contains(lightClass)) {
+                element.classList.replace(lightClass, darkClasses[lightClass]);
+            }
+        }
+        if (element.matches('.card, .form-control, .form-select, .list-group-item')) element.classList.add('bg-dark', 'text-light');
+        if (element.matches('.table')) element.classList.add('table-dark');
+        if (element.matches('.list-group-item')) element.classList.add('border-secondary');
+        if (element.matches('a:not(.btn):not(.nav-link):not(.navbar-brand)')) element.classList.add('link-light');
+        if (element.matches('.btn-outline-danger')) element.classList.add('text-light');
+    }
+    document.body.classList.add('bg-dark', 'text-light');
+    document.querySelectorAll('*').forEach(darkTheme);
 
     // Создаёт один элемент, задаёт классы и безопасный текст.
     function el(tag, classes = '', text = '') {
         const element = document.createElement(tag);
-        element.className = classes;
+        for (const name of classes.split(' ')) {
+            if (name) element.classList.add(name);
+        }
         if (text !== '') element.textContent = text;
+        darkTheme(element);
         return element;
     }
 
     function money(amount) {
         return `${new Intl.NumberFormat('ru-KZ').format(amount)} ₸`;
+    }
+
+    function reference(prefix) {
+        return window.TopGameLogic.reference(prefix);
     }
 
     function today() {
@@ -27,8 +50,7 @@ function setupMain() {
         get(key, fallback) {
             try {
                 const value = localStorage.getItem(`topgame-${key}`);
-                if (value === null) return fallback;
-                return JSON.parse(value);
+                return value === null ? fallback : JSON.parse(value);
             } catch {
                 return fallback;
             }
@@ -46,13 +68,9 @@ function setupMain() {
     function renderList(container, items, renderItem, emptyText = 'Пока ничего нет.') {
         container.replaceChildren();
         if (items.length === 0) {
-            let tag = 'p';
-            if (container.tagName === 'UL') tag = 'li';
-            container.append(el(tag, 'p-3 mb-0 text-body-secondary', emptyText));
+            container.append(el(container.tagName === 'UL' ? 'li' : 'p', 'p-3 mb-0 text-body-secondary', emptyText));
         } else {
-            for (let index = 0; index < items.length; index++) {
-                container.append(renderItem(items[index], index));
-            }
+            items.forEach((item, index) => container.append(renderItem(item, index)));
         }
         return items.length;
     }
@@ -64,8 +82,9 @@ function setupMain() {
             error = el('span', 'd-block small mt-1 mb-0 hidden');
             error.id = errorId;
             field.insertAdjacentElement('afterend', error);
-            const description = field.getAttribute('aria-describedby') || '';
-            field.setAttribute('aria-describedby', (description + ' ' + errorId).trim());
+            const descriptions = (field.getAttribute('aria-describedby') || '').split(' ').filter(Boolean);
+            if (!descriptions.includes(errorId)) descriptions.push(errorId);
+            field.setAttribute('aria-describedby', descriptions.join(' '));
         }
         error.textContent = message;
         error.classList.toggle('hidden', !message);
@@ -77,26 +96,16 @@ function setupMain() {
     }
 
     function clearErrors(form) {
-        for (const field of form.querySelectorAll('[aria-invalid="true"]')) {
-            setError(field, '');
-        }
+        form.querySelectorAll('[aria-invalid="true"]').forEach(field => setError(field, ''));
     }
 
     function validateContacts(name, email, phone) {
-        const errors = { name: '', email: '', phone: '' };
-        name = name.trim();
-        email = email.trim();
         const digits = phone.trim().replace(/[\s()\-]/g, '');
-        if (name.length < 2 || name.length > 80) {
-            errors.name = 'Введите имя от 2 до 80 символов.';
-        }
-        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) || email.length > 254) {
-            errors.email = 'Введите почту в формате name@example.com.';
-        }
-        if (!/^\+7\d{10}$/.test(digits)) {
-            errors.phone = 'Введите телефон: +7 и 10 цифр, например +7 706 400 50 40.';
-        }
-        return errors;
+        return {
+            name: name.trim().length >= 2 && name.trim().length <= 80 ? '' : 'Введите имя от 2 до 80 символов.',
+            email: /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim()) && email.trim().length <= 254 ? '' : 'Введите почту в формате name@example.com.',
+            phone: /^\+7\d{10}$/.test(digits) ? '' : 'Введите телефон: +7 и 10 цифр, например +7 706 400 50 40.'
+        };
     }
 
     function notify(element, text, state = '') {
@@ -107,36 +116,31 @@ function setupMain() {
         return text;
     }
 
-    window.TopGame = {
-        tariffs: window.TopGameData.tariffs,
-        menu: window.TopGameData.menu,
-        seats: window.TopGameData.seats,
-        findProduct: window.TopGameLogic.findProduct,
-        validQuantity: window.TopGameLogic.validQuantity,
-        cartTotals: window.TopGameLogic.cartTotals,
-        filterMenu: window.TopGameLogic.filterMenu,
-        estimateVisit: window.TopGameLogic.estimateVisit,
-        reference: window.TopGameLogic.reference,
-        el: el,
-        money: money,
-        today: today,
-        localDateTime: localDateTime,
-        store: store,
-        renderList: renderList,
-        setError: setError,
-        clearErrors: clearErrors,
-        validateContacts: validateContacts,
-        notify: notify
-    };
+    window.TopGame = { ...window.TopGameData, ...window.TopGameLogic, el, money, reference, today, localDateTime, store, renderList, setError, clearErrors, validateContacts, notify };
+
+    // The user revised the club capacity after midterm. Update through DOM only.
+    const main = document.querySelector('main');
+    if (main) {
+        const texts = document.createTreeWalker(main, NodeFilter.SHOW_TEXT);
+        let node = texts.nextNode();
+        while (node) {
+            node.textContent = node.textContent.replace(/45(?=\s+(?:игров|компьютер|ПК))/g, String(window.TopGame.seats.length));
+            node = texts.nextNode();
+        }
+        main.querySelectorAll('input[max="45"]').forEach(field => { field.max = String(window.TopGame.seats.length); });
+        const capacityBadge = main.querySelector('strong abbr[title="персональных компьютеров"]');
+        if (capacityBadge) capacityBadge.parentElement.firstChild.textContent = `${window.TopGame.seats.length} `;
+    }
 
     const toggle = document.getElementById('main-navigation-toggle');
     if (toggle) {
         const menu = document.getElementById('main-navigation');
-        function syncMenu() {
+        const syncMenu = () => {
             toggle.setAttribute('aria-expanded', String(toggle.checked));
-        }
+            // CSS already handles visibility; this adds keyboard Escape behavior.
+        };
         toggle.addEventListener('change', syncMenu);
-        menu.addEventListener('keydown', function (event) {
+        menu.addEventListener('keydown', event => {
             if (event.key === 'Escape') {
                 toggle.checked = false;
                 syncMenu();
@@ -146,6 +150,27 @@ function setupMain() {
         syncMenu();
     }
 
-}
+    const nav = document.querySelector('#main-navigation .navbar-nav');
+    if (nav) {
+        const foodLink = el('a', 'nav-link px-2', 'Еда');
+        foodLink.href = 'booking.html#food-menu';
+        foodLink.id = 'nav-food';
+        const item = el('li', 'nav-item');
+        item.append(foodLink);
+        nav.append(item);
+    }
 
-setupMain();
+    const home = document.getElementById('index-content');
+    if (home) {
+        const section = el('section', 'bg-white border rounded-4 p-3 p-md-4 p-lg-5 mb-4 shadow-sm');
+        section.append(el('p', 'small text-uppercase text-danger fw-semibold mb-2', 'Твой следующий сеанс'), el('h2', 'h2 fw-bold mb-3', 'Место для команды и перекус к игре'), el('p', 'mb-3', 'Выберите ПК на схеме зала, подготовьте демо-заявку и соберите заказ еды. Итог и стоимость видны сразу.'));
+        const actions = el('div', 'd-flex flex-wrap gap-2');
+        const booking = el('a', 'btn btn-danger', 'Выбрать место');
+        booking.href = 'booking.html#seat-map';
+        const food = el('a', 'btn btn-outline-danger', 'Посмотреть меню');
+        food.href = 'booking.html#food-menu';
+        actions.append(booking, food);
+        section.append(actions);
+        home.insertBefore(section, home.children[1] || null);
+    }
+})();

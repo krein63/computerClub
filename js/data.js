@@ -1,6 +1,6 @@
 'use strict';
 
-// Данные сайта: тарифы, меню и 20 компьютеров.
+// Published tariff lower bounds are preserved from the frozen midterm.
 window.TopGameData = {
     tariffs: [
         { id: 'hour', name: '1 час', price: 1200, duration: 1 },
@@ -8,7 +8,7 @@ window.TopGameData = {
         { id: 'night', name: 'Ночь', price: 4700, duration: null },
         { id: 'private', name: 'PRIVATE', price: 2500, duration: null }
     ],
-    // Учебное меню. Реальный ассортимент нужно уточнить у клуба.
+    // Sample food and prices for the assignment, not the club's verified menu.
     menu: [
         { id: 'burger', name: 'Куриный бургер', category: 'food', price: 2700, portion: '570 г', description: 'Куриный бургер с овощами и соусом', allergens: 'Глютен, молоко, яйцо', available: true },
         { id: 'sandwich', name: 'Куриный хот-дог', category: 'food', price: 1800, portion: '350 г', description: 'Хот-дог с куриной сосиской и соусом', allergens: 'Глютен, молоко', available: true },
@@ -18,24 +18,12 @@ window.TopGameData = {
         { id: 'water', name: 'Питьевая вода', category: 'drinks', price: 525, portion: '500 мл', description: 'Вода без газа', allergens: 'Нет заявленных аллергенов', available: true },
         { id: 'tea', name: 'Холодный чай Lipton', category: 'drinks', price: 600, portion: '500 мл', description: 'Холодный чай в бутылке', allergens: 'Нет заявленных аллергенов', available: true },
         { id: 'cookie', name: 'Сок J7', category: 'drinks', price: 750, portion: '330 мл', description: 'Сок в упаковке', allergens: 'Состав уточняется у персонала', available: false }
-    ],
-    seats: []
+    ].map(item => ({ ...item, image: `images/food/${item.id}.jpg`, imageAlt: `${item.name} — фото меню CyberX` })),
+    // The user specified 20 PCs; actual positions and availability require club data.
+    seats: Array.from({ length: 20 }, (_, index) => ({
+        id: index + 1,
+        zone: index < 10 ? 'main' : index < 15 ? 'duo' : 'private',
+        floor: index < 10 ? 1 : 2,
+        type: 'PC'
+    }))
 };
-
-// У каждого блюда есть фотография с таким же именем файла, как его id.
-for (const item of window.TopGameData.menu) {
-    item.image = 'images/food/' + item.id + '.jpg';
-    item.imageAlt = item.name + ' — иллюстрация меню';
-}
-
-// Первые 10 ПК — MAIN, следующие 5 — DUO, последние 5 — PRIVATE.
-for (let number = 1; number <= 20; number++) {
-    let zone = 'main';
-    let floor = 1;
-    if (number > 10) {
-        zone = 'duo';
-        floor = 2;
-    }
-    if (number > 15) zone = 'private';
-    window.TopGameData.seats.push({ id: number, zone: zone, floor: floor, type: 'PC' });
-}

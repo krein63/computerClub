@@ -1,190 +1,209 @@
 'use strict';
 
-function setupPrices() {
+(() => {
     const app = window.TopGame;
     const section = document.getElementById('tariffs');
     if (!app || !section) return;
-
-    // 1. Фильтры работают с готовыми карточками из HTML.
-    const catalogue = section.querySelector('.row.g-4');
-    const controls = document.getElementById('prices-filters');
-    const search = document.getElementById('prices-search');
-    const type = document.getElementById('prices-type');
-    const count = document.getElementById('prices-result-count');
-    const tariffCards = [];
-    for (const tariff of app.tariffs) {
-        const article = document.getElementById('tariff-' + tariff.id);
-        const card = { tariff: tariff, node: article.parentElement };
-        tariffCards.push(card);
-        article.querySelector('a[data-tariff]').href = `booking.html?tariff=${encodeURIComponent(tariff.id)}#tariff-selection`;
+    // На телефоне показываем все четыре свойства тарифа без тесных колонок.
+    const comparison = document.getElementById('prices-table-1');
+    if (comparison) {
+        comparison.querySelectorAll('.d-none.d-md-table-cell').forEach(cell => {
+            cell.classList.remove('d-none', 'd-md-table-cell');
+        });
+        comparison.classList.add('d-none', 'd-md-table');
+        const mobileComparison = app.el('div', 'd-md-none');
+        mobileComparison.id = 'prices-comparison-mobile';
+        mobileComparison.setAttribute('aria-label', 'Сравнение тарифов: все условия');
+        const labels = Array.from(comparison.querySelectorAll('thead th'), cell => cell.textContent.trim());
+        comparison.querySelectorAll('tbody tr').forEach(row => {
+            const cells = Array.from(row.children);
+            const card = app.el('article', 'bg-dark text-light border rounded-3 p-3 mb-3');
+            card.append(app.el('h3', 'h5 fw-bold mb-3', cells[0].textContent.trim()));
+            const details = app.el('dl', 'mb-0');
+            cells.slice(1).forEach((cell, index) => {
+                details.append(app.el('dt', 'small text-body-secondary', labels[index + 1]),
+                    app.el('dd', 'mb-3 text-break', cell.textContent.trim()));
+            });
+            card.append(details);
+            mobileComparison.append(card);
+        });
+        comparison.after(mobileComparison);
     }
-
-    function getTariffNode(card) {
-        return card.node;
+    const catalogue = section.querySelector('.row');
+    const tariffCards = app.tariffs.map(tariff => ({ ...tariff, node: document.getElementById(`tariff-${tariff.id}`).parentElement }));
+    const controls = app.el('form', 'row g-3 mb-4');
+    controls.setAttribute('role', 'search');
+    controls.setAttribute('aria-label', 'Поиск тарифов');
+    function field(id, labelText, kind, choices) {
+        const wrapper = app.el('div', 'col-12 col-md-6');
+        const label = app.el('label', 'form-label fw-semibold', labelText);
+        label.htmlFor = id;
+        const input = app.el(kind, kind === 'select' ? 'form-select' : 'form-control');
+        input.id = id;
+        if (choices) choices.forEach(([value, text]) => {
+            const option = app.el('option', '', text);
+            option.value = value;
+            input.append(option);
+        });
+        wrapper.append(label, input);
+        return { wrapper, input };
     }
-
+    const search = field('prices-search', 'Найти тариф', 'input');
+    search.input.type = 'search';
+    const type = field('prices-type', 'Формат сеанса', 'select', [['all', 'Все тарифы'], ['duration', 'С указанной длительностью'], ['night', 'Ночной пакет'], ['private', 'Приватная зона']]);
+    const reset = app.el('button', 'btn btn-outline-secondary', 'Сбросить фильтры');
+    reset.type = 'button';
+    reset.id = 'prices-filter-reset';
+    const count = app.el('p', 'mb-0');
+    count.id = 'prices-result-count';
+    count.setAttribute('aria-live', 'polite');
+    const actions = app.el('div', 'col-12 d-flex flex-wrap gap-3 align-items-center');
+    actions.append(reset, count);
+    controls.append(search.wrapper, type.wrapper, actions);
+    catalogue.before(controls);
+    tariffCards.forEach(tariff => {
+        const link = tariff.node.querySelector('a[data-tariff]');
+        link.href = `booking.html?tariff=${encodeURIComponent(tariff.id)}#tariff-selection`;
+    });
     function renderTariffs() {
-        const query = search.value.trim().toLocaleLowerCase('ru');
-        const matches = [];
-        for (const card of tariffCards) {
-            const tariff = card.tariff;
-            if (!tariff.name.toLocaleLowerCase('ru').includes(query)) continue;
-            if (type.value === 'duration') {
-                if (tariff.duration === null) continue;
-            } else if (type.value !== 'all' && tariff.id !== type.value) {
-                continue;
-            }
-            matches.push(card);
-        }
-        app.renderList(catalogue, matches, getTariffNode, 'Подходящих тарифов нет. Измените поиск или сбросьте фильтры.');
+        const query = search.input.value.trim().toLocaleLowerCase('ru');
+        const matches = tariffCards.filter(tariff => tariff.name.toLocaleLowerCase('ru').includes(query)
+            && (type.input.value === 'all' || (type.input.value === 'duration' ? tariff.duration !== null : tariff.id === type.input.value)));
+        app.renderList(catalogue, matches, tariff => tariff.node, 'Подходящих тарифов нет. Измените поиск или сбросьте фильтры.');
         count.textContent = `Найдено тарифов: ${matches.length} из ${tariffCards.length}`;
     }
+    controls.addEventListener('submit', event => { event.preventDefault(); renderTariffs(); });
+    controls.addEventListener('input', renderTariffs);
+    controls.addEventListener('change', renderTariffs);
+    reset.addEventListener('click', () => { controls.reset(); renderTariffs(); search.input.focus(); });
 
-    function submitFilters(event) {
-        event.preventDefault();
-        renderTariffs();
-    }
+    const calculator = app.el('section', 'bg-white border rounded-4 p-3 p-md-4 p-lg-5 mb-4 shadow-sm');
+    calculator.id = 'price-calculator';
+    const heading = app.el('h2', 'h2 fw-bold mb-3', 'Рассчитать стоимость визита');
+    heading.id = 'price-calculator-title';
+    calculator.setAttribute('aria-labelledby', heading.id);
+    const explanation = app.el('p', 'mb-3', 'Расчёт использует опубликованные цены «от». Это предварительная оценка, окончательную стоимость и условия уточните у администратора.');
+    const calculatorForm = app.el('form', 'row g-3');
+    calculatorForm.id = 'price-calculator-form';
+    calculatorForm.noValidate = true;
+    const selected = field('calculator-tariff', 'Тариф', 'select', app.tariffs.map(tariff => [tariff.id, `${tariff.name} — от ${app.money(tariff.price)}`]));
+    const players = field('calculator-players', 'Количество игроков', 'input');
+    players.input.type = 'number';
+    players.input.min = '1';
+    players.input.max = String(app.seats.filter(seat => seat.zone === 'main').length);
+    players.input.step = '1';
+    players.input.value = '1';
+    players.input.required = true;
+    const playersHelp = app.el('p', 'form-text');
+    playersHelp.id = 'calculator-players-help';
+    players.input.setAttribute('aria-describedby', playersHelp.id);
+    players.wrapper.append(playersHelp);
+    const hours = field('calculator-hours', 'Планируемая длительность, часов', 'input');
+    hours.input.type = 'number';
+    hours.input.min = '1';
+    hours.input.max = '12';
+    hours.input.step = '1';
+    hours.input.value = '1';
+    const hoursHelp = app.el('p', 'form-text', 'Для почасового тарифа можно рассчитать от 1 до 12 часов.');
+    hoursHelp.id = 'calculator-hours-help';
+    hours.input.setAttribute('aria-describedby', hoursHelp.id);
+    hours.wrapper.append(hoursHelp);
+    const summary = app.el('p', 'alert alert-light border mb-3 text-break');
+    summary.id = 'calculator-summary';
+    summary.setAttribute('role', 'status');
+    summary.setAttribute('aria-live', 'polite');
+    const confirmation = app.el('p', 'hidden p-3 rounded-3');
+    confirmation.id = 'calculator-status';
+    confirmation.setAttribute('role', 'status');
+    const submit = app.el('button', 'btn btn-danger', 'Проверить расчёт');
+    submit.type = 'submit';
+    const clear = app.el('button', 'btn btn-outline-secondary', 'Сбросить расчёт');
+    clear.type = 'reset';
+    const next = app.el('a', 'btn btn-outline-danger', 'Выбрать места');
+    next.id = 'calculator-booking-link';
+    const nextWrapper = app.el('p', 'd-flex flex-wrap gap-2 mb-0');
+    nextWrapper.append(submit, clear, next);
+    const result = app.el('div', 'col-12');
+    result.append(summary, confirmation, nextWrapper);
+    calculatorForm.append(selected.wrapper, players.wrapper, hours.wrapper, result);
+    calculator.append(heading, explanation, calculatorForm);
+    section.after(calculator);
 
-    function resetFilters() {
-        controls.reset();
-        renderTariffs();
-        search.focus();
-    }
-
-    // 2. Получаем поля калькулятора и добавляем тарифы из общих данных.
-    const calculatorForm = document.getElementById('price-calculator-form');
-    const selected = document.getElementById('calculator-tariff');
-    const players = document.getElementById('calculator-players');
-    const playersHelp = document.getElementById('calculator-players-help');
-    const hours = document.getElementById('calculator-hours');
-    const hoursHelp = document.getElementById('calculator-hours-help');
-    const summary = document.getElementById('calculator-summary');
-    const confirmation = document.getElementById('calculator-status');
-    const next = document.getElementById('calculator-booking-link');
-    for (const tariff of app.tariffs) {
-        const option = app.el('option', '', `${tariff.name} — от ${app.money(tariff.price)}`);
-        option.value = tariff.id;
-        selected.append(option);
-    }
-
-    // 3. Проверяем количество игроков и часов, затем считаем цену.
     function calculate() {
-        let tariff = app.tariffs[0];
-        for (const item of app.tariffs) {
-            if (item.id === selected.value) tariff = item;
-        }
-        const quantity = Number(players.value);
-        const duration = Number(hours.value);
-        let zone = 'main';
-        if (tariff.id === 'private') zone = 'private';
-        let capacity = 0;
-        for (const seat of app.seats) {
-            if (seat.zone === zone) capacity += 1;
-        }
-        let error = '';
-        let errorField = null;
-        if (!Number.isInteger(quantity) || quantity < 1 || quantity > capacity) {
-            error = `Укажите целое количество игроков от 1 до ${capacity}: столько мест предусмотрено для выбранной зоны в демонстрационной схеме.`;
-            errorField = players;
-        } else if (tariff.id === 'hour' && (!Number.isInteger(duration) || duration < 1 || duration > 12)) {
-            error = 'Для почасового расчёта укажите целое количество часов от 1 до 12.';
-            errorField = hours;
-        }
-        let total = null;
-        if (!error && tariff.id !== 'private') {
-            total = tariff.price * quantity;
-            if (tariff.id === 'hour') total *= duration;
-        }
-        return { tariff, quantity, duration, capacity, error, errorField, total };
+        const tariff = app.tariffs.find(item => item.id === selected.input.value);
+        const quantity = Number(players.input.value);
+        const duration = Number(hours.input.value);
+        const zone = tariff.id === 'private' ? 'private' : 'main';
+        const capacity = app.seats.filter(seat => seat.zone === zone).length;
+        const error = !Number.isInteger(quantity) || quantity < 1 || quantity > capacity
+            ? `Укажите целое количество игроков от 1 до ${capacity}: столько мест предусмотрено для выбранной зоны в демонстрационной схеме.`
+            : tariff.id === 'hour' && (!Number.isInteger(duration) || duration < 1 || duration > 12)
+                ? 'Для почасового расчёта укажите целое количество часов от 1 до 12.' : '';
+        if (error) return { tariff, quantity, duration, capacity, error, total: null };
+        const total = tariff.id === 'private' ? null : tariff.price * quantity * (tariff.id === 'hour' ? duration : 1);
+        return { tariff, quantity, duration, capacity, error, total };
     }
-
     function updateCalculation() {
-        const result = calculate();
-        players.max = String(result.capacity);
-        let zoneName = 'Main';
-        if (result.tariff.id === 'private') zoneName = 'Private';
-        playersHelp.textContent = `Расчёт для ${zoneName}: до ${result.capacity} мест по демонстрационной схеме. Реальную вместимость уточните у клуба.`;
-        hours.disabled = result.tariff.id !== 'hour';
-        if (result.tariff.duration === 3) {
-            hours.value = '3';
+        const selection = calculate();
+        players.input.max = String(selection.capacity);
+        playersHelp.textContent = `Расчёт для ${selection.tariff.id === 'private' ? 'Private' : 'Main'}: до ${selection.capacity} мест по демонстрационной схеме. Реальную вместимость уточните у клуба.`;
+        hours.input.disabled = selection.tariff.id !== 'hour';
+        if (selection.tariff.duration === 3) {
+            hours.input.value = '3';
             hoursHelp.textContent = 'Пакет включает 3 часа на игрока.';
-        } else if (result.tariff.id === 'hour') {
+        } else if (selection.tariff.id === 'hour') {
             hoursHelp.textContent = 'Для почасового тарифа можно рассчитать от 1 до 12 часов.';
-        } else if (result.tariff.id === 'night') {
-            hoursHelp.textContent = 'Часы начала и окончания ночного пакета в источнике не указаны.';
         } else {
-            hoursHelp.textContent = 'Период оплаты Private в источнике не указан.';
+            hoursHelp.textContent = selection.tariff.id === 'night' ? 'Часы начала и окончания ночного пакета в источнике не указаны.' : 'Период оплаты Private в источнике не указан.';
         }
         confirmation.classList.add('hidden');
-        if (result.error) {
-            summary.textContent = result.error;
+        next.classList.toggle('hidden', Boolean(selection.error));
+        if (selection.error) {
+            summary.textContent = selection.error;
             summary.classList.add('error');
-            next.classList.add('hidden');
             next.removeAttribute('href');
             return;
         }
         summary.classList.remove('error');
-        next.classList.remove('hidden');
-        if (result.total === null) {
-            summary.textContent = `${result.tariff.name}; игроков: ${result.quantity}. Опубликована цена от ${app.money(result.tariff.price)}. Общую стоимость группы рассчитать нельзя: неизвестен период и порядок оплаты Private. Уточните условия у администратора.`;
+        if (selection.total === null) {
+            summary.textContent = `${selection.tariff.name}; игроков: ${selection.quantity}. Опубликована цена от ${app.money(selection.tariff.price)}. Общую стоимость группы рассчитать нельзя: неизвестен период и порядок оплаты Private. Уточните условия у администратора.`;
         } else {
-            let durationText = '3 ч. на игрока';
-            if (result.tariff.id === 'hour') durationText = result.duration + ' ч. на игрока';
-            if (result.tariff.id === 'night') durationText = 'точные часы пакета уточняются';
-            summary.textContent = `${result.tariff.name}; ${durationText}; игроков: ${result.quantity}. Предварительно от ${app.money(result.total)}. Итоговая стоимость может отличаться.`;
+            const durationText = selection.tariff.id === 'night' ? 'точные часы пакета уточняются' : `${selection.tariff.id === 'hour' ? selection.duration : 3} ч. на игрока`;
+            summary.textContent = `${selection.tariff.name}; ${durationText}; игроков: ${selection.quantity}. Предварительно от ${app.money(selection.total)}. Итоговая стоимость может отличаться.`;
         }
-        const params = new URLSearchParams();
-        params.set('tariff', result.tariff.id);
-        params.set('players', String(result.quantity));
-        if (result.tariff.id === 'hour') params.set('hours', String(result.duration));
-        if (result.tariff.id === 'private') params.set('zone', 'private');
+        const params = new URLSearchParams({ tariff: selection.tariff.id, players: String(selection.quantity) });
+        if (selection.tariff.id === 'hour') params.set('hours', String(selection.duration));
+        if (selection.tariff.id === 'private') params.set('zone', 'private');
         next.href = `booking.html?${params.toString()}#booking-form`;
     }
-
-    // 4. Обновляем расчёт при вводе и показываем результат проверки.
-    function editCalculation() {
+    calculatorForm.addEventListener('input', event => {
         app.clearErrors(calculatorForm);
         updateCalculation();
-    }
-
-    function submitCalculation(event) {
+    });
+    calculatorForm.addEventListener('change', () => {
+        app.clearErrors(calculatorForm);
+        updateCalculation();
+    });
+    calculatorForm.addEventListener('submit', event => {
         event.preventDefault();
         app.clearErrors(calculatorForm);
-        const result = calculate();
+        const selection = calculate();
         updateCalculation();
-        if (result.error) {
-            app.setError(result.errorField, result.error);
+        if (selection.error) {
+            const invalid = !Number.isInteger(selection.quantity) || selection.quantity < 1 || selection.quantity > selection.capacity ? players.input : hours.input;
+            app.setError(invalid, selection.error);
             app.notify(confirmation, 'Расчёт не завершён. Исправьте отмеченное поле.', 'error');
-            result.errorField.focus();
+            invalid.focus();
             return;
         }
-        let message = 'Предварительный расчёт готов. Перейдите к выбору мест и проверке времени визита. Реальное бронирование не создано.';
-        if (result.tariff.id === 'private') {
-            message = 'Параметры выбраны. Уточните стоимость Private у администратора и перейдите к выбору мест. Реальное бронирование не создано.';
-        }
-        app.notify(confirmation, message, 'success');
-    }
-
-    function finishReset() {
-        updateCalculation();
-        app.notify(confirmation, 'Расчёт сброшен.', '');
-    }
-
-    function resetCalculation() {
+        app.notify(confirmation, selection.tariff.id === 'private'
+            ? 'Параметры выбраны. Уточните стоимость Private у администратора и перейдите к выбору мест. Реальное бронирование не создано.'
+            : 'Предварительный расчёт готов. Перейдите к выбору мест и проверке времени визита. Реальное бронирование не создано.', 'success');
+    });
+    calculatorForm.addEventListener('reset', () => {
         app.clearErrors(calculatorForm);
-        // Ждём, пока браузер вернёт полям начальные значения.
-        setTimeout(finishReset, 0);
-    }
-
-    controls.addEventListener('submit', submitFilters);
-    controls.addEventListener('input', renderTariffs);
-    document.getElementById('prices-filter-reset').addEventListener('click', resetFilters);
-    calculatorForm.addEventListener('input', editCalculation);
-    calculatorForm.addEventListener('change', editCalculation);
-    calculatorForm.addEventListener('submit', submitCalculation);
-    calculatorForm.addEventListener('reset', resetCalculation);
+        setTimeout(() => { updateCalculation(); app.notify(confirmation, 'Расчёт сброшен.', ''); }, 0);
+    });
     renderTariffs();
     updateCalculation();
-}
-
-setupPrices();
+})();
