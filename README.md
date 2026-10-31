@@ -66,3 +66,18 @@ node checks/unified-check.cjs
 ```
 
 Можно задать `CHROME_PATH` и `QA_OUTPUT`. Прежние отчёты, скриншоты и ограничения midterm в остальных файлах сохранены как история проекта и не описывают текущий интерфейс.
+
+
+## Assignment 6 — jQuery
+
+The existing catalogue/comparison, reviews and booking contact validation now use jQuery 3.7.1 (full CDN build with effects). Original implementations are preserved in `js/old-js-version.js`, which is never linked to a page. Existing booking calculations, cart, seat selection and other pages retain their business rules.
+
+Methods demonstrated: ID/class/element/attribute and `:checked` selectors; `find`, `closest`, `parent`, `siblings`, `each`, `$(this)`; chained `text`, `html`, `val`, `attr`, `prop`; existing classes via `addClass`, `removeClass`, `toggleClass`, `hasClass`; array rendering via `append`/`appendTo`; `on` with delegated click/change and form submit/input/reset; `fadeIn`, `fadeOut` with callback and `slideDown`. Text from users is inserted through `text`, never `html`.
+
+Booking remains a browser-only demonstration: no real booking or payment is created. Email remains optional as labelled in the existing interface, but supplied addresses are validated. Required names, phone, agreement, date, time, duration, seats and delivery selection are checked. Corrected fields lose their errors; successful submission resets the form after building confirmation. Browser validation does not replace backend checks.
+
+Modified files: `about.html`, `computers.html`, `booking.html`, `js/about.js`, `js/computers.js`, `js/booking.js`; added `js/jquery-features.js`, `js/old-js-version.js`. CSS and interface markup are unchanged except external script tags.
+
+Run with a static server from the repository root, e.g. `python -m http.server 8000`, then open `http://localhost:8000`. Internet access is needed for the jQuery CDN. Development-only browser checks require Playwright outside the website; see `checks/README.md`.
+
+Assignment 6 verification: `node checks/assignment6-check.cjs` with `PLAYWRIGHT_MODULE` pointing to an external Playwright installation and `CHROME_PATH` to Chrome, if needed. `QA_OUTPUT` optionally selects the results folder. Seven grouped browser checks passed, covering all seven pages at 375/768/1440 px, catalogue/delegation, reviews/effects, validation/reset and unchanged CSS/AI Log. The existing unified checkout regression also passed all 113 checks; its two-tab scenario now brings the tab being operated to the foreground before clicking. Results: `checks/assignment6-report.json` and `checks/assignment6-new-flows-report.json`.

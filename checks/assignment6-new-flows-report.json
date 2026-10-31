@@ -1,0 +1,478 @@
+{
+  "testedAt": "2026-10-31T13:26:52.387Z",
+  "sourceHashes": {
+    "booking.html": "2f9bcd8b27625688172ff436d974397f7af570871d2821ddf38a4113c16edf05",
+    "js/booking.js": "cee676c8cd76411fca3e7792266d0b340dbe5e29d5860a745b021db2c22ac254",
+    "js/food.js": "f18f434daf631a904fa1493623136b07f7e22edcb78179fc0ecde28a0fe919cb",
+    "js/main.js": "5ebb6c5fc1d546fa1df9e22da0e368a1f541173c88abc0a484a681888327daac",
+    "css/base.css": "87b947f1198bf92082a0c16d2d12f19f1a975c06931e08d8e1c2d5c444fa3122"
+  },
+  "checks": [
+    {
+      "name": "First visible step is PC choice",
+      "pass": true
+    },
+    {
+      "name": "All 20 PCs are present",
+      "pass": true
+    },
+    {
+      "name": "Player number is derived, not separately editable",
+      "pass": true
+    },
+    {
+      "name": "Selecting two PCs updates player count",
+      "pass": true
+    },
+    {
+      "name": "PC sum for 2 PCs × 2 hours equals 4800",
+      "pass": true
+    },
+    {
+      "name": "PC Continue opens food step",
+      "pass": true
+    },
+    {
+      "name": "Food can be skipped",
+      "pass": true
+    },
+    {
+      "name": "Back retains PC selection",
+      "pass": true
+    },
+    {
+      "name": "Back and forward retain contact input",
+      "pass": true
+    },
+    {
+      "name": "PC-only succeeds with optional email blank",
+      "pass": true
+    },
+    {
+      "name": "Success explains demo nature",
+      "pass": true
+    },
+    {
+      "name": "Contacts are absent from localStorage",
+      "pass": true
+    },
+    {
+      "name": "Successful PC booking stored once",
+      "pass": true
+    },
+    {
+      "name": "Repeated submit creates no duplicate",
+      "pass": true
+    },
+    {
+      "name": "Booking survives page reload",
+      "pass": true
+    },
+    {
+      "name": "Saved booking marks overlapping PC busy",
+      "pass": true
+    },
+    {
+      "name": "Adjacent interval leaves PC available",
+      "pass": true
+    },
+    {
+      "name": "Intersecting interval marks PC unavailable",
+      "pass": true
+    },
+    {
+      "name": "Cancellation frees the PC",
+      "pass": true
+    },
+    {
+      "name": "Cancellation survives reload",
+      "pass": true
+    },
+    {
+      "name": "Food total equals menu prices",
+      "pass": true
+    },
+    {
+      "name": "Unified total equals PCs plus food",
+      "pass": true
+    },
+    {
+      "name": "Cart plus updates total",
+      "pass": true
+    },
+    {
+      "name": "Cart plus preserves keyboard focus",
+      "pass": true
+    },
+    {
+      "name": "Cart minus updates total",
+      "pass": true
+    },
+    {
+      "name": "Delivery choices only contain chosen PCs",
+      "pass": true
+    },
+    {
+      "name": "Combined PC and food order succeeds",
+      "pass": true
+    },
+    {
+      "name": "Combined success contains food and PC",
+      "pass": true
+    },
+    {
+      "name": "Contact markup is rendered as plain text",
+      "pass": true
+    },
+    {
+      "name": "Successful order clears food cart",
+      "pass": true
+    },
+    {
+      "name": "Food-only opens the menu",
+      "pass": true
+    },
+    {
+      "name": "Food-only bar pickup succeeds without PC",
+      "pass": true
+    },
+    {
+      "name": "Food-only does not reserve any PC",
+      "pass": true
+    },
+    {
+      "name": "Three-hour package fixes duration to 3",
+      "pass": true
+    },
+    {
+      "name": "Three-hour package total is 3600 per PC",
+      "pass": true
+    },
+    {
+      "name": "PRIVATE tariff selects PRIVATE zone",
+      "pass": true
+    },
+    {
+      "name": "Leaving PRIVATE selects hourly tariff",
+      "pass": true
+    },
+    {
+      "name": "Private total remains explicitly unknown",
+      "pass": true
+    },
+    {
+      "name": "Private submission explains that price needs confirmation",
+      "pass": true
+    },
+    {
+      "name": "One Duo PC cannot advance",
+      "pass": true
+    },
+    {
+      "name": "Two Duo PCs submit successfully",
+      "pass": true
+    },
+    {
+      "name": "Seat delivery requires a PC even without a booking",
+      "pass": true
+    },
+    {
+      "name": "Food-only delivery to an existing PC succeeds",
+      "pass": true
+    },
+    {
+      "name": "Food delivery does not create a PC reservation",
+      "pass": true
+    },
+    {
+      "name": "Cannot proceed without a PC",
+      "pass": true
+    },
+    {
+      "name": "Past date prevents moving ahead",
+      "pass": true
+    },
+    {
+      "name": "Invalid contact gets focus",
+      "pass": true
+    },
+    {
+      "name": "Only one name input in checkout",
+      "pass": true
+    },
+    {
+      "name": "No initial horizontal overflow at 375",
+      "pass": true
+    },
+    {
+      "name": "No menu horizontal overflow at 375",
+      "pass": true
+    },
+    {
+      "name": "Cart uses an open native modal at 375",
+      "pass": true
+    },
+    {
+      "name": "Mobile cart has no overflow at 375",
+      "pass": true
+    },
+    {
+      "name": "Escape closes cart dialog at 375",
+      "pass": true
+    },
+    {
+      "name": "Escape returns focus to opener at 375",
+      "pass": true
+    },
+    {
+      "name": "No initial horizontal overflow at 768",
+      "pass": true
+    },
+    {
+      "name": "No menu horizontal overflow at 768",
+      "pass": true
+    },
+    {
+      "name": "Cart uses an open native modal at 768",
+      "pass": true
+    },
+    {
+      "name": "Mobile cart has no overflow at 768",
+      "pass": true
+    },
+    {
+      "name": "Escape closes cart dialog at 768",
+      "pass": true
+    },
+    {
+      "name": "Escape returns focus to opener at 768",
+      "pass": true
+    },
+    {
+      "name": "No initial horizontal overflow at 1440",
+      "pass": true
+    },
+    {
+      "name": "No menu horizontal overflow at 1440",
+      "pass": true
+    },
+    {
+      "name": "Default is future in Almaty at 23:45",
+      "pass": true,
+      "detail": {
+        "date": "2030-06-16",
+        "time": "00:00"
+      }
+    },
+    {
+      "name": "Near midnight default rolls over to next Almaty day",
+      "pass": true
+    },
+    {
+      "name": "Draft restores selected PC",
+      "pass": true
+    },
+    {
+      "name": "Draft restores food cart",
+      "pass": true
+    },
+    {
+      "name": "Reload does not restore personal contact",
+      "pass": true
+    },
+    {
+      "name": "Removing a PC updates count and total",
+      "pass": true
+    },
+    {
+      "name": "Removing last PC shows empty cart",
+      "pass": true
+    },
+    {
+      "name": "Removing last PC restores a useful focus",
+      "pass": true
+    },
+    {
+      "name": "Mobile cart plus updates quantity and preserves focus",
+      "pass": true
+    },
+    {
+      "name": "Mobile cart minus updates quantity and preserves focus",
+      "pass": true
+    },
+    {
+      "name": "Mobile cart PC removal recalculates price and focuses next PC",
+      "pass": true
+    },
+    {
+      "name": "Mobile cart last PC removal keeps food and useful focus",
+      "pass": true
+    },
+    {
+      "name": "Adding PCs remains available after removing all PCs",
+      "pass": true
+    },
+    {
+      "name": "Malformed saved data does not prevent checkout",
+      "pass": true
+    },
+    {
+      "name": "Malformed saved cart is safely empty",
+      "pass": true
+    },
+    {
+      "name": "Only structurally valid stored orders are restored",
+      "pass": true
+    },
+    {
+      "name": "Invalid zone draft leaves Main visible",
+      "pass": true
+    },
+    {
+      "name": "Only valid saved booking affects PC availability",
+      "pass": true
+    },
+    {
+      "name": "Inherited object key in URL cannot replace Main zone",
+      "pass": true
+    },
+    {
+      "name": "Storage disabled still accepts in-memory demo",
+      "pass": true
+    },
+    {
+      "name": "Storage disabled is explained clearly",
+      "pass": true
+    },
+    {
+      "name": "In-memory booking can be cancelled",
+      "pass": true
+    },
+    {
+      "name": "Food cart syncs into another open tab",
+      "pass": true
+    },
+    {
+      "name": "New booking updates occupancy in another open tab",
+      "pass": true
+    },
+    {
+      "name": "Completed checkout clears food in another tab",
+      "pass": true
+    },
+    {
+      "name": "Cancellation syncs into originating tab",
+      "pass": true
+    },
+    {
+      "name": "index.html has no overflow at 375",
+      "pass": true
+    },
+    {
+      "name": "index.html has no overflow at 768",
+      "pass": true
+    },
+    {
+      "name": "index.html has no overflow at 1440",
+      "pass": true
+    },
+    {
+      "name": "index.html has unique HTML ids",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "prices.html has no overflow at 375",
+      "pass": true
+    },
+    {
+      "name": "prices.html has no overflow at 768",
+      "pass": true
+    },
+    {
+      "name": "prices.html has no overflow at 1440",
+      "pass": true
+    },
+    {
+      "name": "prices.html has unique HTML ids",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "computers.html has no overflow at 375",
+      "pass": true
+    },
+    {
+      "name": "computers.html has no overflow at 768",
+      "pass": true
+    },
+    {
+      "name": "computers.html has no overflow at 1440",
+      "pass": true
+    },
+    {
+      "name": "computers.html has unique HTML ids",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "games.html has no overflow at 375",
+      "pass": true
+    },
+    {
+      "name": "games.html has no overflow at 768",
+      "pass": true
+    },
+    {
+      "name": "games.html has no overflow at 1440",
+      "pass": true
+    },
+    {
+      "name": "games.html has unique HTML ids",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "rules.html has no overflow at 375",
+      "pass": true
+    },
+    {
+      "name": "rules.html has no overflow at 768",
+      "pass": true
+    },
+    {
+      "name": "rules.html has no overflow at 1440",
+      "pass": true
+    },
+    {
+      "name": "rules.html has unique HTML ids",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "about.html has no overflow at 375",
+      "pass": true
+    },
+    {
+      "name": "about.html has no overflow at 768",
+      "pass": true
+    },
+    {
+      "name": "about.html has no overflow at 1440",
+      "pass": true
+    },
+    {
+      "name": "about.html has unique HTML ids",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "Browser has no uncaught JS errors",
+      "pass": true,
+      "detail": []
+    }
+  ],
+  "errors": [],
+  "browserErrors": [],
+  "finishedAt": "2026-10-31T13:27:48.818Z"
+}

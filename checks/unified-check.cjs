@@ -386,6 +386,7 @@ async function run() {
       const second = await context.newPage();
       await second.goto(origin + '/booking.html');
       await visitTime(second);
+      await page.bringToFront();
       await page.locator('#booking-next').click();
       await page.locator('[data-add-food="water"]').click();
       await second.waitForFunction(() => window.TopGameFood.getCart().length === 1);

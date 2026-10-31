@@ -304,6 +304,7 @@ function setupBooking() {
         if (!toSeat) byId('delivery-help').textContent = 'Готовый заказ можно будет забрать у стойки.';
     }
     function changed() {
+        if ($('#booking-form').find('#booking-date[aria-invalid="true"], #booking-time[aria-invalid="true"], #booking-duration[aria-invalid="true"], #booking-tariff[aria-invalid="true"], #seat-map[aria-invalid="true"]').length) validateVisit();
         saveDraft();
         refresh();
     }
@@ -326,15 +327,7 @@ function setupBooking() {
 
     // 4. Переходы между тремя шагами сохраняют введённые значения.
     function validateVisit() {
-        if (!selectedSeats.length) return 'Выбери хотя бы один свободный ПК на схеме.';
-        const visit = currentInterval();
-        if (!visit) return 'Укажи корректные дату, время и целую длительность от 1 до 12 часов.';
-        if (visit.start <= Date.now()) return 'Это время уже прошло. Выбери будущее время по Астане.';
-        if (zone === 'duo' && selectedSeats.length !== 2) return 'Для Duo выбери ровно два свободных ПК.';
-        if (fields.tariff.value === 'three-hours' && Number(fields.duration.value) !== 3) return 'Пакет «3 часа» включает ровно три часа.';
-        const busy = busySeats();
-        if (selectedSeats.some(id => busy.includes(id))) return 'Один из выбранных ПК занят на это время. Убери его из корзины или измени время.';
-        return '';
+        return window.TopGameJQuery.validateVisit({ seats: selectedSeats, zone: zone, busy: busySeats() });
     }
     function showStep(next, focusHeading) {
         step = next;
@@ -416,27 +409,12 @@ function setupBooking() {
         if (storageAvailable) syncOrders();
         if (!checkCart()) return;
         const lines = food.getCart();
-        app.clearErrors(form);
-        const contacts = app.validateContacts(fields.name.value, fields.email.value, fields.phone.value);
-        if (fields.email.value.trim() === '') contacts.email = '';
-        const deliverySeat = Number(byId('food-seat').value);
-        const invalidSeat = lines.length > 0 && byId('food-delivery').value === 'seat' &&
-            (!app.findProduct(app.seats, deliverySeat) || (selectedSeats.length > 0 && !selectedSeats.includes(deliverySeat)));
-        const checks = [
-            [fields.name, contacts.name], [fields.phone, contacts.phone], [fields.email, contacts.email],
-            [byId('food-seat'), invalidSeat ? 'Выбери ПК, к которому нужно принести еду.' : ''],
-            [fields.agreement, fields.agreement.checked ? '' : 'Подтверди, что проверил заказ и понимаешь демонстрационный режим.'],
-            [fields.comment, fields.comment.value.trim().length > 1000 ? 'Сократи комментарий до 1 000 символов.' : '']
-        ];
-        const invalid = [];
-        for (const [field, message] of checks) {
-            if (app.setError(field, message)) invalid.push(field);
-        }
+        // jQuery validation owns field values, errors and correction handlers; booking business rules stay separate.
+        const invalid = window.TopGameJQuery.validateBookingContacts();
         if (invalid.length > 0) {
             showMessage('booking-errors', 'Проверь отмеченные поля — и можно оформлять заказ.');
-            const details = invalid[0].closest('details');
-            if (details) details.open = true;
-            invalid[0].focus();
+            invalid[0].closest('details').prop('open', true);
+            invalid[0].trigger('focus');
             return;
         }
         showMessage('booking-errors', '');
@@ -488,6 +466,9 @@ function setupBooking() {
         selectedSeats = [];
         app.store.set('visit-draft', null);
         food.clear();
+        // Reset the native form only after copying its values into the demo confirmation.
+        form.reset();
+        window.TopGameJQuery.clearErrors($(form));
         renderReservations();
         refresh();
         byId('booking-success').focus();
@@ -502,7 +483,7 @@ function setupBooking() {
         for (const name of ['name', 'phone', 'email', 'comment']) fields[name].value = '';
         fields.agreement.checked = false;
         byId('headphones').checked = false;
-        app.clearErrors(form);
+        window.TopGameJQuery.clearErrors($(form));
         byId('booking-success').hidden = true;
         form.hidden = false;
         document.querySelector('.booking-steps').hidden = false;
@@ -587,15 +568,19 @@ function setupBooking() {
     onClick('#date-tomorrow', () => { fields.date.value = tomorrow(); changed(); });
     form.addEventListener('input', function (event) {
         if (event.target === fields.date || event.target === fields.time || event.target === fields.duration) { showMessage('booking-step-error', ''); changed(); }
-        else if (event.target.id) app.setError(event.target, '');
+
     });
     form.addEventListener('change', function (event) {
         if (event.target === fields.tariff) { setTariff(fields.tariff.value); return; }
         if (event.target === byId('food-delivery')) updateDelivery();
-        if (event.target.id) app.setError(event.target, '');
+
     });
     byId('food-search').addEventListener('keydown', function (event) { if (event.key === 'Enter') event.preventDefault(); });
-    form.addEventListener('submit', submitOrder);
+    // Prevent a native form navigation: this is a local demo, not a real reservation.
+    $(form).on('submit.bookingValidation', submitOrder);
+    $(form).on('input.bookingValidation change.bookingValidation', '#customer-name, #customer-email, #customer-phone, #booking-comment, #booking-agreement, #food-seat, #food-delivery', function () {
+        if ($(this).attr('aria-invalid') === 'true' || $(form).find('[aria-invalid="true"]').length) window.TopGameJQuery.validateBookingContacts();
+    });
     onClick('#new-booking-button', newBooking);
     food.onChange(refresh);
     window.addEventListener('storage', function (event) {
@@ -650,4 +635,5 @@ function setupBooking() {
     openFromHash();
 }
 
-setupBooking();
+// jQuery ready runs after the deferred shared modules and HTML templates are available.
+$(setupBooking);
