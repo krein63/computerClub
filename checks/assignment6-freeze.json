@@ -1,0 +1,56 @@
+{
+  "html": [
+    {
+      "file": "about.html",
+      "unchangedExceptCDN": true,
+      "inlineHandlers": 0,
+      "inlineScripts": 0
+    },
+    {
+      "file": "booking.html",
+      "unchangedExceptCDN": true,
+      "inlineHandlers": 0,
+      "inlineScripts": 0
+    },
+    {
+      "file": "computers.html",
+      "unchangedExceptCDN": true,
+      "inlineHandlers": 0,
+      "inlineScripts": 0
+    },
+    {
+      "file": "games.html",
+      "unchangedExceptCDN": true,
+      "inlineHandlers": 0,
+      "inlineScripts": 0
+    },
+    {
+      "file": "index.html",
+      "unchangedExceptCDN": true,
+      "inlineHandlers": 0,
+      "inlineScripts": 0
+    },
+    {
+      "file": "prices.html",
+      "unchangedExceptCDN": true,
+      "inlineHandlers": 0,
+      "inlineScripts": 0
+    },
+    {
+      "file": "rules.html",
+      "unchangedExceptCDN": true,
+      "inlineHandlers": 0,
+      "inlineScripts": 0
+    }
+  ],
+  "css": [
+    {
+      "file": "css/base.css",
+      "unchanged": true
+    },
+    {
+      "file": "css/bootstrap.min.css",
+      "unchanged": true
+    }
+  ]
+}

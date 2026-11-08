@@ -1,0 +1,88 @@
+{
+  "testedAt": "2026-11-02T08:45:59.543Z",
+  "checks": [
+    {
+      "name": "Six tariffs retained consistently in cards, table and select",
+      "passed": true
+    },
+    {
+      "name": "Calculator: hour uses the shared price and duration",
+      "passed": true
+    },
+    {
+      "name": "Calculator: three-hours uses the shared price and duration",
+      "passed": true
+    },
+    {
+      "name": "Calculator: five-hours uses the shared price and duration",
+      "passed": true
+    },
+    {
+      "name": "Calculator: day uses the shared price and duration",
+      "passed": true
+    },
+    {
+      "name": "Calculator: night uses the shared price and duration",
+      "passed": true
+    },
+    {
+      "name": "Calculator: private uses the shared price and duration",
+      "passed": true
+    },
+    {
+      "name": "Calculator reset restores one PC, one hour and a valid next link",
+      "passed": true
+    },
+    {
+      "name": "Five-hour package and 20 players carry to booking",
+      "passed": true
+    },
+    {
+      "name": "20 PCs can be selected across MAIN, DUO and PRIVATE",
+      "passed": true
+    },
+    {
+      "name": "Repeated identical booking creates no duplicate",
+      "passed": true
+    },
+    {
+      "name": "A second tab sees all overlapping occupied PCs",
+      "passed": true
+    },
+    {
+      "name": "Cancellation in another tab releases PCs and updates the first tab",
+      "passed": true
+    },
+    {
+      "name": "Food quantity controls and storage are retained",
+      "passed": true
+    },
+    {
+      "name": "Six distinct game covers load successfully",
+      "passed": true
+    },
+    {
+      "name": "Game request survives reload without persisted contact fields",
+      "passed": true
+    },
+    {
+      "name": "Integration produces no console, script or resource errors",
+      "passed": true
+    }
+  ],
+  "errors": [],
+  "sourceSha256": {
+    "js/about.js": "bd4ace48feccb42a6fcef154c56046f42cde079a80e7adec5e2ff5fb7911a585",
+    "js/booking.js": "21f977cc66596882c2f876b1f0136a9c18582eee7c2c776144029c3887bdf4c8",
+    "js/computers.js": "e1515aad585fe362898b82bed42aeb6d8b5349b35bbe1720736ccaffad83c860",
+    "js/data.js": "29d1cae5a8de2da0d11cdf2687b114ca06a0edebd6106114f969536469dcd217",
+    "js/food.js": "af6fdf5906bda804acf54f8fbbb57581c6ec6e4dca19e2b4ed85f6c52c505539",
+    "js/games.js": "8d1ada3cbeff69c0acad0cf6a8fb53c591a6fab219adc13c759fe2ae5d047db8",
+    "js/logic.js": "120af3ac6c3c555ab91863b6bc3db6d2dccbc74e43a8b6a1069c960c0ed95ba1",
+    "js/main.js": "18a135090e725b23d784314e0fc267c373eb005d729a96d1cb1a0e0000b43482",
+    "js/old-js-version.js": "9dd04def3043c96b344ab9fa2b009172f45bfaf31f7b175c5a86eae32d645202",
+    "js/prices.js": "979315e39d8c5e19fe992001e07c93fb1b36a4064ea07cdb1271b56928005d40",
+    "js/rules.js": "c76de0b63c053daf6d7baf5532d2193c64b42bb72af89404d28af776084970ff"
+  },
+  "passed": true
+}

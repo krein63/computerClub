@@ -155,7 +155,7 @@ async function noOverflow(page) {
             await page.locator('#request-comment').fill('<img src=x onerror=alert(1)>');
             await page.locator('#game-request-submit').click();
             const first = await page.locator('#game-request-success').innerText();
-            assert.match(first, /DEMO-GAME-/);
+            assert.match(first, /(?:DEMO|TG)-GAME-/);
             assert.match(await page.locator('#game-request-list').innerText(), /amir@example.com/);
             assert.match(await page.locator('#game-request-list').innerText(), /<img src=x/);
             equal(await page.locator('#game-request-list img').count(), 0);

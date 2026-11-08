@@ -1,176 +1,201 @@
 'use strict';
 
-(() => {
-    // Тёмная тема: используем готовые классы Bootstrap, CSS задания не меняем.
-    document.documentElement.dataset.bsTheme = 'dark';
-    const darkClasses = { 'bg-white': 'bg-body-secondary', 'bg-light': 'bg-body-tertiary', 'text-dark': 'text-light', 'text-danger': 'text-danger-emphasis', 'btn-outline-dark': 'btn-outline-light', 'btn-outline-secondary': 'btn-outline-light', 'border-dark': 'border-secondary', 'alert-light': 'alert-dark', 'table-light': 'table-dark' };
-    function darkTheme(element) {
-        for (const lightClass in darkClasses) {
-            if (element.classList.contains(lightClass)) {
-                element.classList.replace(lightClass, darkClasses[lightClass]);
-            }
-        }
-        if (element.matches('.card, .form-control, .form-select, .list-group-item')) element.classList.add('bg-dark', 'text-light');
-        if (element.matches('.table')) element.classList.add('table-dark');
-        if (element.matches('.list-group-item')) element.classList.add('border-secondary');
-        if (element.matches('a:not(.btn):not(.nav-link):not(.navbar-brand)')) element.classList.add('link-light');
-        if (element.matches('.btn-outline-danger')) element.classList.add('text-light');
-    }
-    document.body.classList.add('bg-dark', 'text-light');
-    document.querySelectorAll('*').forEach(darkTheme);
+// jQuery 3.7.1 FULL build comes from the CDN first: effects need the full build.
+// ready waits for the HTML. This short form means $(document).ready(...).
+$(function () {
+  $('html').attr('data-bs-theme', 'dark');
+  const darkClasses = {
+    'bg-white': 'bg-body-secondary',
+    'bg-light': 'bg-body-tertiary',
+    'text-dark': 'text-light',
+    'text-danger': 'text-danger-emphasis',
+    'btn-outline-dark': 'btn-outline-light',
+    'btn-outline-secondary': 'btn-outline-light',
+    'border-dark': 'border-secondary',
+    'alert-light': 'alert-dark',
+    'table-light': 'table-dark'
+  };
+  function darkTheme(element) {
+    const $element = $(element);
+    $.each(darkClasses, function (light, dark) {
+      if ($element.hasClass(light)) $element.removeClass(light).addClass(dark);
+    });
+    if ($element.is('.card, .form-control, .form-select, .list-group-item')) $element.addClass('bg-dark text-light');
+    if ($element.is('.table')) $element.addClass('table-dark');
+    if ($element.is('.list-group-item')) $element.addClass('border-secondary');
+    if ($element.is('a:not(.btn):not(.nav-link):not(.navbar-brand)')) $element.addClass('link-light');
+    if ($element.is('.btn-outline-danger')) $element.addClass('text-light');
+  }
+  $('body').addClass('bg-dark text-light');
+  $('*').each(function () {
+    darkTheme(this);
+  });
 
-    // Создаёт один элемент, задаёт классы и безопасный текст.
-    function el(tag, classes = '', text = '') {
-        const element = document.createElement(tag);
-        for (const name of classes.split(' ')) {
-            if (name) element.classList.add(name);
-        }
-        if (text !== '') element.textContent = text;
-        darkTheme(element);
-        return element;
+  // Return the underlying node so existing arrays can keep references.
+  // .get(0) only unwraps the collection; page changes still use jQuery.
+  function el(tag, classes = '', text = '') {
+    // Chain: create an element -> use existing classes -> insert safe plain text.
+    const $element = $('<' + tag + '>').addClass(classes).text(text);
+    darkTheme($element);
+    return $element.get(0);
+  }
+  function money(amount) {
+    return `${new Intl.NumberFormat('ru-KZ').format(amount)} ₸`;
+  }
+  function reference(prefix) {
+    return window.TopGameLogic.reference(prefix);
+  }
+  function today() {
+    return new Intl.DateTimeFormat('en-CA', {
+      timeZone: 'Asia/Almaty',
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit'
+    }).format(new Date());
+  }
+  function localDateTime(date, time) {
+    return new Date(`${date}T${time}:00+05:00`).getTime();
+  }
+  const store = {
+    get(key, fallback) {
+      try {
+        const value = localStorage.getItem(`topgame-${key}`);
+        return value === null ? fallback : JSON.parse(value);
+      } catch {
+        return fallback;
+      }
+    },
+    set(key, value) {
+      try {
+        localStorage.setItem(`topgame-${key}`, JSON.stringify(value));
+        return true;
+      } catch {
+        return false;
+      }
     }
+  };
 
-    function money(amount) {
-        return `${new Intl.NumberFormat('ru-KZ').format(amount)} ₸`;
+  // REWRITE 1: .contents().detach(), $.each() and .append() replace replaceChildren/forEach/append.
+  // Similar length; detach makes it explicit that reusable equipment cards keep their events.
+  function renderList(container, items, renderItem, emptyText = 'Пока ничего нет.') {
+    const $container = $(container);
+    $container.contents().detach();
+    if (!items.length) $container.append(el($container.is('ul, ol') ? 'li' : 'p', 'p-3 mb-0 text-body-secondary', emptyText));else $.each(items, function (index, item) {
+      $container.append(renderItem(item, index));
+    });
+    return items.length;
+  }
+  function setError(field, message) {
+    const $field = $(field);
+    const errorId = `${$field.attr('id')}-error`;
+    let $error = $('#' + errorId);
+    if (!$error.length) {
+      $error = $('<span>').addClass('d-block small mt-1 mb-0 hidden').attr('id', errorId);
+      $field.after($error);
+      const descriptions = ($field.attr('aria-describedby') || '').split(' ').filter(Boolean);
+      if (!descriptions.includes(errorId)) descriptions.push(errorId);
+      $field.attr('aria-describedby', descriptions.join(' '));
     }
-
-    function reference(prefix) {
-        return window.TopGameLogic.reference(prefix);
-    }
-
-    function today() {
-        return new Intl.DateTimeFormat('en-CA', { timeZone: 'Asia/Almaty', year: 'numeric', month: '2-digit', day: '2-digit' }).format(new Date());
-    }
-
-    function localDateTime(date, time) {
-        return new Date(`${date}T${time}:00+05:00`).getTime();
-    }
-
-    const store = {
-        get(key, fallback) {
-            try {
-                const value = localStorage.getItem(`topgame-${key}`);
-                return value === null ? fallback : JSON.parse(value);
-            } catch {
-                return fallback;
-            }
-        },
-        set(key, value) {
-            try {
-                localStorage.setItem(`topgame-${key}`, JSON.stringify(value));
-                return true;
-            } catch {
-                return false;
-            }
-        }
+    $error.text(message).toggleClass('hidden', !message).toggleClass('error', Boolean(message));
+    // Chain: toggle our error colors -> toggle Bootstrap's invalid border -> expose validity to screen readers.
+    $field.toggleClass('error', Boolean(message)).toggleClass('is-invalid', Boolean(message)).attr('aria-invalid', String(Boolean(message)));
+    return Boolean(message);
+  }
+  function clearErrors(form) {
+    $(form).find('[aria-invalid="true"]').each(function () {
+      setError(this, '');
+    });
+  }
+  function validateContacts(name, email, phone) {
+    const digits = phone.trim().replace(/[\s()\-]/g, '');
+    return {
+      name: name.trim().length >= 2 && name.trim().length <= 80 ? '' : 'Введите имя от 2 до 80 символов.',
+      email: /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim()) && email.trim().length <= 254 ? '' : 'Введите почту в формате name@example.com.',
+      phone: /^\+7\d{10}$/.test(digits) ? '' : 'Введите телефон: +7 и 10 цифр, например +7 706 400 50 40.'
     };
-
-    function renderList(container, items, renderItem, emptyText = 'Пока ничего нет.') {
-        container.replaceChildren();
-        if (items.length === 0) {
-            container.append(el(container.tagName === 'UL' ? 'li' : 'p', 'p-3 mb-0 text-body-secondary', emptyText));
-        } else {
-            items.forEach((item, index) => container.append(renderItem(item, index)));
-        }
-        return items.length;
+  }
+  function notify(element, text, state = '') {
+    const $message = $(element);
+    if (!text) {
+      // Fade out dismissed feedback. The callback restores the existing hidden class.
+      if (!$message.hasClass('hidden')) $message.stop(true, true).fadeOut(120, function () {
+        $(this).addClass('hidden').text('').removeClass('success error');
+      });
+      return text;
     }
+    // Finish a pending dismissal before reading visibility, so rapid edits cannot leave new feedback invisible.
+    $message.stop(true, true);
+    const wasHidden = $message.hasClass('hidden') || !$message.is(':visible');
+    $message.text(text).toggleClass('success', state === 'success').toggleClass('error', state === 'error').removeClass('hidden');
+    if (wasHidden) $message.hide().fadeIn(180);
+    return text;
+  }
+  window.TopGame = {
+    ...window.TopGameData,
+    ...window.TopGameLogic,
+    el,
+    money,
+    reference,
+    today,
+    localDateTime,
+    store,
+    renderList,
+    setError,
+    clearErrors,
+    validateContacts,
+    notify
+  };
 
-    function setError(field, message) {
-        const errorId = `${field.id}-error`;
-        let error = document.getElementById(errorId);
-        if (!error) {
-            error = el('span', 'd-block small mt-1 mb-0 hidden');
-            error.id = errorId;
-            field.insertAdjacentElement('afterend', error);
-            const descriptions = (field.getAttribute('aria-describedby') || '').split(' ').filter(Boolean);
-            if (!descriptions.includes(errorId)) descriptions.push(errorId);
-            field.setAttribute('aria-describedby', descriptions.join(' '));
-        }
-        error.textContent = message;
-        error.classList.toggle('hidden', !message);
-        error.classList.toggle('error', Boolean(message));
-        field.classList.toggle('error', Boolean(message));
-        field.classList.toggle('is-invalid', Boolean(message));
-        field.setAttribute('aria-invalid', String(Boolean(message)));
-        return Boolean(message);
+  // Update historical capacity text in code while keeping the frozen HTML.
+  $('main').find('*').contents().filter(function () {
+    return this.nodeType === 3 && /45(?=\s+(?:игров|компьютер|ПК))/.test(this.nodeValue);
+  }).each(function () {
+    $(this).replaceWith($('<span>').text(this.nodeValue.replace(/45(?=\s+(?:игров|компьютер|ПК))/g, String(window.TopGame.seats.length))));
+  });
+  $('main input[max="45"]').attr('max', String(window.TopGame.seats.length));
+  $('strong abbr[title="персональных компьютеров"]').parent().contents().first().replaceWith($('<span>').text(`${window.TopGame.seats.length} `));
+  const $toggle = $('#main-navigation-toggle');
+  function syncMenu() {
+    $toggle.attr('aria-expanded', String($toggle.prop('checked')));
+  }
+  $toggle.on('change', syncMenu);
+  $('#main-navigation').on('keydown', function (event) {
+    if (event.key === 'Escape') {
+      $toggle.prop('checked', false).trigger('focus');
+      syncMenu();
     }
+  });
+  syncMenu();
+  $('<li>').addClass('nav-item').append($('<a>').addClass('nav-link px-2').attr({
+    id: 'nav-food',
+    href: 'booking.html#food-menu'
+  }).text('Еда')).appendTo('#main-navigation .navbar-nav');
+  // Current page/booking subsection: visible state and accessible current location agree.
+  function syncNavigation() {
+    const current = location.pathname.split('/').pop() || 'index.html';
+    const foodSection = current === 'booking.html' && ['#food-menu', '#food-cart'].includes(location.hash);
+    $('#main-navigation .nav-link').each(function () {
+      const href = $(this).attr('href');
+      if (!href) return;
+      const target = new URL(href, location.href);
+      const foodLink = this.id === 'nav-food' || this.id === 'nav-cart';
+      const selected = foodSection ? (location.hash === '#food-cart' ? this.id === 'nav-cart' : this.id === 'nav-food') : !foodLink && target.pathname.split('/').pop() === current;
+      $(this).toggleClass('active', selected).toggleClass('fw-bold', selected);
+      if (selected) $(this).attr('aria-current', foodSection ? 'location' : 'page');
+      else $(this).removeAttr('aria-current');
+    });
+  }
+  $(window).on('hashchange', syncNavigation);
+  // food.js adds the cart link in its own ready handler.
+  setTimeout(syncNavigation, 0);
+  const $home = $('#index-content');
+  if ($home.length) {
+    const $section = $(el('section', 'bg-white border rounded-4 p-3 p-md-4 p-lg-5 mb-4 shadow-sm'));
+    $section.append(el('p', 'small text-uppercase text-danger fw-semibold mb-2', 'Твой следующий сеанс'), el('h2', 'h2 fw-bold mb-3', 'Место для команды и перекус к игре'), el('p', 'mb-3', 'Выберите ПК на схеме зала, подготовьте демо-заявку и соберите заказ еды. Итог и стоимость видны сразу.'));
+    const $actions = $('<div>').addClass('d-flex flex-wrap gap-2');
+    $actions.append($('<a>').addClass('btn btn-danger').attr('href', 'booking.html#seat-map').text('Выбрать место'), $('<a>').addClass('btn btn-outline-danger').attr('href', 'booking.html#food-menu').text('Посмотреть меню'));
+    $section.append($actions);
+    $home.children().eq(0).after($section);
+  }
+});
 
-    function clearErrors(form) {
-        form.querySelectorAll('[aria-invalid="true"]').forEach(field => setError(field, ''));
-    }
-
-    function validateContacts(name, email, phone) {
-        const digits = phone.trim().replace(/[\s()\-]/g, '');
-        return {
-            name: name.trim().length >= 2 && name.trim().length <= 80 ? '' : 'Введите имя от 2 до 80 символов.',
-            email: /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim()) && email.trim().length <= 254 ? '' : 'Введите почту в формате name@example.com.',
-            phone: /^\+7\d{10}$/.test(digits) ? '' : 'Введите телефон: +7 и 10 цифр, например +7 706 400 50 40.'
-        };
-    }
-
-    function notify(element, text, state = '') {
-        element.textContent = text;
-        element.classList.toggle('success', state === 'success');
-        element.classList.toggle('error', state === 'error');
-        element.classList.toggle('hidden', text === '');
-        return text;
-    }
-
-    window.TopGame = { ...window.TopGameData, ...window.TopGameLogic, el, money, reference, today, localDateTime, store, renderList, setError, clearErrors, validateContacts, notify };
-
-    // The user revised the club capacity after midterm. Update through DOM only.
-    const main = document.querySelector('main');
-    if (main) {
-        const texts = document.createTreeWalker(main, NodeFilter.SHOW_TEXT);
-        let node = texts.nextNode();
-        while (node) {
-            node.textContent = node.textContent.replace(/45(?=\s+(?:игров|компьютер|ПК))/g, String(window.TopGame.seats.length));
-            node = texts.nextNode();
-        }
-        main.querySelectorAll('input[max="45"]').forEach(field => { field.max = String(window.TopGame.seats.length); });
-        const capacityBadge = main.querySelector('strong abbr[title="персональных компьютеров"]');
-        if (capacityBadge) capacityBadge.parentElement.firstChild.textContent = `${window.TopGame.seats.length} `;
-    }
-
-    const toggle = document.getElementById('main-navigation-toggle');
-    if (toggle) {
-        const menu = document.getElementById('main-navigation');
-        const syncMenu = () => {
-            toggle.setAttribute('aria-expanded', String(toggle.checked));
-            // CSS already handles visibility; this adds keyboard Escape behavior.
-        };
-        toggle.addEventListener('change', syncMenu);
-        menu.addEventListener('keydown', event => {
-            if (event.key === 'Escape') {
-                toggle.checked = false;
-                syncMenu();
-                toggle.focus();
-            }
-        });
-        syncMenu();
-    }
-
-    const nav = document.querySelector('#main-navigation .navbar-nav');
-    if (nav) {
-        const foodLink = el('a', 'nav-link px-2', 'Еда');
-        foodLink.href = 'booking.html#food-menu';
-        foodLink.id = 'nav-food';
-        const item = el('li', 'nav-item');
-        item.append(foodLink);
-        nav.append(item);
-    }
-
-    const home = document.getElementById('index-content');
-    if (home) {
-        const section = el('section', 'bg-white border rounded-4 p-3 p-md-4 p-lg-5 mb-4 shadow-sm');
-        section.append(el('p', 'small text-uppercase text-danger fw-semibold mb-2', 'Твой следующий сеанс'), el('h2', 'h2 fw-bold mb-3', 'Место для команды и перекус к игре'), el('p', 'mb-3', 'Выберите ПК на схеме зала, подготовьте демо-заявку и соберите заказ еды. Итог и стоимость видны сразу.'));
-        const actions = el('div', 'd-flex flex-wrap gap-2');
-        const booking = el('a', 'btn btn-danger', 'Выбрать место');
-        booking.href = 'booking.html#seat-map';
-        const food = el('a', 'btn btn-outline-danger', 'Посмотреть меню');
-        food.href = 'booking.html#food-menu';
-        actions.append(booking, food);
-        section.append(actions);
-        home.insertBefore(section, home.children[1] || null);
-    }
-})();

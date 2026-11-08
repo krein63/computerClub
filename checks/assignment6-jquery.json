@@ -1,0 +1,171 @@
+{
+  "testedAt": "2026-11-02T08:53:19.883Z",
+  "checks": [
+    {
+      "name": "index: jQuery, content and no horizontal overflow at 375px",
+      "passed": true
+    },
+    {
+      "name": "booking: jQuery, content and no horizontal overflow at 375px",
+      "passed": true
+    },
+    {
+      "name": "prices: jQuery, content and no horizontal overflow at 375px",
+      "passed": true
+    },
+    {
+      "name": "computers: jQuery, content and no horizontal overflow at 375px",
+      "passed": true
+    },
+    {
+      "name": "games: jQuery, content and no horizontal overflow at 375px",
+      "passed": true
+    },
+    {
+      "name": "about: jQuery, content and no horizontal overflow at 375px",
+      "passed": true
+    },
+    {
+      "name": "rules: jQuery, content and no horizontal overflow at 375px",
+      "passed": true
+    },
+    {
+      "name": "index: jQuery, content and no horizontal overflow at 768px",
+      "passed": true
+    },
+    {
+      "name": "booking: jQuery, content and no horizontal overflow at 768px",
+      "passed": true
+    },
+    {
+      "name": "prices: jQuery, content and no horizontal overflow at 768px",
+      "passed": true
+    },
+    {
+      "name": "computers: jQuery, content and no horizontal overflow at 768px",
+      "passed": true
+    },
+    {
+      "name": "games: jQuery, content and no horizontal overflow at 768px",
+      "passed": true
+    },
+    {
+      "name": "about: jQuery, content and no horizontal overflow at 768px",
+      "passed": true
+    },
+    {
+      "name": "rules: jQuery, content and no horizontal overflow at 768px",
+      "passed": true
+    },
+    {
+      "name": "index: jQuery, content and no horizontal overflow at 1440px",
+      "passed": true
+    },
+    {
+      "name": "booking: jQuery, content and no horizontal overflow at 1440px",
+      "passed": true
+    },
+    {
+      "name": "prices: jQuery, content and no horizontal overflow at 1440px",
+      "passed": true
+    },
+    {
+      "name": "computers: jQuery, content and no horizontal overflow at 1440px",
+      "passed": true
+    },
+    {
+      "name": "games: jQuery, content and no horizontal overflow at 1440px",
+      "passed": true
+    },
+    {
+      "name": "about: jQuery, content and no horizontal overflow at 1440px",
+      "passed": true
+    },
+    {
+      "name": "rules: jQuery, content and no horizontal overflow at 1440px",
+      "passed": true
+    },
+    {
+      "name": "Empty booking: individual field messages, required attributes and no success",
+      "passed": true
+    },
+    {
+      "name": "Email/phone formats and immediate correction",
+      "passed": true
+    },
+    {
+      "name": "Delegation handles a button inserted after initialization",
+      "passed": true
+    },
+    {
+      "name": "Mixed-zone booking saves, fades in confirmation and resets all fields",
+      "passed": true
+    },
+    {
+      "name": "Cross-tab conflicts and delegated cancellation survive row rebuilding",
+      "passed": true
+    },
+    {
+      "name": "Reset dismisses feedback with fadeOut callback",
+      "passed": true
+    },
+    {
+      "name": "New feedback stays visible when it interrupts fadeOut",
+      "passed": true
+    },
+    {
+      "name": "Food catalogue, quantity controls and checkout remain functional",
+      "passed": true
+    },
+    {
+      "name": "Six tariffs, filters and calculator retain shared pricing",
+      "passed": true
+    },
+    {
+      "name": "Equipment comparison handlers survive filter detachment and restoration",
+      "passed": true
+    },
+    {
+      "name": "Review validation, safe text, persistence, sorting and deletion",
+      "passed": true
+    },
+    {
+      "name": "Game cards and request validation/persistence remain functional",
+      "passed": true
+    },
+    {
+      "name": "Rules array, traversal, slide effects, callbacks and rebuilt buttons",
+      "passed": true
+    },
+    {
+      "name": "Checklist uses live checkbox state and can be completed/reset",
+      "passed": true
+    },
+    {
+      "name": "Mobile navigation checkbox and Escape remain functional",
+      "passed": true
+    },
+    {
+      "name": "No browser script, console, failed-request or HTTP errors",
+      "passed": true
+    }
+  ],
+  "browserErrors": [],
+  "sourceSha256": {
+    "js/about.js": "5adc114b2563e9efc746364e1267add1c00f7f695381145de2c3b592024b169d",
+    "js/booking.js": "18adec59ccc04f80a574aff062f12873368bab4b20d97af2757a0faced71eb54",
+    "js/computers.js": "044e42be149246e8fe898108cef9feb7aaec315c796734f530ae369987088b09",
+    "js/data.js": "29d1cae5a8de2da0d11cdf2687b114ca06a0edebd6106114f969536469dcd217",
+    "js/food.js": "aa495e58d0b834fe089639817fe40b0257ea30fae9a49ac7e698022f144e4051",
+    "js/games.js": "df019655b3b9cd71d5909f4a385f7e86d4a24075c9cde45e85bf38438da74d7c",
+    "js/logic.js": "120af3ac6c3c555ab91863b6bc3db6d2dccbc74e43a8b6a1069c960c0ed95ba1",
+    "js/main.js": "97e3fcec08696337115160ab48dd22166c67bfeaab3d02a618e952b3233023e0",
+    "js/old-js-version.js": "9dd04def3043c96b344ab9fa2b009172f45bfaf31f7b175c5a86eae32d645202",
+    "js/prices.js": "da39594252e5c28f63cfdcf3e41c234f634f258b86123eb28802f348adbb5aa6",
+    "js/rules.js": "4700cb35cdc482ff33904516719eaa6a3e137e5eaef73fbd37cbd3b4f8f43abf",
+    "css/base.css": "226fca1f1ce6802972b866d389216a39b62c47538505dde489c40b24f6a6fb52",
+    "css/bootstrap-LICENSE.txt": "4620c84ad5ce8602ff65640ed6b7c8b78ebb9e036584f0ebc1ccc88206a4bb51",
+    "css/bootstrap.min.css": "d85327d99c7a3ee1f9b5d0500d1370acea3ad2db39c163c2f51f232baedbdede"
+  },
+  "passed": true
+}

@@ -78,13 +78,14 @@ let browser;
             });
             if (file === 'prices') {
                 await check(`${width}: all four comparison fields available`, async () => {
+                    const totalTariffs = await page.evaluate(() => window.TopGame.tariffs.length);
                     const mobile = page.locator('#prices-comparison-mobile');
                     assert.equal(await mobile.isVisible(), width < 768);
                     assert.equal(await page.locator('#prices-table-1').isVisible(), width >= 768);
                     if (width < 768) {
-                        assert.equal(await mobile.locator('article').count(), 4);
-                        assert.equal(await mobile.locator('dd:visible').count(), 12);
-                    } else assert.equal(await page.locator('#prices-table-1 tbody td:visible').count(), 12);
+                        assert.equal(await mobile.locator('article').count(), totalTariffs);
+                        assert.equal(await mobile.locator('dd:visible').count(), totalTariffs * 3);
+                    } else assert.equal(await page.locator('#prices-table-1 tbody td:visible').count(), totalTariffs * 3);
                     assert.deepEqual(await inspect(page, '#tariff-comparison *', 4.5), []);
                 });
                 if (process.env.QA_SCREENSHOTS) await page.locator('#tariff-comparison').screenshot({ path: path.join(process.env.QA_SCREENSHOTS, `prices-${width}.png`) });

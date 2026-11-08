@@ -1,3 +1,5 @@
+> Current merged version: read MERGE_REPORT_RU.md first. The latest ZIP adds six tariff packages, cross-zone PC selection, all game covers and browser persistence. The function explanations below remain useful; historical reports and old tariff restrictions do not describe the merged pricing model.
+
 # Games and Rules — explanation / объяснение
 
 ## 1. What this update does / Что делает обновление
@@ -36,7 +38,7 @@ Optional: from the project folder run `python -m http.server 8000` if Python is 
 
 **Visitor flow / Действия посетителя:** enter a title → select a genre or catalogue type → inspect results → choose a game → finish the form. / Ввести название → выбрать жанр или тип каталога → посмотреть результаты → выбрать игру → заполнить форму.
 
-The `games` array contains six objects. Each object describes one game. Important properties are `id`, `title`, `genre`, `format`, `source` and `official`. Some objects also have an image. `source: true` means the game was mentioned in the original site; it does not prove installation or availability. Other entries are suggestions for the club.
+The `games` array contains six objects. Each object describes one game. Important properties are `id`, `title`, `genre`, `format`, `source` and `official`. Every game now has its own local cover image. `source: true` means the game was mentioned in the original site; it does not prove installation or availability. Other entries are suggestions for the club.
 
 Массив `games` содержит шесть объектов. Объект — данные одной игры. `id` — уникальное обозначение; `title` — название; `genre` — жанр; `format` — описание формата; `source` — упоминалась ли игра в исходном сайте; `official` — официальный сайт. Это не список подтверждённо установленных игр.
 
@@ -94,7 +96,7 @@ On submit, `preventDefault()` keeps the browser on the page. Validation runs. If
 
 При `submit` метод `preventDefault()` отменяет стандартную отправку и переход. Затем проверяются данные. Если массив ошибок не пуст, сообщения появляются у полей, а фокус переходит к первому неправильному полю. Если ошибок нет, создаётся объект запроса и выводится итог.
 
-The confirmed summary now includes name, email, telephone, game, genre, date, player count, team-play choice and an optional comment. Contact data is displayed locally; this change does not save it to localStorage or send it to a server.
+The confirmed summary includes name, email, telephone, game, genre, date, player count, team-play choice and an optional comment. Game parameters and the reference are saved locally and restored after reload; contact fields are excluded from persistence. Contact data is displayed locally; this change does not save it to localStorage or send it to a server.
 
 Подтверждённый итог теперь содержит контакты и все параметры запроса. Контакты отображаются в текущей странице; это обновление не сохраняет их в localStorage и не отправляет на сервер.
 

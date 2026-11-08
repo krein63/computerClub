@@ -1,5 +1,5 @@
 {
-  "testedAt": "2026-10-16T10:26:05.471Z",
+  "testedAt": "2026-10-16T10:42:24.845Z",
   "checks": [
     {
       "name": "375: index no horizontal page overflow",
@@ -246,7 +246,7 @@
   "errors": [],
   "sourceSha256": {
     "js/main.js": "7258d067e62b1dafc052e14b4ae1030c9e784185ea1e1b9c3b52c5f9ff8db090",
-    "js/prices.js": "12eb7f023829ff57d0fc8a18fbe4b41e4feffaaf3c71387b241ddbd2add2185e",
+    "js/prices.js": "afdccc9886f3e9336e772653b7272f6b2125082d4788fefe965de5423d045b18",
     "css/base.css": "226fca1f1ce6802972b866d389216a39b62c47538505dde489c40b24f6a6fb52",
     "css/bootstrap.min.css": "d85327d99c7a3ee1f9b5d0500d1370acea3ad2db39c163c2f51f232baedbdede"
   },

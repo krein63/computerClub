@@ -1,0 +1,1441 @@
+{
+  "testedAt": "2026-11-08T14:22:33.730Z",
+  "pages": [
+    {
+      "ids": [
+        "page-top",
+        "skip-content",
+        "site-header",
+        "brand-link",
+        "main-navigation-toggle",
+        "main-navigation",
+        "nav-index",
+        "nav-prices",
+        "nav-computers",
+        "nav-booking",
+        "nav-games",
+        "nav-rules",
+        "nav-about",
+        "nav-food",
+        "nav-cart",
+        "header-booking-link",
+        "index-content",
+        "index-section-1",
+        "index-h1-1",
+        "index-a-1",
+        "index-a-2",
+        "index-figure-1",
+        "index-aside-1",
+        "features-title",
+        "visitor-guide",
+        "index-article-1",
+        "index-a-3",
+        "index-article-2",
+        "index-a-4",
+        "gaming-zones",
+        "index-article-3",
+        "index-article-4",
+        "index-article-5",
+        "index-a-5",
+        "index-a-6",
+        "site-footer",
+        "footer-brand-title",
+        "footer-contacts-title",
+        "footer-phone",
+        "footer-map",
+        "footer-contacts-link",
+        "footer-rules-link"
+      ],
+      "links": [
+        {
+          "text": "Перейти к содержимому",
+          "href": "#index-content"
+        },
+        {
+          "text": "TOP GAME",
+          "href": "index.html"
+        },
+        {
+          "text": "Главная",
+          "href": "index.html"
+        },
+        {
+          "text": "Цены",
+          "href": "prices.html"
+        },
+        {
+          "text": "Компьютеры",
+          "href": "computers.html"
+        },
+        {
+          "text": "Бронирование",
+          "href": "booking.html"
+        },
+        {
+          "text": "Игры",
+          "href": "games.html"
+        },
+        {
+          "text": "Правила",
+          "href": "rules.html"
+        },
+        {
+          "text": "О клубе",
+          "href": "about.html"
+        },
+        {
+          "text": "Еда",
+          "href": "booking.html#food-menu"
+        },
+        {
+          "text": "Корзина · 0",
+          "href": "booking.html#food-cart"
+        },
+        {
+          "text": "Забронировать",
+          "href": "booking.html#booking-form"
+        },
+        {
+          "text": "Забронировать",
+          "href": "booking.html"
+        },
+        {
+          "text": "Смотреть тарифы →",
+          "href": "prices.html"
+        },
+        {
+          "text": "Выбрать место",
+          "href": "booking.html#seat-map"
+        },
+        {
+          "text": "Посмотреть меню",
+          "href": "booking.html#food-menu"
+        },
+        {
+          "text": "Перейти к играм →",
+          "href": "games.html"
+        },
+        {
+          "text": "Прочитать правила →",
+          "href": "rules.html"
+        },
+        {
+          "text": "Выбрать место",
+          "href": "booking.html"
+        },
+        {
+          "text": "↑ Наверх",
+          "href": "#page-top"
+        },
+        {
+          "text": "+7 706 400 50 40",
+          "href": "tel:+77064005040"
+        },
+        {
+          "text": "Посмотреть клуб в 2GIS",
+          "href": "https://2gis.kz/astana/firm/70000001080411948"
+        },
+        {
+          "text": "Адрес и контакты",
+          "href": "about.html#contacts"
+        },
+        {
+          "text": "Правила клуба",
+          "href": "rules.html"
+        }
+      ],
+      "images": [
+        {
+          "src": "images/hero.jpg",
+          "complete": true,
+          "naturalWidth": 1320
+        },
+        {
+          "src": "images/peripherals.jpg",
+          "complete": true,
+          "naturalWidth": 1320
+        },
+        {
+          "src": "images/private-zone.jpg",
+          "complete": true,
+          "naturalWidth": 1319
+        },
+        {
+          "src": "images/main-zone.jpg",
+          "complete": true,
+          "naturalWidth": 1320
+        },
+        {
+          "src": "images/duos-zone.jpg",
+          "complete": true,
+          "naturalWidth": 1320
+        },
+        {
+          "src": "images/private-zone.jpg",
+          "complete": true,
+          "naturalWidth": 1319
+        }
+      ],
+      "inlineHandlers": [],
+      "loadedScripts": [
+        "https://code.jquery.com/jquery-3.7.1.min.js",
+        "js/data.js",
+        "js/logic.js",
+        "js/main.js",
+        "js/food.js"
+      ],
+      "duplicateIds": [],
+      "file": "index.html",
+      "htmlMatchesUploadedBaselineExceptCDN": true
+    },
+    {
+      "ids": [
+        "page-top",
+        "skip-content",
+        "site-header",
+        "brand-link",
+        "main-navigation-toggle",
+        "main-navigation",
+        "nav-index",
+        "nav-prices",
+        "nav-computers",
+        "nav-booking",
+        "nav-games",
+        "nav-rules",
+        "nav-about",
+        "nav-food",
+        "nav-cart",
+        "header-booking-link",
+        "booking-content",
+        "booking-introduction",
+        "booking-h1-1",
+        "booking-a-1",
+        "booking-a-2",
+        "booking-details",
+        "booking-figure-1",
+        "booking-form",
+        "booking-status",
+        "booking-errors",
+        "customer-name",
+        "customer-email",
+        "customer-phone",
+        "booking-date",
+        "booking-time",
+        "player-count",
+        "booking-duration",
+        "tariff-selection",
+        "booking-tariff",
+        "booking-duration-note",
+        "booking-tariff-note",
+        "gaming-zone-selection",
+        "zone-main",
+        "zone-duo",
+        "zone-private",
+        "seat-map",
+        "seat-map-status",
+        "seat-map-feedback",
+        "seat-1",
+        "seat-2",
+        "seat-3",
+        "seat-4",
+        "seat-5",
+        "seat-6",
+        "seat-7",
+        "seat-8",
+        "seat-9",
+        "seat-10",
+        "seat-11",
+        "seat-12",
+        "seat-13",
+        "seat-14",
+        "seat-15",
+        "seat-16",
+        "seat-17",
+        "seat-18",
+        "seat-19",
+        "seat-20",
+        "clear-seat-selection",
+        "headphones",
+        "booking-comment",
+        "booking-agreement",
+        "booking-submit",
+        "booking-reset",
+        "booking-result",
+        "booking-result-title",
+        "booking-result-status",
+        "booking-summary",
+        "booking-summary-tariff",
+        "booking-summary-zone",
+        "booking-summary-date",
+        "booking-summary-time",
+        "booking-summary-players",
+        "booking-summary-seats",
+        "booking-summary-duration",
+        "booking-total-note",
+        "booking-total",
+        "booking-result-list",
+        "booking-success",
+        "booking-a-4",
+        "booking-a-5",
+        "food-cart",
+        "food-cart-title",
+        "food-cart-items",
+        "food-cart-total",
+        "food-cart-clear",
+        "food-feedback",
+        "food-order-form",
+        "food-name",
+        "food-email",
+        "food-phone",
+        "food-delivery",
+        "food-seat",
+        "food-agreement",
+        "food-checkout",
+        "food-order-status",
+        "food-order-success",
+        "local-bookings-title",
+        "local-bookings-status",
+        "local-bookings",
+        "food-menu",
+        "food-menu-title",
+        "food-search",
+        "food-category",
+        "food-sort",
+        "food-available",
+        "food-reset",
+        "food-count",
+        "food-cards",
+        "direct-contact",
+        "booking-a-6",
+        "site-footer",
+        "footer-brand-title",
+        "footer-contacts-title",
+        "footer-phone",
+        "footer-map",
+        "footer-contacts-link",
+        "footer-rules-link"
+      ],
+      "links": [
+        {
+          "text": "Перейти к содержимому",
+          "href": "#booking-content"
+        },
+        {
+          "text": "TOP GAME",
+          "href": "index.html"
+        },
+        {
+          "text": "Главная",
+          "href": "index.html"
+        },
+        {
+          "text": "Цены",
+          "href": "prices.html"
+        },
+        {
+          "text": "Компьютеры",
+          "href": "computers.html"
+        },
+        {
+          "text": "Бронирование",
+          "href": "booking.html"
+        },
+        {
+          "text": "Игры",
+          "href": "games.html"
+        },
+        {
+          "text": "Правила",
+          "href": "rules.html"
+        },
+        {
+          "text": "О клубе",
+          "href": "about.html"
+        },
+        {
+          "text": "Еда",
+          "href": "booking.html#food-menu"
+        },
+        {
+          "text": "Корзина · 0",
+          "href": "booking.html#food-cart"
+        },
+        {
+          "text": "Забронировать",
+          "href": "booking.html#booking-form"
+        },
+        {
+          "text": "Перейти к форме",
+          "href": "#booking-form"
+        },
+        {
+          "text": "Связаться напрямую",
+          "href": "#direct-contact"
+        },
+        {
+          "text": "Проверить тарифы",
+          "href": "prices.html"
+        },
+        {
+          "text": "Прочитать правила",
+          "href": "rules.html"
+        },
+        {
+          "text": "Перейти к корзине",
+          "href": "#food-cart"
+        },
+        {
+          "text": "+7 706 400 50 40",
+          "href": "tel:+77064005040"
+        },
+        {
+          "text": "+7 706 400 50 40",
+          "href": "tel:+77064005040"
+        },
+        {
+          "text": "Посмотреть клуб в 2GIS",
+          "href": "https://2gis.kz/astana/firm/70000001080411948"
+        },
+        {
+          "text": "Адрес и контакты",
+          "href": "about.html#contacts"
+        },
+        {
+          "text": "Правила клуба",
+          "href": "rules.html"
+        }
+      ],
+      "images": [
+        {
+          "src": "images/peripherals.jpg",
+          "complete": true,
+          "naturalWidth": 1320
+        },
+        {
+          "src": "images/food/burger.jpg",
+          "complete": false,
+          "naturalWidth": 0
+        },
+        {
+          "src": "images/food/sandwich.jpg",
+          "complete": false,
+          "naturalWidth": 0
+        },
+        {
+          "src": "images/food/fries.jpg",
+          "complete": false,
+          "naturalWidth": 0
+        },
+        {
+          "src": "images/food/chips.jpg",
+          "complete": false,
+          "naturalWidth": 0
+        },
+        {
+          "src": "images/food/cola.jpg",
+          "complete": false,
+          "naturalWidth": 0
+        },
+        {
+          "src": "images/food/water.jpg",
+          "complete": false,
+          "naturalWidth": 0
+        },
+        {
+          "src": "images/food/tea.jpg",
+          "complete": false,
+          "naturalWidth": 0
+        },
+        {
+          "src": "images/food/cookie.jpg",
+          "complete": false,
+          "naturalWidth": 0
+        }
+      ],
+      "inlineHandlers": [],
+      "loadedScripts": [
+        "https://code.jquery.com/jquery-3.7.1.min.js",
+        "js/data.js",
+        "js/logic.js",
+        "js/main.js",
+        "js/food.js",
+        "js/booking.js"
+      ],
+      "duplicateIds": [],
+      "file": "booking.html",
+      "htmlMatchesUploadedBaselineExceptCDN": true
+    },
+    {
+      "ids": [
+        "page-top",
+        "skip-content",
+        "site-header",
+        "brand-link",
+        "main-navigation-toggle",
+        "main-navigation",
+        "nav-index",
+        "nav-prices",
+        "nav-computers",
+        "nav-booking",
+        "nav-games",
+        "nav-rules",
+        "nav-about",
+        "nav-food",
+        "nav-cart",
+        "header-booking-link",
+        "prices-content",
+        "prices-section-1",
+        "prices-h1-1",
+        "prices-a-1",
+        "prices-a-2",
+        "prices-figure-1",
+        "tariffs",
+        "prices-search",
+        "prices-search-error",
+        "prices-type",
+        "prices-type-error",
+        "prices-filter-reset",
+        "prices-result-count",
+        "tariff-hour",
+        "tariff-three-hours",
+        "tariff-five-hours",
+        "tariff-day",
+        "tariff-night",
+        "tariff-private",
+        "price-calculator",
+        "price-calculator-title",
+        "price-calculator-form",
+        "calculator-tariff",
+        "calculator-tariff-error",
+        "calculator-players",
+        "calculator-players-error",
+        "calculator-players-help",
+        "calculator-hours",
+        "calculator-hours-error",
+        "calculator-hours-help",
+        "calculator-summary",
+        "calculator-status",
+        "calculator-booking-link",
+        "tariff-finder",
+        "tariff-finder-title",
+        "tariff-finder-form",
+        "finder-players",
+        "finder-players-error",
+        "finder-hours",
+        "finder-hours-error",
+        "finder-budget",
+        "finder-budget-error",
+        "finder-zone",
+        "finder-zone-error",
+        "finder-period",
+        "finder-period-error",
+        "finder-status",
+        "finder-results",
+        "tariff-comparison",
+        "prices-table-1",
+        "prices-comparison-mobile",
+        "booking-steps",
+        "prices-aside-1",
+        "prices-a-7",
+        "site-footer",
+        "footer-brand-title",
+        "footer-contacts-title",
+        "footer-phone",
+        "footer-map",
+        "footer-contacts-link",
+        "footer-rules-link"
+      ],
+      "links": [
+        {
+          "text": "Перейти к содержимому",
+          "href": "#prices-content"
+        },
+        {
+          "text": "TOP GAME",
+          "href": "index.html"
+        },
+        {
+          "text": "Главная",
+          "href": "index.html"
+        },
+        {
+          "text": "Цены",
+          "href": "prices.html"
+        },
+        {
+          "text": "Компьютеры",
+          "href": "computers.html"
+        },
+        {
+          "text": "Бронирование",
+          "href": "booking.html"
+        },
+        {
+          "text": "Игры",
+          "href": "games.html"
+        },
+        {
+          "text": "Правила",
+          "href": "rules.html"
+        },
+        {
+          "text": "О клубе",
+          "href": "about.html"
+        },
+        {
+          "text": "Еда",
+          "href": "booking.html#food-menu"
+        },
+        {
+          "text": "Корзина · 0",
+          "href": "booking.html#food-cart"
+        },
+        {
+          "text": "Забронировать",
+          "href": "booking.html#booking-form"
+        },
+        {
+          "text": "Посмотреть тарифы",
+          "href": "#tariffs"
+        },
+        {
+          "text": "Как забронировать",
+          "href": "#booking-steps"
+        },
+        {
+          "text": "Выбрать пакет",
+          "href": "booking.html?tariff=hour#tariff-selection"
+        },
+        {
+          "text": "Выбрать пакет",
+          "href": "booking.html?tariff=three-hours#tariff-selection"
+        },
+        {
+          "text": "Выбрать пакет",
+          "href": "booking.html?tariff=five-hours#tariff-selection"
+        },
+        {
+          "text": "Выбрать пакет",
+          "href": "booking.html?tariff=day#tariff-selection"
+        },
+        {
+          "text": "Выбрать пакет",
+          "href": "booking.html?tariff=night#tariff-selection"
+        },
+        {
+          "text": "Выбрать пакет",
+          "href": "booking.html?tariff=private#tariff-selection"
+        },
+        {
+          "text": "Выбрать места",
+          "href": "booking.html?tariff=hour&players=1&hours=1#booking-form"
+        },
+        {
+          "text": "Забронировать",
+          "href": "booking.html"
+        },
+        {
+          "text": "+7 706 400 50 40",
+          "href": "tel:+77064005040"
+        },
+        {
+          "text": "Посмотреть клуб в 2GIS",
+          "href": "https://2gis.kz/astana/firm/70000001080411948"
+        },
+        {
+          "text": "Адрес и контакты",
+          "href": "about.html#contacts"
+        },
+        {
+          "text": "Правила клуба",
+          "href": "rules.html"
+        }
+      ],
+      "images": [
+        {
+          "src": "images/prices-hero.jpg",
+          "complete": true,
+          "naturalWidth": 1320
+        }
+      ],
+      "inlineHandlers": [],
+      "loadedScripts": [
+        "https://code.jquery.com/jquery-3.7.1.min.js",
+        "js/data.js",
+        "js/logic.js",
+        "js/main.js",
+        "js/food.js",
+        "js/prices.js"
+      ],
+      "duplicateIds": [],
+      "file": "prices.html",
+      "htmlMatchesUploadedBaselineExceptCDN": true
+    },
+    {
+      "ids": [
+        "page-top",
+        "skip-content",
+        "site-header",
+        "brand-link",
+        "main-navigation-toggle",
+        "main-navigation",
+        "nav-index",
+        "nav-prices",
+        "nav-computers",
+        "nav-booking",
+        "nav-games",
+        "nav-rules",
+        "nav-about",
+        "nav-food",
+        "nav-cart",
+        "header-booking-link",
+        "computers-content",
+        "computers-section-1",
+        "computers-h1-1",
+        "computers-a-1",
+        "computers-a-2",
+        "computers-section-2",
+        "zones-title",
+        "equipment-search",
+        "equipment-refresh",
+        "equipment-private",
+        "equipment-filter-reset",
+        "equipment-result-count",
+        "computers-article-1",
+        "computers-figure-1",
+        "computers-a-3",
+        "compare-main",
+        "computers-article-2",
+        "computers-figure-2",
+        "computers-a-4",
+        "compare-duo",
+        "computers-article-3",
+        "computers-figure-3",
+        "computers-a-5",
+        "compare-private",
+        "equipment-comparison",
+        "equipment-comparison-title",
+        "equipment-comparison-status",
+        "equipment-compare-result",
+        "equipment-compare-clear",
+        "computers-section-3",
+        "peripherals-title",
+        "computers-figure-4",
+        "computers-article-4",
+        "computers-aside-1",
+        "computers-a-6",
+        "site-footer",
+        "footer-brand-title",
+        "footer-contacts-title",
+        "footer-phone",
+        "footer-map",
+        "footer-contacts-link",
+        "footer-rules-link"
+      ],
+      "links": [
+        {
+          "text": "Перейти к содержимому",
+          "href": "#computers-content"
+        },
+        {
+          "text": "TOP GAME",
+          "href": "index.html"
+        },
+        {
+          "text": "Главная",
+          "href": "index.html"
+        },
+        {
+          "text": "Цены",
+          "href": "prices.html"
+        },
+        {
+          "text": "Компьютеры",
+          "href": "computers.html"
+        },
+        {
+          "text": "Бронирование",
+          "href": "booking.html"
+        },
+        {
+          "text": "Игры",
+          "href": "games.html"
+        },
+        {
+          "text": "Правила",
+          "href": "rules.html"
+        },
+        {
+          "text": "О клубе",
+          "href": "about.html"
+        },
+        {
+          "text": "Еда",
+          "href": "booking.html#food-menu"
+        },
+        {
+          "text": "Корзина · 0",
+          "href": "booking.html#food-cart"
+        },
+        {
+          "text": "Забронировать",
+          "href": "booking.html#booking-form"
+        },
+        {
+          "text": "Посмотреть игровые зоны",
+          "href": "#zones-title"
+        },
+        {
+          "text": "Посмотреть периферию",
+          "href": "#peripherals-title"
+        },
+        {
+          "text": "Выбрать эту зону →",
+          "href": "booking.html?zone=main#gaming-zone-selection"
+        },
+        {
+          "text": "Выбрать эту зону →",
+          "href": "booking.html?zone=duo&players=2#gaming-zone-selection"
+        },
+        {
+          "text": "Выбрать эту зону →",
+          "href": "booking.html?zone=private&tariff=private#gaming-zone-selection"
+        },
+        {
+          "text": "Забронировать",
+          "href": "booking.html"
+        },
+        {
+          "text": "+7 706 400 50 40",
+          "href": "tel:+77064005040"
+        },
+        {
+          "text": "Посмотреть клуб в 2GIS",
+          "href": "https://2gis.kz/astana/firm/70000001080411948"
+        },
+        {
+          "text": "Адрес и контакты",
+          "href": "about.html#contacts"
+        },
+        {
+          "text": "Правила клуба",
+          "href": "rules.html"
+        }
+      ],
+      "images": [
+        {
+          "src": "images/main-zone.jpg",
+          "complete": true,
+          "naturalWidth": 1320
+        },
+        {
+          "src": "images/duos-zone.jpg",
+          "complete": true,
+          "naturalWidth": 1320
+        },
+        {
+          "src": "images/private-zone.jpg",
+          "complete": true,
+          "naturalWidth": 1319
+        },
+        {
+          "src": "images/peripherals.jpg",
+          "complete": true,
+          "naturalWidth": 1320
+        }
+      ],
+      "inlineHandlers": [],
+      "loadedScripts": [
+        "https://code.jquery.com/jquery-3.7.1.min.js",
+        "js/data.js",
+        "js/logic.js",
+        "js/main.js",
+        "js/food.js",
+        "js/computers.js"
+      ],
+      "duplicateIds": [],
+      "file": "computers.html",
+      "htmlMatchesUploadedBaselineExceptCDN": true
+    },
+    {
+      "ids": [
+        "page-top",
+        "skip-content",
+        "site-header",
+        "brand-link",
+        "main-navigation-toggle",
+        "main-navigation",
+        "nav-index",
+        "nav-prices",
+        "nav-computers",
+        "nav-booking",
+        "nav-games",
+        "nav-rules",
+        "nav-about",
+        "nav-food",
+        "nav-cart",
+        "header-booking-link",
+        "games-content",
+        "game-list",
+        "games-h1-1",
+        "games-search",
+        "games-category",
+        "games-availability",
+        "games-sort",
+        "games-favorites",
+        "games-filter-reset",
+        "games-result-count",
+        "games-favorite-status",
+        "game-cards",
+        "game-cs2",
+        "game-dota2",
+        "game-lol",
+        "game-rocket-league",
+        "game-civilization",
+        "game-valorant",
+        "games-aside-1",
+        "games-a-1",
+        "game-request",
+        "game-request-form",
+        "game-request-status",
+        "game-request-errors",
+        "visitor-name",
+        "visitor-email",
+        "visitor-phone",
+        "visit-date",
+        "players",
+        "game-title",
+        "genre",
+        "team-play-label",
+        "team-yes",
+        "team-no",
+        "game-agreement",
+        "request-comment",
+        "game-comment-counter",
+        "request-comment-help",
+        "game-request-submit",
+        "game-request-reset",
+        "game-request-result",
+        "game-request-result-title",
+        "game-request-result-status",
+        "game-request-summary",
+        "game-request-summary-title",
+        "game-request-summary-genre",
+        "game-request-summary-date",
+        "game-request-summary-players",
+        "game-request-summary-team",
+        "game-request-list",
+        "game-request-success",
+        "games-a-2",
+        "games-a-3",
+        "games-a-4",
+        "site-footer",
+        "footer-brand-title",
+        "footer-contacts-title",
+        "footer-phone",
+        "footer-map",
+        "footer-contacts-link",
+        "footer-rules-link"
+      ],
+      "links": [
+        {
+          "text": "Перейти к содержимому",
+          "href": "#games-content"
+        },
+        {
+          "text": "TOP GAME",
+          "href": "index.html"
+        },
+        {
+          "text": "Главная",
+          "href": "index.html"
+        },
+        {
+          "text": "Цены",
+          "href": "prices.html"
+        },
+        {
+          "text": "Компьютеры",
+          "href": "computers.html"
+        },
+        {
+          "text": "Бронирование",
+          "href": "booking.html"
+        },
+        {
+          "text": "Игры",
+          "href": "games.html"
+        },
+        {
+          "text": "Правила",
+          "href": "rules.html"
+        },
+        {
+          "text": "О клубе",
+          "href": "about.html"
+        },
+        {
+          "text": "Еда",
+          "href": "booking.html#food-menu"
+        },
+        {
+          "text": "Корзина · 0",
+          "href": "booking.html#food-cart"
+        },
+        {
+          "text": "Забронировать",
+          "href": "booking.html#booking-form"
+        },
+        {
+          "text": "Официальный сайт игры",
+          "href": "https://www.counter-strike.net/cs2"
+        },
+        {
+          "text": "Официальный сайт игры",
+          "href": "https://www.dota2.com/"
+        },
+        {
+          "text": "Официальный сайт игры",
+          "href": "https://www.leagueoflegends.com/"
+        },
+        {
+          "text": "Официальный сайт игры",
+          "href": "https://www.rocketleague.com/"
+        },
+        {
+          "text": "Официальный сайт игры",
+          "href": "https://civilization.2k.com/civ-vi/"
+        },
+        {
+          "text": "Официальный сайт игры",
+          "href": "https://playvalorant.com/"
+        },
+        {
+          "text": "странице правил",
+          "href": "rules.html#account-safety"
+        },
+        {
+          "text": "Перейти к бронированию",
+          "href": "booking.html?players=1#booking-form"
+        },
+        {
+          "text": "Вернуться к списку игр",
+          "href": "#game-list"
+        },
+        {
+          "text": "Вернуться на главную страницу",
+          "href": "index.html"
+        },
+        {
+          "text": "+7 706 400 50 40",
+          "href": "tel:+77064005040"
+        },
+        {
+          "text": "Посмотреть клуб в 2GIS",
+          "href": "https://2gis.kz/astana/firm/70000001080411948"
+        },
+        {
+          "text": "Адрес и контакты",
+          "href": "about.html#contacts"
+        },
+        {
+          "text": "Правила клуба",
+          "href": "rules.html"
+        }
+      ],
+      "images": [
+        {
+          "src": "images/games/cs2.jpg",
+          "complete": true,
+          "naturalWidth": 616
+        },
+        {
+          "src": "images/games/dota2.jpg",
+          "complete": true,
+          "naturalWidth": 616
+        },
+        {
+          "src": "images/games/lol.jpg",
+          "complete": true,
+          "naturalWidth": 1215
+        },
+        {
+          "src": "images/games/rocket-league.jpg",
+          "complete": true,
+          "naturalWidth": 616
+        },
+        {
+          "src": "images/games/civilization.jpg",
+          "complete": true,
+          "naturalWidth": 616
+        },
+        {
+          "src": "images/games/valorant.jpg",
+          "complete": true,
+          "naturalWidth": 1920
+        }
+      ],
+      "inlineHandlers": [],
+      "loadedScripts": [
+        "https://code.jquery.com/jquery-3.7.1.min.js",
+        "js/data.js",
+        "js/logic.js",
+        "js/main.js",
+        "js/food.js",
+        "js/games.js"
+      ],
+      "duplicateIds": [],
+      "file": "games.html",
+      "htmlMatchesUploadedBaselineExceptCDN": true
+    },
+    {
+      "ids": [
+        "page-top",
+        "skip-content",
+        "site-header",
+        "brand-link",
+        "main-navigation-toggle",
+        "main-navigation",
+        "nav-index",
+        "nav-prices",
+        "nav-computers",
+        "nav-booking",
+        "nav-games",
+        "nav-rules",
+        "nav-about",
+        "nav-food",
+        "nav-cart",
+        "header-booking-link",
+        "rules-content",
+        "main-rules",
+        "rules-h1-1",
+        "rules-article-1",
+        "rules-figure-1",
+        "rule-table",
+        "rules-table-1",
+        "rules-search",
+        "rules-category",
+        "rules-filter-reset",
+        "rules-result-count",
+        "rules-help-list",
+        "rules-choose-device",
+        "rules-choose-damage",
+        "rules-choose-extend",
+        "rules-choose-lost",
+        "rules-choose-account",
+        "rules-choose-install",
+        "rules-help-detail",
+        "account-safety",
+        "departure-checklist",
+        "departure-title",
+        "departure-list",
+        "departure-clients",
+        "departure-browser",
+        "departure-belongings",
+        "departure-workstation",
+        "departure-progress",
+        "departure-remaining",
+        "departure-complete",
+        "departure-reset",
+        "departure-filter",
+        "departure-confirmation",
+        "departure-draft-note",
+        "rules-aside-1",
+        "rules-a-1",
+        "rules-a-2",
+        "rules-a-3",
+        "site-footer",
+        "footer-brand-title",
+        "footer-contacts-title",
+        "footer-phone",
+        "footer-map",
+        "footer-contacts-link",
+        "footer-rules-link"
+      ],
+      "links": [
+        {
+          "text": "Перейти к содержимому",
+          "href": "#rules-content"
+        },
+        {
+          "text": "TOP GAME",
+          "href": "index.html"
+        },
+        {
+          "text": "Главная",
+          "href": "index.html"
+        },
+        {
+          "text": "Цены",
+          "href": "prices.html"
+        },
+        {
+          "text": "Компьютеры",
+          "href": "computers.html"
+        },
+        {
+          "text": "Бронирование",
+          "href": "booking.html"
+        },
+        {
+          "text": "Игры",
+          "href": "games.html"
+        },
+        {
+          "text": "Правила",
+          "href": "rules.html"
+        },
+        {
+          "text": "О клубе",
+          "href": "about.html"
+        },
+        {
+          "text": "Еда",
+          "href": "booking.html#food-menu"
+        },
+        {
+          "text": "Корзина · 0",
+          "href": "booking.html#food-cart"
+        },
+        {
+          "text": "Забронировать",
+          "href": "booking.html#booking-form"
+        },
+        {
+          "text": "2GIS",
+          "href": "https://2gis.kz/astana/firm/70000001080411948"
+        },
+        {
+          "text": "Вернуться к началу правил",
+          "href": "#main-rules"
+        },
+        {
+          "text": "Вернуться на главную страницу",
+          "href": "index.html"
+        },
+        {
+          "text": "+7 706 400 50 40",
+          "href": "tel:+77064005040"
+        },
+        {
+          "text": "Посмотреть клуб в 2GIS",
+          "href": "https://2gis.kz/astana/firm/70000001080411948"
+        },
+        {
+          "text": "Адрес и контакты",
+          "href": "about.html#contacts"
+        },
+        {
+          "text": "Правила клуба",
+          "href": "rules.html"
+        }
+      ],
+      "images": [
+        {
+          "src": "images/clean.png",
+          "complete": true,
+          "naturalWidth": 1531
+        }
+      ],
+      "inlineHandlers": [],
+      "loadedScripts": [
+        "https://code.jquery.com/jquery-3.7.1.min.js",
+        "js/data.js",
+        "js/logic.js",
+        "js/main.js",
+        "js/food.js",
+        "js/rules.js"
+      ],
+      "duplicateIds": [],
+      "file": "rules.html",
+      "htmlMatchesUploadedBaselineExceptCDN": true
+    },
+    {
+      "ids": [
+        "page-top",
+        "skip-content",
+        "site-header",
+        "brand-link",
+        "main-navigation-toggle",
+        "main-navigation",
+        "nav-index",
+        "nav-prices",
+        "nav-computers",
+        "nav-booking",
+        "nav-games",
+        "nav-rules",
+        "nav-about",
+        "nav-food",
+        "nav-cart",
+        "header-booking-link",
+        "about-content",
+        "introduction",
+        "about-h1-1",
+        "about-a-1",
+        "club-space",
+        "about-figure-1",
+        "about-figure-2",
+        "about-article-1",
+        "about-article-2",
+        "about-aside-1",
+        "about-a-2",
+        "contacts",
+        "about-a-3",
+        "about-a-4",
+        "reviews",
+        "reviews-title",
+        "review-form",
+        "review-name",
+        "review-rating",
+        "review-text",
+        "review-counter",
+        "review-submit",
+        "review-status",
+        "review-sort",
+        "review-rating-filter",
+        "review-filter-reset",
+        "review-result-count",
+        "review-list",
+        "site-footer",
+        "footer-brand-title",
+        "footer-contacts-title",
+        "footer-phone",
+        "footer-map",
+        "footer-contacts-link",
+        "footer-rules-link"
+      ],
+      "links": [
+        {
+          "text": "Перейти к содержимому",
+          "href": "#about-content"
+        },
+        {
+          "text": "TOP GAME",
+          "href": "index.html"
+        },
+        {
+          "text": "Главная",
+          "href": "index.html"
+        },
+        {
+          "text": "Цены",
+          "href": "prices.html"
+        },
+        {
+          "text": "Компьютеры",
+          "href": "computers.html"
+        },
+        {
+          "text": "Бронирование",
+          "href": "booking.html"
+        },
+        {
+          "text": "Игры",
+          "href": "games.html"
+        },
+        {
+          "text": "Правила",
+          "href": "rules.html"
+        },
+        {
+          "text": "О клубе",
+          "href": "about.html"
+        },
+        {
+          "text": "Еда",
+          "href": "booking.html#food-menu"
+        },
+        {
+          "text": "Корзина · 0",
+          "href": "booking.html#food-cart"
+        },
+        {
+          "text": "Забронировать",
+          "href": "booking.html#booking-form"
+        },
+        {
+          "text": "Как добраться",
+          "href": "#contacts"
+        },
+        {
+          "text": "бронирования",
+          "href": "booking.html"
+        },
+        {
+          "text": "+7 706 400 50 40",
+          "href": "tel:+77064005040"
+        },
+        {
+          "text": "Вернуться к началу страницы",
+          "href": "#introduction"
+        },
+        {
+          "text": "+7 706 400 50 40",
+          "href": "tel:+77064005040"
+        },
+        {
+          "text": "Посмотреть клуб в 2GIS",
+          "href": "https://2gis.kz/astana/firm/70000001080411948"
+        },
+        {
+          "text": "Адрес и контакты",
+          "href": "about.html#contacts"
+        },
+        {
+          "text": "Правила клуба",
+          "href": "rules.html"
+        }
+      ],
+      "images": [
+        {
+          "src": "images/club-exterior.jpg",
+          "complete": true,
+          "naturalWidth": 1318
+        },
+        {
+          "src": "images/hero.jpg",
+          "complete": true,
+          "naturalWidth": 1320
+        },
+        {
+          "src": "images/prices-hero.jpg",
+          "complete": true,
+          "naturalWidth": 1320
+        }
+      ],
+      "inlineHandlers": [],
+      "loadedScripts": [
+        "https://code.jquery.com/jquery-3.7.1.min.js",
+        "js/data.js",
+        "js/logic.js",
+        "js/main.js",
+        "js/food.js",
+        "js/about.js"
+      ],
+      "duplicateIds": [],
+      "file": "about.html",
+      "htmlMatchesUploadedBaselineExceptCDN": true
+    }
+  ],
+  "missingLinks": [],
+  "badAssets": [],
+  "browserErrors": [],
+  "extraFlows": [
+    {
+      "name": "Games rejects empty form without success",
+      "passed": true,
+      "invalidFields": 8
+    },
+    {
+      "name": "Games rejects malformed contacts and clears corrected errors",
+      "passed": true
+    },
+    {
+      "name": "Food checkout rejects empty required contacts",
+      "passed": true
+    }
+  ],
+  "cssMatchesUploadedBaseline": true,
+  "activeClassSwitchedByCode": true,
+  "gitHistoryIncluded": false
+}

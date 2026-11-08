@@ -35,15 +35,14 @@
 
     function estimateVisit(tariffs, tariffId, hours, players) {
         const tariff = findProduct(tariffs, tariffId);
-        if (!tariff || !validQuantity(players, tariffId === 'private' ? 5 : 10) || !validQuantity(hours, 12)) return null;
-        if (tariffId === 'private') return { amount: tariff.price, groupTotalKnown: false };
-        if (tariffId === 'three-hours' && hours !== 3) return null;
-        const units = tariffId === 'hour' ? hours : 1;
+        if (!tariff || !validQuantity(players, 20) || !validQuantity(hours, 12)) return null;
+        if (!tariff.hourly && hours !== tariff.duration) return null;
+        const units = tariff.hourly ? hours : 1;
         return { amount: tariff.price * units * players, groupTotalKnown: true };
     }
 
     function reference(prefix) {
-        return `DEMO-${prefix}-${Date.now().toString(36).toUpperCase()}-${Math.floor(1000 + Math.random() * 9000)}`;
+        return `TG-${prefix}-${Date.now().toString(36).toUpperCase()}-${Math.floor(1000 + Math.random() * 9000)}`;
     }
 
     window.TopGameLogic = { findProduct, validQuantity, cartTotals, filterMenu, estimateVisit, reference };

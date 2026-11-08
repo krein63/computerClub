@@ -1,1 +1,74 @@
 
+2026-10-08 — Assignments 4–5
+User request: «https://github.com/krein63/computerClub добавь в наш проект заказ еды сразу через сайт и бронирование и сделай реализацию в букинге типо вот такого какие места заняты делай все по требованию в документе и коммитни».
+References: Assignment_4-5_JavaScript (1).docx and the supplied SENET-style occupancy screenshot.
+AI assistance: Codex read the assignment and frozen repository, planned and wrote JavaScript, validation, README/checklist and verification tools. Collaborating AI agents implemented booking, page interactions and audited the result. This is AI-authored implementation, not independent student work.
+Conflict disclosed: the assignment forbids AI writing/completing JavaScript, validation, README, checklist and project content. The user explicitly requested implementation by AI, so this version cannot be represented as satisfying that AI-policy condition.
+No artificial commit dates, claims of personal student contribution or real-world booking/payment/order confirmations were created. Midterm tag and HTML/CSS freeze are preserved.
+
+Further user requests, 2026-10-08:
+«сделай под дизайн проекта и общий 20 пк мейн 10 дуо 5 и приват 5». Updated visual map to the existing light project design and all DOM counts/validation to 20 PCs (Main10/Duo5/Private5), preserving frozen HTML/CSS.
+«сделай еда и напитки с фото возьми с инета фото колы и тд». Added sourced internet photographs to the food/drinks catalogue, with attribution and license records.
+
+«агента проверку на качество сделай и что бы под дизайн проверил». A separate independent design agent compared the new map, menu, cart and home panel with the established project at 375/768/1440 px. The implementation was corrected after review: larger cart quantity buttons, light home panel, and food ingredient descriptions consistent with photos. A separate QA agent checked functionality, responsiveness, console, assets, frozen HTML/CSS and source hashes.
+
+2026-10-08: «еду фото бери из комп клуба ... и сделай темную тему», «мне нужен легкий js для защиты ...», уточнение: «Сохранить требования, упростить код». Добавлена тёмная тема через готовые классы Bootstrap без изменения frozen HTML/CSS. Фотографии заменены на меню CyberX. Map/Set заменены обычными массивами/объектами, reduce расчёта корзины — обычным циклом. Добавлена памятка DEFENSE_GUIDE.md. Все требования функциональности сохранены; независимые отчёты агентов относятся к предыдущему светлому оформлению, новая версия проверяется отдельно.
+
+2026-10-08: «растяни что бы не оставять пустое место бутстрапом сделай мб». Фото блюд заменены исходными файлами без добавленных полей; Bootstrap object-fit-cover заполняет ширину карточек.
+
+2026-10-08: «соки тоже сделай». Bootstrap object-fit-cover применён также к карточке сока J7.
+
+2026-10-08: «сделай край полностью». Все фото карточек используют Bootstrap w-100/object-fit-cover; боковые полосы устранены также у колы, воды, чая и чипсов.
+
+2026-10-08: «цены сделай на 50 процентов больше». Все цены учебного меню еды и напитков увеличены в 1,5 раза.
+
+2026-10-12: пользователь запросил убрать надписи «демо», разрешить любое количество свободных ПК, исправить пустые/светлые блоки, добавить изображения игр и пакеты, коммитнуть в Git. Дополнительно попросил независимого агента для полной проверки и рабочие кнопки отправки. На вопрос о назначении отправки выбрал «В этом браузере, как сейчас». Сохранение остаётся локальным; сервер и оплата не подключаются. Codex и агенты обновили бронирование, тарифы, изображения, тексты и контраст, проверили сценарии и обновили документацию. Новые цены/периоды пакетов — настройки проекта по запросу расширения, не подтверждённые тарифы клуба.
+
+
+2026-10-16 — Merge with uploaded computerClub-feature-booking-food-orders (1).zip
+User: «сделай так чтобы функций которых нету у меня с этой зипки закинуть ко мне чтобы было все четко если что то будет не так то скажи мне».
+AI compared both complete archives, retained uploaded six tariffs and shared pricing, mixed-zone selection, covers and local storage, merged Rules and Games enhancements, mobile comparison and readability fixes. Personal contact fields are excluded from persisted game parameters. Browser-only limitations and unverified tariff assumptions are documented in MERGE_REPORT_RU.md. Code and documentation are AI-assisted; no independent student contribution, Git history or teacher approval is claimed.
+
+2026-11-02 — jQuery assignment update
+User question/request: "can you covering all the requirements of the assignment add for myu project jquery and explain it fully on chat with simple words please"
+Inputs: assignment6_jquery.docx and computerClub.zip supplied by the user. The document itself is headed Assignment 4; this update uses the requested Assignment 6 filename for identification.
+AI assistance: Codex read the assignment and the full project scripts, rewrote page interaction code with jQuery, retained original main/booking/rules snapshots in unlinked old-js-version.js, added comments, delegation, effects, field validation/reset and documentation, and wrote/runs browser checks. No sub-agents were used for this update. This is AI-authored implementation, not independent student work.
+Policy conflict: the assignment permits explanations and official documentation but prohibits AI writing submission code. The user explicitly asked for implementation. This version cannot be claimed to comply with that AI-policy condition; instructor permission and a personal defense remain the student's responsibility.
+Preserved: original seven-page theme/content, CSS files, images, browser-local storage model and pricing data. HTML changes are limited to external jQuery script tags. New appearance uses existing classes. favicon.ico is generated from the existing club logo.
+Behavior changes: successful booking resets form fields/seats while keeping the saved result; choosing a PC selects an unset preferred zone; required browser attributes remain; Rules help now opens/closes with slide effects and focus callbacks. Filter listeners distinguish typed inputs from select changes so blur cannot swallow clicks. Reusable equipment cards are detached without losing events. Notification effects handle rapid replacement messages.
+Verification: current results and source hashes are recorded in checks/assignment6-jquery.json. Historical reports are not represented as current. Tests use synthetic contacts only. jQuery's official CDN build was verified against its SHA-256 integrity value.
+Submission limits: the source ZIP has no Git history. No commits, dates, identities, team contributions, teacher permission or live defense have been fabricated. The changed files must be applied to the existing student repository; the required real commit schedule and personal defense remain outstanding.
+
+2026-11-02 — Game button hover colors
+User request: «давай в играх меняй цвет кнопки», referring to the “Выбрать для запроса” buttons and the preceding hover-color discussion.
+Codex added delegated mouseenter/mouseleave handlers on #game-cards. They switch existing Bootstrap classes btn-outline-danger and btn-success, producing green on hover and restoring the original red outline on exit. Delegation supports cards recreated by filters and sorting. No HTML or CSS changes were made. This remains disclosed AI-authored code.
+Hover verification: eight browser checks passed, including all six buttons, filter rebuilding and selection. No browser errors. The test used a cached official jQuery file verified against the CDN integrity hash; the production CDN connection is unchanged. Result: checks/game-button-hover.json.
+
+2026-11-08 — Endterm follow-up implementation
+User request: «тогда сделай все так чтобы все было хорошо и соотвествовало правилам и условиям ассаймента кроме гита мы его сами сделаем также без подтвержения цен и контактов потому что они правильные теперь за дело».
+Codex wrote the implementation, tests and documentation. No sub-agents were used. Git was left to the user. Prices and contacts were accepted as correct on the user's instruction; their values were not changed or independently reconfirmed.
+Implementation: prices.js now uses only native DOM/events for the tariff catalogue, comparison and calculator, with new budget/team/duration/zone/period package matching. Package selection transfers validated parameters into the calculator and booking link. Games gained a locally saved favorites list and filter. Rules gained a two-hour per-tab checklist draft and an unfinished-only filter. Navigation now updates active/aria-current in code. Named groups fix the two W3C validation errors. HTML/CSS files were not edited in this update. Existing Bootstrap/project classes provide all appearance.
+Documentation: README lists actual new work against the supplied 2 November version, native/jQuery ownership, AI authorship, historical team responsibilities and remaining personal requirements. DEFENSE_GUIDE explains code in Russian. quality-pass records AI checks and leaves real student/other-device review explicitly unfinished.
+Verification: new behavior and edge cases in checks/endterm.cjs; retained integration scenarios in assignment6-jquery.cjs. Official W3C validated all seven generated initial HTML snapshots, before entering synthetic test data. The user had explicitly approved sending source and generated HTML to W3C in this chat. The live jQuery CDN was substituted only during browser tests with official bytes verified by SHA-256; production keeps the CDN script unchanged. Reports and hashes identify the tested version.
+Limits remain: AI-written code conflicts with the assignment's unchanged AI policy. No teacher permission, student authorship, personal defense, own photography, real peer/device quality pass, Git history or dates have been invented. Third-party food photographs are still disclosed. This update cannot establish full non-technical assignment compliance.
+
+Earlier educational questions and audit requests visible in this chat (exact dates of individual messages were not recorded here):
+1. «что ты добавил в мой новый проект расскажи в какие секций» — explanation of sections changed.
+2. «расскажи что такое jquery и что он делает» — library explanation.
+3. «покажи все коды которые были добавлены и были изменены покажи их» — full code comparison artifacts.
+4. «напиши в чате про что он и расскажи и обьясни полностью его» — project explanation.
+5. «как сделать так чтобы кнопки стояли по середине» and «вот это» with code screenshots — explained a possible jQuery class change; the suggested booking button centering was not applied.
+6. «и как сделать так чтобы при наводений мышки он менял цвет кнопки на другой или нельзя так но главное нужно менять все через js а не css» — explanation before the separately logged hover implementation request.
+7. «а что учитель сможеть попросить написать или изменить в моих секциях игры и правила можешь написать в чате что она может попросить сделать когда я буду делать дефенс» — hypothetical defense practice tasks.
+8. «напиши что она может попросить написать или изменить также расскажи что изменяеть jquery в нашем проекте» — further explanation, not known exam questions.
+9. «can you create any objects and give them own properties and give 1 function or method» — example objects/methods in chat.
+10. «what is function and what is method in javascript», «на русском давай», «создай новый обьект», «в моих секциях» — Russian explanations and examples; example objects were not inserted into the project.
+11. «что такое false in games like source is false or true» plus a code screenshot — source is an original-content/suggestion flag, not installation status.
+12. «есть ли инпут в моих секциях и можно ли сделать так чтобы если пришли 5 человек то сделать им скидки», «это можно написать в jquery или это js» — explained inputs and a hypothetical discount. No five-person discount was added to prices.
+13. «what data types we have in js» — language types explained.
+14. «а если нам нужно добавить кнопку» — button creation example.
+15. «как создать форму чтобы когда писал текст то нажимал и показывал сколько слов было написано», «а если это нужно писать в хтмл» — educational word-count examples only; no purposeless word counter was added to this site.
+16. «can you check is our final project fully covering all the requirements od the end assignment» — compared supplied project with endterm_project (1).docx, ran browser checks and identified gaps. Website implementation was unchanged during that audit.
+17. User explicitly approved W3C source validation and then generated-snapshot validation separately. Both validation scopes were completed.
+18. «можешь написать по короче и понятным языком» — shorter Russian audit summary.
+AI assistance in these questions included teaching and code examples; the implemented project code is separately disclosed above. This log is a record of the conversation available here, not a claim that no other AI assistance occurred elsewhere.

@@ -1,0 +1,81 @@
+{
+  "testedAt": "2026-11-08T14:28:34.011Z",
+  "checks": [
+    {
+      "name": "Budget finder compares 5 players / 5 hours using full package prices",
+      "passed": true
+    },
+    {
+      "name": "Zero and insufficient budget produce an explicit empty result",
+      "passed": true
+    },
+    {
+      "name": "Boundary budget, optional budget and fixed duration are respected",
+      "passed": true
+    },
+    {
+      "name": "Native delegation works after rebuilding results and passes values to booking",
+      "passed": true
+    },
+    {
+      "name": "Private-zone capacity, fractional players and hours reject invalid input",
+      "passed": true
+    },
+    {
+      "name": "Budget rejects negative/fractional values and reset restores the finder",
+      "passed": true
+    },
+    {
+      "name": "Calculator rejects invalid input, clears adjacent errors and confirms only valid data",
+      "passed": true
+    },
+    {
+      "name": "Prices feature functions with all jQuery scripts excluded",
+      "passed": true
+    },
+    {
+      "name": "Favorites empty state, delegated add, reload and removal work",
+      "passed": true
+    },
+    {
+      "name": "Favorites degrade gracefully when storage is unavailable",
+      "passed": true
+    },
+    {
+      "name": "Checklist draft restores on reload; unfinished filter and reset work",
+      "passed": true
+    },
+    {
+      "name": "Completion clears the draft; stale drafts never mark a new visit complete",
+      "passed": true
+    },
+    {
+      "name": "Navigation moves active state between booking, menu and cart",
+      "passed": true
+    },
+    {
+      "name": "New content and validation fit phone and tablet widths",
+      "passed": true
+    },
+    {
+      "name": "No console, HTTP, failed request or script errors",
+      "passed": true
+    }
+  ],
+  "errors": [],
+  "sourceSha256": {
+    "js/about.js": "5adc114b2563e9efc746364e1267add1c00f7f695381145de2c3b592024b169d",
+    "js/booking.js": "a6b2e3336d56d91d3d3cf16df2d6a4b2b4dd69ab39219194891d871a1b0d3841",
+    "js/computers.js": "044e42be149246e8fe898108cef9feb7aaec315c796734f530ae369987088b09",
+    "js/data.js": "8e71b3eee134d2d5eb61c5225d0531d398ec4e0f7c5948bbc10f5f1c75bf2363",
+    "js/food.js": "aa495e58d0b834fe089639817fe40b0257ea30fae9a49ac7e698022f144e4051",
+    "js/games.js": "1a91fa2ed1bb45c2a142405bb0865dfac269bdb7cca39016de6430c5727b99d8",
+    "js/logic.js": "120af3ac6c3c555ab91863b6bc3db6d2dccbc74e43a8b6a1069c960c0ed95ba1",
+    "js/main.js": "fcfa75adc10b970c3aa15e532df46847186f4e9493643a13d8fc80e24be6a055",
+    "js/old-js-version.js": "9dd04def3043c96b344ab9fa2b009172f45bfaf31f7b175c5a86eae32d645202",
+    "js/prices.js": "d15565de7bc2d9d7488101477b6ea8c172a17b92007c2c024f5261f76a029624",
+    "js/rules.js": "4e98147abbc3e21f80b08f4b7a2db112215fc1773902a3edf684bff1c5ada571"
+  },
+  "jqueryTestMode": "Integrity-verified cache; live CDN not tested",
+  "passed": true
+}

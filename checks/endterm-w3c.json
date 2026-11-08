@@ -1,0 +1,100 @@
+{
+  "source": {
+    "testedAt": "2026-11-08T14:30:22.968Z",
+    "service": "W3C Nu HTML Checker",
+    "scope": "Saved HTML source only",
+    "pages": [
+      {
+        "file": "index.html",
+        "status": 200,
+        "errors": [],
+        "warnings": []
+      },
+      {
+        "file": "booking.html",
+        "status": 200,
+        "errors": [],
+        "warnings": []
+      },
+      {
+        "file": "prices.html",
+        "status": 200,
+        "errors": [],
+        "warnings": []
+      },
+      {
+        "file": "computers.html",
+        "status": 200,
+        "errors": [],
+        "warnings": []
+      },
+      {
+        "file": "games.html",
+        "status": 200,
+        "errors": [],
+        "warnings": []
+      },
+      {
+        "file": "rules.html",
+        "status": 200,
+        "errors": [],
+        "warnings": []
+      },
+      {
+        "file": "about.html",
+        "status": 200,
+        "errors": [],
+        "warnings": []
+      }
+    ]
+  },
+  "rendered": {
+    "testedAt": "2026-11-08T14:22:47.672Z",
+    "service": "W3C Nu HTML Checker",
+    "scope": "Browser-rendered HTML with generated elements",
+    "pages": [
+      {
+        "file": "index.html",
+        "status": 200,
+        "errors": [],
+        "warnings": []
+      },
+      {
+        "file": "booking.html",
+        "status": 200,
+        "errors": [],
+        "warnings": []
+      },
+      {
+        "file": "prices.html",
+        "status": 200,
+        "errors": [],
+        "warnings": []
+      },
+      {
+        "file": "computers.html",
+        "status": 200,
+        "errors": [],
+        "warnings": []
+      },
+      {
+        "file": "games.html",
+        "status": 200,
+        "errors": [],
+        "warnings": []
+      },
+      {
+        "file": "rules.html",
+        "status": 200,
+        "errors": [],
+        "warnings": []
+      },
+      {
+        "file": "about.html",
+        "status": 200,
+        "errors": [],
+        "warnings": []
+      }
+    ]
+  }
+}

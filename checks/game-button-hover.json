@@ -1,0 +1,41 @@
+{
+  "testedAt": "2026-11-02T09:27:09.529Z",
+  "jquerySource": "Cached official jQuery 3.7.1, verified against CDN integrity hash; no external requests required",
+  "gamesSha256": "4021a3aae9b6a7e057bedcd70b5eddbb8fc816ed613a38cd882a8dbdbb90eb7e",
+  "checks": [
+    {
+      "name": "cs2: green on hover and original outline on exit",
+      "passed": true
+    },
+    {
+      "name": "dota2: green on hover and original outline on exit",
+      "passed": true
+    },
+    {
+      "name": "lol: green on hover and original outline on exit",
+      "passed": true
+    },
+    {
+      "name": "rocket-league: green on hover and original outline on exit",
+      "passed": true
+    },
+    {
+      "name": "civilization: green on hover and original outline on exit",
+      "passed": true
+    },
+    {
+      "name": "valorant: green on hover and original outline on exit",
+      "passed": true
+    },
+    {
+      "name": "Hover survives rebuilding cards after filtering",
+      "passed": true
+    },
+    {
+      "name": "Button still selects the game for the request",
+      "passed": true
+    }
+  ],
+  "errors": [],
+  "passed": true
+}

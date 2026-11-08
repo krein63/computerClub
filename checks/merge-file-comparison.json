@@ -1,0 +1,40 @@
+{
+  "baseline": "computerClub-feature-booking-food-orders (1).zip",
+  "noUploadedFilesLost": true,
+  "uploadedImagesPreserved": true,
+  "htmlCssMatchExceptRulesScript": {
+    "about.html": true,
+    "booking.html": true,
+    "computers.html": true,
+    "css/base.css": true,
+    "css/bootstrap.min.css": true,
+    "games.html": true,
+    "index.html": true,
+    "prices.html": true,
+    "rules.html": true
+  },
+  "added": [
+    "GAMES_RULES_GUIDE_EN_RU.md",
+    "MERGE_REPORT_RU.md",
+    "checks/games-rules-check.cjs",
+    "checks/games-rules-update.json",
+    "checks/merge-check.cjs",
+    "checks/merge-file-comparison.json",
+    "checks/merge-update.json",
+    "checks/visibility-check.cjs",
+    "checks/visibility-update.json",
+    "js/rules.js"
+  ],
+  "modified": [
+    "AI-log.txt",
+    "JAVASCRIPT_CHECKLIST.md",
+    "README.md",
+    "checks/README.md",
+    "js/booking.js",
+    "js/food.js",
+    "js/games.js",
+    "js/main.js",
+    "js/prices.js",
+    "rules.html"
+  ]
+}
