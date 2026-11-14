@@ -23,7 +23,18 @@ h3,
 }
 
 @media (prefers-reduced-motion: no-preference) {
-    main { animation: fade-in 320ms var(--motion-ease); }
+    @view-transition { navigation: auto; }
+    main { animation: page-arrival 420ms var(--motion-ease); }
+    :root:active-view-transition main { animation: none; }
+    ::view-transition-old(root), ::view-transition-new(root) {
+        animation-duration: 480ms;
+        animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    }
+}
+
+@keyframes page-arrival {
+    from { opacity: 0.7; }
+    to { opacity: 1; }
 }
 
 /* Use the club red for primary actions and provide a clear hover shade. */
@@ -157,6 +168,46 @@ h3,
 .favorite-notice-close, .favorite-notice-close:is(:hover, :focus-visible, :active) { color: inherit; }
 .favorite-notice-close:hover { background: rgba(0, 0, 0, 0.08); }
 .favorite-notice-close:focus-visible { outline: 2px solid currentColor; }
+.favorite-notice {
+    position: fixed;
+    z-index: 1090;
+    inset-inline-end: max(1rem, env(safe-area-inset-right));
+    inset-block-end: max(1rem, env(safe-area-inset-bottom));
+    width: min(28rem, calc(100% - 2rem));
+    box-shadow: 0 0.6rem 1.6rem rgb(0 0 0 / 25%);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(0.55rem) scale(0.97);
+    transition: opacity 260ms ease, transform var(--motion-panel) var(--motion-ease),
+                visibility var(--motion-panel) allow-discrete;
+}
+.favorite-notice.is-visible {
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+}
+.favorite-notice p { overflow-wrap: anywhere; }
+.favorite-heart svg { transition: fill var(--motion-fast) ease, stroke var(--motion-fast) ease; }
+.favorite-burst {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+}
+.favorite-spark {
+    position: absolute;
+    top: calc(50% - 2px);
+    left: calc(50% - 2px);
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: #f35e73;
+    animation: favorite-spark 460ms var(--motion-ease) both;
+}
+.favorite-spark:nth-child(even) { background: #b02a37; }
+@keyframes favorite-spark {
+    from { opacity: 1; transform: rotate(var(--spark-angle)) translateX(11px) scale(0.75); }
+    to { opacity: 0; transform: rotate(var(--spark-angle)) translateX(26px) scale(1.25); }
+}
 #game-cards > div {
     animation: reveal-content 320ms var(--motion-ease);
 }
@@ -186,6 +237,9 @@ h3,
 }
 .booking-panel .form-control, .booking-panel .form-select { min-height: 2.75rem; }
 .booking-panel .form-label { font-weight: 600; }
+#booking-tariff {
+    transition: border-color var(--motion-fast) ease, box-shadow var(--motion-fast) ease;
+}
 .booking-rooms { display: grid; gap: 0.65rem; }
 .booking-room {
     scroll-margin-top: 1rem;
@@ -326,6 +380,63 @@ h3,
 .rules-disclosures details + details { margin-top: 0.45rem; }
 .rules-disclosures summary { cursor: pointer; font-weight: 600; }
 .rules-disclosures details > p { margin: 0.5rem 0 0; }
+
+@media (prefers-reduced-motion: no-preference) {
+    .rules-disclosures details[open] > :not(summary),
+    details.rules-disclosures[open] > :not(summary) {
+        animation: fade-in 280ms ease-out;
+    }
+    @supports selector(details::details-content) and (interpolate-size: allow-keywords) {
+        :is(.rules-disclosures details, details.rules-disclosures)::details-content {
+            interpolate-size: allow-keywords;
+            block-size: 0;
+            overflow: clip;
+            opacity: 0;
+            transition: block-size var(--motion-panel) var(--motion-ease),
+                        opacity var(--motion-fast) ease,
+                        content-visibility var(--motion-panel) allow-discrete;
+        }
+        :is(.rules-disclosures details, details.rules-disclosures)[open]::details-content {
+            block-size: auto;
+            opacity: 1;
+        }
+        .rules-disclosures details[open] > :not(summary),
+        details.rules-disclosures[open] > :not(summary) { animation: none; }
+    }
+}
+
+@supports (appearance: base-select) and selector(::picker(select)) {
+    #booking-tariff, #booking-tariff::picker(select) { appearance: base-select; }
+    #booking-tariff {
+        background-image: none;
+        padding-inline: 0.75rem;
+    }
+    #booking-tariff::picker(select) {
+        margin-block: 0.3rem;
+        color: var(--bs-body-color);
+        background: var(--bs-body-bg);
+        border: 1px solid var(--bs-border-color);
+        border-radius: var(--bs-border-radius);
+        box-shadow: 0 0.5rem 1.25rem rgb(0 0 0 / 28%);
+    }
+    #booking-tariff option { padding: 0.55rem 0.75rem; }
+    #booking-tariff option:checked { font-weight: 700; }
+    @media (prefers-reduced-motion: no-preference) {
+        #booking-tariff::picker(select) {
+            opacity: 0;
+            transform: translateY(-0.35rem);
+            transition: opacity 280ms ease, transform 320ms var(--motion-ease),
+                        display 320ms allow-discrete, overlay 320ms allow-discrete;
+        }
+        #booking-tariff:open::picker(select) { opacity: 1; transform: none; }
+        @starting-style {
+            #booking-tariff:open::picker(select) {
+                opacity: 0;
+                transform: translateY(-0.35rem);
+            }
+        }
+    }
+}
 #departure-list label { display: block; padding-block: 0.35rem; cursor: pointer; }
 
 .food-cart-dialog {
@@ -383,14 +494,14 @@ h3,
 body:has(.food-cart-dialog[open]) { overflow: hidden; }
 
 @media (prefers-reduced-motion: reduce) {
-    .navbar .nav-link, main .card, .favorite-heart, .club-stat,
-    .booking-tabs .btn, .booking-tabs::before, .booking-seat,
+    .navbar .nav-link, main .card, .favorite-heart, .favorite-heart svg, .favorite-notice, .club-stat,
+    .booking-tabs .btn, .booking-tabs::before, .booking-seat, #booking-tariff,
     .food-cart-dialog, .food-cart-dialog::backdrop {
         transition: none;
     }
     main .card:hover, .favorite-heart:hover, .favorite-heart:active,
     .booking-seat:not(:disabled):active { transform: none; }
-    #game-cards > div, #booking-content [role="tabpanel"]:not([hidden]),
+    #game-cards > div, .favorite-spark, #booking-content [role="tabpanel"]:not([hidden]),
     .food-cart-dialog[open], .food-cart-dialog[open]::backdrop {
         animation: none;
     }
