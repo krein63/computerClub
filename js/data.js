@@ -1,5 +1,7 @@
 'use strict';
 
+const nightHours = { start: '23:00', end: '07:00' };
+
 // Тарифы проекта: цена за один ПК, пакеты с фиксированной длительностью.
 window.TopGameData = {
     tariffs: [
@@ -7,7 +9,10 @@ window.TopGameData = {
         { id: 'three-hours', name: '3 часа', price: 3000, previousPrice: 3600, duration: 3, hourly: false, description: 'Несколько матчей подряд', audience: 'Для игры с друзьями' },
         { id: 'five-hours', name: '5 часов', price: 4500, previousPrice: 5400, duration: 5, hourly: false, description: 'Большой игровой сеанс', audience: 'Для командной тренировки' },
         { id: 'day', name: 'День · 10 часов', price: 8900, duration: 10, hourly: false, startTime: '08:00', description: 'Пакет на весь день', audience: 'Для долгого игрового марафона' },
-        { id: 'night', name: 'Ночь · 8 часов', price: 4700, duration: 8, hourly: false, startTime: '23:00', description: 'Ночной пакет', audience: 'Для игры ночью' },
+        { id: 'night', name: 'Ночь · 8 часов', price: 4700, duration: 8, hourly: false, startTime: nightHours.start, description: 'Ночной пакет', audience: 'Для игры ночью' },
+        { id: 'night-1', name: 'Ночь · 1 час', price: 900, duration: 1, hourly: false, timeWindow: nightHours },
+        { id: 'night-3', name: 'Ночь · 3 часа', price: 2400, duration: 3, hourly: false, timeWindow: nightHours },
+        { id: 'night-5', name: 'Ночь · 5 часов', price: 3500, duration: 5, hourly: false, timeWindow: nightHours },
         { id: 'private', name: 'PRIVATE', price: 2500, duration: 1, hourly: true, description: 'Приватный сеанс', audience: 'Для игры в отдельном пространстве' }
     ],
     // Prices accepted as correct on the user's instruction of 8 November 2026.
