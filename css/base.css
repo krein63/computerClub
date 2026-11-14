@@ -338,6 +338,22 @@ h3,
         .food-cart-dialog[open]::backdrop { opacity: 0; }
     }
 }
+.about-zones { display: grid; gap: 0.6rem; }
+.about-zones > div {
+    display: grid;
+    grid-template-columns: minmax(4.5rem, auto) minmax(0, 1fr);
+    align-items: baseline;
+    gap: 0.75rem;
+}
+.about-zones dd, .about-stats dd { margin: 0; color: var(--bs-secondary-color); }
+.about-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(5rem, 1fr)); gap: 0.5rem; }
+.about-stats > div {
+    border: 1px solid var(--bs-border-color);
+    border-radius: 0.5rem;
+    padding: 0.65rem 0.5rem;
+    text-align: center;
+}
+.about-stats dt { font-size: clamp(1.2rem, 2.4vw, 1.6rem); }
 body:has(.food-cart-dialog[open]) { overflow: hidden; }
 
 @media (prefers-reduced-motion: reduce) {
