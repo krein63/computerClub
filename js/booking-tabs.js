@@ -25,49 +25,11 @@ function openBookingTab(index, focus = false) {
     }
   }
   showBookingTab(index);
-  document.dispatchEvent(new Event('booking:tab-change'));
   if (focus) bookingTabs[index].focus();
 }
 
-const cartDialog = document.getElementById('food-cart-dialog');
-const cartTargets = ['food-cart', cartDialog.id];
-let cartTrigger;
-
-function openCart(trigger = document.activeElement) {
-  if (cartDialog.open) return;
-  cartTrigger = trigger;
-  cartDialog.showModal();
-}
-
-document.getElementById('food-cart-close').addEventListener('click', () => cartDialog.close());
-cartDialog.addEventListener('close', () => {
-  if (cartTargets.includes(location.hash.slice(1))) {
-    history.replaceState(null, '', '#' + bookingPanels.find(panel => !panel.hidden).id);
-    document.dispatchEvent(new Event('booking:tab-change'));
-  }
-  const returnFocus = cartTrigger instanceof HTMLElement && cartTrigger !== document.body
-    ? cartTrigger
-    : document.getElementById('nav-cart');
-  returnFocus?.focus();
-});
-document.addEventListener('click', event => {
-  if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.altKey || event.shiftKey) return;
-  const link = event.target.closest('a[href]');
-  if (!link || link.target || link.protocol !== location.protocol ||
-      link.host !== location.host || link.pathname !== location.pathname) return;
-  if (cartTargets.includes(link.hash.slice(1))) {
-    event.preventDefault();
-    openCart(link);
-  }
-});
-
 function followBookingLink() {
   const id = location.hash.slice(1);
-  if (cartTargets.includes(id)) {
-    openCart();
-    return;
-  }
-  if (cartDialog.open) cartDialog.close();
   if (!id) {
     showBookingTab(0);
     return;
