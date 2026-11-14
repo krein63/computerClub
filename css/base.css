@@ -9,6 +9,9 @@
     --bs-link-color-rgb: 176, 42, 55;
     --bs-link-hover-color: #842029;
     --bs-link-hover-color-rgb: 132, 32, 41;
+    --motion-fast: 220ms;
+    --motion-panel: 420ms;
+    --motion-ease: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 /* Keep the club's original serif display font for headings. */
@@ -40,7 +43,7 @@ h3,
 /* A subtle club-red highlight makes navigation states easy to spot. */
 .navbar .nav-link {
     border-radius: var(--bs-border-radius);
-    transition: color 150ms ease, background-color 150ms ease;
+    transition: color var(--motion-fast) ease, background-color var(--motion-fast) ease;
 }
 
 .navbar .nav-link:hover,
@@ -54,6 +57,17 @@ h3,
 .card {
     --bs-card-bg: #fff;
     --bs-card-border-color: rgba(32, 36, 42, 0.14);
+}
+
+@media (hover: hover) and (pointer: fine) {
+    main .card {
+        transition: transform var(--motion-panel) var(--motion-ease),
+                    box-shadow var(--motion-panel) var(--motion-ease);
+    }
+    main .card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 0.7rem 1.5rem rgba(0, 0, 0, 0.22) !important;
+    }
 }
 
 /* Carry the brand color into focused form controls and selected checkboxes. */
@@ -92,3 +106,264 @@ h3,
 .selected { border-color: #b02a37 !important; box-shadow: 0 0 0 2px rgba(176, 42, 55, 0.15); }
 .error { color: #842029; background-color: #f8d7da; border-color: #b02a37 !important; }
 .success { color: #0f5132; background-color: #d1e7dd; border-color: #146c43 !important; }
+
+/* Game favourites stay compact on the cover and keep the club's red accent. */
+.favorite-heart {
+    position: absolute;
+    z-index: 2;
+    top: 0.75rem;
+    right: 0.75rem;
+    display: grid;
+    place-items: center;
+    width: 2.75rem;
+    height: 2.75rem;
+    padding: 0;
+    border: 1px solid rgba(32, 36, 42, 0.12);
+    border-radius: 50%;
+    color: #b02a37;
+    background: rgba(255, 255, 255, 0.96);
+    box-shadow: 0 0.15rem 0.5rem rgba(0, 0, 0, 0.18);
+    transition: transform var(--motion-fast) var(--motion-ease), color var(--motion-fast) ease, background-color var(--motion-fast) ease;
+}
+
+.favorite-heart:hover {
+    transform: scale(1.06);
+    color: #842029;
+}
+
+.favorite-heart:active { transform: scale(0.94); }
+
+.favorite-heart.is-favorite svg {
+    fill: #e04444;
+    stroke: #b02a37;
+}
+
+.favorite-heart:focus-visible {
+    outline: 3px solid #b02a37;
+    outline-offset: 3px;
+}
+
+.favorite-notice-close {
+    width: 2.75rem;
+    height: 2.75rem;
+    padding: 0;
+    font-size: 1.5rem;
+    line-height: 1;
+}
+.favorite-notice-close, .favorite-notice-close:is(:hover, :focus-visible, :active) { color: inherit; }
+.favorite-notice-close:hover { background: rgba(0, 0, 0, 0.08); }
+.favorite-notice-close:focus-visible { outline: 2px solid currentColor; }
+#game-cards > div {
+    animation: reveal-content 320ms var(--motion-ease);
+}
+
+/* Booking */
+.booking-layout { display: grid; gap: 1.25rem; align-items: start; }
+.booking-panel {
+    min-width: 0;
+    padding: clamp(1rem, 3vw, 1.75rem);
+    border: 1px solid #484d57;
+    border-radius: 1rem;
+    background: #27292f;
+    color: #f4f4f6;
+}
+.booking-muted { color: #c3c6cf; }
+.booking-group {
+    min-width: 0;
+    margin-block: 0 1.5rem;
+    padding-block-end: 1.25rem;
+    border-bottom: 1px solid #454952;
+}
+.booking-heading {
+    float: none;
+    width: auto;
+    font: 700 1.35rem/1.2 Georgia, serif;
+    margin-block: 0 0.85rem;
+}
+.booking-panel .form-control, .booking-panel .form-select { min-height: 2.75rem; }
+.booking-panel .form-label { font-weight: 600; }
+.booking-rooms { display: grid; gap: 0.65rem; }
+.booking-room {
+    scroll-margin-top: 1rem;
+    padding: 0.75rem;
+    background: #1e2025;
+    border: 1px solid #414550;
+    border-radius: 0.75rem;
+}
+.booking-room h3 { margin-bottom: 0.5rem !important; }
+.booking-seat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(4.65rem, 1fr));
+    gap: 0.4rem;
+}
+.booking-seat {
+    min-height: 2.75rem;
+    padding: 0.25rem;
+    font-size: 0.84rem;
+    line-height: 1.2;
+}
+.booking-seat[data-seat-state="available"] {
+    --bs-btn-color: #eff1f6;
+    --bs-btn-border-color: #676d7b;
+    --bs-btn-hover-color: #fff;
+    --bs-btn-hover-bg: #353943;
+    --bs-btn-hover-border-color: #a2a7b3;
+}
+.booking-seat .small { font-size: 0.7rem; }
+.booking-facts {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr);
+    gap: 0.55rem 0.75rem;
+    font-size: 0.95rem;
+}
+.booking-facts dt { font-weight: 400; color: #c3c6cf; }
+.booking-facts dd { margin: 0; overflow-wrap: anywhere; }
+.booking-price {
+    padding: 0.85rem 1rem;
+    border-left: 3px solid #e04444;
+    border-radius: 0.5rem;
+    background: #1d1f24;
+}
+.booking-price output {
+    display: block;
+    font-size: clamp(1.5rem, 5vw, 2.2rem);
+    font-variant-numeric: tabular-nums;
+    font-weight: 700;
+}
+#booking-form, #seat-map { scroll-margin-top: 1rem; }
+.booking-actions .btn { min-height: 2.75rem; }
+
+@media (min-width: 992px) {
+    .booking-layout { grid-template-columns: minmax(0, 2fr) minmax(17rem, 1fr); }
+    .booking-summary { position: sticky; top: 1rem; }
+}
+@media (max-width: 575.98px) {
+    .booking-actions .btn-danger { flex-grow: 1; }
+}
+
+.booking-tabs:not([hidden]) {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: minmax(0, 1fr);
+    gap: 0.4rem;
+    padding: 0.4rem;
+    background: var(--bs-tertiary-bg);
+    border: 1px solid var(--bs-border-color);
+    border-radius: 0.85rem;
+    scroll-margin-top: 1rem;
+}
+.booking-tabs .btn {
+    min-height: 2.75rem;
+    color: var(--bs-emphasis-color);
+    font-weight: 600;
+    padding-inline: 0.4rem;
+    transition: background-color var(--motion-fast) ease, color var(--motion-fast) ease;
+}
+.booking-tabs .btn:hover { background: var(--bs-secondary-bg); }
+.booking-tabs .btn[aria-selected="true"] {
+    background: #b02a37;
+    color: #fff;
+}
+
+#booking-content [role="tabpanel"]:not([hidden]) {
+    animation: reveal-content var(--motion-panel) var(--motion-ease);
+}
+
+@keyframes reveal-content {
+    from { opacity: 0; translate: 0 0.45rem; }
+    to { opacity: 1; translate: 0 0; }
+}
+
+.peripherals-photo {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    max-height: 17rem;
+    object-fit: cover;
+    object-position: center 48%;
+}
+
+.club-stat {
+    transition: border-color var(--motion-fast) ease, box-shadow var(--motion-fast) ease;
+}
+.club-stat:hover {
+    border-color: #e04444 !important;
+    box-shadow: inset 0 0 0 2px #e04444;
+}
+
+.rules-disclosures details, details.rules-disclosures {
+    border: 1px solid var(--bs-border-color);
+    border-radius: 0.5rem;
+    background: var(--bs-tertiary-bg);
+    padding: 0.6rem 0.8rem;
+}
+.rules-disclosures details + details { margin-top: 0.45rem; }
+.rules-disclosures summary { cursor: pointer; font-weight: 600; }
+.rules-disclosures details > p { margin: 0.5rem 0 0; }
+#departure-list label { display: block; padding-block: 0.35rem; cursor: pointer; }
+
+.food-cart-dialog {
+    width: min(35rem, calc(100% - 2rem));
+    max-height: min(42rem, calc(100dvh - 2rem));
+    overflow: auto;
+    overscroll-behavior: contain;
+}
+.food-cart-dialog::backdrop { background: rgba(0, 0, 0, 0.65); }
+.food-cart-dialog[open] { animation: reveal-content var(--motion-panel) var(--motion-ease); }
+.food-cart-dialog[open]::backdrop { animation: fade-in var(--motion-fast) ease; }
+@keyframes fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@supports (transition-behavior: allow-discrete) {
+    .food-cart-dialog {
+        opacity: 0;
+        translate: 0 0.45rem;
+        transition: opacity var(--motion-panel) var(--motion-ease),
+                    translate var(--motion-panel) var(--motion-ease),
+                    display var(--motion-panel) allow-discrete,
+                    overlay var(--motion-panel) allow-discrete;
+    }
+    .food-cart-dialog[open] { opacity: 1; translate: 0 0; animation: none; }
+    .food-cart-dialog::backdrop {
+        opacity: 0;
+        transition: opacity var(--motion-panel) var(--motion-ease),
+                    display var(--motion-panel) allow-discrete,
+                    overlay var(--motion-panel) allow-discrete;
+    }
+    .food-cart-dialog[open]::backdrop { opacity: 1; animation: none; }
+    @starting-style {
+        .food-cart-dialog[open] { opacity: 0; translate: 0 0.45rem; }
+        .food-cart-dialog[open]::backdrop { opacity: 0; }
+    }
+}
+.about-zones { display: grid; gap: 0.6rem; }
+.about-zones > div {
+    display: grid;
+    grid-template-columns: minmax(4.5rem, auto) minmax(0, 1fr);
+    align-items: baseline;
+    gap: 0.75rem;
+}
+.about-zones dd, .about-stats dd { margin: 0; color: var(--bs-secondary-color); }
+.about-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(5rem, 1fr)); gap: 0.5rem; }
+.about-stats > div {
+    border: 1px solid var(--bs-border-color);
+    border-radius: 0.5rem;
+    padding: 0.65rem 0.5rem;
+    text-align: center;
+}
+.about-stats dt { font-size: clamp(1.2rem, 2.4vw, 1.6rem); }
+body:has(.food-cart-dialog[open]) { overflow: hidden; }
+
+@media (prefers-reduced-motion: reduce) {
+    .navbar .nav-link, main .card, .favorite-heart, .club-stat,
+    .booking-tabs .btn, .food-cart-dialog, .food-cart-dialog::backdrop {
+        transition: none;
+    }
+    main .card:hover, .favorite-heart:hover, .favorite-heart:active { transform: none; }
+    #game-cards > div, #booking-content [role="tabpanel"]:not([hidden]),
+    .food-cart-dialog[open], .food-cart-dialog[open]::backdrop {
+        animation: none;
+    }
+}

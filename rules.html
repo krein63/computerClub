@@ -40,98 +40,59 @@
 </header>
         <!-- container limits long text to a readable width and stays centered at each Bootstrap breakpoint. -->
         <main class="container py-4 py-lg-5" id="rules-content">
-            <section id="main-rules" class="bg-white border rounded-4 p-3 p-md-4 p-lg-5 mb-4 shadow-sm">
-                <header class="mb-4">
-                    <p class="text-danger fw-semibold mb-3">
-                        <small class="small">Памятка посетителя</small>
-                    </p>
-                    <h1 class="fw-bold display-5 mb-3 text-center text-md-start" id="rules-h1-1">Правила комфортной и безопасной игры</h1>
-                    <p class="mb-3 lead">
-                Правила помогают сохранить оборудование и уважительную атмосферу.
-                Посетитель отвечает за своё игровое место во время сеанса.
-                Если устройство повреждено до начала игры, сразу сообщите администратору.
-            </p>
-                </header>
-                <article id="rules-article-1">
-                    <h2 class="fw-bold h2 mb-3">Основные правила</h2>
-                    <ol type="1" class="ps-3">
-                        <li class="mb-3">Оплатите выбранный тариф до начала сеанса.</li>
-                        <li class="mb-3">Используйте технику аккуратно:
-                    <ul>
-                                <li class="mb-3">не переносите оборудование;</li>
-                                <li class="mb-3">не устанавливайте программы самостоятельно;</li>
-                                <li class="mb-3">не ставьте напитки рядом с клавиатурой.</li>
-                            </ul>
-                        </li>
-                        <li class="mb-3">Не мешайте другим посетителям громкими разговорами.</li>
-                        <li class="mb-3">После сеанса выйдите из личных аккаунтов.</li>
-                    </ol>
-                </article>
-                <figure class="mb-4" id="rules-figure-1">
-                    <img src="images/clean.png" alt="Аккуратно организованное компьютерное место в приватной зоне" class="img-fluid w-100 rounded-3">
-                    <figcaption class="small text-body-secondary mt-2">Сохраняйте игровое место таким же чистым после сеанса.</figcaption>
-                </figure>
-            </section>
-            <hr>
-            <section id="rule-table" class="bg-white border rounded-4 p-3 p-md-4 p-lg-5 mb-4 shadow-sm">
-                <h2 class="fw-bold h2 mb-3">Что делать в разных ситуациях</h2>
-                <!-- Таблица выбрана вместо div, потому что ситуации сравниваются с соответствующими действиями. -->
-                <!-- Bootstrap Table: striped and bordered styles added to the existing comparison; cells wrap at phone widths. -->
-                <table class="table table-striped table-bordered align-middle mb-0 small" id="rules-table-1">
-                    <caption class="caption-top text-body-secondary small">Действия посетителя во время игрового сеанса</caption>
-                    <thead class="table-dark">
-                        <tr>
-                            <th scope="col" class="text-break">Ситуация</th>
-                            <th scope="col" class="text-break">Правильное действие</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <th scope="row" class="text-break">Не работает устройство</th>
-                            <td class="text-break">Позвать администратора и не разбирать технику.</td>
-                        </tr>
-                        <tr>
-                            <th scope="row" class="text-break">Нужно продлить время</th>
-                            <td class="text-break">Уточнить доступность места до окончания сеанса.</td>
-                        </tr>
-                        <tr>
-                            <th scope="row" class="text-break">Найдена чужая вещь</th>
-                            <td class="text-break">Передать её администратору.</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </section>
-            <section id="account-safety" class="bg-white border rounded-4 p-3 p-md-4 p-lg-5 mb-4 shadow-sm">
-                <h2 class="fw-bold h2 mb-3">Безопасность аккаунта</h2>
-                <dl class="border rounded-3 overflow-hidden">
-                    <dt class="p-3 mb-0 bg-body-tertiary fw-semibold">
-                        <b>Личный пароль</b>
-                    </dt>
-                    <dd class="p-3 mb-0">Не сообщайте его другим посетителям.</dd>
-                    <dt class="p-3 mb-0 bg-body-tertiary fw-semibold">
-                        <b>Общий компьютер</b>
-                    </dt>
-                    <dd class="p-3 mb-0">Не включайте сохранение пароля и завершайте сеанс.</dd>
-                </dl>
-                <p class="mb-3">
-                    <mark class="bg-danger-subtle text-danger-emphasis">Проверьте выход из аккаунта</mark> перед уходом.
-
-            Главное правило — «уважайте других посетителей».
-        </p>
-                <p class="mb-3">Перед уходом выйдите из игровых клиентов и браузера. Не сохраняйте пароли на общем компьютере.</p>
-                <aside class="bg-body-tertiary border border-start border-danger border-4 rounded-3 p-3 p-md-4 mt-4" id="rules-aside-1">
-                    <h2 class="fw-bold h2 mb-3">Нужна помощь?</h2>
-                    <p class="mb-3">
-                Обратитесь к администратору или позвоните по номеру клуба.
-                Официальную информацию о месте можно проверить в
-                <a href="https://2gis.kz/astana/firm/70000001080411948" target="_blank" rel="noopener noreferrer" id="rules-a-1">2GIS</a>.
-            </p>
-                </aside>
-                <nav aria-label="Дополнительная навигация" class="d-flex flex-column flex-md-row gap-2 mt-4">
-                    <a href="#main-rules" class="btn btn-outline-danger" id="rules-a-2">Вернуться к началу правил</a>
-                    <a href="index.html" class="btn btn-outline-danger" id="rules-a-3">Вернуться на главную страницу</a>
+            <section id="main-rules" class="bg-white border rounded-4 p-3 p-md-4 mb-3 shadow-sm">
+                <h1 id="rules-h1-1" class="fw-bold display-5 mb-3">Правила клуба</h1>
+                <nav aria-label="Разделы правил" class="d-flex flex-wrap gap-2 mb-3">
+                    <a href="#rule-table" class="btn btn-outline-secondary btn-sm">Что делать, если…</a>
+                    <a href="#account-safety" class="btn btn-outline-secondary btn-sm">Перед уходом</a>
                 </nav>
+                <ul class="mb-0 ps-3">
+                    <li class="mb-2">Оплатите тариф до начала сеанса.</li>
+                    <li class="mb-2">Берегите технику: не переносите оборудование, не устанавливайте программы без разрешения и держите напитки подальше от клавиатуры.</li>
+                    <li>Уважайте других посетителей и не мешайте им громкими разговорами.</li>
+                </ul>
             </section>
+            <section id="rule-table" class="bg-white border rounded-4 p-3 p-md-4 mb-3 shadow-sm">
+                <h2 class="h4 fw-bold mb-3">Что делать, если…</h2>
+                <div class="rules-disclosures">
+                    <details>
+                        <summary>Техника повреждена или не работает</summary>
+                        <p>Сразу сообщите администратору, особенно если заметили повреждение до начала игры. Не разбирайте и не ремонтируйте устройство.</p>
+                    </details>
+                    <details>
+                        <summary>Нужно продлить сеанс</summary>
+                        <p>До окончания игры уточните у администратора, свободно ли место и сколько стоит продление. <a href="booking.html#tariff-selection">Посмотреть тарифы</a>.</p>
+                    </details>
+                    <details>
+                        <summary>Нашли чужую вещь</summary>
+                        <p>Передайте её администратору.</p>
+                    </details>
+                    <details>
+                        <summary>Нужна другая игра или программа</summary>
+                        <p>Спросите администратора, можно ли её установить.</p>
+                    </details>
+                </div>
+            </section>
+            <section id="account-safety" class="bg-white border rounded-4 p-3 p-md-4 mb-3 shadow-sm">
+                <h2 class="h4 fw-bold mb-2">Аккаунты и уход</h2>
+                <p class="mb-3">Никому не сообщайте пароль и не сохраняйте его на общем ПК. Перед уходом выйдите из игровых клиентов и аккаунтов в браузере.</p>
+                <details id="departure-checklist" class="rules-disclosures">
+                    <summary>Чек-лист перед уходом</summary>
+                    <ul id="departure-list" class="list-unstyled my-2">
+                        <li><label><input class="form-check-input me-2" type="checkbox" value="clients">Вышел из игровых клиентов</label></li>
+                        <li><label><input class="form-check-input me-2" type="checkbox" value="browser">Вышел из аккаунтов в браузере</label></li>
+                        <li><label><input class="form-check-input me-2" type="checkbox" value="belongings">Забрал личные вещи</label></li>
+                        <li><label><input class="form-check-input me-2" type="checkbox" value="workstation">Оставил место чистым и сообщил о проблемах</label></li>
+                    </ul>
+                    <div class="d-flex flex-wrap gap-2 align-items-center">
+                        <span id="departure-progress" role="status"></span>
+                        <button id="departure-reset" type="button" class="btn btn-outline-secondary btn-sm" hidden>Сбросить отметки</button>
+                    </div>
+                </details>
+            </section>
+            <aside id="rules-aside-1" class="bg-body-tertiary border rounded-3 p-3">
+                <p class="mb-0"><strong>Нужна помощь?</strong> Обратитесь к администратору или позвоните в клуб: <a href="tel:+77064005040">+7 706 400 50 40</a>.</p>
+            </aside>
         </main>
         <footer id="site-footer" class="bg-dark text-white py-5 mt-4">
     <div class="container"><div class="row g-4 align-items-start">
