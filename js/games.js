@@ -21,9 +21,37 @@ $(function () {
     { id: 'valorant', title: 'VALORANT', genre: 'shooter', format: 'Тактический шутер, 5 × 5', source: false, official: 'https://playvalorant.com/', image: 'images/games/valorant.jpg' },
     { id: 'lol', title: 'League of Legends', genre: 'moba', format: 'Командная MOBA', source: false, official: 'https://www.leagueoflegends.com/', image: 'images/games/lol.jpg' },
     { id: 'rocket-league', title: 'Rocket League', genre: 'sports', format: 'Футбол на автомобилях', source: false, official: 'https://www.rocketleague.com/', image: 'images/games/rocket-league.jpg' },
-    { id: 'civilization', title: 'Sid Meier’s Civilization VI', genre: 'strategy', format: 'Пошаговая стратегия', source: false, official: 'https://civilization.2k.com/civ-vi/', image: 'images/games/civilization.jpg' }
+    { id: 'civilization', title: 'Sid Meier’s Civilization VI', genre: 'strategy', format: 'Пошаговая стратегия', source: false, official: 'https://civilization.2k.com/civ-vi/', image: 'images/games/civilization.jpg' },
+    { id: 'apex', title: 'Apex Legends', genre: 'shooter', format: 'Королевская битва отрядами', source: false, official: 'https://store.steampowered.com/app/1172470/', image: 'images/games/apex.jpg' },
+    { id: 'pubg', title: 'PUBG: BATTLEGROUNDS', genre: 'shooter', format: 'Королевская битва в одиночку или в отряде', source: false, official: 'https://store.steampowered.com/app/578080/', image: 'images/games/pubg.jpg' },
+    { id: 'rainbow-six', title: 'Tom Clancy’s Rainbow Six Siege X', genre: 'shooter', format: 'Тактический шутер с разрушаемым окружением', source: false, official: 'https://store.steampowered.com/app/359550/', image: 'images/games/rainbow-six.jpg' },
+    { id: 'overwatch', title: 'Overwatch', genre: 'shooter', format: 'Командный шутер с героями', source: false, official: 'https://store.steampowered.com/app/2357570/', image: 'images/games/overwatch.jpg' },
+    { id: 'team-fortress', title: 'Team Fortress 2', genre: 'shooter', format: 'Командный шутер с девятью классами', source: false, official: 'https://store.steampowered.com/app/440/', image: 'images/games/team-fortress.jpg' },
+    { id: 'the-finals', title: 'THE FINALS', genre: 'shooter', format: 'Командные матчи на разрушаемых аренах', source: false, official: 'https://store.steampowered.com/app/2073850/', image: 'images/games/the-finals.jpg' },
+    { id: 'warframe', title: 'Warframe', genre: 'shooter', format: 'Кооперативные миссии от третьего лица', source: false, official: 'https://store.steampowered.com/app/230410/', image: 'images/games/warframe.jpg' },
+    { id: 'left-4-dead', title: 'Left 4 Dead 2', genre: 'shooter', format: 'Кооперативный шутер на четверых', source: false, official: 'https://store.steampowered.com/app/550/', image: 'images/games/left-4-dead.jpg' },
+    { id: 'paladins', title: 'Paladins', genre: 'shooter', format: 'Командные матчи с героями', source: false, official: 'https://store.steampowered.com/app/444090/', image: 'images/games/paladins.jpg' },
+    { id: 'smite', title: 'SMITE', genre: 'moba', format: 'Командная MOBA с видом от третьего лица', source: false, official: 'https://store.steampowered.com/app/386360/', image: 'images/games/smite.jpg' },
+    { id: 'age-of-empires', title: 'Age of Empires IV', genre: 'strategy', format: 'Стратегия в реальном времени о средневековых цивилизациях', source: false, official: 'https://store.steampowered.com/app/1466860/', image: 'images/games/age-of-empires.jpg' },
+    { id: 'company-of-heroes', title: 'Company of Heroes 3', genre: 'strategy', format: 'Тактическая стратегия в реальном времени', source: false, official: 'https://store.steampowered.com/app/1677280/', image: 'images/games/company-of-heroes.jpg' },
+    { id: 'total-war', title: 'Total War: WARHAMMER III', genre: 'strategy', format: 'Пошаговая кампания с битвами в реальном времени', source: false, official: 'https://store.steampowered.com/app/1142710/', image: 'images/games/total-war.jpg' },
+    { id: 'stellaris', title: 'Stellaris', genre: 'strategy', format: 'Глобальная стратегия об исследовании галактики', source: false, official: 'https://store.steampowered.com/app/281990/', image: 'images/games/stellaris.jpg' },
+    { id: 'trackmania', title: 'Trackmania', genre: 'racing', format: 'Заезды на время и трассы сообщества', source: false, official: 'https://store.steampowered.com/app/2225070/', image: 'images/games/trackmania.jpg' },
+    { id: 'forza', title: 'Forza Horizon 5', genre: 'racing', format: 'Гонки в открытом мире', source: false, official: 'https://store.steampowered.com/app/1551360/', image: 'images/games/forza.jpg' },
+    { id: 'assetto-corsa', title: 'Assetto Corsa', genre: 'racing', format: 'Автосимулятор с кольцевыми трассами', source: false, official: 'https://store.steampowered.com/app/244210/', image: 'images/games/assetto-corsa.jpg' },
+    { id: 'street-fighter', title: 'Street Fighter 6', genre: 'fighting', format: 'Файтинг с поединками один на один', source: false, official: 'https://store.steampowered.com/app/1364780/', image: 'images/games/street-fighter.jpg' },
+    { id: 'tekken', title: 'TEKKEN 8', genre: 'fighting', format: 'Трёхмерный файтинг один на один', source: false, official: 'https://store.steampowered.com/app/1778820/', image: 'images/games/tekken.jpg' },
+    { id: 'it-takes-two', title: 'It Takes Two', genre: 'co-op', format: 'Кооперативное приключение для двоих', source: false, official: 'https://store.steampowered.com/app/1426210/', image: 'images/games/it-takes-two.jpg' }
   ];
-  const genreNames = { shooter: 'Шутер', moba: 'MOBA', strategy: 'Стратегия', sports: 'Спорт' };
+  const genreNames = {
+    shooter: 'Шутер',
+    moba: 'MOBA',
+    strategy: 'Стратегия',
+    sports: 'Спорт',
+    racing: 'Гонки',
+    fighting: 'Файтинг',
+    'co-op': 'Кооперативное приключение'
+  };
   const savedFavorites = app.store.get('favorite-games', []);
   let favorites = Array.isArray(savedFavorites) ? games.filter(game => savedFavorites.includes(game.id)).map(game => game.id) : [];
   const controls = app.el('div', 'row g-3 mb-4');
@@ -75,7 +103,7 @@ $(function () {
     }
     favoriteNotice.classList.remove('is-visible');
   });
-  $(list).closest('section').first().find('header .lead').first().text('Выберите игру, сохраните её в избранное и запланируйте визит с друзьями. Наличие версии уточняйте у администратора.');
+  $(list).closest('section').first().find('header .lead').first().text('Выберите игру и сохраните её в избранное. Наличие игр в клубе уточняйте у администратора.');
 
   const svgNamespace = 'http://www.w3.org/2000/svg';
   const favoritePath = document.createElementNS(svgNamespace, 'path');
@@ -133,6 +161,7 @@ $(function () {
     const body = app.el('div', 'card-body p-3 p-lg-4 d-flex flex-column');
     const official = app.el('a', 'mb-3', 'Официальный сайт игры');
     $(official).attr({ href: game.official, target: '_blank', rel: 'noopener noreferrer' });
+    if (new URL(game.official).hostname === 'store.steampowered.com') official.textContent = 'Страница игры в Steam';
     const book = app.el('a', 'btn btn-outline-danger mt-auto', 'Забронировать место');
     $(book).attr({ href: 'booking.html#booking-form', 'data-game': game.id, 'aria-label': `Забронировать место для игры в ${game.title}` });
     $(body).append(app.el('h2', 'h4 fw-bold mb-2', game.title), app.el('p', 'small text-danger fw-semibold', genreNames[game.genre]), app.el('p', 'card-text', game.format), official, book);

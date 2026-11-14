@@ -14,6 +14,7 @@
         <script src="js/logic.js" defer></script>
         <script src="js/main.js" defer></script>
         <script src="js/food.js" defer></script>
+        <script src="js/prices.js" defer></script>
     </head>
     <body id="page-top">
         <a id="skip-content" href="#prices-content" class="visually-hidden-focusable d-inline-block p-3">Перейти к содержимому</a><!-- Authors: Ulan -->
@@ -44,12 +45,28 @@
                     <div class="col-12 col-md-6">
                         <h1 id="prices-title" class="fw-bold display-5 mb-2">Цены на игру</h1>
                         <p class="lead mb-3">Выберите почасовой тариф или пакет на несколько часов. Стоимость для всей команды появится после выбора мест.</p>
-                        <a href="booking.html#tariff-selection" class="btn btn-danger">Выбрать тариф</a>
+                        <a href="#tariffs" class="btn btn-danger">Посмотреть тарифы</a>
                     </div>
                     <div class="col-12 col-md-6">
                         <img src="images/hero.jpg" alt="Игровой зал TOP GAME" class="peripherals-photo rounded-3">
                     </div>
                 </div>
+            </section>
+            <section id="tariffs" class="bg-white border rounded-4 p-3 p-md-4 mb-3 shadow-sm" aria-labelledby="prices-tariffs-title">
+                <h2 id="prices-tariffs-title" class="h4 fw-bold mb-1">Тарифы и пакеты</h2>
+                <p id="prices-tariffs-note" class="text-body-secondary mb-3">Цены за один компьютер. Нажмите на название тарифа, чтобы выбрать его в бронировании.</p>
+                <div class="table-responsive" id="prices-tariff-table" hidden>
+                    <table class="table table-dark align-middle mb-0" aria-labelledby="prices-tariffs-title" aria-describedby="prices-tariffs-note">
+                        <thead>
+                            <tr>
+                                <th scope="col">Тариф</th>
+                                <th scope="col" class="text-end">Цена</th>
+                            </tr>
+                        </thead>
+                        <tbody id="prices-tariff-rows"></tbody>
+                    </table>
+                </div>
+                <noscript><p class="mb-0">Включите JavaScript, чтобы увидеть список тарифов.</p></noscript>
             </section>
             <section class="bg-white border rounded-4 p-3 p-md-4 shadow-sm" aria-labelledby="prices-calculation-title">
                 <h2 id="prices-calculation-title" class="h4 fw-bold mb-3">Как считается стоимость</h2>
@@ -62,10 +79,10 @@
                         </ul>
                     </div>
                     <div class="col-12 col-md-5">
-                        <div class="bg-body-tertiary border rounded-3 p-3">
+                        <div id="prices-example" class="bg-body-tertiary border rounded-3 p-3" hidden>
                             <h3 class="h6 fw-bold mb-1">Пример для двоих</h3>
-                            <p class="mb-1 small text-body-secondary">2 ПК × 1 час × 1 200 ₸ за час на одном ПК</p>
-                            <strong class="text-danger fs-5">2 400 ₸</strong>
+                            <p id="prices-example-formula" class="mb-1 small text-body-secondary"></p>
+                            <strong id="prices-example-total" class="text-danger fs-5"></strong>
                         </div>
                     </div>
                 </div>
