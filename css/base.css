@@ -359,15 +359,3 @@ h3,
 }
 .about-stats dt { font-size: clamp(1.2rem, 2.4vw, 1.6rem); }
 body:has(.food-cart-dialog[open]) { overflow: hidden; }
-
-@media (prefers-reduced-motion: reduce) {
-    .navbar .nav-link, main .card, .favorite-heart, .club-stat,
-    .booking-tabs .btn, .food-cart-dialog, .food-cart-dialog::backdrop {
-        transition: none;
-    }
-    main .card:hover, .favorite-heart:hover, .favorite-heart:active { transform: none; }
-    #game-cards > div, #booking-content [role="tabpanel"]:not([hidden]),
-    .food-cart-dialog[open], .food-cart-dialog[open]::backdrop {
-        animation: none;
-    }
-}
