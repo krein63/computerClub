@@ -18,6 +18,7 @@ $(function () {
     notify,
     estimateVisit,
     tariffSchedule,
+    tariffTimeError,
     reservationAmount,
     tariffs,
     seats
@@ -285,9 +286,9 @@ $(function () {
     fields.time.readOnly = Boolean(tariff?.startTime);
     $(duration).prop('readOnly', Boolean(tariff && !tariff.hourly));
     $(durationNote).text(tariff && !tariff.hourly ? `Пакет «${tariff.name}» включает ${tariff.duration} ч. на каждый ПК.` : 'От 1 до 12 полных часов. Стоимость: тариф × часы × количество ПК.');
-    const wrongTime = tariff?.startTime && data.time && data.time !== tariff.startTime;
-    const price = wrongTime ? null : estimateVisit(tariffs, data.tariff, data.duration, data.players);
-    $(totalNote).text(wrongTime ? `Для этого пакета выберите начало в ${tariff.startTime}.` : price ? 'Стоимость для всех выбранных компьютеров.' : 'Выберите тариф и места.');
+    const timeError = tariff && data.time ? tariffTimeError(tariff, data.time) : '';
+    const price = timeError ? null : estimateVisit(tariffs, data.tariff, data.duration, data.players);
+    $(totalNote).text(timeError || (price ? 'Стоимость для всех выбранных компьютеров.' : 'Выберите тариф и места.'));
     const totalText = price ? money(price.amount) : '—';
     const latest = reservations.at(-1);
     const savedAmount = latest ? reservationAmount(tariffs, latest) : null;
@@ -319,8 +320,10 @@ $(function () {
     const validTime = /^([01]\d|2[0-3]):[0-5]\d$/.test(data.time);
     let timeError = '';
     if (!validTime) timeError = 'Укажите время начала по Астане.';
-    else if (tariff?.startTime && data.time !== tariff.startTime) timeError = `Пакет «${tariff.name}» начинается в ${tariff.startTime} по Астане.`;
-    else if (!dateError && localDateTime(data.date, data.time) <= Date.now()) timeError = 'Выбранное время уже прошло. Укажите будущее время по Астане.';
+    else {
+      if (tariff) timeError = tariffTimeError(tariff, data.time);
+      if (!timeError && !dateError && localDateTime(data.date, data.time) <= Date.now()) timeError = 'Выбранное время уже прошло. Укажите будущее время по Астане.';
+    }
     check(fields.time, timeError);
     check(duration, !Number.isInteger(data.duration) || data.duration < 1 || data.duration > 12 ? 'Укажите целое количество часов от 1 до 12.' : tariff && !tariff.hourly && data.duration !== tariff.duration ? `Пакет «${tariff.name}» рассчитан на ${tariff.duration} ч.` : '');
     check(fields.tariff, tariff ? '' : 'Выберите тариф из списка.');
@@ -444,6 +447,7 @@ $(function () {
     if (!tariff) return;
     if (!tariff.hourly) duration.value = String(tariff.duration);
     if (tariff.startTime) fields.time.value = tariff.startTime;
+    else if (tariff.timeWindow && !fields.time.value) fields.time.value = tariff.timeWindow.start;
     const allowed = selectedSeats.filter(id => tariffAllowsSeat(tariff, seats.find(seat => seat.id === id)));
     if (allowed.length !== selectedSeats.length) {
       selectedSeats = allowed;
