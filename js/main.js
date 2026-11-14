@@ -1,5 +1,49 @@
 'use strict';
 
+function enablePageTransitions() {
+  const main = document.querySelector('main');
+  if (typeof main?.animate !== 'function') return;
+
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const current = new URL(window.location.href);
+  const directory = new URL('.', current).pathname;
+  let exitAnimation;
+
+  window.addEventListener('pageshow', () => {
+    exitAnimation?.cancel();
+    exitAnimation = undefined;
+  });
+
+  document.addEventListener('click', async event => {
+    if (reducedMotion.matches || event.defaultPrevented || event.button !== 0 ||
+        event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+
+    const link = event.target.closest('a[href]');
+    if (!link || (link.target && link.target !== '_self') || link.hasAttribute('download')) return;
+    const next = new URL(link.href);
+    if (next.protocol !== current.protocol || next.host !== current.host ||
+        next.pathname === current.pathname || !next.pathname.endsWith('.html') ||
+        new URL('.', next).pathname !== directory) return;
+
+    event.preventDefault();
+    if (exitAnimation) return;
+    const animation = main.animate([{ opacity: 0.24 }], {
+      duration: 150,
+      easing: 'ease-in',
+      fill: 'forwards'
+    });
+    exitAnimation = animation;
+    try {
+      await animation.finished;
+    } catch {
+      // Continue if the animation was interrupted, unless the page was restored.
+    }
+    if (exitAnimation === animation) window.location.assign(next.href);
+  });
+}
+
+enablePageTransitions();
+
 // jQuery 3.7.1 FULL build comes from the CDN first: effects need the full build.
 // ready waits for the HTML. This short form means $(document).ready(...).
 $(function () {
