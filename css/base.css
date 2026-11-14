@@ -22,6 +22,10 @@ h3,
     font-family: Georgia, "Times New Roman", serif;
 }
 
+@media (prefers-reduced-motion: no-preference) {
+    main { animation: fade-in 320ms var(--motion-ease); }
+}
+
 /* Use the club red for primary actions and provide a clear hover shade. */
 .btn-danger {
     --bs-btn-bg: #e04444;
