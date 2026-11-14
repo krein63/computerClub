@@ -65,11 +65,19 @@ window.addEventListener('load', followBookingLink, { once: true });
 document.addEventListener('booking:seats-ready', () => {
   if (/^#(?:seat-map|seats-)/.test(location.hash)) followBookingLink();
 });
-document.addEventListener('booking:saved', () => {
-  const totalIndex = bookingTabs.findIndex(tab => tab.id === 'booking-tab-total');
-  openBookingTab(totalIndex);
-  bookingPanels[totalIndex].focus({ preventScroll: true });
+function goToBookingPanel(id) {
+  const index = bookingPanels.findIndex(panel => panel.id === id);
+  openBookingTab(index);
+  bookingPanels[index].focus({ preventScroll: true });
   bookingTabList.scrollIntoView();
+}
+document.addEventListener('booking:saved', () => goToBookingPanel('booking-food'));
+document.querySelectorAll('[data-booking-next]').forEach(link => {
+  link.addEventListener('click', event => {
+    if (event.metaKey || event.ctrlKey || event.altKey || event.shiftKey) return;
+    event.preventDefault();
+    goToBookingPanel('booking-total-panel');
+  });
 });
 showBookingTab(0);
 followBookingLink();
