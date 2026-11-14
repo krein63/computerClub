@@ -237,6 +237,9 @@ h3,
 }
 .booking-panel .form-control, .booking-panel .form-select { min-height: 2.75rem; }
 .booking-panel .form-label { font-weight: 600; }
+#booking-tariff {
+    transition: border-color var(--motion-fast) ease, box-shadow var(--motion-fast) ease;
+}
 .booking-rooms { display: grid; gap: 0.65rem; }
 .booking-room {
     scroll-margin-top: 1rem;
@@ -346,20 +349,6 @@ h3,
     animation: reveal-content var(--motion-panel) var(--motion-ease);
 }
 
-@media (prefers-reduced-motion: reduce) {
-    .navbar .nav-link, main .card, .favorite-heart, .club-stat,
-    .booking-tabs .btn, .booking-tabs::before, .booking-seat,
-    .food-cart-dialog, .food-cart-dialog::backdrop {
-        transition: none;
-    }
-    main .card:hover, .favorite-heart:hover, .favorite-heart:active,
-    .booking-seat:not(:disabled):active { transform: none; }
-    #game-cards > div, #booking-content [role="tabpanel"]:not([hidden]),
-    .food-cart-dialog[open], .food-cart-dialog[open]::backdrop {
-        animation: none;
-    }
-}
-
 @keyframes reveal-content {
     from { opacity: 0; translate: 0 0.45rem; }
     to { opacity: 1; translate: 0 0; }
@@ -413,6 +402,39 @@ h3,
         }
         .rules-disclosures details[open] > :not(summary),
         details.rules-disclosures[open] > :not(summary) { animation: none; }
+    }
+}
+
+@supports (appearance: base-select) and selector(::picker(select)) {
+    #booking-tariff, #booking-tariff::picker(select) { appearance: base-select; }
+    #booking-tariff {
+        background-image: none;
+        padding-inline: 0.75rem;
+    }
+    #booking-tariff::picker(select) {
+        margin-block: 0.3rem;
+        color: var(--bs-body-color);
+        background: var(--bs-body-bg);
+        border: 1px solid var(--bs-border-color);
+        border-radius: var(--bs-border-radius);
+        box-shadow: 0 0.5rem 1.25rem rgb(0 0 0 / 28%);
+    }
+    #booking-tariff option { padding: 0.55rem 0.75rem; }
+    #booking-tariff option:checked { font-weight: 700; }
+    @media (prefers-reduced-motion: no-preference) {
+        #booking-tariff::picker(select) {
+            opacity: 0;
+            transform: translateY(-0.35rem);
+            transition: opacity 280ms ease, transform 320ms var(--motion-ease),
+                        display 320ms allow-discrete, overlay 320ms allow-discrete;
+        }
+        #booking-tariff:open::picker(select) { opacity: 1; transform: none; }
+        @starting-style {
+            #booking-tariff:open::picker(select) {
+                opacity: 0;
+                transform: translateY(-0.35rem);
+            }
+        }
     }
 }
 #departure-list label { display: block; padding-block: 0.35rem; cursor: pointer; }
@@ -470,3 +492,17 @@ h3,
 }
 .about-stats dt { font-size: clamp(1.2rem, 2.4vw, 1.6rem); }
 body:has(.food-cart-dialog[open]) { overflow: hidden; }
+
+@media (prefers-reduced-motion: reduce) {
+    .navbar .nav-link, main .card, .favorite-heart, .favorite-heart svg, .favorite-notice, .club-stat,
+    .booking-tabs .btn, .booking-tabs::before, .booking-seat, #booking-tariff,
+    .food-cart-dialog, .food-cart-dialog::backdrop {
+        transition: none;
+    }
+    main .card:hover, .favorite-heart:hover, .favorite-heart:active,
+    .booking-seat:not(:disabled):active { transform: none; }
+    #game-cards > div, .favorite-spark, #booking-content [role="tabpanel"]:not([hidden]),
+    .food-cart-dialog[open], .food-cart-dialog[open]::backdrop {
+        animation: none;
+    }
+}
