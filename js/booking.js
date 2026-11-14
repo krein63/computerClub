@@ -93,7 +93,7 @@ $(function () {
   $(mapStatus).attr("id", 'seat-map-status');
   $(mapStatus).attr('role', 'status');
   $(mapStatus).attr('aria-live', 'polite');
-  const mapFeedback = el('p', 'small mb-3 hidden');
+  const mapFeedback = el('p', 'booking-seat-feedback booking-muted small mb-3');
   $(mapFeedback).attr("id", 'seat-map-feedback');
   $(mapFeedback).attr('role', 'status');
   $(mapFeedback).attr('aria-live', 'polite');
@@ -128,7 +128,7 @@ $(function () {
   $(clearSelection).attr("id", 'clear-seat-selection');
   $(clearSelection).on('click', () => {
     selectedSeats = [];
-    notify(mapFeedback, 'Выбор ПК очищен. Выберите места для нового запроса.');
+    updateBookingText(mapFeedback, 'Выбор ПК очищен.');
     refresh();
   });
   $(map).append(mapLegend, mapExplanation, legend, mapStatus, mapFeedback, mapZones, clearSelection);
@@ -211,10 +211,10 @@ $(function () {
   function toggleSeat(seat) {
     if (selectedSeats.includes(seat.id)) {
       selectedSeats = selectedSeats.filter(id => id !== seat.id);
-      notify(mapFeedback, `ПК ${seat.id} исключён из выбора.`);
+      updateBookingText(mapFeedback, `ПК ${seat.id} исключён из выбора.`);
     } else {
       selectedSeats.push(seat.id);
-      notify(mapFeedback, `ПК ${seat.id} добавлен в выбор.`);
+      updateBookingText(mapFeedback, `ПК ${seat.id} добавлен в выбор.`);
     }
     refresh();
   }
@@ -250,8 +250,9 @@ $(function () {
       $(button).toggleClass('selected', state === 'selected');
       $(button).attr('aria-pressed', String(selected));
       const ownRequest = occupied && selected && lastAccepted?.data.seats.includes(seat.id) && requestedInterval && overlaps(requestedInterval, lastAccepted.data);
-      $(status).text(ownRequest ? 'Ваш запрос' : occupied ? 'Занято' : selected ? 'Выбрано' : 'Свободно');
-      $(button).attr('aria-label', `ПК ${seat.id}, зона ${zoneNames[seat.zone]}, ${$(status).text().toLowerCase()}`);
+      const label = ownRequest ? 'Ваш запрос' : occupied ? 'Занято' : selected ? 'Выбрано' : 'Свободно';
+      updateBookingText(status, label);
+      $(button).attr('aria-label', `ПК ${seat.id}, зона ${zoneNames[seat.zone]}, ${label.toLowerCase()}`);
     }
     const freeCount = seats.length - busy.length;
     const context = requestedInterval ? `${data.date}, ${data.time}, ${data.duration} ч. по Астане.` : 'Укажите дату, время и длительность для проверки занятости.';
@@ -285,8 +286,8 @@ $(function () {
       ? { amount: price?.amount ?? null, label: 'ПК · текущий выбор' }
       : { amount: savedPrice?.amount ?? null, label: latest ? 'ПК · последняя заявка' : 'ПК' };
     document.dispatchEvent(new CustomEvent('booking:pc-cost', { detail: visitCost }));
-    $(total).text(totalText);
-    $('#booking-mobile-total').text(totalText);
+    updateBookingText(total, totalText);
+    updateBookingText(document.getElementById('booking-mobile-total'), totalText);
     if (!lastAccepted) $(resultStatus).text('');
     updateMap(data);
     if (attempted) validate(false);
@@ -441,7 +442,7 @@ $(function () {
     resetBookingFields();
     lastAccepted = null;
     notify(success, '');
-    notify(mapFeedback, 'Данные и выбор ПК очищены. Сохранённые брони можно отменить в списке ниже.');
+    updateBookingText(mapFeedback, 'Данные и выбор ПК очищены.');
     $(list).empty();
     $(list).addClass("hidden");
     refresh();
