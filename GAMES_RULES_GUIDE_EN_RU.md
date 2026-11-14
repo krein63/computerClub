@@ -1,4 +1,4 @@
-> Current merged version: read MERGE_REPORT_RU.md first. The latest ZIP adds six tariff packages, cross-zone PC selection, all game covers and browser persistence. The function explanations below remain useful; historical reports and old tariff restrictions do not describe the merged pricing model.
+> Historical guide. See DEFENSE_GUIDE.md for the current site. / Историческое руководство. Актуальный сценарий описан в DEFENSE_GUIDE.md.
 
 # Games and Rules — explanation / объяснение
 
