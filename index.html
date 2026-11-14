@@ -9,7 +9,7 @@
         <!-- Bootstrap supplies the layout; only CSS is used. -->
         <link rel="stylesheet" href="css/bootstrap.min.css">
         <link rel="stylesheet" href="css/base.css">
-        <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous" defer></script>
+        <script src="js/vendor/jquery-3.7.1.min.js" defer></script>
         <script src="js/data.js" defer></script>
         <script src="js/logic.js" defer></script>
         <script src="js/main.js" defer></script>
@@ -66,8 +66,8 @@
                 <ul class="row g-3 list-unstyled mb-0">
                     <li class="col-12 col-sm-6 col-lg-3">
                         <div class="border rounded-3 p-3 h-100 bg-body-tertiary club-stat">
-                            <strong class="d-block text-danger fs-4 fw-bold">От 1 200 ₸</strong>
-                            <span class="d-block text-body-secondary small">за час игры</span>
+                            <strong class="d-block text-danger fs-4 fw-bold" id="home-night-price">От 900 ₸</strong>
+                            <span class="d-block text-body-secondary small">за час по ночному тарифу</span>
                         </div>
                     </li>
                     <li class="col-12 col-sm-6 col-lg-3">
@@ -130,85 +130,13 @@
                     </div>
                 </div>
             </section>
-            <section id="gaming-zones" class="bg-white border rounded-4 p-3 p-md-4 p-lg-5 mb-4 shadow-sm">
-                <header>
-                    <h2 class="fw-bold h2 mb-3">Выбери свою зону</h2>
-                    <p class="mb-3">
-                        <strong>Мощность. Скорость. Комфорт.</strong>
-                    </p>
-                    <p class="mb-3">
-                    В клубе представлены три формата игровых мест. Основная
-                    зона подойдёт для обычных сеансов, Duo’s рассчитана на
-                    совместную игру двух участников, а Private предлагает
-                    отдельное пространство и более мощное оборудование.
-                </p>
-                </header>
-                <!-- div используется только для расположения самостоятельных статей в сетке и не заменяет смысловой раздел -->
-                <!-- Bootstrap Cards / grid: official card and card-body markup adapted to existing club content; semantic articles and figures retained. https://getbootstrap.com/docs/5.3/components/card/ -->
-                <div class="mt-1 row g-4">
-                    <div class="col-12 col-md-6 col-lg-4">
-                        <article class="card h-100 shadow-sm" id="index-article-3">
-                            <div class="card-body p-3 p-lg-4">
-                                <img src="images/main-zone.jpg" alt="Компьютерное место в основной зоне Main" class="w-100 object-fit-cover rounded-3 mb-3" height="190">
-                                <h3 class="fw-bold h4 mb-3 card-title">Main</h3>
-                                <p class="mb-3 card-text">
-                        Основная зона подходит для быстрых матчей, одиночной
-                        игры и встреч с друзьями. Компьютеры обеспечивают
-                        стабильную производительность в современных играх.
-                    </p>
-                                <ul>
-                                    <li>Процессор Ryzen 9600X</li>
-                                    <li>32 <abbr title="гигабайта">GB</abbr> оперативной памяти</li>
-                                    <li>Видеокарта RTX 4070</li>
-                                    <li>Монитор ASUS 310 Hz</li>
-                                </ul>
-                            </div>
-                        </article>
-                    </div>
-                    <div class="col-12 col-md-6 col-lg-4">
-                        <article class="card h-100 shadow-sm" id="index-article-4">
-                            <div class="card-body p-3 p-lg-4">
-                                <img src="images/duos-zone.jpg" alt="Два компьютерных места в игровой зоне Duo’s" class="w-100 object-fit-cover rounded-3 mb-3" height="190">
-                                <h3 class="fw-bold h4 mb-3 card-title">Duo’s</h3>
-                                <p class="mb-3 card-text">
-                        Зона Duo’s создана для двух игроков, которые хотят
-                        находиться рядом во время совместных матчей. Она
-                        сочетает удобное расположение мест и мощное оборудование.
-                    </p>
-                                <ul>
-                                    <li>Процессор Ryzen 9600X</li>
-                                    <li>32 GB оперативной памяти</li>
-                                    <li>Видеокарта RTX 4070</li>
-                                    <li>Монитор ASUS 380 Hz</li>
-                                </ul>
-                            </div>
-                        </article>
-                    </div>
-                    <div class="col-12 col-md-6 col-lg-4">
-                        <article class="card h-100 shadow-sm" id="index-article-5">
-                            <div class="card-body p-3 p-lg-4">
-                                <img src="images/private-zone.jpg" alt="Компьютерное место в приватной зоне Private" class="w-100 object-fit-cover rounded-3 mb-3" height="190">
-                                <h3 class="fw-bold h4 mb-3 card-title">Private</h3>
-                                <p class="mb-3 card-text">
-                        Private подойдёт посетителям, которым важно отдельное
-                        пространство. Зона предлагает повышенный комфорт,
-                        производительный процессор и монитор с высокой
-                        частотой обновления.
-                    </p>
-                                <ul>
-                                    <li>Процессор Ryzen 7800X3D</li>
-                                    <li>32 GB оперативной памяти</li>
-                                    <li>Видеокарта RTX 4070 Super</li>
-                                    <li>Монитор ASUS 380 Hz</li>
-                                </ul>
-                            </div>
-                        </article>
-                    </div>
+            <section id="gaming-zones" class="bg-white border rounded-4 p-3 p-md-4 mb-4 shadow-sm">
+                <h2 class="h4 fw-bold mb-2">Игровые зоны</h2>
+                <p class="mb-3">В клубе три зала. Характеристики компьютеров и схема мест есть на странице оборудования.</p>
+                <div class="d-flex flex-wrap gap-2">
+                    <a href="computers.html#computers-section-2" class="btn btn-outline-secondary">Посмотреть оборудование</a>
+                    <a href="booking.html#food-menu" class="btn btn-outline-secondary">Меню еды и напитков</a>
                 </div>
-                <footer class="bg-body-tertiary border border-start border-danger border-4 rounded-3 p-3 p-md-4 mt-4">
-                    <p class="mb-3">Твоя игра начинается здесь.</p>
-                    <a href="booking.html" class="btn btn-danger" id="index-a-5">Выбрать место</a>
-                </footer>
             </section>
         </main>
         <a href="#page-top" class="btn btn-outline-dark btn-sm d-block mx-auto mb-4 w-50" id="index-a-6">↑ Наверх</a>

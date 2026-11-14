@@ -44,7 +44,7 @@ function enablePageTransitions() {
 
 enablePageTransitions();
 
-// jQuery 3.7.1 FULL build comes from the CDN first: effects need the full build.
+// The site loads the local jQuery build before this script.
 // ready waits for the HTML. This short form means $(document).ready(...).
 $(function () {
   $('html').attr('data-bs-theme', 'dark');
@@ -96,9 +96,6 @@ $(function () {
       month: '2-digit',
       day: '2-digit'
     }).format(new Date());
-  }
-  function localDateTime(date, time) {
-    return new Date(`${date}T${time}:00+05:00`).getTime();
   }
   const store = {
     get(key, fallback) {
@@ -181,7 +178,6 @@ $(function () {
     money,
     reference,
     today,
-    localDateTime,
     store,
     renderList,
     setError,
@@ -217,14 +213,10 @@ $(function () {
     if (selected) $(this).attr('aria-current', 'page');
     else $(this).removeAttr('aria-current');
   });
-  const $home = $('#index-content');
-  if ($home.length) {
-    const $section = $(el('section', 'bg-white border rounded-4 p-3 p-md-4 p-lg-5 mb-4 shadow-sm'));
-    $section.append(el('p', 'small text-uppercase text-danger fw-semibold mb-2', 'Твой следующий сеанс'), el('h2', 'h2 fw-bold mb-3', 'Место для команды и перекус к игре'), el('p', 'mb-3', 'Выберите ПК на схеме зала, подготовьте демо-заявку и соберите заказ еды. Итог и стоимость видны сразу.'));
-    const $actions = $('<div>').addClass('d-flex flex-wrap gap-2');
-    $actions.append($('<a>').addClass('btn btn-danger').attr('href', 'booking.html#seat-map').text('Выбрать место'), $('<a>').addClass('btn btn-outline-danger').attr('href', 'booking.html#food-menu').text('Посмотреть меню'));
-    $section.append($actions);
-    $home.children().eq(0).after($section);
+  const nightPrice = document.getElementById('home-night-price');
+  if (nightPrice) {
+    const tariff = window.TopGameData.tariffs.find(item => item.id === 'night-1');
+    nightPrice.textContent = `От ${money(tariff.price)}`;
   }
 });
 

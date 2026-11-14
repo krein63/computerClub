@@ -20,6 +20,10 @@ $(function () {
     tariffSchedule,
     tariffTimeError,
     reservationAmount,
+    validDate,
+    visitInterval,
+    validReservations,
+    activeReservation,
     tariffs,
     seats
   } = window.TopGame;
@@ -76,6 +80,11 @@ $(function () {
   $(durationWrapper).append(durationNote);
   $('#booking-visit-fields').append(durationWrapper);
   const tariffInfo = $('#booking-tariff-info');
+  const timeNote = document.getElementById('booking-time-note');
+  const visitChoice = document.getElementById('booking-visit-choice');
+  const visitSelect = document.getElementById('booking-visit');
+  let selectedVisitId = store.get('booking-visit');
+  let previousTariff;
   const emptyTariff = el('option', '', 'Выберите тариф');
   $(emptyTariff).val('');
   $(fields.tariff).empty().append(emptyTariff);
@@ -116,7 +125,7 @@ $(function () {
       $(button).attr("data-zone", seat.zone);
       $(button).attr('aria-pressed', 'false');
       const number = el('span', 'd-block fw-bold', `ПК ${String(seat.id).padStart(2, '0')}`);
-      const status = el('span', 'd-block small', 'Свободно');
+      const status = el('span', 'd-block small', 'Без времени');
       $(button).append(number, status);
       seatButtons[seat.id] = {
         button,
@@ -161,31 +170,11 @@ $(function () {
   $(localList).attr("id", 'local-bookings');
   $(localSection).append(localStatus, localList);
   $(result).append(localSection);
-  function validDate(date) {
-    if (!/^\d{4}-\d{2}-\d{2}$/.test(date)) return false;
-    const [year, month, day] = date.split('-').map(Number);
-    const calendarDate = new Date(Date.UTC(year, month - 1, day));
-    return calendarDate.getUTCFullYear() === year && calendarDate.getUTCMonth() === month - 1 && calendarDate.getUTCDate() === day;
-  }
-  function interval(date, time, hours) {
-    if (!validDate(date) || !/^([01]\d|2[0-3]):[0-5]\d$/.test(time) || !Number.isInteger(hours) || hours < 1 || hours > 12) return null;
-    const start = localDateTime(date, time);
-    return Number.isFinite(start) ? {
-      start,
-      end: start + hours * 60 * 60 * 1000
-    } : null;
-  }
   function overlaps(first, second) {
     return first.start < second.end && first.end > second.start;
   }
   function readReservations() {
-    const saved = store.get('bookings', []);
-    if (!Array.isArray(saved)) return [];
-    return saved.filter(item => {
-      if (!item || typeof item.id !== 'string' || item.id.length > 80 || !tariffs.some(tariff => tariff.id === item.tariff)) return false;
-      const requested = interval(item.date, item.time, item.duration);
-      return requested && requested.start === item.start && requested.end === item.end && Array.isArray(item.seats) && item.seats.length > 0 && item.seats.length <= seats.length && item.seats.every((id, index) => item.seats.indexOf(id) === index) && item.seats.every(id => seats.some(seat => seat.id === id));
-    });
+    return validReservations(store.get('bookings', []), tariffs, seats);
   }
   function displayId(id) {
     return id.replace(/^DEMO-/, 'TG-');
@@ -234,7 +223,9 @@ $(function () {
     return tariff.id === 'private' ? seat.zone === 'private' : seat.zone !== 'private';
   }
   function updateMap(data, tariff = tariffs.find(item => item.id === data.tariff)) {
-    const requestedInterval = interval(data.date, data.time, data.duration);
+    const requested = visitInterval(data.date, data.time, data.duration);
+    const requestedInterval = requested?.start > Date.now() && (!tariff || !tariffTimeError(tariff, data.time))
+      ? requested : null;
     const busy = occupiedSeats(requestedInterval);
     for (const seat of seats) {
       const {
@@ -255,7 +246,7 @@ $(function () {
       $(button).toggleClass('selected', state === 'selected');
       $(button).attr('aria-pressed', String(selected));
       const ownRequest = occupied && selected && lastAccepted?.data.seats.includes(seat.id) && requestedInterval && overlaps(requestedInterval, lastAccepted.data);
-      const label = !eligible ? 'Другой тариф' : ownRequest ? 'Ваш запрос' : occupied ? 'Занято' : selected ? 'Выбрано' : 'Свободно';
+      const label = !eligible ? 'Другой тариф' : ownRequest ? 'Ваш запрос' : occupied ? 'Занято' : selected ? 'Выбрано' : requestedInterval ? 'Свободно' : 'Без времени';
       updateBookingText(status, label);
       $(button).attr('aria-label', `ПК ${seat.id}, зона ${zoneNames[seat.zone]}, ${label.toLowerCase()}`);
     }
@@ -265,7 +256,8 @@ $(function () {
     const sameAcceptedChoice = lastAccepted?.fingerprint === JSON.stringify(data);
     const conflictHint = requestedInterval && !sameAcceptedChoice && data.seats.some(id => busy.includes(id)) ? ' Одно из выбранных мест занято. Снимите его выбор или измените время.' : '';
     const freeLabel = tariff ? 'Свободно по тарифу' : 'Свободно';
-    $(mapStatus).text(`${context} ${freeLabel}: ${freeCount} из ${eligibleSeats.length}. Выбрано: ${selectedSeats.length}.${conflictHint}`);
+    const availability = requestedInterval ? ` ${freeLabel}: ${freeCount} из ${eligibleSeats.length}.` : '';
+    $(mapStatus).text(`${context}${availability} Выбрано: ${selectedSeats.length}.${conflictHint}`);
     $(clearSelection).prop("disabled", selectedSeats.length === 0);
   }
   function refresh() {
@@ -287,15 +279,12 @@ $(function () {
     $(duration).prop('readOnly', Boolean(tariff && !tariff.hourly));
     $(durationNote).text(tariff && !tariff.hourly ? `Пакет «${tariff.name}» включает ${tariff.duration} ч. на каждый ПК.` : 'От 1 до 12 полных часов. Стоимость: тариф × часы × количество ПК.');
     const timeError = tariff && data.time ? tariffTimeError(tariff, data.time) : '';
-    const price = timeError ? null : estimateVisit(tariffs, data.tariff, data.duration, data.players);
-    $(totalNote).text(timeError || (price ? 'Стоимость для всех выбранных компьютеров.' : 'Выберите тариф и места.'));
+    const requested = visitInterval(data.date, data.time, data.duration);
+    const past = requested && requested.start <= Date.now();
+    timeNote.textContent = timeError || (tariff?.timeWindow ? `Весь сеанс должен уложиться в ${schedule} по Астане.` : '');
+    const price = timeError || past ? null : estimateVisit(tariffs, data.tariff, data.duration, data.players);
+    $(totalNote).text(timeError || (past ? 'Выберите будущее время визита.' : price ? 'Стоимость для всех выбранных компьютеров.' : 'Выберите тариф и места.'));
     const totalText = price ? money(price.amount) : '—';
-    const latest = reservations.at(-1);
-    const savedAmount = latest ? reservationAmount(tariffs, latest) : null;
-    const visitCost = data.seats.length
-      ? { amount: price?.amount ?? null, label: 'ПК · текущий выбор' }
-      : { amount: savedAmount, label: latest ? 'ПК · последняя заявка' : 'ПК' };
-    document.dispatchEvent(new CustomEvent('booking:pc-cost', { detail: visitCost }));
     updateBookingText(total, totalText);
     updateBookingText(document.getElementById('booking-mobile-total'), totalText);
     if (!lastAccepted) $(resultStatus).text('');
@@ -327,7 +316,7 @@ $(function () {
     check(fields.time, timeError);
     check(duration, !Number.isInteger(data.duration) || data.duration < 1 || data.duration > 12 ? 'Укажите целое количество часов от 1 до 12.' : tariff && !tariff.hourly && data.duration !== tariff.duration ? `Пакет «${tariff.name}» рассчитан на ${tariff.duration} ч.` : '');
     check(fields.tariff, tariff ? '' : 'Выберите тариф из списка.');
-    const requestedInterval = interval(data.date, data.time, data.duration);
+    const requestedInterval = visitInterval(data.date, data.time, data.duration);
     const busy = occupiedSeats(requestedInterval);
     const duplicate = lastAccepted && lastAccepted.fingerprint === JSON.stringify(data) && reservations.some(item => item.id === lastAccepted.id);
     let seatError = data.seats.length ? '' : 'Выберите хотя бы один компьютер.';
@@ -347,6 +336,11 @@ $(function () {
       $(details).append(el('strong', 'd-block', `${selectedZoneNames(item.seats)} · ${item.date}, ${item.time} · ${item.duration} ч.`), el('span', 'd-block small', item.seats.map(id => `ПК ${id}`).join(', ')), el('span', 'd-block small text-body-secondary text-break', displayId(item.id)));
       const amount = reservationAmount(tariffs, item);
       if (amount !== null) details.append(el('span', 'd-block small fw-semibold', money(amount)));
+      if (item.end <= Date.now()) {
+        body.append(details, el('span', 'small text-body-secondary', 'Время визита прошло'));
+        row.append(body);
+        return row;
+      }
       const cancel = el('button', 'btn btn-outline-light btn-sm', 'Отменить бронь');
       $(cancel).attr("type", 'button');
       $(cancel).attr("data-cancel-booking", item.id);
@@ -355,8 +349,34 @@ $(function () {
       $(row).append(body);
       return row;
     }, 'Броней пока нет. После отправки новая заявка появится здесь.');
-    document.dispatchEvent(new CustomEvent('booking:latest', { detail: reservations.at(-1) ?? null }));
+    updateVisitChoice();
   }
+  function updateVisitChoice() {
+    const active = reservations.filter(item => item.end > Date.now());
+    const visit = activeReservation(active, selectedVisitId);
+    const options = active.map(item => {
+      const option = el('option', '', `${item.date}, ${item.time} · ПК ${item.seats.join(', ')}`);
+      option.value = item.id;
+      return option;
+    });
+    const foodOnly = el('option', '', 'Только еда');
+    foodOnly.value = '';
+    visitSelect.replaceChildren(foodOnly, ...options);
+    visitSelect.value = visit?.id ?? '';
+    visitChoice.hidden = !active.length;
+    document.dispatchEvent(new CustomEvent('booking:visit', { detail: visit ?? null }));
+    document.dispatchEvent(new CustomEvent('booking:pc-cost', {
+      detail: { amount: visit ? reservationAmount(tariffs, visit) : null, label: visit ? 'ПК · выбранная заявка' : 'ПК' }
+    }));
+  }
+  function selectVisit(id) {
+    selectedVisitId = id;
+    store.set('booking-visit', id);
+    updateVisitChoice();
+  }
+  visitSelect.addEventListener('change', () => selectVisit(visitSelect.value || null));
+  document.addEventListener('booking:refresh-visit', updateVisitChoice);
+  window.addEventListener('focus', updateVisitChoice);
   // This list exists before any saved booking rows. The same handler survives every rebuild.
   $(localList).on('click', '[data-cancel-booking]', function () {
     cancelReservation($(this).attr('data-cancel-booking'));
@@ -399,7 +419,7 @@ $(function () {
       $(resultStatus).text('Эта заявка уже сохранена в этом браузере. Повторная бронь не создана.');
       return;
     }
-    const requestedInterval = interval(data.date, data.time, data.duration);
+    const requestedInterval = visitInterval(data.date, data.time, data.duration);
     const price = estimateVisit(tariffs, data.tariff, data.duration, data.players);
     const id = reference('BOOK');
     const chosenZones = [...new Set(data.seats.map(seatId => seats.find(seat => seat.id === seatId).zone))];
@@ -429,6 +449,8 @@ $(function () {
     renderList(list, confirmation, text => el('li', 'list-group-item bg-dark text-light border-secondary text-break', text));
     $(list).removeClass("hidden");
     notify(success, `Локальная заявка ${displayId(id)} сохранена ${saved ? 'в этом браузере' : 'до перезагрузки страницы: сохранение браузером недоступно'}. Данные не отправлены в клуб; реальное бронирование и оплата не созданы.`, 'success');
+    selectedVisitId = id;
+    store.set('booking-visit', id);
     renderReservations();
     resetBookingFields();
     refresh();
@@ -444,10 +466,15 @@ $(function () {
   });
   function applyTariffSelection() {
     const tariff = tariffs.find(item => item.id === fields.tariff.value);
-    if (!tariff) return;
-    if (!tariff.hourly) duration.value = String(tariff.duration);
+    const previous = previousTariff;
+    previousTariff = tariff;
+    if (!tariff) {
+      if (previous && !previous.hourly) duration.value = '1';
+      return;
+    }
+    if (!tariff.hourly || (previous && !previous.hourly)) duration.value = String(tariff.duration);
     if (tariff.startTime) fields.time.value = tariff.startTime;
-    else if (tariff.timeWindow && !fields.time.value) fields.time.value = tariff.timeWindow.start;
+    else if (tariff.timeWindow && (!fields.time.value || tariffTimeError(tariff, fields.time.value))) fields.time.value = tariff.timeWindow.start;
     const allowed = selectedSeats.filter(id => tariffAllowsSeat(tariff, seats.find(seat => seat.id === id)));
     if (allowed.length !== selectedSeats.length) {
       selectedSeats = allowed;
@@ -461,6 +488,7 @@ $(function () {
       if ($field.is(':radio, :checkbox')) $field.prop('checked', false);else $field.val(this === duration ? '1' : '');
     });
     $(fields.tariff).val('');
+    previousTariff = undefined;
     selectedSeats = [];
     attempted = false;
     clearErrors(form);
@@ -478,7 +506,11 @@ $(function () {
     refresh();
     $(fields.name).trigger("focus");
   });
-  $(window).on('storage', event => {
+  window.addEventListener('storage', event => {
+    if (event.key === 'topgame-booking-visit' || event.key === null) {
+      selectedVisitId = store.get('booking-visit');
+      updateVisitChoice();
+    }
     if (event.key !== 'topgame-bookings' && event.key !== null) return;
     reservations = readReservations();
     if (lastAccepted && !reservations.some(item => item.id === lastAccepted.id)) {

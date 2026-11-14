@@ -10,7 +10,10 @@ $(function () {
     renderList,
     notify,
     tariffs,
-    reservationAmount
+    seats,
+    reservationAmount,
+    validReservations,
+    activeReservation
   } = window.TopGame;
   const categoryNames = {
     food: 'Еда',
@@ -47,6 +50,8 @@ $(function () {
   $(document).on('click', '[data-food-cart-open]', function () {
     if (cartDialog.open) return;
     cartTrigger = this;
+    if (menuContainer) document.dispatchEvent(new Event('booking:refresh-visit'));
+    else syncVisit();
     cartDialog.showModal();
   });
   $(closeCart).on('click', () => cartDialog.close());
@@ -108,22 +113,26 @@ $(function () {
   $(feedback).attr('role', 'status');
   $(cartSection).append(cartRows, cartTotal, clear, feedback);
   $(resultContainer).append(cartSection);
-  if (menuContainer) {
-    const visit = el('section', 'border-bottom pb-3 mb-3');
-    const details = el('p', 'small mb-1');
-    const price = el('p', 'fw-semibold mb-0');
-    visit.append(el('h3', 'h6 mb-2', 'Последняя заявка на ПК'), details, price);
-    visit.hidden = true;
-    resultContainer.prepend(visit);
-    document.addEventListener('booking:latest', event => {
-      const booking = event.detail;
-      visit.hidden = !booking;
-      if (!booking) return;
-      const amount = reservationAmount(tariffs, booking);
-      details.textContent = `${booking.date}, ${booking.time} · ${booking.duration} ч. · ПК ${booking.seats.join(', ')}`;
-      price.textContent = amount === null ? '' : money(amount);
-    });
+  const visit = el('section', 'border-bottom pb-3 mb-3');
+  const visitDetails = el('p', 'small mb-1');
+  const visitPrice = el('p', 'fw-semibold mb-0');
+  visit.append(el('h3', 'h6 mb-2', 'Заявка на ПК для визита'), visitDetails, visitPrice);
+  visit.hidden = true;
+  resultContainer.prepend(visit);
+
+  function renderVisit(booking) {
+    visit.hidden = !booking;
+    if (!booking) return;
+    const amount = reservationAmount(tariffs, booking);
+    visitDetails.textContent = `${booking.date}, ${booking.time} · ${booking.duration} ч. · ПК ${booking.seats.join(', ')}`;
+    visitPrice.textContent = amount === null ? '' : money(amount);
   }
+  function syncVisit() {
+    const bookings = validReservations(store.get('bookings', []), tariffs, seats);
+    renderVisit(activeReservation(bookings, store.get('booking-visit')));
+  }
+  document.addEventListener('booking:visit', event => renderVisit(event.detail));
+  if (!menuContainer) syncVisit();
   const orderNote = el('aside', 'alert alert-light border mb-3');
   $(orderNote).attr('aria-labelledby', 'food-order-note-title');
   const orderNoteTitle = el('h3', 'h6 fw-bold mb-2', 'Получение заказа');
@@ -326,6 +335,7 @@ $(function () {
     }
   }
   window.addEventListener('storage', event => {
+    if (!menuContainer && (event.key === 'topgame-bookings' || event.key === 'topgame-booking-visit' || event.key === null)) syncVisit();
     if (event.key === 'topgame-cart' || event.key === null) {
       cart = readCart();
       renderCart();

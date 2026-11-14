@@ -72,3 +72,5 @@ Earlier educational questions and audit requests visible in this chat (exact dat
 17. User explicitly approved W3C source validation and then generated-snapshot validation separately. Both validation scopes were completed.
 18. «можешь написать по короче и понятным языком» — shorter Russian audit summary.
 AI assistance in these questions included teaching and code examples; the implemented project code is separately disclosed above. This log is a record of the conversation available here, not a claim that no other AI assistance occurred elsewhere.
+
+2026-11-14 — Codex and an independent Codex agent audited the seven TOP GAME pages. At the user's request Codex then edited frontend code, compressed oversized menu photos, updated documentation and replaced obsolete browser checks. The changes covered reservation selection and history, availability without a time slot, fixed-package transitions, local jQuery, price display, favorites across tabs and simplified page content. Browser validation ran on the updated version. This entry records both AI review and AI code changes.

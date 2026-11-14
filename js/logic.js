@@ -80,5 +80,42 @@
         return `TG-${prefix}-${Date.now().toString(36).toUpperCase()}-${Math.floor(1000 + Math.random() * 9000)}`;
     }
 
-    window.TopGameLogic = { findProduct, validQuantity, cartTotals, filterMenu, estimateVisit, tariffSchedule, tariffTimeError, reservationAmount, reference };
+    function localDateTime(date, time) {
+        return Date.parse(`${date}T${time}:00+05:00`);
+    }
+
+    function validDate(date) {
+        if (typeof date !== 'string' || !/^\d{4}-\d{2}-\d{2}$/.test(date)) return false;
+        const parsed = Date.parse(date + 'T00:00:00Z');
+        return Number.isFinite(parsed) && new Date(parsed).toISOString().slice(0, 10) === date;
+    }
+
+    function visitInterval(date, time, hours) {
+        if (!validDate(date) || !/^([01]\d|2[0-3]):[0-5]\d$/.test(time) || !validQuantity(hours, 12)) return null;
+        const start = localDateTime(date, time);
+        return { start, end: start + hours * 3600000 };
+    }
+
+    function validReservations(saved, tariffs, seats) {
+        if (!Array.isArray(saved)) return [];
+        return saved.filter(item => {
+            if (!item || typeof item.id !== 'string' || item.id.length > 80 || !findProduct(tariffs, item.tariff)) return false;
+            const interval = visitInterval(item.date, item.time, item.duration);
+            if (!interval || interval.start !== item.start || interval.end !== item.end || !Array.isArray(item.seats)) return false;
+            return validQuantity(item.seats.length, seats.length) &&
+                new Set(item.seats).size === item.seats.length &&
+                item.seats.every(id => findProduct(seats, id));
+        });
+    }
+
+    function activeReservation(reservations, selectedId) {
+        const active = reservations.filter(item => item.end > Date.now());
+        return selectedId === undefined ? active.at(-1) : active.find(item => item.id === selectedId);
+    }
+
+    window.TopGameLogic = {
+        findProduct, validQuantity, cartTotals, filterMenu, estimateVisit,
+        tariffSchedule, tariffTimeError, reservationAmount, reference,
+        localDateTime, validDate, visitInterval, validReservations, activeReservation
+    };
 })();
