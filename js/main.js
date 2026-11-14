@@ -6,9 +6,6 @@ function enablePageTransitions() {
 
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
   const current = new URL(window.location.href);
-  // Same-origin pages can crossfade natively. Local file previews use the content fade.
-  if (/^https?:$/.test(current.protocol) && 'CSSViewTransitionRule' in window &&
-      CSS.supports('selector(:active-view-transition)')) return;
   const directory = new URL('.', current).pathname;
   let exitAnimation;
 
@@ -30,9 +27,9 @@ function enablePageTransitions() {
 
     event.preventDefault();
     if (exitAnimation) return;
-    const animation = main.animate([{ opacity: 0.68 }], {
-      duration: 210,
-      easing: 'ease-in-out',
+    const animation = main.animate([{ opacity: 0.24 }], {
+      duration: 150,
+      easing: 'ease-in',
       fill: 'forwards'
     });
     exitAnimation = animation;
@@ -213,24 +210,13 @@ $(function () {
     }
   });
   syncMenu();
-  // Current page/booking subsection: visible state and accessible current location agree.
-  function syncNavigation() {
-    const current = location.pathname.split('/').pop() || 'index.html';
-    const cartLocation = current === 'booking.html' && location.hash === '#food-cart';
-    $('#main-navigation .nav-link').each(function () {
-      const href = $(this).attr('href');
-      if (!href) return;
-      const target = new URL(href, location.href);
-      const selected = cartLocation ? this.id === 'nav-cart' : this.id !== 'nav-cart' && target.pathname.split('/').pop() === current;
-      $(this).toggleClass('active', selected).toggleClass('fw-bold', selected);
-      if (selected) $(this).attr('aria-current', cartLocation ? 'location' : 'page');
-      else $(this).removeAttr('aria-current');
-    });
-  }
-  $(window).on('hashchange popstate', syncNavigation);
-  $(document).on('booking:tab-change', syncNavigation);
-  // food.js adds the cart link in its own ready handler.
-  setTimeout(syncNavigation, 0);
+  const currentPage = location.pathname.split('/').pop() || 'index.html';
+  $('#main-navigation a.nav-link[href]').each(function () {
+    const selected = new URL(this.href).pathname.split('/').pop() === currentPage;
+    $(this).toggleClass('active', selected).toggleClass('fw-bold', selected);
+    if (selected) $(this).attr('aria-current', 'page');
+    else $(this).removeAttr('aria-current');
+  });
   const $home = $('#index-content');
   if ($home.length) {
     const $section = $(el('section', 'bg-white border rounded-4 p-3 p-md-4 p-lg-5 mb-4 shadow-sm'));

@@ -17,13 +17,58 @@ $(function () {
   };
   const maxQuantity = 20;
   let cart = readCart();
-  const nav = $('#main-navigation .navbar-nav').get(0);
-  const cartLink = el('a', 'nav-link px-2');
-  $(cartLink).attr("id", 'nav-cart');
-  $(cartLink).attr({ href: 'booking.html#food-cart', 'aria-haspopup': 'dialog' });
+  const cartButton = el('button', 'nav-link px-2 w-100 text-start');
+  $(cartButton).attr({
+    id: 'nav-cart',
+    type: 'button',
+    'data-food-cart-open': '',
+    'aria-haspopup': 'dialog',
+    'aria-controls': 'food-cart-dialog'
+  });
   const navItem = el('li', 'nav-item');
-  $(navItem).append(cartLink);
-  if (nav) $(nav).append(navItem);
+  $(navItem).append(cartButton).appendTo('#main-navigation .navbar-nav');
+
+  const menuContainer = document.getElementById('food-menu');
+  const cartDialog = el('dialog', 'booking-panel food-cart-dialog');
+  $(cartDialog).attr({ id: 'food-cart-dialog', 'aria-labelledby': 'food-cart-dialog-title' });
+  const cartHeader = el('div', 'd-flex justify-content-between align-items-center gap-3 mb-3');
+  const cartTitle = el('h2', 'booking-heading mb-0', 'Корзина');
+  $(cartTitle).attr('id', 'food-cart-dialog-title');
+  const closeCart = el('button', 'btn btn-outline-secondary btn-sm', 'Закрыть');
+  $(closeCart).attr({ id: 'food-cart-close', type: 'button', autofocus: '' });
+  $(cartHeader).append(cartTitle, closeCart);
+  const resultContainer = el('div');
+  $(resultContainer).attr('id', 'food-cart');
+  $(cartDialog).append(cartHeader, resultContainer).appendTo(document.body);
+
+  let cartTrigger;
+  $(document).on('click', '[data-food-cart-open]', function () {
+    if (cartDialog.open) return;
+    cartTrigger = this;
+    cartDialog.showModal();
+  });
+  $(closeCart).on('click', () => cartDialog.close());
+  cartDialog.addEventListener('close', () => {
+    if (cartDialog.open) return;
+    if (isCartLink()) {
+      const activeTab = document.querySelector('.booking-tabs [aria-selected="true"]');
+      const hash = activeTab ? '#' + activeTab.getAttribute('aria-controls') : '';
+      history.replaceState(history.state, '', location.href.split('#')[0] + hash);
+    }
+    (cartTrigger ?? cartButton).focus({ preventScroll: true });
+    cartTrigger = null;
+  });
+
+  function isCartLink() {
+    return location.hash === '#food-cart' || location.hash === '#food-cart-dialog';
+  }
+
+  // Keep saved links to the old cart working.
+  function syncLinkedCart() {
+    if (isCartLink()) cartButton.click();
+    else if (cartDialog.open) cartDialog.close();
+  }
+  window.addEventListener('hashchange', syncLinkedCart);
   function readCart() {
     const stored = store.get('cart', []);
     if (!Array.isArray(stored)) return [];
@@ -45,18 +90,7 @@ $(function () {
     return window.TopGameLogic.cartTotals(lines, menu);
   }
   function updateBadge() {
-    $(cartLink).text(`Корзина · ${cartTotals(cart).quantity}`);
-  }
-  updateBadge();
-  const resultContainer = $('#food-cart').get(0);
-  if (!resultContainer) {
-    $(window).on('storage', event => {
-      if (event.key === 'topgame-cart') {
-        cart = readCart();
-        updateBadge();
-      }
-    });
-    return;
+    $(cartButton).text(`Корзина · ${cartTotals(cart).quantity}`);
   }
   const cartSection = el('div', 'food-cart-content');
   const cartRows = el('div', 'vstack gap-3 mb-3');
@@ -78,88 +112,10 @@ $(function () {
   $(orderNoteTitle).attr('id', 'food-order-note-title');
   $(orderNote).append(orderNoteTitle, el('p', 'mb-0', 'Назовите позиции администратору у стойки и оплатите заказ в клубе.'));
   $(cartSection).append(orderNote);
-  const menuSection = el('section');
-  $(menuSection).attr('aria-labelledby', 'food-menu-title');
-  const menuTitle = el('h2', 'visually-hidden', 'Меню еды и напитков');
-  $(menuTitle).attr("id", 'food-menu-title');
-  $(menuSection).append(menuTitle);
-  const controls = el('div', 'row g-3 mb-3');
-  function control(id, title, type) {
-    const column = el('div', 'col-12 col-md-4');
-    const label = el('label', 'form-label fw-semibold', title);
-    $(label).attr("for", id);
-    const field = el(type, type === 'input' ? 'form-control' : 'form-select');
-    $(field).attr("id", id);
-    $(column).append(label, field);
-    $(controls).append(column);
-    return field;
-  }
-  const search = control('food-search', 'Найти в меню', 'input');
-  $(search).attr("type", 'search');
-  search.placeholder = 'Например, бургер или чай';
-  $(search).attr("maxlength", 80);
-  const category = control('food-category', 'Категория', 'select');
-  [['all', 'Всё меню'], ...Object.entries(categoryNames)].forEach(([value, title]) => {
-    const option = el('option', '', title);
-    $(option).val(value);
-    $(category).append(option);
-  });
-  const sort = control('food-sort', 'Порядок', 'select');
-  [['default', 'По меню'], ['price-asc', 'Сначала дешевле'], ['price-desc', 'Сначала дороже'], ['name', 'По названию']].forEach(([value, title]) => {
-    const option = el('option', '', title);
-    $(option).val(value);
-    $(sort).append(option);
-  });
-  const optionsRow = el('div', 'd-flex flex-wrap align-items-center gap-3 mb-3');
-  const availabilityRow = el('div', 'form-check');
-  const available = el('input', 'form-check-input');
-  $(available).attr("type", 'checkbox');
-  $(available).attr("id", 'food-available');
-  const availableLabel = el('label', 'form-check-label', 'Только в наличии');
-  $(availableLabel).attr("for", available.id);
-  $(availabilityRow).append(available, availableLabel);
-  const reset = el('button', 'btn btn-outline-secondary btn-sm', 'Сбросить фильтры');
-  $(reset).attr("id", 'food-reset');
-  $(reset).attr("type", 'button');
-  const goCart = el('a', 'btn btn-outline-danger btn-sm', 'Открыть корзину');
-  $(goCart).attr({ href: '#food-cart', 'aria-haspopup': 'dialog' });
-  $(optionsRow).append(availabilityRow, reset, goCart);
-  const count = el('p', 'small text-body-secondary mb-3');
-  $(count).attr("id", 'food-count');
-  $(count).attr('role', 'status');
-  const menuCards = el('div', 'row g-3');
-  $(menuCards).attr("id", 'food-cards');
-  $(menuSection).append(controls, optionsRow, count, menuCards);
-  $('#food-menu').append(menuSection);
-  function renderProduct(item) {
-    const column = el('div', 'col-12 col-md-6 col-lg-4');
-    const article = el('article', 'card h-100 shadow-sm');
-    $(article).attr("data-food-id", item.id);
-    const photo = el('img', 'card-img-top w-100 bg-dark object-fit-cover');
-    $(photo).attr("src", item.image);
-    $(photo).attr("alt", item.imageAlt);
-    $(photo).attr("height", 190);
-    photo.loading = 'lazy';
-    photo.decoding = 'async';
-    const body = el('div', 'card-body d-flex flex-column');
-    const top = el('div', 'd-flex justify-content-between align-items-center gap-2 mb-3');
-    $(top).append(el('span', 'badge text-bg-dark', categoryNames[item.category]), el('span', 'small text-body-secondary', item.portion));
-    $(body).append(top, el('h3', 'h4 card-title', item.name), el('p', 'card-text mb-2', item.description), el('p', 'small text-body-secondary mb-3', `Аллергены: ${item.allergens}`), el('p', 'fw-bold fs-5 text-danger mt-auto', money(item.price)));
-    const add = el('button', 'btn btn-outline-danger w-100', item.available ? 'Добавить в корзину' : 'Нет в наличии');
-    $(add).attr("type", 'button');
-    $(add).attr("data-add-food", item.id);
-    $(add).prop("disabled", !item.available);
-    $(add).attr('aria-label', `${item.available ? 'Добавить в корзину' : 'Недоступно'}: ${item.name}`);
-    $(body).append(add);
-    $(article).append(photo, body);
-    $(column).append(article);
-    return column;
-  }
-  function renderMenu() {
-    const matches = window.TopGameLogic.filterMenu(menu, $(search).val(), $(category).val(), $(available).prop("checked"));
-    if ($(sort).val() === 'price-asc') matches.sort((a, b) => a.price - b.price);else if ($(sort).val() === 'price-desc') matches.sort((a, b) => b.price - a.price);else if ($(sort).val() === 'name') matches.sort((a, b) => a.name.localeCompare(b.name, 'ru'));
-    $(count).text(`Найдено: ${matches.length} из ${menu.length}.`);
-    renderList(menuCards, matches, renderProduct, 'Ничего не найдено. Измените запрос или сбросьте фильтры.');
+  if (!menuContainer) {
+    const menuLink = el('a', 'btn btn-outline-secondary', 'Посмотреть меню');
+    $(menuLink).attr('href', 'booking.html#food-menu');
+    $(cartSection).append(menuLink);
   }
   function renderCartLine(line) {
     const item = menu.find(product => product.id === line.id);
@@ -192,25 +148,6 @@ $(function () {
     renderCart();
     notify(feedback, saved ? message : `${message} Сохранение недоступно; корзина работает до закрытия страницы.`, '');
   }
-  $(menuCards).on('click', event => {
-    const button = $(event.target).closest('[data-add-food]').get(0);
-    if (!button) return;
-    const item = menu.find(product => product.id === $(button).attr("data-add-food") && product.available);
-    if (!item) return;
-    const line = cart.find(entry => entry.id === item.id);
-    if (line && line.quantity >= maxQuantity) {
-      notify(feedback, `В корзине уже ${maxQuantity} шт. «${item.name}».`, 'error');
-      return;
-    }
-    if (line) line.quantity += 1;else cart.push({
-      id: item.id,
-      quantity: 1
-    });
-    saveCart(`Добавлено: ${item.name}. В корзине ${cartTotals(cart).quantity} шт.`);
-    renderMenu();
-    $(count).text($(count).text() + ` Добавлено: ${item.name}. В корзине ${cartTotals(cart).quantity} шт.`);
-    $(menuCards).find(`[data-add-food="${item.id}"]`).first().trigger("focus");
-  });
   $(cartRows).on('click', event => {
     const button = $(event.target).closest('[data-cart-action]').get(0);
     if (!button) return;
@@ -221,32 +158,145 @@ $(function () {
     cart = cart.filter(entry => entry.quantity > 0);
     saveCart('Корзина обновлена.');
     const replacement = $(cartRows).find(`[data-item-id="${$(button).attr("data-item-id")}"][data-cart-action="${action}"]`).get(0);
-    if (replacement && !$(replacement).prop("disabled")) $(replacement).trigger("focus");else if (!$(clear).prop("disabled")) $(clear).trigger("focus");else $('#food-cart-close').trigger("focus");
+    if (replacement && !replacement.disabled) replacement.focus({ preventScroll: true });
+    else if (!clear.disabled) clear.focus({ preventScroll: true });
+    else closeCart.focus({ preventScroll: true });
   });
   $(clear).on('click', () => {
     cart = [];
     saveCart('Корзина очищена.');
-    $('#food-cart-close').trigger('focus');
+    closeCart.focus({ preventScroll: true });
   });
-  $(search).on('input', renderMenu);
-  [category, sort, available].forEach(field => $(field).on('change', renderMenu));
-  $(reset).on('click', () => {
-    $(search).val('');
-    $(category).val('all');
-    $(sort).val('default');
-    $(available).prop("checked", false);
+  function initFoodMenu() {
+    const menuSection = el('section');
+    $(menuSection).attr('aria-labelledby', 'food-menu-title');
+    const menuTitle = el('h2', 'visually-hidden', 'Меню еды и напитков');
+    $(menuTitle).attr("id", 'food-menu-title');
+    $(menuSection).append(menuTitle);
+    const controls = el('div', 'row g-3 mb-3');
+    function control(id, title, type) {
+      const column = el('div', 'col-12 col-md-4');
+      const label = el('label', 'form-label fw-semibold', title);
+      $(label).attr("for", id);
+      const field = el(type, type === 'input' ? 'form-control' : 'form-select');
+      $(field).attr("id", id);
+      $(column).append(label, field);
+      $(controls).append(column);
+      return field;
+    }
+    const search = control('food-search', 'Найти в меню', 'input');
+    $(search).attr("type", 'search');
+    search.placeholder = 'Например, бургер или чай';
+    $(search).attr("maxlength", 80);
+    const category = control('food-category', 'Категория', 'select');
+    [['all', 'Всё меню'], ...Object.entries(categoryNames)].forEach(([value, title]) => {
+      const option = el('option', '', title);
+      $(option).val(value);
+      $(category).append(option);
+    });
+    const sort = control('food-sort', 'Порядок', 'select');
+    [['default', 'По меню'], ['price-asc', 'Сначала дешевле'], ['price-desc', 'Сначала дороже'], ['name', 'По названию']].forEach(([value, title]) => {
+      const option = el('option', '', title);
+      $(option).val(value);
+      $(sort).append(option);
+    });
+    const optionsRow = el('div', 'd-flex flex-wrap align-items-center gap-3 mb-3');
+    const availabilityRow = el('div', 'form-check');
+    const available = el('input', 'form-check-input');
+    $(available).attr("type", 'checkbox');
+    $(available).attr("id", 'food-available');
+    const availableLabel = el('label', 'form-check-label', 'Только в наличии');
+    $(availableLabel).attr("for", available.id);
+    $(availabilityRow).append(available, availableLabel);
+    const reset = el('button', 'btn btn-outline-secondary btn-sm', 'Сбросить фильтры');
+    $(reset).attr("id", 'food-reset');
+    $(reset).attr("type", 'button');
+    const goCart = el('button', 'btn btn-outline-danger btn-sm', 'Открыть корзину');
+    $(goCart).attr({
+      type: 'button',
+      'data-food-cart-open': '',
+      'aria-haspopup': 'dialog',
+      'aria-controls': 'food-cart-dialog'
+    });
+    $(optionsRow).append(availabilityRow, reset, goCart);
+    const count = el('p', 'small text-body-secondary mb-3');
+    $(count).attr("id", 'food-count');
+    $(count).attr('role', 'status');
+    const menuCards = el('div', 'row g-3');
+    $(menuCards).attr("id", 'food-cards');
+    $(menuSection).append(controls, optionsRow, count, menuCards);
+    $(menuContainer).append(menuSection);
+    function renderProduct(item) {
+      const column = el('div', 'col-12 col-md-6 col-lg-4');
+      const article = el('article', 'card h-100 shadow-sm');
+      $(article).attr("data-food-id", item.id);
+      const photo = el('img', 'card-img-top w-100 bg-dark object-fit-cover');
+      $(photo).attr("src", item.image);
+      $(photo).attr("alt", item.imageAlt);
+      $(photo).attr("height", 190);
+      photo.loading = 'lazy';
+      photo.decoding = 'async';
+      const body = el('div', 'card-body d-flex flex-column');
+      const top = el('div', 'd-flex justify-content-between align-items-center gap-2 mb-3');
+      $(top).append(el('span', 'badge text-bg-dark', categoryNames[item.category]), el('span', 'small text-body-secondary', item.portion));
+      $(body).append(top, el('h3', 'h4 card-title', item.name), el('p', 'card-text mb-2', item.description), el('p', 'small text-body-secondary mb-3', `Аллергены: ${item.allergens}`), el('p', 'fw-bold fs-5 text-danger mt-auto', money(item.price)));
+      const add = el('button', 'btn btn-outline-danger w-100', item.available ? 'Добавить в корзину' : 'Нет в наличии');
+      $(add).attr("type", 'button');
+      $(add).attr("data-add-food", item.id);
+      $(add).prop("disabled", !item.available);
+      $(add).attr('aria-label', `${item.available ? 'Добавить в корзину' : 'Недоступно'}: ${item.name}`);
+      $(body).append(add);
+      $(article).append(photo, body);
+      $(column).append(article);
+      return column;
+    }
+    function renderMenu() {
+      const matches = window.TopGameLogic.filterMenu(menu, $(search).val(), $(category).val(), $(available).prop("checked"));
+      if ($(sort).val() === 'price-asc') matches.sort((a, b) => a.price - b.price);else if ($(sort).val() === 'price-desc') matches.sort((a, b) => b.price - a.price);else if ($(sort).val() === 'name') matches.sort((a, b) => a.name.localeCompare(b.name, 'ru'));
+      $(count).text(`Найдено: ${matches.length} из ${menu.length}.`);
+      renderList(menuCards, matches, renderProduct, 'Ничего не найдено. Измените запрос или сбросьте фильтры.');
+    }
+    $(menuCards).on('click', event => {
+      const button = $(event.target).closest('[data-add-food]').get(0);
+      if (!button) return;
+      const item = menu.find(product => product.id === $(button).attr("data-add-food") && product.available);
+      if (!item) return;
+      const line = cart.find(entry => entry.id === item.id);
+      if (line && line.quantity >= maxQuantity) {
+        notify(feedback, `В корзине уже ${maxQuantity} шт. «${item.name}».`, 'error');
+        return;
+      }
+      if (line) line.quantity += 1;else cart.push({
+        id: item.id,
+        quantity: 1
+      });
+      saveCart(`Добавлено: ${item.name}. В корзине ${cartTotals(cart).quantity} шт.`);
+      renderMenu();
+      $(count).text($(count).text() + ` Добавлено: ${item.name}. В корзине ${cartTotals(cart).quantity} шт.`);
+      $(menuCards).find(`[data-add-food="${item.id}"]`).first().trigger("focus");
+    });
+    $(search).on('input', renderMenu);
+    [category, sort, available].forEach(field => $(field).on('change', renderMenu));
+    $(reset).on('click', () => {
+      $(search).val('');
+      $(category).val('all');
+      $(sort).val('default');
+      $(available).prop("checked", false);
+      renderMenu();
+      $(count).text($(count).text() + ' Фильтры сброшены.');
+      $(search).trigger("focus");
+    });
     renderMenu();
-    $(count).text($(count).text() + ' Фильтры сброшены.');
-    $(search).trigger("focus");
-  });
-  $(window).on('storage', event => {
+  }
+  window.addEventListener('storage', event => {
     if (event.key === 'topgame-cart' || event.key === null) {
       cart = readCart();
       renderCart();
       notify(feedback, 'Корзина обновлена в другой вкладке.', '');
     }
   });
-  renderMenu();
   renderCart();
+  if (menuContainer) initFoodMenu();
+  syncLinkedCart();
 });
 
