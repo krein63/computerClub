@@ -149,7 +149,7 @@
                     <div class="d-flex flex-wrap gap-2 mt-3">
                         <a href="#booking-form" class="btn btn-outline-secondary">К брони ПК</a>
                         <a href="#booking-food" class="btn btn-outline-secondary">Меню еды</a>
-                        <a href="#food-cart" class="btn btn-outline-secondary" aria-haspopup="dialog">Открыть корзину</a>
+                        <button type="button" class="btn btn-outline-secondary" data-food-cart-open aria-haspopup="dialog" aria-controls="food-cart-dialog">Открыть корзину</button>
                     </div>
                 </section>
                 <section id="booking-saved" class="booking-panel my-4" aria-labelledby="booking-saved-title">
@@ -159,13 +159,6 @@
                     <ul id="booking-result-list" class="list-group hidden mb-3"></ul>
                 </section>
             </div>
-            <dialog id="food-cart-dialog" class="booking-panel food-cart-dialog" aria-labelledby="food-cart-dialog-title">
-                <div class="d-flex justify-content-between align-items-center gap-3 mb-3">
-                    <h2 id="food-cart-dialog-title" class="booking-heading mb-0">Корзина</h2>
-                    <button id="food-cart-close" type="button" class="btn btn-outline-secondary btn-sm" autofocus>Закрыть</button>
-                </div>
-                <div id="food-cart"></div>
-            </dialog>
             <aside id="direct-contact" class="bg-white border rounded-4 p-3 p-md-4 p-lg-5 mb-4 shadow-sm">
                 <h2 class="fw-bold h2 mb-3">Связаться напрямую</h2>
                 <address class="fst-normal row g-3">

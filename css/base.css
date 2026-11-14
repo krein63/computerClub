@@ -23,18 +23,7 @@ h3,
 }
 
 @media (prefers-reduced-motion: no-preference) {
-    @view-transition { navigation: auto; }
-    main { animation: page-arrival 420ms var(--motion-ease); }
-    :root:active-view-transition main { animation: none; }
-    ::view-transition-old(root), ::view-transition-new(root) {
-        animation-duration: 480ms;
-        animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-    }
-}
-
-@keyframes page-arrival {
-    from { opacity: 0.7; }
-    to { opacity: 1; }
+    main { animation: fade-in 320ms var(--motion-ease); }
 }
 
 /* Use the club red for primary actions and provide a clear hover shade. */
@@ -491,6 +480,7 @@ h3,
     text-align: center;
 }
 .about-stats dt { font-size: clamp(1.2rem, 2.4vw, 1.6rem); }
+html { scrollbar-gutter: stable; }
 body:has(.food-cart-dialog[open]) { overflow: hidden; }
 
 @media (prefers-reduced-motion: reduce) {
