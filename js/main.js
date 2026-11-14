@@ -166,26 +166,22 @@ $(function () {
     }
   });
   syncMenu();
-  $('<li>').addClass('nav-item').append($('<a>').addClass('nav-link px-2').attr({
-    id: 'nav-food',
-    href: 'booking.html#food-menu'
-  }).text('Еда')).appendTo('#main-navigation .navbar-nav');
   // Current page/booking subsection: visible state and accessible current location agree.
   function syncNavigation() {
     const current = location.pathname.split('/').pop() || 'index.html';
-    const foodSection = current === 'booking.html' && ['#food-menu', '#food-cart'].includes(location.hash);
+    const cartLocation = current === 'booking.html' && location.hash === '#food-cart';
     $('#main-navigation .nav-link').each(function () {
       const href = $(this).attr('href');
       if (!href) return;
       const target = new URL(href, location.href);
-      const foodLink = this.id === 'nav-food' || this.id === 'nav-cart';
-      const selected = foodSection ? (location.hash === '#food-cart' ? this.id === 'nav-cart' : this.id === 'nav-food') : !foodLink && target.pathname.split('/').pop() === current;
+      const selected = cartLocation ? this.id === 'nav-cart' : this.id !== 'nav-cart' && target.pathname.split('/').pop() === current;
       $(this).toggleClass('active', selected).toggleClass('fw-bold', selected);
-      if (selected) $(this).attr('aria-current', foodSection ? 'location' : 'page');
+      if (selected) $(this).attr('aria-current', cartLocation ? 'location' : 'page');
       else $(this).removeAttr('aria-current');
     });
   }
-  $(window).on('hashchange', syncNavigation);
+  $(window).on('hashchange popstate', syncNavigation);
+  $(document).on('booking:tab-change', syncNavigation);
   // food.js adds the cart link in its own ready handler.
   setTimeout(syncNavigation, 0);
   const $home = $('#index-content');

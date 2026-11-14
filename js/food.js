@@ -6,14 +6,9 @@ $(function () {
     el,
     money,
     menu,
-    seats,
     store,
     renderList,
-    setError,
-    clearErrors,
-    validateContacts,
-    notify,
-    reference
+    notify
   } = window.TopGame;
   const categoryNames = {
     food: 'Еда',
@@ -25,7 +20,7 @@ $(function () {
   const nav = $('#main-navigation .navbar-nav').get(0);
   const cartLink = el('a', 'nav-link px-2');
   $(cartLink).attr("id", 'nav-cart');
-  $(cartLink).attr("href", 'booking.html#food-cart');
+  $(cartLink).attr({ href: 'booking.html#food-cart', 'aria-haspopup': 'dialog' });
   const navItem = el('li', 'nav-item');
   $(navItem).append(cartLink);
   if (nav) $(nav).append(navItem);
@@ -53,7 +48,7 @@ $(function () {
     $(cartLink).text(`Корзина · ${cartTotals(cart).quantity}`);
   }
   updateBadge();
-  const resultContainer = $('#booking-result').get(0);
+  const resultContainer = $('#food-cart').get(0);
   if (!resultContainer) {
     $(window).on('storage', event => {
       if (event.key === 'topgame-cart') {
@@ -63,11 +58,7 @@ $(function () {
     });
     return;
   }
-  const cartSection = el('section', 'border-top pt-4 mt-4');
-  $(cartSection).attr("id", 'food-cart');
-  $(cartSection).attr('aria-labelledby', 'food-cart-title');
-  const cartTitle = el('h3', 'h3 fw-bold mb-3', 'Твой заказ еды');
-  $(cartTitle).attr("id", 'food-cart-title');
+  const cartSection = el('div', 'food-cart-content');
   const cartRows = el('div', 'vstack gap-3 mb-3');
   $(cartRows).attr("id", 'food-cart-items');
   const cartTotal = el('p', 'fw-bold fs-5');
@@ -79,85 +70,19 @@ $(function () {
   const feedback = el('p', 'small mb-3');
   $(feedback).attr("id", 'food-feedback');
   $(feedback).attr('role', 'status');
-  const orderSuccess = el('div', 'alert hidden mt-3 text-break');
-  $(orderSuccess).attr("id", 'food-order-success');
-  $(orderSuccess).attr('role', 'status');
-  $(orderSuccess).attr('aria-live', 'polite');
-  $(cartSection).append(cartTitle, el('p', 'small text-body-secondary', 'Учебные заказы сохраняются только в этом браузере. Данные не отправляются в клуб; реальный заказ и платёж не создаются.'), cartRows, cartTotal, clear, feedback);
+  $(cartSection).append(cartRows, cartTotal, clear, feedback);
   $(resultContainer).append(cartSection);
-  const orderForm = el('form', 'border rounded-3 p-3');
-  $(orderForm).attr("id", 'food-order-form');
-  $(orderForm).prop("noValidate", true);
-  $(orderForm).append(el('h4', 'h4 mb-3', 'Получение заказа'));
-  const fields = el('div', 'row g-3');
-  function inputField(id, labelText, type, autocomplete) {
-    const column = el('div', 'col-12 col-md-6');
-    const label = el('label', 'form-label fw-semibold', labelText);
-    $(label).attr("for", id);
-    const field = el('input', 'form-control');
-    $(field).attr("id", id);
-    $(field).attr("type", type);
-    $(field).attr("name", id);
-    $(field).prop("required", true);
-    $(field).attr("autocomplete", autocomplete);
-    $(field).attr("maxlength", type === 'email' ? 254 : type === 'tel' ? 30 : 80);
-    $(column).append(label, field);
-    $(fields).append(column);
-    return field;
-  }
-  const name = inputField('food-name', 'Имя', 'text', 'name');
-  const email = inputField('food-email', 'Электронная почта', 'email', 'email');
-  const phone = inputField('food-phone', 'Телефон (+7 и 10 цифр)', 'tel', 'tel');
-  const deliveryColumn = el('div', 'col-12 col-md-6');
-  const deliveryLabel = el('label', 'form-label fw-semibold', 'Способ получения');
-  $(deliveryLabel).attr("for", 'food-delivery');
-  const delivery = el('select', 'form-select');
-  $(delivery).attr("id", 'food-delivery');
-  $(delivery).prop("required", true);
-  [['', 'Выберите способ'], ['bar', 'Заберу у стойки'], ['seat', 'К игровому месту']].forEach(([value, text]) => {
-    const option = el('option', '', text);
-    $(option).val(value);
-    $(delivery).append(option);
-  });
-  $(deliveryColumn).append(deliveryLabel, delivery);
-  $(fields).append(deliveryColumn);
-  const seatColumn = el('div', 'col-12 col-md-6 hidden');
-  const seatLabel = el('label', 'form-label fw-semibold', 'Номер ПК');
-  $(seatLabel).attr("for", 'food-seat');
-  const seat = el('select', 'form-select');
-  $(seat).attr("id", 'food-seat');
-  const noSeat = el('option', '', 'Выберите ПК');
-  $(noSeat).val('');
-  $(seat).append(noSeat);
-  seats.forEach(item => {
-    const option = el('option', '', `ПК ${String(item.id).padStart(2, '0')} · ${item.zone.toUpperCase()}`);
-    $(option).val(item.id);
-    $(seat).append(option);
-  });
-  $(seatColumn).append(seatLabel, seat);
-  $(fields).append(seatColumn);
-  const agreementRow = el('div', 'form-check my-3');
-  const agreement = el('input', 'form-check-input');
-  $(agreement).attr("id", 'food-agreement');
-  $(agreement).attr("type", 'checkbox');
-  $(agreement).prop("required", true);
-  const agreementLabel = el('label', 'form-check-label', 'Проверил состав и подтверждаю заказ');
-  $(agreementLabel).attr("for", agreement.id);
-  $(agreementRow).append(agreement, agreementLabel);
-  const checkout = el('button', 'btn btn-danger', 'Отправить заказ');
-  $(checkout).attr("id", 'food-checkout');
-  $(checkout).attr("type", 'submit');
-  const formStatus = el('p', 'small mt-3 mb-0');
-  $(formStatus).attr("id", 'food-order-status');
-  $(formStatus).attr('aria-live', 'polite');
-  $(orderForm).append(fields, agreementRow, checkout, formStatus);
-  $(cartSection).append(orderForm, orderSuccess);
-  const menuSection = el('section', 'bg-white border rounded-4 p-3 p-md-4 p-lg-5 mb-4 shadow-sm');
-  $(menuSection).attr("id", 'food-menu');
+  const orderNote = el('aside', 'alert alert-light border mb-3');
+  $(orderNote).attr('aria-labelledby', 'food-order-note-title');
+  const orderNoteTitle = el('h3', 'h6 fw-bold mb-2', 'Получение заказа');
+  $(orderNoteTitle).attr('id', 'food-order-note-title');
+  $(orderNote).append(orderNoteTitle, el('p', 'mb-0', 'Назовите позиции администратору у стойки и оплатите заказ в клубе.'));
+  $(cartSection).append(orderNote);
+  const menuSection = el('section');
   $(menuSection).attr('aria-labelledby', 'food-menu-title');
-  const menuTitle = el('h2', 'h2 fw-bold mb-3', 'Перекус без паузы в игре');
+  const menuTitle = el('h2', 'visually-hidden', 'Меню еды и напитков');
   $(menuTitle).attr("id", 'food-menu-title');
-  $(menuSection).append(el('p', 'small text-uppercase text-danger fw-semibold mb-2', 'Еда и напитки'), menuTitle, el('p', 'mb-4', 'Соберите корзину, выберите получение у стойки или номер ПК и проверьте итог. Получение у стойки или к выбранному игровому месту.'));
+  $(menuSection).append(menuTitle);
   const controls = el('div', 'row g-3 mb-3');
   function control(id, title, type) {
     const column = el('div', 'col-12 col-md-4');
@@ -196,8 +121,8 @@ $(function () {
   const reset = el('button', 'btn btn-outline-secondary btn-sm', 'Сбросить фильтры');
   $(reset).attr("id", 'food-reset');
   $(reset).attr("type", 'button');
-  const goCart = el('a', 'btn btn-outline-danger btn-sm', 'Перейти к корзине');
-  $(goCart).attr("href", '#food-cart');
+  const goCart = el('a', 'btn btn-outline-danger btn-sm', 'Открыть корзину');
+  $(goCart).attr({ href: '#food-cart', 'aria-haspopup': 'dialog' });
   $(optionsRow).append(availabilityRow, reset, goCart);
   const count = el('p', 'small text-body-secondary mb-3');
   $(count).attr("id", 'food-count');
@@ -205,7 +130,7 @@ $(function () {
   const menuCards = el('div', 'row g-3');
   $(menuCards).attr("id", 'food-cards');
   $(menuSection).append(controls, optionsRow, count, menuCards);
-  $(menuSection).insertBefore($('#direct-contact').get(0));
+  $('#food-menu').append(menuSection);
   function renderProduct(item) {
     const column = el('div', 'col-12 col-md-6 col-lg-4');
     const article = el('article', 'card h-100 shadow-sm');
@@ -258,20 +183,14 @@ $(function () {
     const totals = cartTotals(cart);
     renderList(cartRows, cart, renderCartLine, 'Корзина пустая. Добавьте еду или напиток из меню.');
     $(cartTotal).text(`Товаров: ${totals.quantity} · Итого: ${money(totals.total)}`);
+    document.dispatchEvent(new CustomEvent('booking:food-cost', { detail: totals.total }));
     $(clear).prop("disabled", cart.length === 0);
-    $(checkout).prop("disabled", cart.length === 0);
     updateBadge();
-    updateOrderSummary();
-  }
-  function updateOrderSummary() {
-    const location = $(delivery).val() === 'seat' ? $(seat).val() ? `к ПК ${$(seat).val()}` : 'выберите ПК' : $(delivery).val() === 'bar' ? 'у стойки' : 'выберите получение';
-    $(formStatus).text(`${cartTotals(cart).quantity} шт., ${money(cartTotals(cart).total)} · ${location}. Максимум ${maxQuantity} шт. каждого товара.`);
   }
   function saveCart(message) {
     const saved = store.set('cart', cart);
     renderCart();
     notify(feedback, saved ? message : `${message} Сохранение недоступно; корзина работает до закрытия страницы.`, '');
-    notify(orderSuccess, '', '');
   }
   $(menuCards).on('click', event => {
     const button = $(event.target).closest('[data-add-food]').get(0);
@@ -302,13 +221,12 @@ $(function () {
     cart = cart.filter(entry => entry.quantity > 0);
     saveCart('Корзина обновлена.');
     const replacement = $(cartRows).find(`[data-item-id="${$(button).attr("data-item-id")}"][data-cart-action="${action}"]`).get(0);
-    if (replacement && !$(replacement).prop("disabled")) $(replacement).trigger("focus");else if (!$(clear).prop("disabled")) $(clear).trigger("focus");else $(search).trigger("focus");
+    if (replacement && !$(replacement).prop("disabled")) $(replacement).trigger("focus");else if (!$(clear).prop("disabled")) $(clear).trigger("focus");else $('#food-cart-close').trigger("focus");
   });
   $(clear).on('click', () => {
     cart = [];
-    clearErrors(orderForm);
     saveCart('Корзина очищена.');
-    $(search).trigger("focus");
+    $('#food-cart-close').trigger('focus');
   });
   $(search).on('input', renderMenu);
   [category, sort, available].forEach(field => $(field).on('change', renderMenu));
@@ -321,76 +239,13 @@ $(function () {
     $(count).text($(count).text() + ' Фильтры сброшены.');
     $(search).trigger("focus");
   });
-  $(delivery).on('change', () => {
-    const toSeat = $(delivery).val() === 'seat';
-    $(seatColumn).toggleClass('hidden', !toSeat);
-    $(seat).prop("disabled", !toSeat);
-    $(seat).prop("required", toSeat);
-    if (!toSeat) {
-      $(seat).val('');
-      setError(seat, '');
-    }
-  });
-  $(orderForm).on('input', event => {
-    if (event.target.id) setError(event.target, '');
-    notify(orderSuccess, '', '');
-    updateOrderSummary();
-  });
-  $(orderForm).on('change', event => {
-    if (event.target.id) setError(event.target, '');
-    notify(orderSuccess, '', '');
-    updateOrderSummary();
-  });
-  $(orderForm).on('submit', event => {
-    event.preventDefault();
-    clearErrors(orderForm);
-    if (cart.length === 0) {
-      notify(feedback, 'Добавьте хотя бы один товар.', 'error');
-      return;
-    }
-    const contacts = validateContacts($(name).val(), $(email).val(), $(phone).val());
-    const errors = [[name, contacts.name], [email, contacts.email], [phone, contacts.phone], [delivery, ['bar', 'seat'].includes($(delivery).val()) ? '' : 'Выберите способ получения.'], [seat, $(delivery).val() === 'seat' && !seats.some(item => String(item.id) === $(seat).val()) ? 'Для доставки к месту выберите действующий номер ПК.' : ''], [agreement, $(agreement).prop("checked") ? '' : 'Подтвердите, что проверили состав заказа.']];
-    const invalid = errors.filter(([field, message]) => setError(field, message));
-    if (invalid.length > 0) {
-      notify(feedback, `Исправьте поля: ${invalid.length}.`, 'error');
-      $(invalid[0][0]).trigger("focus");
-      return;
-    }
-    const totals = cartTotals(cart);
-    const items = cart.map(line => `${menu.find(item => item.id === line.id).name} × ${line.quantity}`).join('; ');
-    const destination = $(delivery).val() === 'seat' ? `к ПК ${$(seat).val()}` : 'у стойки';
-    const orderRef = reference('FOOD');
-    const summary = `${orderRef}. ${$(name).val().trim()}, получение ${destination}. ${items}. Всего ${totals.quantity} шт., ${money(totals.total)}. Контакты: ${$(email).val().trim()}, ${$(phone).val().trim()}. Заказ сохранён в этом браузере. Данные не отправлены в клуб; реальный заказ и платёж не созданы.`;
-    const orders = store.get('orders', []);
-    const saved = store.set('orders', [...(Array.isArray(orders) ? orders : []), {
-      id: orderRef,
-      items: cart,
-      total: totals.total,
-      destination,
-      createdAt: new Date().toISOString()
-    }]);
-    cart = [];
-    store.set('cart', cart);
-    renderCart();
-    $(orderForm).trigger("reset");
-    $(seatColumn).addClass("hidden");
-    $(seat).prop("disabled", true);
-    $(seat).prop("required", false);
-    updateOrderSummary();
-    notify(feedback, 'Заказ оформлен. Корзина очищена.', 'success');
-    notify(orderSuccess, saved ? summary : summary.replace('Заказ сохранён в этом браузере.', 'Заказ сформирован на странице; браузер не разрешил сохранение.'), 'success');
-    $(orderSuccess).prop("tabIndex", -1);
-    $(orderSuccess).trigger("focus");
-  });
   $(window).on('storage', event => {
-    if (event.key === 'topgame-cart') {
+    if (event.key === 'topgame-cart' || event.key === null) {
       cart = readCart();
       renderCart();
       notify(feedback, 'Корзина обновлена в другой вкладке.', '');
-      notify(orderSuccess, '', '');
     }
   });
-  $(seat).prop("disabled", true);
   renderMenu();
   renderCart();
 });

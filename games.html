@@ -50,7 +50,7 @@
                 В каталоге представлены игры для командных матчей.
                 Для сетевого матча важны стабильный <abbr title="Frames Per Second">FPS</abbr>
                 и низкий <abbr title="время отклика между компьютером и сервером">ping</abbr>.
-                Название игры и пожелания к версии можно указать в форме ниже.
+                Сохрани любимые игры сердечком и уточни наличие версии у администратора.
             </p>
                 </header>
                 <!-- div группирует самостоятельные карточки игр. -->
@@ -100,110 +100,13 @@
                 </aside>
             </section>
             <hr>
-            <section id="game-request" class="bg-white border rounded-4 p-3 p-md-4 p-lg-5 mb-4 shadow-sm">
-                <h2 class="fw-bold h2 mb-3">Предложить игру</h2>
-                <p class="mb-3">Укажите название игры, жанр и пожелания к версии. Итог запроса и сообщения о проверке данных предусмотрены под формой. В этой версии поля можно заполнить и очистить; запрос не отправляется и установка игры не выполняется.</p>
-                <!-- The result and message containers are prepared for later JavaScript. -->
-                <div class="row">
-                    <div class="col-12">
-                        <form id="game-request-form" class="mt-4" aria-describedby="game-request-status">
-                            <!-- A disabled default submit control prevents implicit submission with Enter. -->
-                            <button id="game-request-submit-guard" type="submit" class="hidden" disabled aria-hidden="true" tabindex="-1">Отправка отключена</button>
-                            <p id="game-request-status" class="alert alert-light border">«Показать итог запроса» в этой статической версии не выполняет действие. На следующем этапе результат проверки и итог запроса появятся под формой.</p>
-                            <div id="game-request-errors" class="error hidden mb-3" role="alert"></div>
-                            <fieldset class="border rounded-3 p-3 p-md-4 mb-4">
-                                <legend class="form-label fw-semibold">Контакты и запрос</legend>
-                                <div class="row g-3">
-                                    <p class="mb-3 col-12 col-md-6">
-                                        <label for="visitor-name" class="form-label fw-semibold">Имя:</label>
-                                        <br>
-                                        <input type="text" id="visitor-name" name="visitor-name" autocomplete="name" maxlength="80" required class="form-control">
-                                    </p>
-                                    <p class="mb-3 col-12 col-md-6">
-                                        <label for="visitor-email" class="form-label fw-semibold">Почта:</label>
-                                        <br>
-                                        <input type="email" id="visitor-email" name="visitor-email" autocomplete="email" maxlength="254" required class="form-control">
-                                    </p>
-                                    <p class="mb-3 col-12 col-md-6">
-                                        <label for="visitor-phone" class="form-label fw-semibold">Телефон:</label>
-                                        <br>
-                                        <input type="tel" id="visitor-phone" name="visitor-phone" autocomplete="tel" maxlength="30" required class="form-control">
-                                    </p>
-                                    <p class="mb-3 col-12 col-md-6">
-                                        <label for="visit-date" class="form-label fw-semibold">Дата визита:</label>
-                                        <br>
-                                        <input type="date" id="visit-date" name="visit-date" required class="form-control">
-                                    </p>
-                                    <p class="mb-3 col-12 col-md-6">
-                                        <label for="players" class="form-label fw-semibold">Игроков:</label>
-                                        <br>
-                                        <input type="number" id="players" name="players" min="1" max="45" value="1" required class="form-control">
-                                    </p>
-                                    <p class="mb-3 col-12 col-md-6">
-                                        <label for="game-title" class="form-label fw-semibold">Название игры:</label>
-                                        <br>
-                                        <input type="text" id="game-title" name="game-title" maxlength="120" required class="form-control">
-                                    </p>
-                                    <p class="mb-3 col-12 col-md-6">
-                                        <label for="genre" class="form-label fw-semibold">Жанр:</label>
-                                        <br>
-                                        <select id="genre" name="genre" required class="form-select">
-                                            <option value="">Выберите жанр</option>
-                                            <option value="shooter">Шутер</option>
-                                            <option value="strategy">Стратегия</option>
-                                            <option value="sports">Спорт</option>
-                                        </select>
-                                    </p>
-                                    <p id="team-play-label" class="mb-3 col-12">Планируете командную игру?</p>
-                                    <p class="mb-3 col-12" role="group" aria-labelledby="team-play-label">
-                                        <input type="radio" id="team-yes" name="team-play" value="yes" required class="form-check-input me-1">
-                                        <label for="team-yes" class="form-label fw-semibold form-check-label">Да</label>
-                                        <input type="radio" id="team-no" name="team-play" value="no" class="form-check-input me-1">
-                                        <label for="team-no" class="form-label fw-semibold form-check-label">Нет</label>
-                                    </p>
-                                    <p class="mb-3 col-12">
-                                        <input type="checkbox" id="game-agreement" name="game-agreement" required class="form-check-input me-1">
-                                        <label for="game-agreement" class="form-label fw-semibold form-check-label">Я подтверждаю правильность данных</label>
-                                    </p>
-                                    <p class="mb-3 col-12">
-                                        <label for="request-comment" class="form-label fw-semibold">Комментарий:</label>
-                                        <br>
-                                        <textarea id="request-comment" name="request-comment" rows="4" cols="40" maxlength="1000" class="form-control" aria-describedby="request-comment-help"></textarea>
-                                        <span id="request-comment-help" class="form-text">Укажите версию игры и дополнительные пожелания.</span>
-                                    </p>
-                                    <p class="mb-3 col-12 d-flex flex-wrap gap-2">
-                                        <button id="game-request-submit" type="button" class="btn btn-danger" aria-describedby="game-request-status">Показать итог запроса</button>
-                                        <button id="game-request-reset" type="reset" class="btn btn-outline-secondary">Очистить форму</button>
-                                    </p>
-                                </div>
-                            </fieldset>
-                        </form>
-                    </div>
+            <section id="game-booking-cta" class="bg-white border rounded-4 p-3 p-md-4 p-lg-5 mb-4 shadow-sm">
+                <h2 class="fw-bold h2 mb-3">Готовы к игре?</h2>
+                <p class="mb-3">Выберите свободные места и сохраните заявку на странице бронирования.</p>
+                <div class="d-flex flex-wrap gap-2">
+                    <a href="booking.html#booking-form" class="btn btn-danger">Перейти к бронированию</a>
+                    <a href="#game-list" class="btn btn-outline-danger">Вернуться к играм</a>
                 </div>
-                <section id="game-request-result" class="bg-body-tertiary border rounded-3 p-3 p-md-4 mt-4" aria-labelledby="game-request-result-title">
-                    <h3 id="game-request-result-title" class="h4 fw-bold mb-3">Итог запроса игры</h3>
-                    <p id="game-request-result-status" class="mb-3" role="status" aria-live="polite">Итог ещё не сформирован. Эта область предназначена для результата проверки и данных вашего запроса.</p>
-                    <dl id="game-request-summary" class="row mb-3">
-                        <dt class="col-12 col-sm-5">Название игры</dt>
-                        <dd id="game-request-summary-title" class="col-12 col-sm-7">Не указано</dd>
-                        <dt class="col-12 col-sm-5">Жанр</dt>
-                        <dd id="game-request-summary-genre" class="col-12 col-sm-7">Не выбран</dd>
-                        <dt class="col-12 col-sm-5">Дата визита</dt>
-                        <dd id="game-request-summary-date" class="col-12 col-sm-7">Не выбрана</dd>
-                        <dt class="col-12 col-sm-5">Количество игроков</dt>
-                        <dd id="game-request-summary-players" class="col-12 col-sm-7">Итог не сформирован</dd>
-                        <dt class="col-12 col-sm-5">Командная игра</dt>
-                        <dd id="game-request-summary-team" class="col-12 col-sm-7">Не выбрана</dd>
-                    </dl>
-                    <ul id="game-request-list" class="list-group list-group-flush hidden mb-3"></ul>
-                    <div id="game-request-success" class="success hidden mb-3" role="status" aria-live="polite"></div>
-                    <p class="small text-body-secondary mb-3">Сообщение об успехе предусмотрено для следующего этапа; в этой версии подтверждение запроса не создаётся.</p>
-                    <a href="booking.html" class="btn btn-outline-danger" id="games-a-2">Перейти к бронированию</a>
-                </section>
-                <nav aria-label="Дополнительная навигация" class="d-flex flex-column flex-md-row gap-2 mt-4">
-                    <a href="#game-list" class="btn btn-outline-danger" id="games-a-3">Вернуться к списку игр</a>
-                    <a href="index.html" class="btn btn-outline-danger" id="games-a-4">Вернуться на главную страницу</a>
-                </nav>
             </section>
         </main>
         <footer id="site-footer" class="bg-dark text-white py-5 mt-4">
