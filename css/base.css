@@ -205,7 +205,14 @@ h3,
     padding: 0.25rem;
     font-size: 0.84rem;
     line-height: 1.2;
+    transition: background-color var(--motion-panel) var(--motion-ease),
+                border-color var(--motion-panel) var(--motion-ease),
+                box-shadow var(--motion-panel) var(--motion-ease),
+                color var(--motion-fast) ease,
+                transform var(--motion-fast) var(--motion-ease);
 }
+.booking-seat:not(:disabled):active { transform: scale(0.965); }
+.booking-seat-feedback { min-height: 1.5em; }
 .booking-seat[data-seat-state="available"] {
     --bs-btn-color: #eff1f6;
     --bs-btn-border-color: #676d7b;
@@ -246,17 +253,32 @@ h3,
 }
 
 .booking-tabs:not([hidden]) {
+    --tab-inset: 0.4rem;
+    --tab-gap: 0.4rem;
+    position: relative;
     display: grid;
     grid-auto-flow: column;
     grid-auto-columns: minmax(0, 1fr);
-    gap: 0.4rem;
-    padding: 0.4rem;
+    gap: var(--tab-gap);
+    padding: var(--tab-inset);
     background: var(--bs-tertiary-bg);
     border: 1px solid var(--bs-border-color);
     border-radius: 0.85rem;
     scroll-margin-top: 1rem;
 }
+.booking-tabs::before {
+    content: '';
+    position: absolute;
+    inset: var(--tab-inset) auto var(--tab-inset) var(--tab-inset);
+    width: calc((100% - 2 * var(--tab-inset) - (var(--tab-count) - 1) * var(--tab-gap)) / var(--tab-count));
+    transform: translateX(calc(var(--active-tab, 0) * (100% + var(--tab-gap))));
+    background: #b02a37;
+    border-radius: var(--bs-border-radius);
+    pointer-events: none;
+    transition: transform var(--motion-panel) var(--motion-ease);
+}
 .booking-tabs .btn {
+    position: relative;
     min-height: 2.75rem;
     color: var(--bs-emphasis-color);
     font-weight: 600;
@@ -265,7 +287,7 @@ h3,
 }
 .booking-tabs .btn:hover { background: var(--bs-secondary-bg); }
 .booking-tabs .btn[aria-selected="true"] {
-    background: #b02a37;
+    background: transparent;
     color: #fff;
 }
 
@@ -362,10 +384,12 @@ body:has(.food-cart-dialog[open]) { overflow: hidden; }
 
 @media (prefers-reduced-motion: reduce) {
     .navbar .nav-link, main .card, .favorite-heart, .club-stat,
-    .booking-tabs .btn, .food-cart-dialog, .food-cart-dialog::backdrop {
+    .booking-tabs .btn, .booking-tabs::before, .booking-seat,
+    .food-cart-dialog, .food-cart-dialog::backdrop {
         transition: none;
     }
-    main .card:hover, .favorite-heart:hover, .favorite-heart:active { transform: none; }
+    main .card:hover, .favorite-heart:hover, .favorite-heart:active,
+    .booking-seat:not(:disabled):active { transform: none; }
     #game-cards > div, #booking-content [role="tabpanel"]:not([hidden]),
     .food-cart-dialog[open], .food-cart-dialog[open]::backdrop {
         animation: none;

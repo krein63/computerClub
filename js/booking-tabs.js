@@ -3,8 +3,10 @@
 const bookingTabList = document.querySelector('.booking-tabs');
 const bookingTabs = Array.from(bookingTabList.querySelectorAll('[role="tab"]'));
 const bookingPanels = bookingTabs.map(tab => document.getElementById(tab.getAttribute('aria-controls')));
+bookingTabList.style.setProperty('--tab-count', bookingTabs.length);
 
 function showBookingTab(index) {
+  bookingTabList.style.setProperty('--active-tab', index);
   bookingTabs.forEach((tab, position) => {
     const selected = position === index;
     tab.setAttribute('aria-selected', String(selected));
@@ -113,13 +115,28 @@ bookingTabList.hidden = false;
 
 const formatBookingCost = new Intl.NumberFormat('ru-KZ', { style: 'currency', currency: 'KZT', maximumFractionDigits: 0 });
 const cost = { pc: null, food: 0, pcLabel: 'ПК' };
+const bookingMotionPreference = window.matchMedia('(prefers-reduced-motion: reduce)');
+const bookingTextAnimations = new WeakMap();
+
+function updateBookingText(element, text) {
+  if (element.textContent === text) return;
+  element.textContent = text;
+  bookingTextAnimations.get(element)?.cancel();
+  if (bookingMotionPreference.matches || !element.animate || !element.getClientRects().length) return;
+  bookingTextAnimations.set(element, element.animate([{ opacity: 0.55 }, { opacity: 1 }], {
+    duration: 280,
+    easing: 'ease-out'
+  }));
+}
+
 function renderBookingCost() {
   document.getElementById('booking-cost-pc-label').textContent = cost.pcLabel;
   document.getElementById('booking-cost-pc').textContent = cost.pc === null ? '—' : formatBookingCost.format(cost.pc);
   document.getElementById('booking-cost-food').textContent = formatBookingCost.format(cost.food);
-  document.getElementById('booking-combined-total').textContent = cost.pc === null && !cost.food
+  const combined = cost.pc === null && !cost.food
     ? '—'
     : formatBookingCost.format((cost.pc ?? 0) + cost.food);
+  updateBookingText(document.getElementById('booking-combined-total'), combined);
   document.getElementById('booking-cost-note').textContent = cost.pc === null
     ? 'Выберите тариф и места, чтобы добавить стоимость ПК.'
     : cost.pcLabel === 'ПК · последняя заявка'
