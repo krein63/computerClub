@@ -33,13 +33,13 @@ $(function () {
   const menuContainer = document.getElementById('food-menu');
   const cartDialog = el('dialog', 'booking-panel food-cart-dialog');
   $(cartDialog).attr({ id: 'food-cart-dialog', 'aria-labelledby': 'food-cart-dialog-title' });
-  const cartHeader = el('div', 'd-flex justify-content-between align-items-center gap-3 mb-3');
+  const cartHeader = el('div', 'food-cart-header d-flex justify-content-between align-items-center gap-3 mb-3');
   const cartTitle = el('h2', 'booking-heading mb-0', 'Корзина');
   $(cartTitle).attr('id', 'food-cart-dialog-title');
-  const closeCart = el('button', 'btn btn-outline-secondary btn-sm', 'Закрыть');
+  const closeCart = el('button', 'btn btn-outline-secondary btn-sm flex-shrink-0', 'Закрыть');
   $(closeCart).attr({ id: 'food-cart-close', type: 'button', autofocus: '' });
   $(cartHeader).append(cartTitle, closeCart);
-  const resultContainer = el('div');
+  const resultContainer = el('div', 'food-cart-body');
   $(resultContainer).attr('id', 'food-cart');
   $(cartDialog).append(cartHeader, resultContainer).appendTo(document.body);
 

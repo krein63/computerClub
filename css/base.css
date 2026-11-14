@@ -430,7 +430,15 @@ h3,
 
 .food-cart-dialog {
     width: min(35rem, calc(100% - 2rem));
+    max-height: min(42rem, calc(100vh - 2rem));
     max-height: min(42rem, calc(100dvh - 2rem));
+    flex-direction: column;
+    overflow: hidden;
+}
+.food-cart-dialog[open] { display: flex; }
+.food-cart-header { flex-shrink: 0; }
+.food-cart-body {
+    min-height: 0;
     overflow: auto;
     overscroll-behavior: contain;
 }

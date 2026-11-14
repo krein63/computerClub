@@ -42,9 +42,29 @@
     }
 
     function tariffSchedule(tariff) {
+        if (tariff.timeWindow) return `${tariff.timeWindow.start}–${tariff.timeWindow.end}`;
         if (!tariff.startTime) return '';
         const endHour = (Number(tariff.startTime.slice(0, 2)) + tariff.duration) % 24;
         return `${tariff.startTime}–${String(endHour).padStart(2, '0')}:00`;
+    }
+
+    function tariffTimeError(tariff, time) {
+        if (tariff.startTime && time !== tariff.startTime) {
+            return `Пакет «${tariff.name}» начинается в ${tariff.startTime} по Астане.`;
+        }
+        if (!tariff.timeWindow) return '';
+
+        function minutes(time) {
+            const [hours, minutes] = time.split(':').map(Number);
+            return hours * 60 + minutes;
+        }
+        const dayMinutes = 24 * 60;
+        const start = minutes(tariff.timeWindow.start);
+        const windowLength = (minutes(tariff.timeWindow.end) - start + dayMinutes) % dayMinutes;
+        const offset = (minutes(time) - start + dayMinutes) % dayMinutes;
+        return offset + tariff.duration * 60 <= windowLength
+            ? ''
+            : `Сеанс должен полностью укладываться в ${tariffSchedule(tariff)} по Астане.`;
     }
 
     function reservationAmount(tariffs, booking) {
@@ -60,5 +80,5 @@
         return `TG-${prefix}-${Date.now().toString(36).toUpperCase()}-${Math.floor(1000 + Math.random() * 9000)}`;
     }
 
-    window.TopGameLogic = { findProduct, validQuantity, cartTotals, filterMenu, estimateVisit, tariffSchedule, reservationAmount, reference };
+    window.TopGameLogic = { findProduct, validQuantity, cartTotals, filterMenu, estimateVisit, tariffSchedule, tariffTimeError, reservationAmount, reference };
 })();

@@ -17,7 +17,7 @@ $(function () {
     name.append(link, el('span', 'd-block mt-1 small text-body-secondary', details));
     const price = el('td', 'text-end text-nowrap fw-bold', money(tariff.price));
     if (tariff.hourly) price.append(el('span', 'd-block small fw-normal text-body-secondary', 'за час'));
-    else if (['three-hours', 'five-hours'].includes(tariff.id)) {
+    else if (tariff.previousPrice || tariff.timeWindow) {
       const saving = hourlyTariff.price * tariff.duration - tariff.price;
       price.append(el('span', 'd-block small fw-normal text-body-secondary', `${money(tariff.price / tariff.duration)}/ч`));
       if (saving > 0) price.append(el('span', 'd-block small fw-normal text-success-emphasis', `Экономия ${money(saving)}`));
