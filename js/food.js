@@ -8,7 +8,9 @@ $(function () {
     menu,
     store,
     renderList,
-    notify
+    notify,
+    tariffs,
+    reservationAmount
   } = window.TopGame;
   const categoryNames = {
     food: 'Еда',
@@ -106,6 +108,22 @@ $(function () {
   $(feedback).attr('role', 'status');
   $(cartSection).append(cartRows, cartTotal, clear, feedback);
   $(resultContainer).append(cartSection);
+  if (menuContainer) {
+    const visit = el('section', 'border-bottom pb-3 mb-3');
+    const details = el('p', 'small mb-1');
+    const price = el('p', 'fw-semibold mb-0');
+    visit.append(el('h3', 'h6 mb-2', 'Последняя заявка на ПК'), details, price);
+    visit.hidden = true;
+    resultContainer.prepend(visit);
+    document.addEventListener('booking:latest', event => {
+      const booking = event.detail;
+      visit.hidden = !booking;
+      if (!booking) return;
+      const amount = reservationAmount(tariffs, booking);
+      details.textContent = `${booking.date}, ${booking.time} · ${booking.duration} ч. · ПК ${booking.seats.join(', ')}`;
+      price.textContent = amount === null ? '' : money(amount);
+    });
+  }
   const orderNote = el('aside', 'alert alert-light border mb-3');
   $(orderNote).attr('aria-labelledby', 'food-order-note-title');
   const orderNoteTitle = el('h3', 'h6 fw-bold mb-2', 'Получение заказа');
@@ -137,11 +155,12 @@ $(function () {
   }
   function renderCart() {
     const totals = cartTotals(cart);
-    renderList(cartRows, cart, renderCartLine, 'Корзина пустая. Добавьте еду или напиток из меню.');
-    $(cartTotal).text(`Товаров: ${totals.quantity} · Итого: ${money(totals.total)}`);
+    renderList(cartRows, cart, renderCartLine, 'Еда и напитки пока не добавлены.');
+    $(cartTotal).text(`Еда и напитки · ${totals.quantity} шт. · ${money(totals.total)}`);
     document.dispatchEvent(new CustomEvent('booking:food-cost', { detail: totals.total }));
     $(clear).prop("disabled", cart.length === 0);
     updateBadge();
+    if (menuContainer) updateMenuQuantities();
   }
   function saveCart(message) {
     const saved = store.set('cart', cart);
@@ -222,9 +241,11 @@ $(function () {
     const count = el('p', 'small text-body-secondary mb-3');
     $(count).attr("id", 'food-count');
     $(count).attr('role', 'status');
+    const menuFeedback = el('p', 'visually-hidden');
+    menuFeedback.setAttribute('role', 'status');
     const menuCards = el('div', 'row g-3');
     $(menuCards).attr("id", 'food-cards');
-    $(menuSection).append(controls, optionsRow, count, menuCards);
+    $(menuSection).append(controls, optionsRow, count, menuFeedback, menuCards);
     $(menuContainer).append(menuSection);
     function renderProduct(item) {
       const column = el('div', 'col-12 col-md-6 col-lg-4');
@@ -240,12 +261,14 @@ $(function () {
       const top = el('div', 'd-flex justify-content-between align-items-center gap-2 mb-3');
       $(top).append(el('span', 'badge text-bg-dark', categoryNames[item.category]), el('span', 'small text-body-secondary', item.portion));
       $(body).append(top, el('h3', 'h4 card-title', item.name), el('p', 'card-text mb-2', item.description), el('p', 'small text-body-secondary mb-3', `Аллергены: ${item.allergens}`), el('p', 'fw-bold fs-5 text-danger mt-auto', money(item.price)));
-      const add = el('button', 'btn btn-outline-danger w-100', item.available ? 'Добавить в корзину' : 'Нет в наличии');
+      const quantityStatus = el('p', 'small text-body-secondary mb-2');
+      quantityStatus.id = `food-quantity-${item.id}`;
+      const add = el('button', 'btn btn-outline-danger w-100');
       $(add).attr("type", 'button');
       $(add).attr("data-add-food", item.id);
       $(add).prop("disabled", !item.available);
-      $(add).attr('aria-label', `${item.available ? 'Добавить в корзину' : 'Недоступно'}: ${item.name}`);
-      $(body).append(add);
+      add.setAttribute('aria-describedby', quantityStatus.id);
+      $(body).append(quantityStatus, add);
       $(article).append(photo, body);
       $(column).append(article);
       return column;
@@ -255,6 +278,7 @@ $(function () {
       if ($(sort).val() === 'price-asc') matches.sort((a, b) => a.price - b.price);else if ($(sort).val() === 'price-desc') matches.sort((a, b) => b.price - a.price);else if ($(sort).val() === 'name') matches.sort((a, b) => a.name.localeCompare(b.name, 'ru'));
       $(count).text(`Найдено: ${matches.length} из ${menu.length}.`);
       renderList(menuCards, matches, renderProduct, 'Ничего не найдено. Измените запрос или сбросьте фильтры.');
+      updateMenuQuantities();
     }
     $(menuCards).on('click', event => {
       const button = $(event.target).closest('[data-add-food]').get(0);
@@ -263,17 +287,15 @@ $(function () {
       if (!item) return;
       const line = cart.find(entry => entry.id === item.id);
       if (line && line.quantity >= maxQuantity) {
-        notify(feedback, `В корзине уже ${maxQuantity} шт. «${item.name}».`, 'error');
+        menuFeedback.textContent = `Достигнут лимит: ${maxQuantity} шт. «${item.name}» в одной корзине.`;
         return;
       }
-      if (line) line.quantity += 1;else cart.push({
-        id: item.id,
-        quantity: 1
-      });
-      saveCart(`Добавлено: ${item.name}. В корзине ${cartTotals(cart).quantity} шт.`);
-      renderMenu();
-      $(count).text($(count).text() + ` Добавлено: ${item.name}. В корзине ${cartTotals(cart).quantity} шт.`);
-      $(menuCards).find(`[data-add-food="${item.id}"]`).first().trigger("focus");
+      const quantity = (line?.quantity ?? 0) + 1;
+      if (line) line.quantity = quantity;
+      else cart.push({ id: item.id, quantity });
+      const message = `${item.name} · в корзине ${quantity} из ${maxQuantity} шт.`;
+      saveCart(message);
+      menuFeedback.textContent = message;
     });
     $(search).on('input', renderMenu);
     [category, sort, available].forEach(field => $(field).on('change', renderMenu));
@@ -287,6 +309,21 @@ $(function () {
       $(search).trigger("focus");
     });
     renderMenu();
+  }
+  function updateMenuQuantities() {
+    for (const button of menuContainer.querySelectorAll('[data-add-food]')) {
+      const item = menu.find(product => product.id === button.dataset.addFood);
+      const quantity = cart.find(line => line.id === item.id)?.quantity ?? 0;
+      const atLimit = quantity >= maxQuantity;
+      const label = !item.available ? 'Нет в наличии' : atLimit ? 'Достигнут лимит' : 'Добавить в корзину';
+      menuContainer.querySelector(`#food-quantity-${item.id}`).textContent = item.available
+        ? `В корзине ${quantity} из ${maxQuantity} шт.`
+        : 'Позиция недоступна';
+      button.textContent = label;
+      button.setAttribute('aria-label', `${label}: ${item.name}`);
+      button.setAttribute('aria-disabled', String(atLimit || !item.available));
+      button.classList.toggle('opacity-50', atLimit);
+    }
   }
   window.addEventListener('storage', event => {
     if (event.key === 'topgame-cart' || event.key === null) {

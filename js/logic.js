@@ -41,9 +41,24 @@
         return { amount: tariff.price * units * players, groupTotalKnown: true };
     }
 
+    function tariffSchedule(tariff) {
+        if (!tariff.startTime) return '';
+        const endHour = (Number(tariff.startTime.slice(0, 2)) + tariff.duration) % 24;
+        return `${tariff.startTime}–${String(endHour).padStart(2, '0')}:00`;
+    }
+
+    function reservationAmount(tariffs, booking) {
+        const tariff = findProduct(tariffs, booking.tariff);
+        const estimate = estimateVisit(tariffs, booking.tariff, booking.duration, booking.seats.length);
+        if (!estimate) return null;
+        if (Number.isSafeInteger(booking.amount) && booking.amount > 0) return booking.amount;
+        // Older requests did not store the price paid for a fixed package.
+        return tariff.previousPrice ? tariff.previousPrice * booking.seats.length : estimate.amount;
+    }
+
     function reference(prefix) {
         return `TG-${prefix}-${Date.now().toString(36).toUpperCase()}-${Math.floor(1000 + Math.random() * 9000)}`;
     }
 
-    window.TopGameLogic = { findProduct, validQuantity, cartTotals, filterMenu, estimateVisit, reference };
+    window.TopGameLogic = { findProduct, validQuantity, cartTotals, filterMenu, estimateVisit, tariffSchedule, reservationAmount, reference };
 })();

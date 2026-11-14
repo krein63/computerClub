@@ -4,10 +4,10 @@
 window.TopGameData = {
     tariffs: [
         { id: 'hour', name: '1 час', price: 1200, duration: 1, hourly: true, description: 'Короткий сеанс', audience: 'Один матч или свободный график' },
-        { id: 'three-hours', name: '3 часа', price: 3600, duration: 3, hourly: false, description: 'Несколько матчей подряд', audience: 'Для игры с друзьями' },
-        { id: 'five-hours', name: '5 часов', price: 5400, duration: 5, hourly: false, description: 'Большой игровой сеанс', audience: 'Для командной тренировки' },
-        { id: 'day', name: 'День · 10 часов', price: 8900, duration: 10, hourly: false, description: 'Пакет на весь день', audience: 'Для долгого игрового марафона' },
-        { id: 'night', name: 'Ночь · 8 часов', price: 4700, duration: 8, hourly: false, description: 'Ночной пакет', audience: 'Для игры ночью' },
+        { id: 'three-hours', name: '3 часа', price: 3000, previousPrice: 3600, duration: 3, hourly: false, description: 'Несколько матчей подряд', audience: 'Для игры с друзьями' },
+        { id: 'five-hours', name: '5 часов', price: 4500, previousPrice: 5400, duration: 5, hourly: false, description: 'Большой игровой сеанс', audience: 'Для командной тренировки' },
+        { id: 'day', name: 'День · 10 часов', price: 8900, duration: 10, hourly: false, startTime: '08:00', description: 'Пакет на весь день', audience: 'Для долгого игрового марафона' },
+        { id: 'night', name: 'Ночь · 8 часов', price: 4700, duration: 8, hourly: false, startTime: '23:00', description: 'Ночной пакет', audience: 'Для игры ночью' },
         { id: 'private', name: 'PRIVATE', price: 2500, duration: 1, hourly: true, description: 'Приватный сеанс', audience: 'Для игры в отдельном пространстве' }
     ],
     // Prices accepted as correct on the user's instruction of 8 November 2026.
