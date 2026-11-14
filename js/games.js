@@ -58,7 +58,7 @@ $(function () {
   $(count).attr({ id: 'games-result-count', 'aria-live': 'polite' });
   $(actions).append(reset, count);
   $(controls).append(actions);
-  const favoriteNotice = app.el('div', 'd-flex align-items-center justify-content-between gap-2 p-3 rounded-3 mb-3 hidden');
+  const favoriteNotice = app.el('div', 'favorite-notice d-flex align-items-center justify-content-between gap-2 p-3 rounded-3');
   const favoriteStatus = app.el('p', 'mb-0');
   favoriteStatus.id = 'games-favorite-status';
   favoriteStatus.setAttribute('role', 'status');
@@ -66,18 +66,52 @@ $(function () {
   dismissFavoriteNotice.type = 'button';
   dismissFavoriteNotice.setAttribute('aria-label', 'Закрыть уведомление');
   favoriteNotice.append(favoriteStatus, dismissFavoriteNotice);
-  $(list).before(controls, favoriteNotice);
+  $(list).before(controls);
+  document.body.append(favoriteNotice);
   let favoriteNoticeTrigger;
   dismissFavoriteNotice.addEventListener('click', () => {
-    favoriteNotice.classList.add('hidden');
-    favoriteStatus.textContent = '';
-    (favoriteNoticeTrigger?.isConnected ? favoriteNoticeTrigger : favoriteFilter).focus();
+    if (favoriteNotice.contains(document.activeElement)) {
+      (favoriteNoticeTrigger?.isConnected ? favoriteNoticeTrigger : favoriteFilter).focus({ preventScroll: true });
+    }
+    favoriteNotice.classList.remove('is-visible');
   });
   $(list).closest('section').first().find('header .lead').first().text('Выберите игру, сохраните её в избранное и запланируйте визит с друзьями. Наличие версии уточняйте у администратора.');
 
   const svgNamespace = 'http://www.w3.org/2000/svg';
   const favoritePath = document.createElementNS(svgNamespace, 'path');
   $(favoritePath).attr('d', 'M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8l1.1 1.1L12 21l7.8-7.5 1.1-1.1a5.5 5.5 0 0 0-.1-7.8Z');
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const heartAnimations = new WeakMap();
+
+  function setFavoriteButton(button, game, selected) {
+    const label = selected ? 'Убрать из избранного' : 'Добавить в избранное';
+    button.classList.toggle('is-favorite', selected);
+    button.setAttribute('aria-pressed', String(selected));
+    button.setAttribute('aria-label', `${label}: ${game.title}`);
+    button.title = label;
+  }
+
+  function animateFavorite(button, adding) {
+    const icon = button.querySelector('svg');
+    heartAnimations.get(button)?.cancel();
+    button.querySelector('.favorite-burst')?.remove();
+    if (reducedMotion.matches || !icon.animate) return;
+    heartAnimations.set(button, icon.animate(
+      [{ scale: 0.86 }, { scale: adding ? 1.24 : 1.07, offset: 0.44 }, { scale: 1 }],
+      { duration: 360, easing: 'ease-out' }
+    ));
+    if (!adding) return;
+
+    const burst = app.el('span', 'favorite-burst');
+    burst.setAttribute('aria-hidden', 'true');
+    for (let particle = 0; particle < 8; particle += 1) {
+      const spark = app.el('span', 'favorite-spark');
+      spark.style.setProperty('--spark-angle', `${particle * 45}deg`);
+      burst.append(spark);
+    }
+    burst.addEventListener('animationend', () => burst.remove(), { once: true });
+    button.append(burst);
+  }
 
   function renderGame(game) {
     const column = app.el('div', 'col-12 col-md-6 col-lg-4');
@@ -88,15 +122,9 @@ $(function () {
     $(image).attr({ src: game.image, alt: `Обложка игры ${game.title}` });
     image.loading = 'lazy';
     image.decoding = 'async';
-    const isFavorite = favorites.includes(game.id);
-    const favorite = app.el('button', `favorite-heart${isFavorite ? ' is-favorite' : ''}`);
-    $(favorite).attr({
-      type: 'button',
-      'data-favorite-game': game.id,
-      'aria-pressed': String(isFavorite),
-      'aria-label': `${isFavorite ? 'Убрать из избранного' : 'Добавить в избранное'}: ${game.title}`,
-      title: isFavorite ? 'Убрать из избранного' : 'Добавить в избранное'
-    });
+    const favorite = app.el('button', 'favorite-heart');
+    $(favorite).attr({ type: 'button', 'data-favorite-game': game.id });
+    setFavoriteButton(favorite, game, favorites.includes(game.id));
     const icon = document.createElementNS(svgNamespace, 'svg');
     $(icon).attr({ viewBox: '0 0 24 24', width: '22', height: '22', fill: 'none', stroke: 'currentColor', 'stroke-width': '2', 'stroke-linecap': 'round', 'stroke-linejoin': 'round', 'aria-hidden': 'true', focusable: 'false' });
     $(icon).append(favoritePath.cloneNode());
@@ -128,15 +156,24 @@ $(function () {
     const adding = !favorites.includes(id);
     favorites = adding ? [...favorites, id] : favorites.filter(value => value !== id);
     const saved = app.store.set('favorite-games', favorites);
-    renderGames();
+    const buttonHadFocus = document.activeElement === this;
+    favoriteNoticeTrigger = this;
+    if ($(favoriteFilter).val() === 'favorites' && !adding) {
+      const column = this.closest('article').parentElement;
+      const neighbor = column.nextElementSibling || column.previousElementSibling;
+      favoriteNoticeTrigger = neighbor?.querySelector('[data-favorite-game]') ?? favoriteFilter;
+      column.remove();
+      if (list.childElementCount === 0) renderGames();
+      else $(count).text(`Найдено игр: ${list.childElementCount} из ${games.length}`);
+      if (buttonHadFocus) favoriteNoticeTrigger.focus({ preventScroll: true });
+    } else {
+      setFavoriteButton(this, game, adding);
+      animateFavorite(this, adding);
+    }
     favoriteNotice.classList.toggle('success', saved);
     favoriteNotice.classList.toggle('error', !saved);
-    favoriteNotice.classList.remove('hidden');
+    favoriteNotice.classList.add('is-visible');
     favoriteStatus.textContent = `${game.title}: ${adding ? 'добавлена в избранное' : 'удалена из избранного'}.${saved ? '' : ' Сохранение недоступно, список действует до перезагрузки.'}`;
-    const next = $(list).find(`[data-favorite-game="${id}"]`).get(0);
-    favoriteNoticeTrigger = next;
-    if (next) $(next).trigger('focus');
-    else $(favoriteFilter).trigger('focus');
   });
   $(controls).on('input', 'input', renderGames);
   $(controls).on('change', 'select', renderGames);

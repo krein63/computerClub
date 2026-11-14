@@ -6,6 +6,9 @@ function enablePageTransitions() {
 
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
   const current = new URL(window.location.href);
+  // Same-origin pages can crossfade natively. Local file previews use the content fade.
+  if (/^https?:$/.test(current.protocol) && 'CSSViewTransitionRule' in window &&
+      CSS.supports('selector(:active-view-transition)')) return;
   const directory = new URL('.', current).pathname;
   let exitAnimation;
 
@@ -27,9 +30,9 @@ function enablePageTransitions() {
 
     event.preventDefault();
     if (exitAnimation) return;
-    const animation = main.animate([{ opacity: 0.24 }], {
-      duration: 150,
-      easing: 'ease-in',
+    const animation = main.animate([{ opacity: 0.68 }], {
+      duration: 210,
+      easing: 'ease-in-out',
       fill: 'forwards'
     });
     exitAnimation = animation;
