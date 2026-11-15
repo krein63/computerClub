@@ -694,17 +694,17 @@
   "journeys": [
     {
       "name": "contacts",
-      "end": "file:///C:/Users/aliil/Documents/Codex/2026-10-05/https-github-com-krein63-computerclub-https/work/computerClub/about.html#contacts",
+      "end": "file:///project/computerClub/about.html#contacts",
       "ok": true
     },
     {
       "name": "booking",
-      "end": "file:///C:/Users/aliil/Documents/Codex/2026-10-05/https-github-com-krein63-computerclub-https/work/computerClub/booking.html#tariff-selection",
+      "end": "file:///project/computerClub/booking.html#tariff-selection",
       "ok": true
     },
     {
       "name": "games",
-      "end": "file:///C:/Users/aliil/Documents/Codex/2026-10-05/https-github-com-krein63-computerclub-https/work/computerClub/games.html",
+      "end": "file:///project/computerClub/games.html",
       "ok": true
     }
   ]
