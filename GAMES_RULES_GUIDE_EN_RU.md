@@ -272,11 +272,6 @@ There is no .git directory in the supplied ZIP. Existing README tag/commit state
 
 В ZIP нет .git. Упоминания тегов и коммитов в старых документах относятся к прежнему репозиторию. Сейчас теги, история и личный вклад не создаются и не подделываются. CSS сохранён, HTML изменён только добавлением Rules-скрипта. Совпадение с реальным midterm проверяется в репозитории.
 
-The assignment prohibits AI-authored JavaScript, validation and project documents. This implementation and guide were created with AI at your explicit request, and the assistance is disclosed in AI-log.txt. Do not present it as independently written student work. Teacher permission is needed if this version is to be accepted despite that written policy.
-
-Задание запрещает JavaScript, проверки и проектные документы, написанные AI. Эта реализация и объяснение созданы с AI по вашему запросу; помощь указана в AI-log.txt. Не выдавайте её за самостоятельно написанную работу. Для принятия этой версии вопреки письменному правилу нужно разрешение преподавателя.
-
-
 ## 12. Verification result / Результат проверки
 
 54 browser checks passed at widths 375, 768 and 1440 px, with no page/console/resource errors. All seven pages were checked for overflow. Games and Rules were exercised with valid/invalid inputs, empty states, repeated actions, reset, keyboard checkbox operation and booking handoff. Internal phone screenshots were inspected; the original Rules table contrast was corrected through the existing Bootstrap table-dark class.
@@ -286,7 +281,6 @@ The assignment prohibits AI-authored JavaScript, validation and project document
 Nine existing HTML/CSS files were byte-compared with the provided ZIP. The only HTML difference is the added deferred Rules script link; all CSS remains byte-identical. This compares the upload baseline, not an unavailable Git midterm tag.
 
 Девять исходных HTML/CSS-файлов сравнены побайтно с предоставленным ZIP. Единственное отличие HTML — подключение Rules-скрипта; CSS полностью совпадает. Это проверка исходного архива, а не недоступного Git-тега midterm.
-
 
 ### Проверка читаемости — 16 октября 2026
 
