@@ -1,4 +1,3 @@
-// jQuery 3.7.1 full build is loaded first; ready waits until the page exists.
 'use strict';
 
 $(function () {
@@ -70,14 +69,14 @@ $(function () {
     return field;
   }
 
-  const search = addControl('games-search', 'Название игры', 'input', null, 'col-12 col-md-6');
+  const search = addControl('games-search', 'Поиск по названию', 'input', null, 'col-12 col-md-6');
   const category = addControl('games-category', 'Жанр', 'select', [['all', 'Все жанры'], ...Object.entries(genreNames)]);
   const favoriteFilter = addControl('games-favorites', 'Избранное', 'select', [['all', 'Все игры'], ['favorites', 'Только избранные']]);
-  const adjustments = app.el('details', 'rules-disclosures col-12');
-  adjustments.append(app.el('summary', '', 'Дополнительные настройки'));
-  const sort = addControl('games-sort', 'Сортировать', 'select', [['name', 'По названию А–Я'], ['genre', 'По жанру']], 'col-12 col-md-4 mt-2');
-  adjustments.append(sort.parentElement);
-  controls.append(adjustments);
+  const extraSettings = app.el('details', 'rules-disclosures col-12');
+  extraSettings.append(app.el('summary', '', 'Дополнительные настройки'));
+  const sort = addControl('games-sort', 'Сортировка', 'select', [['name', 'По названию А–Я'], ['genre', 'По жанру']], 'col-12 col-md-4 mt-2');
+  extraSettings.append(sort.parentElement);
+  controls.append(extraSettings);
   const actions = app.el('div', 'col-12 d-flex flex-wrap align-items-center gap-3');
   const reset = app.el('button', 'btn btn-outline-secondary', 'Сбросить фильтры');
   $(reset).attr({ type: 'button', id: 'games-filter-reset' });
@@ -102,7 +101,7 @@ $(function () {
     }
     favoriteNotice.classList.remove('is-visible');
   });
-  $(list).closest('section').first().find('header .lead').first().text('Выберите игру и сохраните её в избранное. Наличие игр в клубе уточняйте у администратора.');
+  $(list).closest('section').first().find('header .lead').first().text('Выберите игру и добавьте её в избранное. Наличие игр в клубе уточняйте у администратора.');
 
   const svgNamespace = 'http://www.w3.org/2000/svg';
   const favoritePath = document.createElementNS(svgNamespace, 'path');
@@ -167,6 +166,23 @@ $(function () {
     return column;
   }
 
+  function sortGames(items, mode) {
+    const byTitle = (first, second) => first.title.localeCompare(second.title, 'ru');
+    const byGenre = (first, second) => genreNames[first.genre].localeCompare(genreNames[second.genre], 'ru');
+    items.sort(mode === 'genre' ? (first, second) => byGenre(first, second) || byTitle(first, second) : byTitle);
+  }
+
+  function showCount(shown) {
+    $(count).text(`Найдено игр: ${shown} из ${games.length}`);
+  }
+
+  function showFavoriteNotice(game, adding, saved) {
+    favoriteNotice.classList.toggle('success', saved);
+    favoriteNotice.classList.toggle('error', !saved);
+    favoriteNotice.classList.add('is-visible');
+    favoriteStatus.textContent = `${game.title}: ${adding ? 'добавлена в избранное' : 'удалена из избранного'}.${saved ? '' : ' Сохранение недоступно, список действует до перезагрузки.'}`;
+  }
+
   function renderGames() {
     const query = $(search).val().trim().toLocaleLowerCase('ru');
     const genre = category.value;
@@ -176,9 +192,9 @@ $(function () {
       (genre === 'all' || game.genre === genre) &&
       (!onlyFavorites || favorites.includes(game.id))
     );
-    matches.sort((first, second) => $(sort).val() === 'genre' ? genreNames[first.genre].localeCompare(genreNames[second.genre], 'ru') || first.title.localeCompare(second.title, 'ru') : first.title.localeCompare(second.title, 'ru'));
+    sortGames(matches, $(sort).val());
     app.renderList(list, matches, renderGame, 'Подходящих игр нет. Измените поиск или сбросьте фильтры.');
-    $(count).text(`Найдено игр: ${matches.length} из ${games.length}`);
+    showCount(matches.length);
   }
 
   $(list).on('click', '[data-favorite-game]', function () {
@@ -198,16 +214,13 @@ $(function () {
       favoriteNoticeTrigger = neighbor?.querySelector('[data-favorite-game]') ?? favoriteFilter;
       column.remove();
       if (list.childElementCount === 0) renderGames();
-      else $(count).text(`Найдено игр: ${list.childElementCount} из ${games.length}`);
+      else showCount(list.childElementCount);
       if (buttonHadFocus) favoriteNoticeTrigger.focus({ preventScroll: true });
     } else {
       setFavoriteButton(this, game, adding);
       animateFavorite(this, adding);
     }
-    favoriteNotice.classList.toggle('success', saved);
-    favoriteNotice.classList.toggle('error', !saved);
-    favoriteNotice.classList.add('is-visible');
-    favoriteStatus.textContent = `${game.title}: ${adding ? 'добавлена в избранное' : 'удалена из избранного'}.${saved ? '' : ' Сохранение недоступно, список действует до перезагрузки.'}`;
+    showFavoriteNotice(game, adding, saved);
   });
   $(controls).on('input', 'input', renderGames);
   $(controls).on('change', 'select', renderGames);
