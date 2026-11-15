@@ -9,7 +9,7 @@
         <!-- Bootstrap supplies the layout; only CSS is used. -->
         <link rel="stylesheet" href="css/bootstrap.min.css">
         <link rel="stylesheet" href="css/base.css">
-        <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous" defer></script>
+        <script src="js/vendor/jquery-3.7.1.min.js" defer></script>
         <script src="js/data.js" defer></script>
         <script src="js/logic.js" defer></script>
         <script src="js/main.js" defer></script>
@@ -71,7 +71,8 @@
                                 </div>
                                 <div class="col-12 col-sm-6">
                                     <label for="booking-time" class="form-label">Начало</label>
-                                    <input type="time" id="booking-time" name="booking-time" required class="form-control">
+                                    <input type="time" id="booking-time" name="booking-time" required class="form-control" aria-describedby="booking-time-note">
+                                    <p id="booking-time-note" class="booking-muted small mt-2 mb-0" aria-live="polite"></p>
                                 </div>
                                 <div class="col-12 col-sm-6" id="tariff-selection">
                                     <label for="booking-tariff" class="form-label">Тариф</label>
@@ -141,6 +142,10 @@
             <div id="booking-total-panel" class="mb-4" role="tabpanel" aria-labelledby="booking-tab-total" tabindex="0">
                 <section class="booking-panel mb-3" aria-labelledby="booking-cost-title">
                     <h2 id="booking-cost-title" class="booking-heading">Стоимость визита</h2>
+                    <div id="booking-visit-choice" class="mb-3" hidden>
+                        <label for="booking-visit" class="form-label">Заявка на ПК для расчёта</label>
+                        <select id="booking-visit" class="form-select"></select>
+                    </div>
                     <dl class="booking-facts">
                         <dt id="booking-cost-pc-label">ПК</dt><dd id="booking-cost-pc">—</dd>
                         <dt>Еда из корзины</dt><dd id="booking-cost-food">—</dd>

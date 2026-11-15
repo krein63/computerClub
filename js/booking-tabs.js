@@ -13,6 +13,7 @@ function showBookingTab(index) {
     tab.tabIndex = selected ? 0 : -1;
     bookingPanels[position].hidden = !selected;
   });
+  if (bookingPanels[index].id === 'booking-total-panel') document.dispatchEvent(new Event('booking:refresh-visit'));
 }
 
 function openBookingTab(index, focus = false) {
@@ -108,10 +109,8 @@ function renderBookingCost() {
     : formatBookingCost.format((cost.pc ?? 0) + cost.food);
   updateBookingText(document.getElementById('booking-combined-total'), combined);
   document.getElementById('booking-cost-note').textContent = cost.pc === null
-    ? 'Выберите тариф и места, чтобы добавить стоимость ПК.'
-    : cost.pcLabel === 'ПК · последняя заявка'
-      ? 'Последняя заявка на ПК и текущая корзина.'
-      : 'Текущий выбор ПК и текущая корзина.';
+    ? 'Чтобы включить ПК в итог, сохраните заявку и выберите её здесь.'
+    : 'Выбранная заявка на ПК и текущая корзина.';
 }
 document.addEventListener('booking:pc-cost', event => {
   cost.pc = event.detail.amount;
