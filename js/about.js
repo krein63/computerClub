@@ -14,6 +14,7 @@ $(function () {
     Number.isInteger(review.rating) && review.rating >= 1 && review.rating <= 5 &&
     typeof review.createdAt === 'string' && Number.isFinite(Date.parse(review.createdAt))
   ) : [];
+  if (!reviews.length) return;
 
   const section = app.el('section', 'bg-white border rounded-4 p-3 p-md-4 p-lg-5 mb-4 shadow-sm');
   section.id = 'reviews';
@@ -22,19 +23,8 @@ $(function () {
   heading.id = 'reviews-title';
   const list = app.el('div', 'row g-3');
   list.id = 'review-list';
-  $(section).append(heading, app.el('p', 'mb-4', 'Расскажите о впечатлениях администратору клуба по телефону.'), list);
+  $(section).append(heading, list);
   $(main).append(section);
-
-  if (!reviews.length) {
-    const empty = app.el('div', 'col-12');
-    const card = app.el('div', 'bg-body-tertiary border rounded-3 p-3 p-md-4');
-    const phone = app.el('a', 'btn btn-outline-danger mt-2', 'Позвонить в клуб');
-    phone.href = 'tel:+77064005040';
-    $(card).append(app.el('p', 'mb-0', 'Отзывы пока не добавлены на этом устройстве.'), phone);
-    $(empty).append(card);
-    $(list).append(empty);
-    return;
-  }
 
   reviews.sort((first, second) => Date.parse(second.createdAt) - Date.parse(first.createdAt));
   reviews.forEach(review => {
